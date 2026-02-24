@@ -1,1 +1,15 @@
-<p>season-matchups works!</p>
+@if (weeks().length > 0) {
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    @for (week of weeks(); track week.key) {
+      <a
+        mat-tab-link
+        [routerLink]="['..', week.key]"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [active]="rla.isActive"
+      >{{ week.number }}</a>
+    }
+  </nav>
+  <mat-tab-nav-panel #tabPanel />
+}
+
