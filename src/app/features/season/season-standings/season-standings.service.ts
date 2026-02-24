@@ -16,7 +16,9 @@ export interface SeasonStandingsRow extends DataTableRow {
   gp: number;
   winPct: number;
   pointsFor: number;
+  avgPointsFor: number;
   pointsAgainst: number;
+  avgPointsAgainst: number;
   diff: number;
   moves: number;
   trades: number;
@@ -58,7 +60,9 @@ export class SeasonStandingsService {
     { key: 'gp', header: 'GP', widthCh: 6, format: 'integer' },
     { key: 'winPct', header: 'Win %', widthCh: 8, format: 'percent2' },
     { key: 'pointsFor', header: 'PF', widthCh: 12, format: 'decimal2' },
+    { key: 'avgPointsFor', header: 'Avg PF', widthCh: 10, format: 'decimal2' },
     { key: 'pointsAgainst', header: 'PA', widthCh: 12, format: 'decimal2' },
+    { key: 'avgPointsAgainst', header: 'Avg PA', widthCh: 10, format: 'decimal2' },
     { key: 'diff', header: 'Diff', widthCh: 12, format: 'decimal2' },
     { key: 'moves', header: 'Moves', widthCh: 7, format: 'integer' },
     { key: 'trades', header: 'Trades', widthCh: 7, format: 'integer' },
@@ -90,7 +94,9 @@ export class SeasonStandingsService {
           gp,
           winPct: gp > 0 ? (win / gp) * 100 : 0,
           pointsFor,
+          avgPointsFor: gp > 0 ? pointsFor / gp : 0,
           pointsAgainst,
+          avgPointsAgainst: gp > 0 ? pointsAgainst / gp : 0,
           diff: pointsFor - pointsAgainst,
           moves: entry.transactions?.moves ?? 0,
           trades: entry.transactions?.trades ?? 0,

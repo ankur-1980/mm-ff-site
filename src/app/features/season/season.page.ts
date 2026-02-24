@@ -55,7 +55,7 @@ export class SeasonPage {
     const playoffStart = regularEnd + 1;
     const playoffEnd = m.seasonEndWeek;
 
-    const regularLabel = `Regular season \u2013 Weeks 1\u2013${regularEnd}`;
+    const regularLabel = `Regular season ${regularEnd} weeks`;
 
     let playoffLabel: string;
     if (playoffStart > playoffEnd) {
