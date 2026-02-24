@@ -1,6 +1,7 @@
 import { computed, inject, Injectable } from '@angular/core';
 
 import type { SeasonStandings } from '../models/season-standings.model';
+import type { SeasonMetaData } from '../models/league-metadata.model';
 import { LeagueMetaDataService } from './league-metadata.service';
 import { OwnersDataService } from './owners-data.service';
 import { SeasonStandingsDataService } from './season-standings-data.service';
@@ -61,5 +62,12 @@ export class LeagueMetaDataFacade {
     const season = this.currentSeason();
     if (!season) return null;
     return this.seasonStandings.getStandingsForSeason(season.id.toString()) ?? null;
+  });
+
+  /** Metadata for the current season (weeks, full history flag), or null if unknown. */
+  readonly currentSeasonMeta = computed<SeasonMetaData | null>(() => {
+    const id = this.league.currentSeasonId();
+    if (id == null) return null;
+    return this.league.getSeasonMeta(id);
   });
 }

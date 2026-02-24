@@ -1,5 +1,18 @@
-<section class="page-section" aria-labelledby="season-heading">
-  <h1 id="season-heading">Seasons</h1>
+<section class="page-section season-page" aria-labelledby="season-heading">
+  <header class="season-header" aria-label="Season overview">
+    <div class="season-header__left">
+      <p class="season-header__label">Final standings</p>
+      <h1 id="season-heading" class="season-header__year">
+        {{ year() ?? '—' }}
+      </h1>
+    </div>
+    <div class="season-header__meta">
+      <div class="season-header__meta-item">
+        <span class="season-header__meta-title">Regular Season {{ regularSeasonLabel() }}</span>
+        <span class="season-header__meta-title">Playoffs {{ playoffLabel() }}</span>
+      </div>
+    </div>
+  </header>
 
   <app-season-selector />
 
