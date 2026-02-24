@@ -10,4 +10,18 @@
   gap: 1.25rem;
 }
 
+.season-page__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 0.5rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.season-page__tabs {
+  flex: 1;
+  // remove the default bottom border — the toolbar row provides it
+  border-bottom: none !important;
+}
+
 

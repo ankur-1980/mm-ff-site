@@ -58,6 +58,7 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
       const rows = this.data();
       // Read columns to re-register sortingDataAccessor when column defs change.
       const cols = this.columns();
+      this.dataSource.sort = this.matSort();
       this.dataSource.data = rows;
       this.dataSource.sortingDataAccessor = (row: T, property: string): string | number => {
         const val = row[property];
