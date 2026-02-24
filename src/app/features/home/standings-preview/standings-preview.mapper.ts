@@ -1,7 +1,8 @@
+import type { DataTableRow } from '../../../shared/table/table.models';
 import type { SeasonStandings, SeasonStandingsEntry } from '../../../models/season-standings.model';
 
 /** One row for the standings preview table. */
-export interface StandingsPreviewRow {
+export interface StandingsPreviewRow extends DataTableRow {
   playoffRank: string | null;
   managerName: string;
   teamName: string;
