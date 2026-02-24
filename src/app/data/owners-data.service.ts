@@ -62,8 +62,6 @@ export class OwnersDataService {
         tap((payload) => {
           this.data.set(payload);
           this.status.set('loaded');
-          const count = Object.keys(payload).length;
-          this.logger.info(`OwnersDataService:`, payload);
         }),
         catchError((err: unknown) => {
           const message =
