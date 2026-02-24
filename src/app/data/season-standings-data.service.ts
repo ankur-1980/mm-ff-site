@@ -63,11 +63,6 @@ export class SeasonStandingsDataService {
         tap((payload) => {
           this.data.set(payload);
           this.status.set('loaded');
-          this.logger.info(`SeasonStandingsDataService:`, payload);
-          const seasonCount = Object.keys(payload).length;
-          this.logger.info(
-            `SeasonStandingsDataService: load complete, ${seasonCount} seasons loaded`
-          );
         }),
         catchError((err: unknown) => {
           const message =

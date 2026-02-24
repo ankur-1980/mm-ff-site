@@ -1,9 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoggerService } from '@ankur-1980/logger';
-import { OwnersDataService } from './data/owners-data.service';
-import { SeasonStandingsDataService } from './data/season-standings-data.service';
-import { WeeklyMatchupsDataService } from './data/weekly-matchups-data.service';
+import { LeagueDataFacade } from './data';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +10,10 @@ import { WeeklyMatchupsDataService } from './data/weekly-matchups-data.service';
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
-  private logger = inject(LoggerService)
-  private weeklyMatchupsDataService = inject(WeeklyMatchupsDataService);
+  private readonly leagueData = inject(LeagueDataFacade);
   protected readonly title = signal('midwest-madness');
 
   ngOnInit(): void {
-    this.logger.info('App initialized');
-    this.weeklyMatchupsDataService.load();
+    this.leagueData.loadAll();
   }
 }

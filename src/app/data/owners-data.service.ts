@@ -62,7 +62,6 @@ export class OwnersDataService {
         tap((payload) => {
           this.data.set(payload);
           this.status.set('loaded');
-          this.logger.info(`WeeklyMatchupsDataService:`, payload);
         }),
         catchError((err: unknown) => {
           const message =
