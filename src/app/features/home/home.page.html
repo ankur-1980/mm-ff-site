@@ -1,7 +1,9 @@
 <app-hero />
 
-<section class="page-section" aria-labelledby="home-heading">
-  <h1 id="home-heading">Home</h1>
+<div class="home__spacer" aria-hidden="true"></div>
+
+<section id="home-content" class="page-section" aria-labelledby="home-heading">
+  <h2 id="home-heading">Home</h2>
 
   @if (leagueData.loadStatus() === 'loading') {
     <p class="home__state home__state--loading" aria-live="polite">

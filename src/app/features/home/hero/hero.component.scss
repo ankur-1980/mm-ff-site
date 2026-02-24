@@ -7,8 +7,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 60vh;
-  max-height: 70vh;
+  min-height: 30vh;
+  max-height: 35vh;
   overflow: hidden;
 }
 
@@ -59,9 +59,29 @@
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
+  padding: 0;
+  border: 0;
+  margin: 0;
   color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  cursor: pointer;
   transform: translateX(-50%);
   animation: hero-chevron-bounce 2s ease-in-out infinite;
+
+  &:hover {
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  mat-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }
 }
 
 @keyframes hero-chevron-bounce {
@@ -77,7 +97,7 @@
 // Desktop: cap height so hero doesn’t dominate; keep text readable
 @media (min-width: 768px) {
   .hero {
-    min-height: 65vh;
-    max-height:  min(70vh, 32rem);
+    min-height: 32.5vh;
+    max-height: min(35vh, 16rem);
   }
 }
