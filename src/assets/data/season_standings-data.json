@@ -1,0 +1,5242 @@
+{
+  "2006": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Desi Pride"
+      },
+      "season": "2006",
+      "record": {
+        "win": 5,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1439.9,
+        "pointsAgainst": 1431.3,
+        "highPoints": 1.5
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Cleveland Steamers"
+      },
+      "season": "2006",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1655.1,
+        "pointsAgainst": 1581.3,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Don't Burn the Pigskin"
+      },
+      "season": "2006",
+      "record": {
+        "win": 3,
+        "loss": 12,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1390.7,
+        "pointsAgainst": 1651.7,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Dan": {
+      "playerDetails": {
+        "managerName": "Dan",
+        "teamName": "ESSENTIALLY \u2026"
+      },
+      "season": "2006",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1516.9,
+        "pointsAgainst": 1501.3,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Da Squad"
+      },
+      "season": "2006",
+      "record": {
+        "win": 9,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1641.8,
+        "pointsAgainst": 1528.8,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "Hedd Hunters"
+      },
+      "season": "2006",
+      "record": {
+        "win": 10,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1426.1,
+        "pointsAgainst": 1278.4,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Josh": {
+      "playerDetails": {
+        "managerName": "Josh",
+        "teamName": "Gavin A"
+      },
+      "season": "2006",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1514.3,
+        "pointsAgainst": 1504.1,
+        "highPoints": 3.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2006",
+      "record": {
+        "win": 13,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1786.1,
+        "pointsAgainst": 1420.3,
+        "highPoints": 4.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "The Professor"
+      },
+      "season": "2006",
+      "record": {
+        "win": 5,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1477.5,
+        "pointsAgainst": 1453.3,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Steve": {
+      "playerDetails": {
+        "managerName": "Steve",
+        "teamName": "TheStevens"
+      },
+      "season": "2006",
+      "record": {
+        "win": 13,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1674.2,
+        "pointsAgainst": 1426.1,
+        "highPoints": 3.5
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    }
+  },
+  "2007": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Desi Pride"
+      },
+      "season": "2007",
+      "record": {
+        "win": 7,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1512.9,
+        "pointsAgainst": 1514.5,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Cleveland Steamers"
+      },
+      "season": "2007",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 1
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1609.0,
+        "pointsAgainst": 1491.5,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Don't Burn the Pigskin"
+      },
+      "season": "2007",
+      "record": {
+        "win": 12,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1873.0,
+        "pointsAgainst": 1644.6,
+        "highPoints": 5.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dogs"
+      },
+      "season": "2007",
+      "record": {
+        "win": 12,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1626.5,
+        "pointsAgainst": 1465.4,
+        "highPoints": 3.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Da Squad"
+      },
+      "season": "2007",
+      "record": {
+        "win": 4,
+        "loss": 12,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1307.2,
+        "pointsAgainst": 1670.9,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "Hedd Hunters"
+      },
+      "season": "2007",
+      "record": {
+        "win": 6,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1577.7,
+        "pointsAgainst": 1668.2,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Josh": {
+      "playerDetails": {
+        "managerName": "Josh",
+        "teamName": "Gavin A"
+      },
+      "season": "2007",
+      "record": {
+        "win": 3,
+        "loss": 13,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1319.6,
+        "pointsAgainst": 1567.2,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2007",
+      "record": {
+        "win": 9,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1679.1,
+        "pointsAgainst": 1578.8,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "Mitch Buchannon All-Stars"
+      },
+      "season": "2007",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 1
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1581.6,
+        "pointsAgainst": 1578.8,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Steve": {
+      "playerDetails": {
+        "managerName": "Steve",
+        "teamName": "Famous Titles"
+      },
+      "season": "2007",
+      "record": {
+        "win": 10,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1750.8,
+        "pointsAgainst": 1657.5,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    }
+  },
+  "2008": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Desi Pride"
+      },
+      "season": "2008",
+      "record": {
+        "win": 7,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1449.4,
+        "pointsAgainst": 1683.9,
+        "highPoints": 3.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Return of the Steamers"
+      },
+      "season": "2008",
+      "record": {
+        "win": 8,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1504.7,
+        "pointsAgainst": 1497.8,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TD's"
+      },
+      "season": "2008",
+      "record": {
+        "win": 6,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1506.4,
+        "pointsAgainst": 1547.3,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dogs"
+      },
+      "season": "2008",
+      "record": {
+        "win": 10,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1655.6,
+        "pointsAgainst": 1468.8,
+        "highPoints": 3.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Da Squad"
+      },
+      "season": "2008",
+      "record": {
+        "win": 9,
+        "loss": 6,
+        "tie": 1
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1541.6,
+        "pointsAgainst": 1557.5,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "Hedd Hunters"
+      },
+      "season": "2008",
+      "record": {
+        "win": 9,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1601.0,
+        "pointsAgainst": 1522.2,
+        "highPoints": 3.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Josh": {
+      "playerDetails": {
+        "managerName": "Josh",
+        "teamName": "Gavin A"
+      },
+      "season": "2008",
+      "record": {
+        "win": 9,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1518.7,
+        "pointsAgainst": 1355.5,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2008",
+      "record": {
+        "win": 7,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1485.9,
+        "pointsAgainst": 1702.6,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "Mitch Buchannon All-Stars"
+      },
+      "season": "2008",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 1
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1491.9,
+        "pointsAgainst": 1508.2,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Steve": {
+      "playerDetails": {
+        "managerName": "Steve",
+        "teamName": "Famous Titles"
+      },
+      "season": "2008",
+      "record": {
+        "win": 8,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1537.6,
+        "pointsAgainst": 1449.0,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    }
+  },
+  "2009": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Desi Pride"
+      },
+      "season": "2009",
+      "record": {
+        "win": 5,
+        "loss": 11,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1558.1,
+        "pointsAgainst": 1818.8,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Return of the Steamers"
+      },
+      "season": "2009",
+      "record": {
+        "win": 9,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1583.0,
+        "pointsAgainst": 1451.8,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TD's"
+      },
+      "season": "2009",
+      "record": {
+        "win": 8,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1575.3,
+        "pointsAgainst": 1518.4,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dogs"
+      },
+      "season": "2009",
+      "record": {
+        "win": 9,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1673.2,
+        "pointsAgainst": 1813.1,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Da Squad"
+      },
+      "season": "2009",
+      "record": {
+        "win": 12,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1704.7,
+        "pointsAgainst": 1621.1,
+        "highPoints": 3.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "Hedd Hunters"
+      },
+      "season": "2009",
+      "record": {
+        "win": 5,
+        "loss": 11,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1515.9,
+        "pointsAgainst": 1693.7,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Josh": {
+      "playerDetails": {
+        "managerName": "Josh",
+        "teamName": "Jr. Peporium"
+      },
+      "season": "2009",
+      "record": {
+        "win": 8,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1424.8,
+        "pointsAgainst": 1548.3,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico"
+      },
+      "season": "2009",
+      "record": {
+        "win": 3,
+        "loss": 13,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1472.8,
+        "pointsAgainst": 1574.1,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "Mitch Buchannon All-Stars"
+      },
+      "season": "2009",
+      "record": {
+        "win": 10,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1822.6,
+        "pointsAgainst": 1608.5,
+        "highPoints": 4.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Steve": {
+      "playerDetails": {
+        "managerName": "Steve",
+        "teamName": "Famous Titles"
+      },
+      "season": "2009",
+      "record": {
+        "win": 11,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1702.1,
+        "pointsAgainst": 1384.7,
+        "highPoints": 3.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    }
+  },
+  "2010": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Desi Pride"
+      },
+      "season": "2010",
+      "record": {
+        "win": 4,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1185.3,
+        "pointsAgainst": 1342.3,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Return of the Steamers"
+      },
+      "season": "2010",
+      "record": {
+        "win": 10,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1313.8,
+        "pointsAgainst": 1194.1,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TD's"
+      },
+      "season": "2010",
+      "record": {
+        "win": 6,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1061.9,
+        "pointsAgainst": 1131.1,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dogs"
+      },
+      "season": "2010",
+      "record": {
+        "win": 5,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1235.9,
+        "pointsAgainst": 1426.3,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Da Squad"
+      },
+      "season": "2010",
+      "record": {
+        "win": 8,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1353.2,
+        "pointsAgainst": 1302.7,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "Hedd Hunters"
+      },
+      "season": "2010",
+      "record": {
+        "win": 4,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1098.2,
+        "pointsAgainst": 1292.5,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Josh": {
+      "playerDetails": {
+        "managerName": "Josh",
+        "teamName": "Jr. Pepporium"
+      },
+      "season": "2010",
+      "record": {
+        "win": 5,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1273.1,
+        "pointsAgainst": 1240.0,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2010",
+      "record": {
+        "win": 6,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1279.2,
+        "pointsAgainst": 1279.0,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "Brett Favre's Dick"
+      },
+      "season": "2010",
+      "record": {
+        "win": 7,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1367.7,
+        "pointsAgainst": 1177.7,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Steve": {
+      "playerDetails": {
+        "managerName": "Steve",
+        "teamName": "Famous Titles"
+      },
+      "season": "2010",
+      "record": {
+        "win": 10,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1439.2,
+        "pointsAgainst": 1221.8,
+        "highPoints": 3.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    }
+  },
+  "2011": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Millen's Minions"
+      },
+      "season": "2011",
+      "record": {
+        "win": 4,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1332.7,
+        "pointsAgainst": 1332.7,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Return of the Steamers"
+      },
+      "season": "2011",
+      "record": {
+        "win": 10,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1413.8,
+        "pointsAgainst": 1224.7,
+        "highPoints": 2.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TD's"
+      },
+      "season": "2011",
+      "record": {
+        "win": 10,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1478.6,
+        "pointsAgainst": 1283.7,
+        "highPoints": 3.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dogs"
+      },
+      "season": "2011",
+      "record": {
+        "win": 6,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1285.6,
+        "pointsAgainst": 1345.5,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Da Squad"
+      },
+      "season": "2011",
+      "record": {
+        "win": 8,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1297.1,
+        "pointsAgainst": 1297.1,
+        "highPoints": 2.5
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "Hedd Hunters"
+      },
+      "season": "2011",
+      "record": {
+        "win": 5,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1138.1,
+        "pointsAgainst": 1383.6,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Josh": {
+      "playerDetails": {
+        "managerName": "Josh",
+        "teamName": "Flaming Pepper"
+      },
+      "season": "2011",
+      "record": {
+        "win": 3,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1362.5,
+        "pointsAgainst": 1362.5,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2011",
+      "record": {
+        "win": 7,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1286.6,
+        "pointsAgainst": 1219.0,
+        "highPoints": 1.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "Don't Effing Care Anymore"
+      },
+      "season": "2011",
+      "record": {
+        "win": 9,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1450.1,
+        "pointsAgainst": 1314.5,
+        "highPoints": 4.5
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    },
+    "Steve": {
+      "playerDetails": {
+        "managerName": "Steve",
+        "teamName": "Famous Titles"
+      },
+      "season": "2011",
+      "record": {
+        "win": 3,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "",
+        "regularSeasonRank": "",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1304.0,
+        "pointsAgainst": 1304.0,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 0,
+        "trades": 0
+      }
+    }
+  },
+  "2012": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "The Wurst"
+      },
+      "season": "2012",
+      "record": {
+        "win": 7,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1287.84,
+        "pointsAgainst": 1325.78,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 18,
+        "trades": 3
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Raining Weener"
+      },
+      "season": "2012",
+      "record": {
+        "win": 6,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1305.06,
+        "pointsAgainst": 1347.6,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 25,
+        "trades": 4
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2012",
+      "record": {
+        "win": 7,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1295.26,
+        "pointsAgainst": 1199.06,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 1
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "BigDogs"
+      },
+      "season": "2012",
+      "record": {
+        "win": 5,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1210.36,
+        "pointsAgainst": 1246.74,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 19,
+        "trades": 3
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "The Face Sitters"
+      },
+      "season": "2012",
+      "record": {
+        "win": 8,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1309.5,
+        "pointsAgainst": 1243.92,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 30,
+        "trades": 8
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "The HeddHunters"
+      },
+      "season": "2012",
+      "record": {
+        "win": 6,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1224.0,
+        "pointsAgainst": 1258.64,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 2
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2012",
+      "record": {
+        "win": 10,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1439.22,
+        "pointsAgainst": 1344.14,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 21,
+        "trades": 0
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "Roid Rage"
+      },
+      "season": "2012",
+      "record": {
+        "win": 7,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1346.74,
+        "pointsAgainst": 1290.88,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 16,
+        "trades": 3
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Greg Sucks"
+      },
+      "season": "2012",
+      "record": {
+        "win": 5,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1209.54,
+        "pointsAgainst": 1333.0,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 16,
+        "trades": 1
+      }
+    },
+    "Steve": {
+      "playerDetails": {
+        "managerName": "Steve",
+        "teamName": "Famous Titles"
+      },
+      "season": "2012",
+      "record": {
+        "win": 4,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1184.76,
+        "pointsAgainst": 1222.52,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 16,
+        "trades": 3
+      }
+    }
+  },
+  "2013": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "iSuck"
+      },
+      "season": "2013",
+      "record": {
+        "win": 5,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1366.6,
+        "pointsAgainst": 1452.4,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 21,
+        "trades": 2
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "2003 Tigers"
+      },
+      "season": "2013",
+      "record": {
+        "win": 8,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1323.32,
+        "pointsAgainst": 1391.42,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 29,
+        "trades": 5
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2013",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1421.1,
+        "pointsAgainst": 1489.62,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 24,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2013",
+      "record": {
+        "win": 5,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1374.92,
+        "pointsAgainst": 1402.12,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 39,
+        "trades": 4
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "The Face Sitters"
+      },
+      "season": "2013",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1281.22,
+        "pointsAgainst": 1371.24,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 31,
+        "trades": 8
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HEDD Up My Ass"
+      },
+      "season": "2013",
+      "record": {
+        "win": 8,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1333.18,
+        "pointsAgainst": 1271.5,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 12,
+        "trades": 4
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2013",
+      "record": {
+        "win": 4,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1277.74,
+        "pointsAgainst": 1511.74,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 14,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2013",
+      "record": {
+        "win": 9,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1503.46,
+        "pointsAgainst": 1266.72,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 16,
+        "trades": 2
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "Roid Rage"
+      },
+      "season": "2013",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1302.02,
+        "pointsAgainst": 1344.54,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 21,
+        "trades": 4
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Greg Sucks"
+      },
+      "season": "2013",
+      "record": {
+        "win": 11,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1662.0,
+        "pointsAgainst": 1344.26,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 17,
+        "trades": 3
+      }
+    }
+  },
+  "2014": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Walken Dead"
+      },
+      "season": "2014",
+      "record": {
+        "win": 10,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1480.34,
+        "pointsAgainst": 1342.82,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 32,
+        "trades": 4
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Scotty Football"
+      },
+      "season": "2014",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1452.04,
+        "pointsAgainst": 1538.32,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 42,
+        "trades": 3
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2014",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1460.34,
+        "pointsAgainst": 1445.46,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 20,
+        "trades": 2
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2014",
+      "record": {
+        "win": 5,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1270.18,
+        "pointsAgainst": 1426.98,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 32,
+        "trades": 7
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Da Squad"
+      },
+      "season": "2014",
+      "record": {
+        "win": 8,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1374.9,
+        "pointsAgainst": 1103.6,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 49,
+        "trades": 7
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "Katie's Wife"
+      },
+      "season": "2014",
+      "record": {
+        "win": 4,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1450.88,
+        "pointsAgainst": 1503.08,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 11,
+        "trades": 4
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2014",
+      "record": {
+        "win": 9,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1398.7,
+        "pointsAgainst": 1317.26,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 22,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2014",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1272.78,
+        "pointsAgainst": 1419.42,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 23,
+        "trades": 1
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "Roid Rage"
+      },
+      "season": "2014",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1352.58,
+        "pointsAgainst": 1458.26,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 19,
+        "trades": 2
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Smells Like Rotten Puss"
+      },
+      "season": "2014",
+      "record": {
+        "win": 8,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1385.66,
+        "pointsAgainst": 1343.2,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 19,
+        "trades": 4
+      }
+    }
+  },
+  "2015": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Walken Dead"
+      },
+      "season": "2015",
+      "record": {
+        "win": 9,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1403.16,
+        "pointsAgainst": 1277.76,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 30,
+        "trades": 3
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Kim's Cuckold"
+      },
+      "season": "2015",
+      "record": {
+        "win": 5,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1292.94,
+        "pointsAgainst": 1482.34,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 25,
+        "trades": 4
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2015",
+      "record": {
+        "win": 10,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1366.82,
+        "pointsAgainst": 1241.1,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 32,
+        "trades": 1
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2015",
+      "record": {
+        "win": 9,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1460.72,
+        "pointsAgainst": 1294.86,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 22,
+        "trades": 3
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Scott's Retarded"
+      },
+      "season": "2015",
+      "record": {
+        "win": 4,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1191.14,
+        "pointsAgainst": 1468.62,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 26,
+        "trades": 6
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HeddHonchos"
+      },
+      "season": "2015",
+      "record": {
+        "win": 3,
+        "loss": 11,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1223.3,
+        "pointsAgainst": 1353.32,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 17,
+        "trades": 1
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2015",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1298.68,
+        "pointsAgainst": 1381.92,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 7,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2015",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1264.52,
+        "pointsAgainst": 1287.0,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 25,
+        "trades": 1
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "Roid Rage"
+      },
+      "season": "2015",
+      "record": {
+        "win": 10,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1413.32,
+        "pointsAgainst": 1271.46,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 23,
+        "trades": 2
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Smells Like Rotten Puss"
+      },
+      "season": "2015",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1452.94,
+        "pointsAgainst": 1309.16,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 16,
+        "trades": 1
+      }
+    }
+  },
+  "2016": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Walken Dead"
+      },
+      "season": "2016",
+      "record": {
+        "win": 8,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1424.14,
+        "pointsAgainst": 1296.3,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 25,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Return of the Steamers"
+      },
+      "season": "2016",
+      "record": {
+        "win": 9,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1495.92,
+        "pointsAgainst": 1414.38,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 41,
+        "trades": 1
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2016",
+      "record": {
+        "win": 5,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1327.54,
+        "pointsAgainst": 1418.98,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 22,
+        "trades": 1
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2016",
+      "record": {
+        "win": 8,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1297.48,
+        "pointsAgainst": 1349.34,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 38,
+        "trades": 2
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Franchise 6"
+      },
+      "season": "2016",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1262.24,
+        "pointsAgainst": 1312.38,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 40,
+        "trades": 3
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HeddHonchos"
+      },
+      "season": "2016",
+      "record": {
+        "win": 5,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1270.86,
+        "pointsAgainst": 1209.12,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 1
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2016",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1198.58,
+        "pointsAgainst": 1206.66,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2016",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1266.7,
+        "pointsAgainst": 1364.56,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 18,
+        "trades": 0
+      }
+    },
+    "Robert": {
+      "playerDetails": {
+        "managerName": "Robert",
+        "teamName": "Franchise 7"
+      },
+      "season": "2016",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1455.44,
+        "pointsAgainst": 1483.48,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 19,
+        "trades": 0
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Smells Like Rotten Puss"
+      },
+      "season": "2016",
+      "record": {
+        "win": 9,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1411.06,
+        "pointsAgainst": 1354.76,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 21,
+        "trades": 2
+      }
+    }
+  },
+  "2017": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Walken Dead"
+      },
+      "season": "2017",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1388.72,
+        "pointsAgainst": 1407.12,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 20,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Return of the Steamers"
+      },
+      "season": "2017",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1606.1,
+        "pointsAgainst": 1471.46,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 38,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2017",
+      "record": {
+        "win": 10,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1614.46,
+        "pointsAgainst": 1442.68,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 18,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2017",
+      "record": {
+        "win": 10,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1539.46,
+        "pointsAgainst": 1320.36,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 27,
+        "trades": 4
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "BJ's for TJ"
+      },
+      "season": "2017",
+      "record": {
+        "win": 5,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1286.16,
+        "pointsAgainst": 1468.46,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 41,
+        "trades": 2
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "Sir Gagsalot"
+      },
+      "season": "2017",
+      "record": {
+        "win": 8,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1396.34,
+        "pointsAgainst": 1469.02,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 21,
+        "trades": 1
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2017",
+      "record": {
+        "win": 9,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1564.2,
+        "pointsAgainst": 1474.28,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 17,
+        "trades": 1
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2017",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1427.52,
+        "pointsAgainst": 1450.38,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 7,
+        "trades": 0
+      }
+    },
+    "Ron": {
+      "playerDetails": {
+        "managerName": "Ron",
+        "teamName": "Team 2"
+      },
+      "season": "2017",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1424.58,
+        "pointsAgainst": 1541.32,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 0
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Smells Like Rotten Puss"
+      },
+      "season": "2017",
+      "record": {
+        "win": 3,
+        "loss": 11,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1340.28,
+        "pointsAgainst": 1542.74,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 26,
+        "trades": 2
+      }
+    }
+  },
+  "2018": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Walken Dead"
+      },
+      "season": "2018",
+      "record": {
+        "win": 5,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1453.58,
+        "pointsAgainst": 1594.14,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 19,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Return of the Steamers"
+      },
+      "season": "2018",
+      "record": {
+        "win": 9,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1813.32,
+        "pointsAgainst": 1589.06,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 31,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2018",
+      "record": {
+        "win": 8,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1617.96,
+        "pointsAgainst": 1582.74,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2018",
+      "record": {
+        "win": 10,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1919.32,
+        "pointsAgainst": 1676.88,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 22,
+        "trades": 1
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "IeAtScOtTsAsS"
+      },
+      "season": "2018",
+      "record": {
+        "win": 3,
+        "loss": 11,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1674.9,
+        "pointsAgainst": 1839.24,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 34,
+        "trades": 1
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HeddHunters"
+      },
+      "season": "2018",
+      "record": {
+        "win": 4,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1313.4,
+        "pointsAgainst": 1635.0,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 32,
+        "trades": 2
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2018",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1569.98,
+        "pointsAgainst": 1641.4,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 26,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2018",
+      "record": {
+        "win": 8,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1578.5,
+        "pointsAgainst": 1496.12,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 12,
+        "trades": 0
+      }
+    },
+    "Ron": {
+      "playerDetails": {
+        "managerName": "Ron",
+        "teamName": "A Team Has No Name"
+      },
+      "season": "2018",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1655.32,
+        "pointsAgainst": 1693.16,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 9,
+        "trades": 0
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Beam Me Up Scotty"
+      },
+      "season": "2018",
+      "record": {
+        "win": 10,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1636.72,
+        "pointsAgainst": 1485.26,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 23,
+        "trades": 0
+      }
+    }
+  },
+  "2019": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Walken Dead"
+      },
+      "season": "2019",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1536.64,
+        "pointsAgainst": 1501.08,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 37,
+        "trades": 1
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Return of the Steamers"
+      },
+      "season": "2019",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1491.48,
+        "pointsAgainst": 1497.0,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 43,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2019",
+      "record": {
+        "win": 10,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1653.42,
+        "pointsAgainst": 1592.06,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 18,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2019",
+      "record": {
+        "win": 11,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1845.94,
+        "pointsAgainst": 1631.28,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 24,
+        "trades": 1
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Da Squad"
+      },
+      "season": "2019",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1498.66,
+        "pointsAgainst": 1492.9,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 31,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HeddHunters"
+      },
+      "season": "2019",
+      "record": {
+        "win": 6,
+        "loss": 7,
+        "tie": 1
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1483.0,
+        "pointsAgainst": 1556.88,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 23,
+        "trades": 1
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2019",
+      "record": {
+        "win": 4,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1442.7,
+        "pointsAgainst": 1568.9,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 12,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2019",
+      "record": {
+        "win": 3,
+        "loss": 11,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1371.52,
+        "pointsAgainst": 1655.76,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 8,
+        "trades": 2
+      }
+    },
+    "Ron": {
+      "playerDetails": {
+        "managerName": "Ron",
+        "teamName": "A Team Has No Name"
+      },
+      "season": "2019",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1585.0,
+        "pointsAgainst": 1559.92,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 8,
+        "trades": 0
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Beam Me Up Scotty"
+      },
+      "season": "2019",
+      "record": {
+        "win": 9,
+        "loss": 4,
+        "tie": 1
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1692.52,
+        "pointsAgainst": 1545.1,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 20,
+        "trades": 1
+      }
+    }
+  },
+  "2020": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Walken Dead"
+      },
+      "season": "2020",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1499.58,
+        "pointsAgainst": 1563.46,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 14,
+        "trades": 1
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Team Underdog"
+      },
+      "season": "2020",
+      "record": {
+        "win": 10,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1546.74,
+        "pointsAgainst": 1363.38,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 49,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2020",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1660.4,
+        "pointsAgainst": 1668.82,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 19,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2020",
+      "record": {
+        "win": 8,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1658.42,
+        "pointsAgainst": 1571.88,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 40,
+        "trades": 2
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Da Squad"
+      },
+      "season": "2020",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1499.04,
+        "pointsAgainst": 1559.9,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 41,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HeddHunters"
+      },
+      "season": "2020",
+      "record": {
+        "win": 6,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1580.46,
+        "pointsAgainst": 1652.78,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 22,
+        "trades": 0
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2020",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1637.5,
+        "pointsAgainst": 1611.3,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 16,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2020",
+      "record": {
+        "win": 7,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1473.0,
+        "pointsAgainst": 1535.26,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 19,
+        "trades": 0
+      }
+    },
+    "Ron": {
+      "playerDetails": {
+        "managerName": "Ron",
+        "teamName": "A Team Has No Name"
+      },
+      "season": "2020",
+      "record": {
+        "win": 10,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1628.44,
+        "pointsAgainst": 1586.2,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 13,
+        "trades": 1
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Beam Me Up Scotty"
+      },
+      "season": "2020",
+      "record": {
+        "win": 4,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1650.66,
+        "pointsAgainst": 1721.26,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 30,
+        "trades": 2
+      }
+    }
+  },
+  "2021": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Walken Dead"
+      },
+      "season": "2021",
+      "record": {
+        "win": 9,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1628.56,
+        "pointsAgainst": 1530.24,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Team Underdog"
+      },
+      "season": "2021",
+      "record": {
+        "win": 7,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1595.72,
+        "pointsAgainst": 1689.72,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 24,
+        "trades": 1
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2021",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1699.7,
+        "pointsAgainst": 1803.5,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 19,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2021",
+      "record": {
+        "win": 4,
+        "loss": 11,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1640.94,
+        "pointsAgainst": 1813.06,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 35,
+        "trades": 1
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Da Squad"
+      },
+      "season": "2021",
+      "record": {
+        "win": 11,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1873.16,
+        "pointsAgainst": 1542.26,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 35,
+        "trades": 1
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HeddHunters"
+      },
+      "season": "2021",
+      "record": {
+        "win": 12,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1836.14,
+        "pointsAgainst": 1620.5,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 16,
+        "trades": 0
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2021",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1580.92,
+        "pointsAgainst": 1689.02,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 23,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2021",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1553.6,
+        "pointsAgainst": 1644.3,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 10,
+        "trades": 0
+      }
+    },
+    "Ryan": {
+      "playerDetails": {
+        "managerName": "Ryan",
+        "teamName": "Can't Beat This Heart"
+      },
+      "season": "2021",
+      "record": {
+        "win": 4,
+        "loss": 11,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1539.58,
+        "pointsAgainst": 1678.66,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 20,
+        "trades": 0
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Beam Me Up Scotty"
+      },
+      "season": "2021",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1762.26,
+        "pointsAgainst": 1699.32,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 24,
+        "trades": 1
+      }
+    }
+  },
+  "2022": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Poor Life Choices"
+      },
+      "season": "2022",
+      "record": {
+        "win": 7,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1553.74,
+        "pointsAgainst": 1586.22,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 27,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Team Underdog"
+      },
+      "season": "2022",
+      "record": {
+        "win": 4,
+        "loss": 11,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1506.46,
+        "pointsAgainst": 1726.52,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 28,
+        "trades": 2
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2022",
+      "record": {
+        "win": 13,
+        "loss": 2,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1781.44,
+        "pointsAgainst": 1361.3,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 14,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2022",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1733.02,
+        "pointsAgainst": 1594.8,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 29,
+        "trades": 1
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Sonic Tittyclap"
+      },
+      "season": "2022",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1535.04,
+        "pointsAgainst": 1642.64,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 23,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HeddHunters"
+      },
+      "season": "2022",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1753.12,
+        "pointsAgainst": 1751.24,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 19,
+        "trades": 0
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2022",
+      "record": {
+        "win": 7,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1604.68,
+        "pointsAgainst": 1604.12,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 21,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2022",
+      "record": {
+        "win": 5,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1465.32,
+        "pointsAgainst": 1602.34,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 10,
+        "trades": 0
+      }
+    },
+    "Ryan": {
+      "playerDetails": {
+        "managerName": "Ryan",
+        "teamName": "Can't Beat This Heart"
+      },
+      "season": "2022",
+      "record": {
+        "win": 10,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1727.76,
+        "pointsAgainst": 1730.5,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 22,
+        "trades": 0
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Beam Me Up Scotty"
+      },
+      "season": "2022",
+      "record": {
+        "win": 7,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1655.84,
+        "pointsAgainst": 1716.74,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 17,
+        "trades": 1
+      }
+    }
+  },
+  "2023": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Desi Pride"
+      },
+      "season": "2023",
+      "record": {
+        "win": 3,
+        "loss": 12,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1454.88,
+        "pointsAgainst": 1750.24,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 28,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Team Underdog"
+      },
+      "season": "2023",
+      "record": {
+        "win": 10,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1840.34,
+        "pointsAgainst": 1520.32,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 25,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2023",
+      "record": {
+        "win": 9,
+        "loss": 6,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1759.9,
+        "pointsAgainst": 1621.98,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 21,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2023",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1648.38,
+        "pointsAgainst": 1567.7,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 31,
+        "trades": 0
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Sonic Tittyclap"
+      },
+      "season": "2023",
+      "record": {
+        "win": 4,
+        "loss": 11,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1436.22,
+        "pointsAgainst": 1659.7,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 22,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HeddHunters"
+      },
+      "season": "2023",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1573.72,
+        "pointsAgainst": 1653.32,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 0
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2023",
+      "record": {
+        "win": 10,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1673.92,
+        "pointsAgainst": 1538.04,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 14,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2023",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1499.56,
+        "pointsAgainst": 1537.66,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 5,
+        "trades": 0
+      }
+    },
+    "Ryan": {
+      "playerDetails": {
+        "managerName": "Ryan",
+        "teamName": "Can't Beat This Heart"
+      },
+      "season": "2023",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1550.54,
+        "pointsAgainst": 1669.28,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 24,
+        "trades": 0
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Beam Me Up Scotty"
+      },
+      "season": "2023",
+      "record": {
+        "win": 11,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1747.0,
+        "pointsAgainst": 1666.22,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 18,
+        "trades": 0
+      }
+    }
+  },
+  "2024": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Brown Boy Drip"
+      },
+      "season": "2024",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1698.96,
+        "pointsAgainst": 1708.9,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 32,
+        "trades": 0
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Team Underdog"
+      },
+      "season": "2024",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1614.0,
+        "pointsAgainst": 1634.7,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 1
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2024",
+      "record": {
+        "win": 12,
+        "loss": 3,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1850.54,
+        "pointsAgainst": 1487.76,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 23,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2024",
+      "record": {
+        "win": 11,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1702.88,
+        "pointsAgainst": 1533.0,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 17,
+        "trades": 2
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Sonic Tittyclap"
+      },
+      "season": "2024",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1643.94,
+        "pointsAgainst": 1658.24,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 19,
+        "trades": 0
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HeddHunters"
+      },
+      "season": "2024",
+      "record": {
+        "win": 7,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1676.58,
+        "pointsAgainst": 1798.2,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 14,
+        "trades": 1
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2024",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1732.84,
+        "pointsAgainst": 1734.58,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 23,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2024",
+      "record": {
+        "win": 5,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1578.0,
+        "pointsAgainst": 1720.76,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 10,
+        "trades": 0
+      }
+    },
+    "Ryan": {
+      "playerDetails": {
+        "managerName": "Ryan",
+        "teamName": "Can't Beat This Heart"
+      },
+      "season": "2024",
+      "record": {
+        "win": 2,
+        "loss": 13,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1501.22,
+        "pointsAgainst": 1703.04,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 22,
+        "trades": 0
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Beam Me Up Scotty"
+      },
+      "season": "2024",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1566.96,
+        "pointsAgainst": 1586.74,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 23,
+        "trades": 0
+      }
+    }
+  },
+  "2025": {
+    "Ankur": {
+      "playerDetails": {
+        "managerName": "Ankur",
+        "teamName": "Brown Boy Drip"
+      },
+      "season": "2025",
+      "record": {
+        "win": 3,
+        "loss": 12,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "7",
+        "regularSeasonRank": "10",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1208.46,
+        "pointsAgainst": 1509.94,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 22,
+        "trades": 1
+      }
+    },
+    "Charlie": {
+      "playerDetails": {
+        "managerName": "Charlie",
+        "teamName": "Team Underdog"
+      },
+      "season": "2025",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "4",
+        "regularSeasonRank": "4",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1640.12,
+        "pointsAgainst": 1501.02,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 14,
+        "trades": 0
+      }
+    },
+    "Chris": {
+      "playerDetails": {
+        "managerName": "Chris",
+        "teamName": "Show Me Your TDs"
+      },
+      "season": "2025",
+      "record": {
+        "win": 11,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "2",
+        "regularSeasonRank": "1",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1766.9,
+        "pointsAgainst": 1461.56,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 11,
+        "trades": 0
+      }
+    },
+    "Fancett": {
+      "playerDetails": {
+        "managerName": "Fancett",
+        "teamName": "Big Dog"
+      },
+      "season": "2025",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "5",
+        "regularSeasonRank": "7",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1554.64,
+        "pointsAgainst": 1530.08,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 1
+      }
+    },
+    "Greg": {
+      "playerDetails": {
+        "managerName": "Greg",
+        "teamName": "Sonic Tittyclap"
+      },
+      "season": "2025",
+      "record": {
+        "win": 8,
+        "loss": 7,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "9",
+        "regularSeasonRank": "5",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1607.7,
+        "pointsAgainst": 1629.94,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 13,
+        "trades": 1
+      }
+    },
+    "Heddle": {
+      "playerDetails": {
+        "managerName": "Heddle",
+        "teamName": "HeddHunters"
+      },
+      "season": "2025",
+      "record": {
+        "win": 7,
+        "loss": 8,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "10",
+        "regularSeasonRank": "6",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1482.4,
+        "pointsAgainst": 1569.3,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 10,
+        "trades": 1
+      }
+    },
+    "Matt Van": {
+      "playerDetails": {
+        "managerName": "Matt Van",
+        "teamName": "Uncle Rico's Football Academy"
+      },
+      "season": "2025",
+      "record": {
+        "win": 10,
+        "loss": 5,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "1",
+        "regularSeasonRank": "3",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1551.02,
+        "pointsAgainst": 1382.86,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 12,
+        "trades": 0
+      }
+    },
+    "Ray": {
+      "playerDetails": {
+        "managerName": "Ray",
+        "teamName": "RV"
+      },
+      "season": "2025",
+      "record": {
+        "win": 6,
+        "loss": 9,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "6",
+        "regularSeasonRank": "8",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1413.76,
+        "pointsAgainst": 1545.06,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 3,
+        "trades": 0
+      }
+    },
+    "Ryan": {
+      "playerDetails": {
+        "managerName": "Ryan",
+        "teamName": "Not Barely Better Than Ankur"
+      },
+      "season": "2025",
+      "record": {
+        "win": 5,
+        "loss": 10,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "8",
+        "regularSeasonRank": "9",
+        "madePlayoffs": "false"
+      },
+      "points": {
+        "pointsFor": 1301.48,
+        "pointsAgainst": 1527.08,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 27,
+        "trades": 0
+      }
+    },
+    "Scott": {
+      "playerDetails": {
+        "managerName": "Scott",
+        "teamName": "Beam Me Up Scotty"
+      },
+      "season": "2025",
+      "record": {
+        "win": 11,
+        "loss": 4,
+        "tie": 0
+      },
+      "ranks": {
+        "playoffRank": "3",
+        "regularSeasonRank": "2",
+        "madePlayoffs": "true"
+      },
+      "points": {
+        "pointsFor": 1616.52,
+        "pointsAgainst": 1486.16,
+        "highPoints": 0.0
+      },
+      "transactions": {
+        "moves": 15,
+        "trades": 0
+      }
+    }
+  }
+}
