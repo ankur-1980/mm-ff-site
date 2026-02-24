@@ -40,7 +40,6 @@ function buildDisplayedColumns(
 
 @Component({
   selector: 'app-standings-preview',
-  standalone: true,
   imports: [MatTableModule, DecimalPipe],
   templateUrl: './standings-preview.component.html',
   styleUrl: './standings-preview.component.scss'

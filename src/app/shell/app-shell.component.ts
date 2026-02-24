@@ -1,9 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { APP_NAV_LINKS } from '../shared/cosntants/nav-links';
 
 @Component({
   selector: 'app-shell',
@@ -14,19 +15,20 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet
+    RouterOutlet,
   ],
   templateUrl: './app-shell.component.html',
-  styleUrl: './app-shell.component.scss'
+  styleUrl: './app-shell.component.scss',
 })
 export class AppShellComponent {
-  @ViewChild(MatSidenav) drawer!: MatSidenav;
+  readonly navLinks = APP_NAV_LINKS;
+  private readonly drawer = viewChild.required(MatSidenav);
 
   toggleDrawer(): void {
-    this.drawer?.toggle();
+    this.drawer().toggle();
   }
 
   closeDrawerAfterNav(): void {
-    this.drawer?.close();
+    this.drawer().close();
   }
 }

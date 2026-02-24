@@ -14,42 +14,16 @@
   <span class="app-toolbar__spacer"></span>
 
   <nav class="app-toolbar__nav" aria-label="Main">
-    <a
-      mat-button
-      routerLink="/home"
-      routerLinkActive="app-toolbar__link--active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      Home
-    </a>
-    <a
-      mat-button
-      routerLink="/season"
-      routerLinkActive="app-toolbar__link--active"
-    >
-      Seasons
-    </a>
-    <a
-      mat-button
-      routerLink="/all-time"
-      routerLinkActive="app-toolbar__link--active"
-    >
-      All‑Time
-    </a>
-    <a
-      mat-button
-      routerLink="/owners"
-      routerLinkActive="app-toolbar__link--active"
-    >
-      Owners
-    </a>
-    <a
-      mat-button
-      routerLink="/records"
-      routerLinkActive="app-toolbar__link--active"
-    >
-      Records
-    </a>
+    @for (link of navLinks; track link.route) {
+      <a
+        mat-button
+        [routerLink]="link.route"
+        routerLinkActive="app-toolbar__link--active"
+        [routerLinkActiveOptions]="{ exact: link.route === '/home' }"
+      >
+        {{ link.label }}
+      </a>
+    }
   </nav>
 </mat-toolbar>
 
@@ -61,47 +35,17 @@
     class="app-shell__drawer"
   >
     <nav class="app-shell__drawer-nav" aria-label="Main menu">
-      <a
-        mat-button
-        routerLink="/home"
-        routerLinkActive="app-shell__drawer-link--active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        (click)="closeDrawerAfterNav()"
-      >
-        Home
-      </a>
-      <a
-        mat-button
-        routerLink="/season"
-        routerLinkActive="app-shell__drawer-link--active"
-        (click)="closeDrawerAfterNav()"
-      >
-        Seasons
-      </a>
-      <a
-        mat-button
-        routerLink="/all-time"
-        routerLinkActive="app-shell__drawer-link--active"
-        (click)="closeDrawerAfterNav()"
-      >
-        All‑Time
-      </a>
-      <a
-        mat-button
-        routerLink="/owners"
-        routerLinkActive="app-shell__drawer-link--active"
-        (click)="closeDrawerAfterNav()"
-      >
-        Owners
-      </a>
-      <a
-        mat-button
-        routerLink="/records"
-        routerLinkActive="app-shell__drawer-link--active"
-        (click)="closeDrawerAfterNav()"
-      >
-        Records
-      </a>
+      @for (link of navLinks; track link.route) {
+        <a
+          mat-button
+          [routerLink]="link.route"
+          routerLinkActive="app-shell__drawer-link--active"
+          [routerLinkActiveOptions]="{ exact: link.route === '/home' }"
+          (click)="closeDrawerAfterNav()"
+        >
+          {{ link.label }}
+        </a>
+      }
     </nav>
   </mat-sidenav>
 

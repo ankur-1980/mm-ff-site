@@ -7,7 +7,12 @@
 @use '@angular/material' as mat;
 
 :root {
-  --app-toolbar-height: 64px;
+  --app-toolbar-height: 56px; // Material toolbar default (mobile)
+}
+@media (min-width: 768px) {
+  :root {
+    --app-toolbar-height: 64px; // Material toolbar desktop
+  }
 }
 
 html {
