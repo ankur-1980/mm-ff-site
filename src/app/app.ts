@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { LoggerService } from '@ankur-1980/logger';
 import { OwnersDataService } from './data/owners-data.service';
 import { SeasonStandingsDataService } from './data/season-standings-data.service';
+import { WeeklyMatchupsDataService } from './data/weekly-matchups-data.service';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,11 @@ import { SeasonStandingsDataService } from './data/season-standings-data.service
 })
 export class App implements OnInit {
   private logger = inject(LoggerService)
-  private seasonStandingsDataService = inject(SeasonStandingsDataService);
+  private weeklyMatchupsDataService = inject(WeeklyMatchupsDataService);
   protected readonly title = signal('midwest-madness');
 
   ngOnInit(): void {
     this.logger.info('App initialized');
-    this.seasonStandingsDataService.load();
+    this.weeklyMatchupsDataService.load();
   }
 }
