@@ -1,5 +1,6 @@
-<section class="page-section" aria-labelledby="home-heading">
-  <h1 id="home-heading">Home</h1>
+<app-hero />
+<section id="home-content" class="page-section" aria-labelledby="home-heading">
+  <h2 id="home-heading">Home</h2>
 
   @if (leagueData.loadStatus() === 'loading') {
     <p class="home__state home__state--loading" aria-live="polite">
@@ -11,6 +12,12 @@
     </p>
   } @else if (leagueData.loadStatus() === 'loaded' && leagueData.leagueData(); as league) {
     <p class="home__league-name">{{ league.name }}</p>
+    <p class="home__current-season">
+      Current Season: {{ leagueData.currentSeason()?.id ?? '—' }}
+    </p>
+    <app-standings-preview [standings]="leagueData.currentSeasonStandings()" />
+    <!-- TODO: Remove this once we have a real standings preview component. -->
+    <div class="home__spacer" aria-hidden="true"></div>
   } @else {
     <p class="home__state">League overview coming soon.</p>
   }

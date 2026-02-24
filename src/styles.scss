@@ -6,6 +6,15 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+:root {
+  --app-toolbar-height: 56px; // Material toolbar default (mobile)
+}
+@media (min-width: 768px) {
+  :root {
+    --app-toolbar-height: 64px; // Material toolbar desktop
+  }
+}
+
 html {
   height: 100%;
   @include mat.theme((

@@ -1,0 +1,18 @@
+<section
+  class="hero"
+  aria-label="League hero banner"
+  appIntersect
+  (intersect)="isVisible.set($event)"
+>
+  <div class="hero__backdrop" aria-hidden="true"></div>
+  <h1 class="hero__title">Current Season</h1>
+  <p class="hero__subtitle">Fantasy Football League</p>
+  <button
+    type="button"
+    class="hero__chevron"
+    aria-label="Scroll to content"
+    (click)="scrollToContent()"
+  >
+    <mat-icon fontIcon="expand_more" aria-hidden="true"></mat-icon>
+  </button>
+</section>

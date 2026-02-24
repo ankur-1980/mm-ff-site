@@ -1,5 +1,5 @@
 .page-section {
-  h1 {
+  h2 {
     margin: 0 0 0.5rem;
   }
 
@@ -20,4 +20,9 @@
 
 .home__league-name {
   font-weight: 600;
+}
+
+// TODO: Remove this once we have a real standings preview component.
+.home__spacer {
+  min-height: 60vh;
 }

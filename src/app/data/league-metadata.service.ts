@@ -38,6 +38,9 @@ export class LeagueMetaDataService {
     () => this.status() === 'loaded' || this.status() === 'error'
   );
 
+  /** Current season id from meta (e.g. "2025"). null if not set or not loaded. */
+  readonly currentSeasonId = computed(() => this.data()?.currentSeasonId ?? null);
+
   /**
    * Load league from assets. Safe to call multiple times; only the first call fetches.
    */

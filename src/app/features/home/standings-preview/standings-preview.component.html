@@ -1,0 +1,57 @@
+<table mat-table [dataSource]="dataSource" class="standings-preview-table">
+  <ng-container matColumnDef="playoffRank">
+    <th mat-header-cell *matHeaderCellDef>Playoff Rank</th>
+    <td mat-cell *matCellDef="let row">{{ row.playoffRank ?? '—' }}</td>
+  </ng-container>
+  <ng-container matColumnDef="managerName">
+    <th mat-header-cell *matHeaderCellDef>Manager</th>
+    <td mat-cell *matCellDef="let row">{{ row.managerName }}</td>
+  </ng-container>
+  <ng-container matColumnDef="teamName">
+    <th mat-header-cell *matHeaderCellDef>Team</th>
+    <td mat-cell *matCellDef="let row">{{ row.teamName }}</td>
+  </ng-container>
+  <ng-container matColumnDef="win">
+    <th mat-header-cell *matHeaderCellDef>W</th>
+    <td mat-cell *matCellDef="let row">{{ row.win }}</td>
+  </ng-container>
+  <ng-container matColumnDef="loss">
+    <th mat-header-cell *matHeaderCellDef>L</th>
+    <td mat-cell *matCellDef="let row">{{ row.loss }}</td>
+  </ng-container>
+  <ng-container matColumnDef="tie">
+    <th mat-header-cell *matHeaderCellDef>T</th>
+    <td mat-cell *matCellDef="let row">{{ row.tie }}</td>
+  </ng-container>
+  <ng-container matColumnDef="winPct">
+    <th mat-header-cell *matHeaderCellDef>Win %</th>
+    <td mat-cell *matCellDef="let row">{{ row.winPct | number: '1.0-0' }}%</td>
+  </ng-container>
+  <ng-container matColumnDef="pointsFor">
+    <th mat-header-cell *matHeaderCellDef>PF</th>
+    <td mat-cell *matCellDef="let row">{{ row.pointsFor | number: '1.1-1' }}</td>
+  </ng-container>
+  <ng-container matColumnDef="pointsAgainst">
+    <th mat-header-cell *matHeaderCellDef>PA</th>
+    <td mat-cell *matCellDef="let row">{{ row.pointsAgainst | number: '1.1-1' }}</td>
+  </ng-container>
+  <ng-container matColumnDef="pointsDiff">
+    <th mat-header-cell *matHeaderCellDef>Diff</th>
+    <td mat-cell *matCellDef="let row">{{ row.pointsDiff | number: '1.1-1' }}</td>
+  </ng-container>
+  <ng-container matColumnDef="regularSeasonRank">
+    <th mat-header-cell *matHeaderCellDef>Reg. Rank</th>
+    <td mat-cell *matCellDef="let row">{{ row.regularSeasonRank ?? '—' }}</td>
+  </ng-container>
+  <ng-container matColumnDef="moves">
+    <th mat-header-cell *matHeaderCellDef>Moves</th>
+    <td mat-cell *matCellDef="let row">{{ row.moves }}</td>
+  </ng-container>
+  <ng-container matColumnDef="trades">
+    <th mat-header-cell *matHeaderCellDef>Trades</th>
+    <td mat-cell *matCellDef="let row">{{ row.trades }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns()"></tr>
+</table>

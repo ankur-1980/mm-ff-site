@@ -1,0 +1,113 @@
+// Mobile-first hero: fixed height, full width, title overlay, chevron hint
+
+:host {
+  display: block;
+  transition: opacity 0.4s ease;
+}
+
+:host(.hero--hidden) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 30vh;
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+.hero__backdrop {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    hsl(220 60% 25%) 0%,
+    hsl(260 50% 20%) 50%,
+    hsl(280 45% 18%) 100%
+  );
+  z-index: 0;
+}
+
+.hero__title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0 1rem;
+  font-size: clamp(1.75rem, 8vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.hero__subtitle {
+  position: relative;
+  z-index: 1;
+  margin: 0.5rem 0 0;
+  padding: 0 1rem;
+  font-size: clamp(0.9375rem, 4vw, 1.25rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero__chevron {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  cursor: pointer;
+  transform: translateX(-50%);
+  animation: hero-chevron-bounce 2s ease-in-out infinite;
+
+  &:hover {
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  mat-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@keyframes hero-chevron-bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(0.25rem);
+  }
+}
+
+// Desktop: cap height so hero doesn’t dominate; keep text readable
+@media (min-width: 768px) {
+  .hero {
+    min-height: 32.5vh;
+    max-height: min(35vh, 16rem);
+  }
+}
