@@ -2,9 +2,23 @@
   display: block;
 }
 
-.week-select {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0.5rem 0;
+.matchups__mobile-nav {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.matchups__mobile-label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+@media (max-width: 599px) {
+  .matchups__tabs {
+    display: none;
+  }
+
+  .matchups__mobile-nav {
+    display: flex;
+  }
 }
