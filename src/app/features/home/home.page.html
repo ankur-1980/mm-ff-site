@@ -15,10 +15,44 @@
     <p class="home__current-season">
       Current Season: {{ leagueData.currentSeason()?.id ?? '—' }}
     </p>
-    <app-standings-preview [standings]="leagueData.currentSeasonStandings()" />
-    <!-- TODO: Remove this once we have a real standings preview component. -->
-    <div class="home__spacer" aria-hidden="true"></div>
   } @else {
     <p class="home__state">League overview coming soon.</p>
   }
+
+  <section class="home__champion home__placeholder" aria-label="Current champion">
+    Current champion spotlight
+  </section>
+
+  <section class="home__block">
+    <h3 class="home__section-heading">Legendary Moments</h3>
+    <div class="home__legendary-grid">
+      <div class="home__card home__placeholder">Legendary moment 1</div>
+      <div class="home__card home__placeholder">Legendary moment 2</div>
+      <div class="home__card home__placeholder">Legendary moment 3</div>
+    </div>
+  </section>
+
+  <section class="home__block">
+    <h3 class="home__section-heading">Owners</h3>
+    <div class="home__owners-grid">
+      @for (owner of [1,2,3,4,5,6,7,8,9,10]; track owner) {
+        <div class="home__owner-pill home__placeholder">
+          Owner {{ owner }}
+        </div>
+      }
+    </div>
+    <button type="button" class="home__owners-cta">
+      View all owners
+    </button>
+  </section>
+
+  <section class="home__block">
+    <h3 class="home__section-heading">Explore the League</h3>
+    <div class="home__explore-grid">
+      <div class="home__card home__placeholder">Season</div>
+      <div class="home__card home__placeholder">Owners</div>
+      <div class="home__card home__placeholder">Records</div>
+      <div class="home__card home__placeholder">All-Time</div>
+    </div>
+  </section>
 </section>
