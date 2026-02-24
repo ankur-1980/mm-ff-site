@@ -2,11 +2,10 @@ import { Component, inject } from '@angular/core';
 
 import { LeagueMetaDataFacade } from '../../data';
 import { HeroComponent } from './hero/hero.component';
-import { StandingsPreviewComponent } from './standings-preview/standings-preview.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [HeroComponent, StandingsPreviewComponent],
+  imports: [HeroComponent],
   templateUrl: './home.page.html',
   styleUrl: './home.page.scss'
 })

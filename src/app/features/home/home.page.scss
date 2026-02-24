@@ -22,7 +22,75 @@
   font-weight: 600;
 }
 
-// TODO: Remove this once we have a real standings preview component.
-.home__spacer {
-  min-height: 60vh;
+.home__placeholder {
+  border-radius: 0.75rem;
+  border: 1px dashed rgba(148, 163, 184, 0.6);
+  background: rgba(148, 163, 184, 0.08);
+  color: rgba(15, 23, 42, 0.9);
+}
+
+.home__champion {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  min-height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.home__block {
+  margin-top: 1.75rem;
+}
+
+.home__section-heading {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.home__legendary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.75rem;
+}
+
+.home__card {
+  padding: 1.25rem;
+  min-height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.home__owners-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.home__owner-pill {
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.home__owners-cta {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  border: 0;
+  background: var(--mat-sys-primary, #2563eb);
+  color: var(--mat-sys-on-primary, #fff);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.home__explore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.75rem;
 }
