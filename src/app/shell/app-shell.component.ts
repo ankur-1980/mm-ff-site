@@ -4,7 +4,7 @@ import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { APP_NAV_LINKS } from '../shared/cosntants/nav-links';
+import { APP_NAV_LINKS } from '../shared/constants/nav-links';
 
 @Component({
   selector: 'app-shell',
