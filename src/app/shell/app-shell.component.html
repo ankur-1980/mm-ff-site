@@ -1,0 +1,51 @@
+<mat-toolbar color="primary" class="app-toolbar">
+  <span class="app-toolbar__title">Midwest Madness</span>
+
+  <span class="app-toolbar__spacer"></span>
+
+  <a
+    mat-button
+    routerLink="/home"
+    routerLinkActive="app-toolbar__link--active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Home
+  </a>
+
+  <a
+    mat-button
+    routerLink="/season"
+    routerLinkActive="app-toolbar__link--active"
+  >
+    Seasons
+  </a>
+
+  <a
+    mat-button
+    routerLink="/all-time"
+    routerLinkActive="app-toolbar__link--active"
+  >
+    All‑Time
+  </a>
+
+  <a
+    mat-button
+    routerLink="/owners"
+    routerLinkActive="app-toolbar__link--active"
+  >
+    Owners
+  </a>
+
+  <a
+    mat-button
+    routerLink="/records"
+    routerLinkActive="app-toolbar__link--active"
+  >
+    Records
+  </a>
+</mat-toolbar>
+
+<main class="app-shell__content">
+  <router-outlet />
+</main>
+
