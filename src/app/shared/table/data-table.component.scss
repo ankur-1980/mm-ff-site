@@ -1,15 +1,14 @@
 :host {
   display: block;
-  // Fill the container width, then scroll horizontally if the table is wider.
-  // Combined with width: fit-content on .data-table this keeps every column
-  // at its defined widthCh on small screens rather than compressing.
-  width: 100%;
+  width: fit-content;
+  // If the table somehow exceeds the viewport, scroll rather than overflow.
+  max-width: 100%;
   overflow-x: auto;
   align-self: start;
   // Single source of truth for sort-icon width. Used by both the spacer
   // element and the calc() offset so right-aligned values stay under their
   // column header label rather than the sort arrow.
-  --data-table-sort-icon-width: 24px;
+  --data-table-sort-icon-width: 20px;
 }
 
 .data-table {
@@ -33,6 +32,18 @@
 .data-table__header--center,
 .data-table__cell--center {
   text-align: center;
+}
+
+// ::ng-deep is required here because .mat-sort-header-container lives inside
+// Angular Material's own component template (separate view encapsulation).
+:host ::ng-deep {
+  .data-table__header--right .mat-sort-header-container {
+    justify-content: flex-end;
+  }
+
+  .data-table__header--center .mat-sort-header-container {
+    justify-content: center;
+  }
 }
 
 .data-table__cell--right .data-table__cell-content,
