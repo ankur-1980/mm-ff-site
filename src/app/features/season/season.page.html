@@ -5,7 +5,23 @@
     [meta]="metaItems()"
   />
 
-  <app-season-selector />
+  <div class="season-page__toolbar">
+    <app-season-selector />
 
-  <router-outlet />
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="season-page__tabs">
+      @for (tab of tabs; track tab.path) {
+        <a
+          mat-tab-link
+          [routerLink]="['/season', year(), tab.path]"
+          routerLinkActive
+          #rla="routerLinkActive"
+          [active]="rla.isActive"
+        >{{ tab.label }}</a>
+      }
+    </nav>
+  </div>
+
+  <mat-tab-nav-panel #tabPanel>
+    <router-outlet />
+  </mat-tab-nav-panel>
 </section>
