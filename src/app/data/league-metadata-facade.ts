@@ -1,9 +1,14 @@
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable } from '@angular/core';
 
 import { LeagueMetaDataService } from './league-metadata.service';
 import { OwnersDataService } from './owners-data.service';
 import { SeasonStandingsDataService } from './season-standings-data.service';
 import { WeeklyMatchupsDataService } from './weekly-matchups-data.service';
+
+/** Resolved current season from meta + standings (id is the season year number). */
+export interface CurrentSeason {
+  id: number;
+}
 
 /**
  * Single entry point to load all league data at app init.
@@ -24,4 +29,29 @@ export class LeagueMetaDataFacade {
     this.seasonStandings.load();
     this.weeklyMatchups.load();
   }
+
+  /** League load status (passthrough). */
+  get loadStatus() {
+    return this.league.loadStatus;
+  }
+  /** League load error (passthrough). */
+  get loadError() {
+    return this.league.loadError;
+  }
+  /** League meta data when loaded (passthrough). */
+  get leagueData() {
+    return this.league.leagueData;
+  }
+
+  /**
+   * Current season resolved from meta currentSeasonId and standings.
+   * null if meta/standings not loaded, currentSeasonId missing, or id not in standings.
+   */
+  readonly currentSeason = computed<CurrentSeason | null>(() => {
+    const id = this.league.currentSeasonId();
+    if (id == null) return null;
+    const ids = this.seasonStandings.seasonIds();
+    if (!ids.includes(id.toString())) return null;
+    return { id };
+  });
 }

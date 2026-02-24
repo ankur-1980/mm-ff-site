@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 
-import { LeagueDataService } from '../../data';
+import { LeagueMetaDataFacade } from '../../data';
 import { HeroComponent } from './hero/hero.component';
 
 @Component({
@@ -10,5 +10,5 @@ import { HeroComponent } from './hero/hero.component';
   styleUrl: './home.page.scss'
 })
 export class HomePage {
-  protected readonly leagueData = inject(LeagueDataService);
+  protected readonly leagueData = inject(LeagueMetaDataFacade);
 }

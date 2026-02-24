@@ -14,4 +14,7 @@ export {
   WeeklyMatchupsDataService,
   type WeeklyMatchupsDataStatus
 } from './weekly-matchups-data.service';
-export { LeagueMetaDataFacade as LeagueDataFacade } from './league-metadata-facade';
+export {
+  LeagueMetaDataFacade,
+  type CurrentSeason
+} from './league-metadata-facade';

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LeagueDataFacade } from './data';
+import { LeagueMetaDataFacade } from './data';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { LeagueDataFacade } from './data';
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
-  private readonly leagueData = inject(LeagueDataFacade);
+  private readonly leagueData = inject(LeagueMetaDataFacade);
 
   ngOnInit(): void {
     this.leagueData.loadAll();

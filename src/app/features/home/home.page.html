@@ -15,6 +15,9 @@
     </p>
   } @else if (leagueData.loadStatus() === 'loaded' && leagueData.leagueData(); as league) {
     <p class="home__league-name">{{ league.name }}</p>
+    <p class="home__current-season">
+      Current Season: {{ leagueData.currentSeason()?.id ?? '—' }}
+    </p>
   } @else {
     <p class="home__state">League overview coming soon.</p>
   }
