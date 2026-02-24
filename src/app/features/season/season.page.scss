@@ -1,9 +1,13 @@
 .page-section {
-  h1 {
-    margin: 0 0 0.5rem;
-  }
-
   p {
     margin: 0;
   }
 }
+
+.season-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import type { LeagueMetaData } from '../models/league-metadata.model';
+import type { LeagueMetaData, SeasonMetaData } from '../models/league-metadata.model';
 import { LoggerService } from '@ankur-1980/logger';
 
 const LEAGUE_ASSET = 'assets/data/league-metadata.json';
@@ -40,6 +40,18 @@ export class LeagueMetaDataService {
 
   /** Current season id from meta (e.g. "2025"). null if not set or not loaded. */
   readonly currentSeasonId = computed(() => this.data()?.currentSeasonId ?? null);
+
+  /** All known season metadata keyed by year string. */
+  readonly seasons = computed<Record<string, SeasonMetaData>>(
+    () => this.data()?.seasons ?? {}
+  );
+
+  /** Metadata for a specific season year (number or string). */
+  getSeasonMeta(seasonId: number | string): SeasonMetaData | null {
+    const key = String(seasonId);
+    const map = this.seasons();
+    return map[key] ?? null;
+  }
 
   /**
    * Load league from assets. Safe to call multiple times; only the first call fetches.

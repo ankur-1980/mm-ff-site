@@ -14,8 +14,10 @@ export const routes: Routes = [
       },
       {
         path: 'season',
-        loadComponent: () =>
-          import('./features/season/season.page').then((m) => m.SeasonPage)
+        loadChildren: () =>
+          import('./features/season/season.routes').then(
+            (m) => m.SEASON_ROUTES
+          )
       },
       {
         path: 'all-time',
