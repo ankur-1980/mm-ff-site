@@ -17,8 +17,8 @@ export const SEASON_ROUTES: Routes = [
         path: 'standings',
         loadComponent: () =>
           import(
-            './season-power-standings/season-power-standings'
-          ).then((m) => m.SeasonPowerStandings),
+            './season-standings/season-standings'
+          ).then((m) => m.SeasonStandings),
       },
       {
         path: 'matchups',

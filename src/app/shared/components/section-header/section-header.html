@@ -1,0 +1,17 @@
+<div class="section-header__left">
+  @if (label()) {
+    <p class="section-header__label">{{ label() }}</p>
+  }
+  <h1 class="section-header__heading">{{ heading() || '—' }}</h1>
+</div>
+
+@if (meta().length) {
+  <div class="section-header__meta">
+    @for (item of meta(); track item; let last = $last) {
+      <span class="section-header__meta-title">{{ item }}</span>
+      @if (!last) {
+        <span class="section-header__meta-sep" aria-hidden="true">&bull;</span>
+      }
+    }
+  </div>
+}

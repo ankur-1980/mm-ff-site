@@ -1,0 +1,55 @@
+:host {
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 1.25rem 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+.section-header__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.section-header__label {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(100, 116, 139, 1);
+}
+
+.section-header__heading {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+}
+
+.section-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.section-header__meta-title {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.section-header__meta-sep {
+  font-size: 0.6rem;
+  color: rgba(100, 116, 139, 0.6);
+  align-self: center;
+}
+
+@media (max-width: 767.98px) {
+  :host {
+    padding-top: 1rem;
+  }
+}
