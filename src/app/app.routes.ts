@@ -1,11 +1,5 @@
 import { Routes } from '@angular/router';
 import { AppShellComponent } from './shell/app-shell.component';
-import { HomePage } from './features/home/home.page';
-import { SeasonPage } from './features/season/season.page';
-import { AllTimePage } from './features/all-time/all-time.page';
-import { OwnersPage } from './features/owners/owners.page';
-import { RecordsPage } from './features/records/records.page';
-import { NotFoundPage } from './features/not-found/not-found.page';
 
 export const routes: Routes = [
   {
@@ -13,13 +7,40 @@ export const routes: Routes = [
     component: AppShellComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'home' },
-      { path: 'home', component: HomePage },
-      { path: 'season', component: SeasonPage },
-      { path: 'all-time', component: AllTimePage },
-      { path: 'owners', component: OwnersPage },
-      { path: 'records', component: RecordsPage },
-      { path: '**', component: NotFoundPage }
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('./features/home/home.page').then((m) => m.HomePage)
+      },
+      {
+        path: 'season',
+        loadComponent: () =>
+          import('./features/season/season.page').then((m) => m.SeasonPage)
+      },
+      {
+        path: 'all-time',
+        loadComponent: () =>
+          import('./features/all-time/all-time.page').then(
+            (m) => m.AllTimePage
+          )
+      },
+      {
+        path: 'owners',
+        loadComponent: () =>
+          import('./features/owners/owners.page').then((m) => m.OwnersPage)
+      },
+      {
+        path: 'records',
+        loadComponent: () =>
+          import('./features/records/records.page').then((m) => m.RecordsPage)
+      },
+      {
+        path: '**',
+        loadComponent: () =>
+          import('./features/not-found/not-found.page').then(
+            (m) => m.NotFoundPage
+          )
+      }
     ]
   }
 ];
-
