@@ -1,1 +1,8 @@
-<p>season-selector works!</p>
+<mat-form-field class="season-selector" appearance="outline" subscriptSizing="dynamic">
+  <mat-label>Season</mat-label>
+  <mat-select [value]="activeYear()" (valueChange)="onYearChange($event)">
+    @for (year of years(); track year) {
+      <mat-option [value]="year">{{ year }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
