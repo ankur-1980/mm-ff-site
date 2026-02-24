@@ -1,0 +1,17 @@
+<table mat-table [dataSource]="dataSource" class="standings-preview-table">
+  <ng-container matColumnDef="rank">
+    <th mat-header-cell *matHeaderCellDef>Rank</th>
+    <td mat-cell *matCellDef="let row">{{ row.rank }}</td>
+  </ng-container>
+  <ng-container matColumnDef="team">
+    <th mat-header-cell *matHeaderCellDef>Team</th>
+    <td mat-cell *matCellDef="let row">{{ row.team }}</td>
+  </ng-container>
+  <ng-container matColumnDef="wl">
+    <th mat-header-cell *matHeaderCellDef>W-L</th>
+    <td mat-cell *matCellDef="let row">{{ row.wl }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

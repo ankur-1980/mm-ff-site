@@ -18,6 +18,7 @@
     <p class="home__current-season">
       Current Season: {{ leagueData.currentSeason()?.id ?? '—' }}
     </p>
+    <app-standings-preview />
   } @else {
     <p class="home__state">League overview coming soon.</p>
   }
