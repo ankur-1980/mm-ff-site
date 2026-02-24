@@ -23,7 +23,7 @@ export function buildStandingsColumns(
   cols.push({
     key: 'teamName',
     header: 'Team',
-    widthCh: 18,
+    widthCh: 25,
     subscriptKey: 'managerName',
   });
 

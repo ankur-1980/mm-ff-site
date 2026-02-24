@@ -1,6 +1,11 @@
+:host {
+  display: block;
+  width: fit-content;
+  align-self: start;
+}
+
 .data-table {
   width: fit-content;
-  max-width: 100%;
 
   th,
   td {
@@ -22,12 +27,15 @@
 .data-table__cell--right .data-table__cell-content,
 .data-table__cell--center .data-table__cell-content {
   display: inline-flex;
-  justify-content: flex-end;
   width: 100%;
 }
 
 .data-table__cell--right .data-table__cell-content {
+  // Reserve space for the sort-icon spacer so the number aligns under the
+  // header label text, not the sort arrow. Must match SORT_ICON_WIDTH_PX in
+  // data-table.component.ts (currently 24px).
   justify-content: flex-end;
+  width: calc(100% - 24px);
 }
 
 .data-table__cell--center .data-table__cell-content {
