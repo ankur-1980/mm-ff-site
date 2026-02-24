@@ -1,51 +1,113 @@
 <mat-toolbar color="primary" class="app-toolbar">
+  <button
+    mat-icon-button
+    class="app-toolbar__menu-btn"
+    type="button"
+    aria-label="Open menu"
+    (click)="toggleDrawer()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
   <span class="app-toolbar__title">Midwest Madness</span>
 
   <span class="app-toolbar__spacer"></span>
 
-  <a
-    mat-button
-    routerLink="/home"
-    routerLinkActive="app-toolbar__link--active"
-    [routerLinkActiveOptions]="{ exact: true }"
-  >
-    Home
-  </a>
-
-  <a
-    mat-button
-    routerLink="/season"
-    routerLinkActive="app-toolbar__link--active"
-  >
-    Seasons
-  </a>
-
-  <a
-    mat-button
-    routerLink="/all-time"
-    routerLinkActive="app-toolbar__link--active"
-  >
-    All‑Time
-  </a>
-
-  <a
-    mat-button
-    routerLink="/owners"
-    routerLinkActive="app-toolbar__link--active"
-  >
-    Owners
-  </a>
-
-  <a
-    mat-button
-    routerLink="/records"
-    routerLinkActive="app-toolbar__link--active"
-  >
-    Records
-  </a>
+  <nav class="app-toolbar__nav" aria-label="Main">
+    <a
+      mat-button
+      routerLink="/home"
+      routerLinkActive="app-toolbar__link--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Home
+    </a>
+    <a
+      mat-button
+      routerLink="/season"
+      routerLinkActive="app-toolbar__link--active"
+    >
+      Seasons
+    </a>
+    <a
+      mat-button
+      routerLink="/all-time"
+      routerLinkActive="app-toolbar__link--active"
+    >
+      All‑Time
+    </a>
+    <a
+      mat-button
+      routerLink="/owners"
+      routerLinkActive="app-toolbar__link--active"
+    >
+      Owners
+    </a>
+    <a
+      mat-button
+      routerLink="/records"
+      routerLinkActive="app-toolbar__link--active"
+    >
+      Records
+    </a>
+  </nav>
 </mat-toolbar>
 
-<main class="app-shell__content">
-  <router-outlet />
-</main>
+<mat-sidenav-container class="app-shell__sidenav-container">
+  <mat-sidenav
+    #drawer
+    mode="over"
+    position="start"
+    class="app-shell__drawer"
+  >
+    <nav class="app-shell__drawer-nav" aria-label="Main menu">
+      <a
+        mat-button
+        routerLink="/home"
+        routerLinkActive="app-shell__drawer-link--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeDrawerAfterNav()"
+      >
+        Home
+      </a>
+      <a
+        mat-button
+        routerLink="/season"
+        routerLinkActive="app-shell__drawer-link--active"
+        (click)="closeDrawerAfterNav()"
+      >
+        Seasons
+      </a>
+      <a
+        mat-button
+        routerLink="/all-time"
+        routerLinkActive="app-shell__drawer-link--active"
+        (click)="closeDrawerAfterNav()"
+      >
+        All‑Time
+      </a>
+      <a
+        mat-button
+        routerLink="/owners"
+        routerLinkActive="app-shell__drawer-link--active"
+        (click)="closeDrawerAfterNav()"
+      >
+        Owners
+      </a>
+      <a
+        mat-button
+        routerLink="/records"
+        routerLinkActive="app-shell__drawer-link--active"
+        (click)="closeDrawerAfterNav()"
+      >
+        Records
+      </a>
+    </nav>
+  </mat-sidenav>
 
+  <mat-sidenav-content class="app-shell__content">
+    <main>
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

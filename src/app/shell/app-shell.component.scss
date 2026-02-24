@@ -3,7 +3,15 @@
   top: 0;
   z-index: 100;
   display: flex;
+  align-items: center;
   gap: 0.5rem;
+}
+
+.app-toolbar__menu-btn {
+  // Visible on mobile only; hidden on desktop where nav links show
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
 
 .app-toolbar__title {
@@ -14,12 +22,54 @@
   flex: 1 1 auto;
 }
 
+// Desktop nav: hide on mobile, show as row on desktop
+.app-toolbar__nav {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+}
+
 .app-toolbar__link--active {
   font-weight: 600;
   text-decoration: underline;
 }
 
-.app-shell__content {
-  padding: 1rem;
+.app-shell__sidenav-container {
+  position: relative;
+  min-height: 100%;
 }
 
+.app-shell__drawer {
+  width: 16rem;
+  max-width: 85vw;
+
+  .mat-mdc-button {
+    display: block;
+    width: 100%;
+    text-align: start;
+    padding-inline: 1rem;
+  }
+}
+
+.app-shell__drawer-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+}
+
+.app-shell__drawer-link--active {
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.app-shell__content {
+  padding: 1rem;
+
+  main {
+    min-height: 100%;
+  }
+}
