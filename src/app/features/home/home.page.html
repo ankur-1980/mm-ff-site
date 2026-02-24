@@ -1,4 +1,17 @@
 <section class="page-section" aria-labelledby="home-heading">
   <h1 id="home-heading">Home</h1>
-  <p>League overview coming soon.</p>
+
+  @if (leagueData.loadStatus() === 'loading') {
+    <p class="home__state home__state--loading" aria-live="polite">
+      Loading league…
+    </p>
+  } @else if (leagueData.loadStatus() === 'error') {
+    <p class="home__state home__state--error" role="alert">
+      {{ leagueData.loadError() }}
+    </p>
+  } @else if (leagueData.loadStatus() === 'loaded' && leagueData.leagueData(); as league) {
+    <p class="home__league-name">{{ league.name }}</p>
+  } @else {
+    <p class="home__state">League overview coming soon.</p>
+  }
 </section>

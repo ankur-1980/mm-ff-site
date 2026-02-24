@@ -7,3 +7,17 @@
     margin: 0;
   }
 }
+
+.home__state {
+  &--loading {
+    font-style: italic;
+  }
+
+  &--error {
+    color: var(--mat-sys-error, #b3261e);
+  }
+}
+
+.home__league-name {
+  font-weight: 600;
+}

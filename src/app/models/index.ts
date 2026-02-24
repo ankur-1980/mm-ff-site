@@ -1,3 +1,4 @@
+export type { LeagueMetaData as League } from './league-metadata.model';
 export type { Owner, OwnersData } from './owner.model';
 export type {
   SeasonStandingsEntry,
