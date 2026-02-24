@@ -1,0 +1,69 @@
+<table
+  mat-table
+  [dataSource]="getDataSource()"
+  matSort
+  [matSortActive]="defaultSortKey()"
+  [matSortDirection]="defaultSortDirection()"
+  class="data-table"
+>
+  @for (col of columns(); track col.key) {
+    <ng-container [matColumnDef]="col.key">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        [id]="col.key"
+        [sortActionDescription]="col.header"
+        [style.width.ch]="col.widthCh"
+        [class.data-table__header--right]="getAlign(col) === 'right'"
+        [class.data-table__header--center]="getAlign(col) === 'center'"
+      >
+        {{ col.header }}
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let row"
+        [style.width.ch]="col.widthCh"
+        [class.data-table__cell--right]="getAlign(col) === 'right'"
+        [class.data-table__cell--center]="getAlign(col) === 'center'"
+      >
+        <span class="data-table__cell-content">
+          @if (col.subscriptKey) {
+            <span class="data-table__cell-block">
+              <span class="data-table__cell-value">
+                @if (isNumericCell(col) && cellValue(row, col.key) !== '—') {
+                  {{ cellValue(row, col.key) | number: numberFormat(col)
+                  }}{{ numberSuffix(col) }}
+                } @else {
+                  {{ cellValue(row, col.key) }}
+                }
+              </span>
+              <span class="data-table__subscript">{{
+                subscriptValue(row, col.subscriptKey)
+              }}</span>
+            </span>
+          } @else {
+            <span class="data-table__cell-value">
+              @if (isNumericCell(col) && cellValue(row, col.key) !== '—') {
+                {{ cellValue(row, col.key) | number: numberFormat(col)
+                }}{{ numberSuffix(col) }}
+              } @else {
+                {{ cellValue(row, col.key) }}
+              }
+            </span>
+          }
+        </span>
+        @if (hasSpacer(col)) {
+          <span
+            class="data-table__cell-spacer"
+            [style.width.px]="sortIconWidthPx()"
+            aria-hidden="true"
+          ></span>
+        }
+      </td>
+    </ng-container>
+  }
+
+  <tr mat-header-row *matHeaderRowDef="columnKeys()"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnKeys()"></tr>
+</table>
