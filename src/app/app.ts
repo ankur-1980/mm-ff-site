@@ -1,6 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoggerService } from '@ankur-1980/logger';
 import { LeagueDataFacade } from './data';
 
 @Component({

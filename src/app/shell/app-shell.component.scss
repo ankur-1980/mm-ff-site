@@ -1,0 +1,25 @@
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.app-toolbar__title {
+  font-weight: 600;
+}
+
+.app-toolbar__spacer {
+  flex: 1 1 auto;
+}
+
+.app-toolbar__link--active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.app-shell__content {
+  padding: 1rem;
+}
+
