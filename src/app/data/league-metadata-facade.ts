@@ -1,5 +1,6 @@
 import { computed, inject, Injectable } from '@angular/core';
 
+import type { SeasonStandings } from '../models/season-standings.model';
 import { LeagueMetaDataService } from './league-metadata.service';
 import { OwnersDataService } from './owners-data.service';
 import { SeasonStandingsDataService } from './season-standings-data.service';
@@ -53,5 +54,12 @@ export class LeagueMetaDataFacade {
     const ids = this.seasonStandings.seasonIds();
     if (!ids.includes(id.toString())) return null;
     return { id };
+  });
+
+  /** Standings for the current season. null if no current season or not loaded. */
+  readonly currentSeasonStandings = computed<SeasonStandings | null>(() => {
+    const season = this.currentSeason();
+    if (!season) return null;
+    return this.seasonStandings.getStandingsForSeason(season.id.toString()) ?? null;
   });
 }

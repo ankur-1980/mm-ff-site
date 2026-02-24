@@ -1,7 +1,4 @@
 <app-hero />
-
-<div class="home__spacer" aria-hidden="true"></div>
-
 <section id="home-content" class="page-section" aria-labelledby="home-heading">
   <h2 id="home-heading">Home</h2>
 
@@ -18,7 +15,7 @@
     <p class="home__current-season">
       Current Season: {{ leagueData.currentSeason()?.id ?? '—' }}
     </p>
-    <app-standings-preview />
+    <app-standings-preview [standings]="leagueData.currentSeasonStandings()" />
   } @else {
     <p class="home__state">League overview coming soon.</p>
   }

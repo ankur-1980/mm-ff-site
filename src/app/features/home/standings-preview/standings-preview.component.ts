@@ -1,29 +1,71 @@
-import { Component } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import {
+  Component,
+  effect,
+  input,
+  signal
+} from '@angular/core';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
-export interface StandingsPreviewRow {
-  rank: number;
-  team: string;
-  wl: string;
-}
+import type { SeasonStandings } from '../../../models/season-standings.model';
+import {
+  mapSeasonStandingsToPreviewRows,
+  type StandingsPreviewRow
+} from './standings-preview.mapper';
 
-const PLACEHOLDER_ROWS: StandingsPreviewRow[] = [
-  { rank: 1, team: 'Team Alpha', wl: '—' },
-  { rank: 2, team: 'Team Bravo', wl: '—' },
-  { rank: 3, team: 'Team Charlie', wl: '—' },
-  { rank: 4, team: 'Team Delta', wl: '—' },
-  { rank: 5, team: 'Team Echo', wl: '—' },
-  { rank: 6, team: 'Team Foxtrot', wl: '—' }
-];
+const BASE_COLUMNS = [
+  'managerName',
+  'teamName',
+  'win',
+  'loss',
+  'tie',
+  'winPct',
+  'pointsFor',
+  'pointsAgainst',
+  'pointsDiff',
+  'moves',
+  'trades'
+] as const;
+
+function buildDisplayedColumns(
+  showPlayoffRank: boolean,
+  showRegularSeasonRank: boolean
+): string[] {
+  const cols: string[] = [];
+  if (showPlayoffRank) cols.push('playoffRank');
+  cols.push(...BASE_COLUMNS);
+  if (showRegularSeasonRank) cols.push('regularSeasonRank');
+  return cols;
+}
 
 @Component({
   selector: 'app-standings-preview',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule, DecimalPipe],
   templateUrl: './standings-preview.component.html',
   styleUrl: './standings-preview.component.scss'
 })
 export class StandingsPreviewComponent {
-  readonly displayedColumns: string[] = ['rank', 'team', 'wl'];
-  readonly dataSource = new MatTableDataSource<StandingsPreviewRow>(PLACEHOLDER_ROWS);
+  /** Current season standings to display. When null, table is empty. */
+  readonly standings = input<SeasonStandings | null>(null);
+
+  readonly dataSource = new MatTableDataSource<StandingsPreviewRow>([]);
+  readonly displayedColumns = signal<string[]>([]);
+
+  constructor() {
+    effect(() => {
+      const s = this.standings();
+      if (!s) {
+        this.dataSource.data = [];
+        this.displayedColumns.set([]);
+        return;
+      }
+      const { rows, showPlayoffRank, showRegularSeasonRank } =
+        mapSeasonStandingsToPreviewRows(s);
+      this.dataSource.data = rows;
+      this.displayedColumns.set(
+        buildDisplayedColumns(showPlayoffRank, showRegularSeasonRank)
+      );
+    });
+  }
 }
