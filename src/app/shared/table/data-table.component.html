@@ -1,9 +1,9 @@
 <table
   mat-table
-  [dataSource]="getDataSource()"
+  [dataSource]="dataSource"
   matSort
   [matSortActive]="defaultSortKey()"
-  [matSortDirection]="defaultSortDirection()"
+  [matSortDirection]="defaultSortDirection"
   class="data-table"
 >
   @for (col of columns(); track col.key) {
@@ -31,25 +31,17 @@
           @if (col.subscriptKey) {
             <span class="data-table__cell-block">
               <span class="data-table__cell-value">
-                @if (isNumericCell(col) && cellValue(row, col.key) !== '—') {
-                  {{ cellValue(row, col.key) | number: numberFormat(col)
-                  }}{{ numberSuffix(col) }}
-                } @else {
-                  {{ cellValue(row, col.key) }}
-                }
+                <ng-container
+                  *ngTemplateOutlet="cellValueTpl; context: { col: col, row: row }"
+                />
               </span>
-              <span class="data-table__subscript">{{
-                subscriptValue(row, col.subscriptKey)
-              }}</span>
+              <span class="data-table__subscript">{{ subscriptValue(row, col.subscriptKey) }}</span>
             </span>
           } @else {
             <span class="data-table__cell-value">
-              @if (isNumericCell(col) && cellValue(row, col.key) !== '—') {
-                {{ cellValue(row, col.key) | number: numberFormat(col)
-                }}{{ numberSuffix(col) }}
-              } @else {
-                {{ cellValue(row, col.key) }}
-              }
+              <ng-container
+                *ngTemplateOutlet="cellValueTpl; context: { col: col, row: row }"
+              />
             </span>
           }
         </span>
@@ -63,3 +55,10 @@
   <tr mat-header-row *matHeaderRowDef="columnKeys()"></tr>
   <tr mat-row *matRowDef="let row; columns: columnKeys()"></tr>
 </table>
+<ng-template #cellValueTpl let-col="col" let-row="row">
+  @if (isNumericCell(col) && cellValue(row, col.key) !== '—') {
+    {{ cellValue(row, col.key) | number: numberFormat(col) }}{{ numberSuffix(col) }}
+  } @else {
+    {{ cellValue(row, col.key) }}
+  }
+</ng-template>

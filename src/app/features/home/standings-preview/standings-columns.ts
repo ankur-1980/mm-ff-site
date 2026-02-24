@@ -14,7 +14,7 @@ export function buildStandingsColumns(
     cols.push({
       key: 'playoffRank',
       header: 'Playoff Rank',
-      widthCh: 6,
+      widthCh: 13,
       align: 'center',
       format: 'integer',
     });

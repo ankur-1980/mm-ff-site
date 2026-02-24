@@ -1,11 +1,5 @@
-import { DecimalPipe } from '@angular/common';
-import {
-  Component,
-  computed,
-  effect,
-  input,
-  ViewChild
-} from '@angular/core';
+import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
+import { Component, computed, effect, input, viewChild } from '@angular/core';
 import { MatSort, MatSortHeader, MatSortModule } from '@angular/material/sort';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
@@ -13,24 +7,24 @@ import {
   coerceNumber,
   type DataTableColumnDef,
   type DataTableRow,
-  isNumericColumn
+  isNumericColumn,
 } from './table.models';
 
 @Component({
   selector: 'app-data-table',
-  imports: [MatTableModule, MatSortModule, MatSortHeader, DecimalPipe],
+  imports: [MatTableModule, MatSortModule, MatSortHeader, DecimalPipe, NgTemplateOutlet],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.scss',
 })
 export class DataTableComponent<T extends DataTableRow = DataTableRow> {
-  @ViewChild(MatSort) matSort!: MatSort;
+  private readonly matSort = viewChild.required(MatSort);
 
   /** Column definitions. */
   readonly columns = input.required<DataTableColumnDef[]>();
   /** Row data (array of objects keyed by column keys). */
   readonly data = input.required<T[]>();
 
-  private readonly dataSource = new MatTableDataSource<T>([]);
+  protected readonly dataSource = new MatTableDataSource<T>([]);
 
   /** Default sort column key and direction for template. */
   readonly defaultSortKey = computed(() => {
@@ -38,18 +32,23 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
     const def = cols.find((c) => c.defaultSort) ?? cols[0];
     return def?.key ?? null;
   });
-  readonly defaultSortDirection = computed(() => 'asc' as const);
+  protected readonly defaultSortDirection = 'asc' as const;
 
   /** Column key list for matHeaderRowDef / matRowDef. */
   readonly columnKeys = computed(() => this.columns().map((c) => c.key));
 
-  /** Numeric column keys (inferred from first row). */
+  /** Numeric column keys: format is authoritative when set, else inferred from data. */
   readonly numericKeys = computed(() => {
     const cols = this.columns();
     const rows = this.data();
     const set = new Set<string>();
+    const numericFormats = ['integer', 'decimal2', 'percent2'] as const;
     cols.forEach((c) => {
-      if (isNumericColumn(c.key, rows)) set.add(c.key);
+      if (c.format && numericFormats.includes(c.format)) {
+        set.add(c.key);
+      } else if (isNumericColumn(c.key, rows)) {
+        set.add(c.key);
+      }
     });
     return set;
   });
@@ -57,6 +56,7 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
   constructor() {
     effect(() => {
       const rows = this.data();
+      // Read columns to re-register sortingDataAccessor when column defs change.
       const cols = this.columns();
       this.dataSource.data = rows;
       this.dataSource.sortingDataAccessor = (row: T, property: string): string | number => {
@@ -68,14 +68,6 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
         return val != null ? String(val) : '';
       };
     });
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.matSort;
-  }
-
-  getDataSource(): MatTableDataSource<T> {
-    return this.dataSource;
   }
 
   /** Alignment for a column: explicit or right for numeric. */
