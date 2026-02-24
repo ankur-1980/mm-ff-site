@@ -16,9 +16,6 @@ import {
   isNumericColumn
 } from './table.models';
 
-/** Width of the sort icon area in header; spacer in right-aligned body cells matches this. */
-const SORT_ICON_WIDTH_PX = 24;
-
 @Component({
   selector: 'app-data-table',
   imports: [MatTableModule, MatSortModule, MatSortHeader, DecimalPipe],
@@ -90,10 +87,6 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
   /** Whether to show the spacer (right-aligned body cell). */
   hasSpacer(col: DataTableColumnDef): boolean {
     return this.getAlign(col) === 'right';
-  }
-
-  sortIconWidthPx(): number {
-    return SORT_ICON_WIDTH_PX;
   }
 
   /** Cell value for display; null/undefined shown as —. */

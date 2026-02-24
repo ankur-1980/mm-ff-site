@@ -1,7 +1,15 @@
 :host {
   display: block;
-  width: fit-content;
+  // Fill the container width, then scroll horizontally if the table is wider.
+  // Combined with width: fit-content on .data-table this keeps every column
+  // at its defined widthCh on small screens rather than compressing.
+  width: 100%;
+  overflow-x: auto;
   align-self: start;
+  // Single source of truth for sort-icon width. Used by both the spacer
+  // element and the calc() offset so right-aligned values stay under their
+  // column header label rather than the sort arrow.
+  --data-table-sort-icon-width: 24px;
 }
 
 .data-table {
@@ -11,6 +19,9 @@
   td {
     padding: 0.5rem 1rem;
     vertical-align: middle;
+    // Prevent text wrapping — column widths are fixed via widthCh and the
+    // host scrolls horizontally, so there is no reason to wrap cell content.
+    white-space: nowrap;
   }
 }
 
@@ -31,11 +42,8 @@
 }
 
 .data-table__cell--right .data-table__cell-content {
-  // Reserve space for the sort-icon spacer so the number aligns under the
-  // header label text, not the sort arrow. Must match SORT_ICON_WIDTH_PX in
-  // data-table.component.ts (currently 24px).
   justify-content: flex-end;
-  width: calc(100% - 24px);
+  width: calc(100% - var(--data-table-sort-icon-width));
 }
 
 .data-table__cell--center .data-table__cell-content {
@@ -45,6 +53,7 @@
 .data-table__cell-spacer {
   display: inline-block;
   flex-shrink: 0;
+  width: var(--data-table-sort-icon-width);
 }
 
 .data-table__cell-block {
