@@ -16,6 +16,8 @@
       Current Season: {{ leagueData.currentSeason()?.id ?? '—' }}
     </p>
     <app-standings-preview [standings]="leagueData.currentSeasonStandings()" />
+    <!-- TODO: Remove this once we have a real standings preview component. -->
+    <div class="home__spacer" aria-hidden="true"></div>
   } @else {
     <p class="home__state">League overview coming soon.</p>
   }

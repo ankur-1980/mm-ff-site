@@ -1,6 +1,8 @@
 <section
   class="hero"
   aria-label="League hero banner"
+  appIntersect
+  (intersect)="isVisible.set($event)"
 >
   <div class="hero__backdrop" aria-hidden="true"></div>
   <h1 class="hero__title">Midwest Madness</h1>
