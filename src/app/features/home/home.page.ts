@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 
-import { LeagueDataService } from '../../data/league-data.service';
+import { LeagueDataService } from '../../data';
 
 @Component({
   selector: 'app-home-page',

@@ -1,7 +1,7 @@
 export {
-  LeagueDataService,
+  LeagueMetaDataService as LeagueDataService,
   type LeagueDataStatus
-} from './league-data.service';
+} from './league-metadata.service';
 export {
   OwnersDataService,
   type OwnersDataStatus

@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import type { LeagueMetaData } from '../models/league-metadata.model';
 import { LoggerService } from '@ankur-1980/logger';
 
-const LEAGUE_ASSET = 'assets/data/league.json';
+const LEAGUE_ASSET = 'assets/data/league-metadata.json';
 
 export type LeagueDataStatus = 'idle' | 'loading' | 'loaded' | 'error';
 
@@ -15,7 +15,7 @@ export type LeagueDataStatus = 'idle' | 'loading' | 'loaded' | 'error';
  * Exposes status, data, and error for loading/error/league name UI.
  */
 @Injectable({ providedIn: 'root' })
-export class LeagueDataService {
+export class LeagueMetaDataService {
   private readonly http = inject(HttpClient);
   private readonly logger = inject(LoggerService);
 

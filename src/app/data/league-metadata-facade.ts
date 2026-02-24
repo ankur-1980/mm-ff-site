@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 
-import { LeagueDataService } from './league-data.service';
+import { LeagueMetaDataService } from './league-metadata.service';
 import { OwnersDataService } from './owners-data.service';
 import { SeasonStandingsDataService } from './season-standings-data.service';
 import { WeeklyMatchupsDataService } from './weekly-matchups-data.service';
@@ -12,7 +12,7 @@ import { WeeklyMatchupsDataService } from './weekly-matchups-data.service';
  */
 @Injectable({ providedIn: 'root' })
 export class LeagueMetaDataFacade {
-  private readonly league = inject(LeagueDataService);
+  private readonly league = inject(LeagueMetaDataService);
   private readonly owners = inject(OwnersDataService);
   private readonly seasonStandings = inject(SeasonStandingsDataService);
   private readonly weeklyMatchups = inject(WeeklyMatchupsDataService);

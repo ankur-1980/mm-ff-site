@@ -1,5 +1,5 @@
 /**
- * Minimal league metadata loaded from league.json.
+ * Minimal league metadata loaded from league-metadata.json.
  */
 export interface LeagueMetaData {
   name: string;
