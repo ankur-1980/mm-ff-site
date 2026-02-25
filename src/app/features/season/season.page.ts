@@ -63,7 +63,7 @@ export class SeasonPage {
     } else if (playoffStart === playoffEnd) {
       playoffLabel = `Playoffs \u2013 Week ${playoffStart}`;
     } else {
-      playoffLabel = `Playoffs \u2013 Weeks ${playoffStart} & ${playoffEnd}`;
+      playoffLabel = `Playoffs \u2013 Weeks ${playoffStart}-${playoffEnd}`;
     }
 
     return [regularLabel, playoffLabel];
