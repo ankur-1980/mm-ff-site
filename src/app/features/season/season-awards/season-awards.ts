@@ -16,8 +16,13 @@ import { StatValue } from '../../../shared/components/stat-card/stat-value/stat-
 import { mapTeamNameShort } from '../../../shared/mappers/team-name-short.mapper';
 import { SeasonStandingsService } from '../season-standings/season-standings.service';
 import type { SeasonStandingsRow } from '../season-standings/season-standings.models';
+import { AllPlayMatrixService } from '../season-analytics/all-play-matrix.service';
 
 const EPSILON = 0.000001;
+
+function normalizeTeamForMatch(name: string): string {
+  return name != null ? String(name).trim().toLowerCase() : '';
+}
 
 interface BestRecordAward {
   record: string;
@@ -87,6 +92,7 @@ export class SeasonAwards {
   private readonly weeklyMatchupsData = inject(WeeklyMatchupsDataService);
   private readonly leagueMetaData = inject(LeagueMetaDataService);
   private readonly seasonStandings = inject(SeasonStandingsService);
+  private readonly allPlayMatrixService = inject(AllPlayMatrixService);
 
   private readonly year = toSignal(
     (this.route.parent ?? this.route).params.pipe(
@@ -146,6 +152,90 @@ export class SeasonAwards {
       record,
       winPct: `${topWinPct.toFixed(2)}%`,
       footer,
+    };
+  });
+
+  private buildAllPlayFooter(teamNames: string[], rows: SeasonStandingsRow[]): string {
+    return teamNames
+      .map((teamName) => {
+        const key = normalizeTeamForMatch(teamName);
+        const row = rows.find((r) => normalizeTeamForMatch(r.teamName) === key);
+        return row ? `${row.teamName} - ${row.managerName}` : teamName;
+      })
+      .join(' | ');
+  }
+
+  protected readonly bestAllPlayRecordAward = computed<BestRecordAward | null>(() => {
+    const y = this.year();
+    const rows = this.rows();
+    if (y == null || !rows.length) return null;
+    const matrix = this.allPlayMatrixService.buildMatrix(String(y));
+    if (!matrix) return null;
+
+    let bestWinPct = -1;
+    const bestTeams: string[] = [];
+    let bestRecord = { wins: 0, losses: 0, ties: 0 };
+
+    for (const team of matrix.teamNames) {
+      const r = matrix.getTotalRecord(team);
+      const gp = r.wins + r.losses + r.ties;
+      if (gp === 0) continue;
+      const winPct = (r.wins + 0.5 * r.ties) / gp;
+      if (winPct > bestWinPct) {
+        bestWinPct = winPct;
+        bestTeams.length = 0;
+        bestTeams.push(team);
+        bestRecord = r;
+      } else if (Math.abs(winPct - bestWinPct) < EPSILON) {
+        bestTeams.push(team);
+      }
+    }
+    if (bestTeams.length === 0) return null;
+    const record =
+      bestRecord.ties > 0
+        ? `${bestRecord.wins}-${bestRecord.losses}-${bestRecord.ties}`
+        : `${bestRecord.wins}-${bestRecord.losses}`;
+    return {
+      record,
+      winPct: `${(bestWinPct * 100).toFixed(2)}%`,
+      footer: this.buildAllPlayFooter(bestTeams, rows),
+    };
+  });
+
+  protected readonly worstAllPlayRecordAward = computed<BestRecordAward | null>(() => {
+    const y = this.year();
+    const rows = this.rows();
+    if (y == null || !rows.length) return null;
+    const matrix = this.allPlayMatrixService.buildMatrix(String(y));
+    if (!matrix) return null;
+
+    let worstWinPct = 2;
+    const worstTeams: string[] = [];
+    let worstRecord = { wins: 0, losses: 0, ties: 0 };
+
+    for (const team of matrix.teamNames) {
+      const r = matrix.getTotalRecord(team);
+      const gp = r.wins + r.losses + r.ties;
+      if (gp === 0) continue;
+      const winPct = (r.wins + 0.5 * r.ties) / gp;
+      if (winPct < worstWinPct) {
+        worstWinPct = winPct;
+        worstTeams.length = 0;
+        worstTeams.push(team);
+        worstRecord = r;
+      } else if (Math.abs(winPct - worstWinPct) < EPSILON) {
+        worstTeams.push(team);
+      }
+    }
+    if (worstTeams.length === 0) return null;
+    const record =
+      worstRecord.ties > 0
+        ? `${worstRecord.wins}-${worstRecord.losses}-${worstRecord.ties}`
+        : `${worstRecord.wins}-${worstRecord.losses}`;
+    return {
+      record,
+      winPct: `${(worstWinPct * 100).toFixed(2)}%`,
+      footer: this.buildAllPlayFooter(worstTeams, rows),
     };
   });
 

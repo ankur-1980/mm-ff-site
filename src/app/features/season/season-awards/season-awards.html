@@ -1,5 +1,5 @@
-<app-subsection-header title="Season Awards" [isPrimary]="true" />
-
+<app-subsection-header title="Regular Season Awards" [isPrimary]="true" />
+<app-subsection-header title="Individual Awards" />
 <div class="season-awards__grid">
   @if (bestRecordAward(); as bestRecord) {
     <app-stat-card
@@ -9,6 +9,26 @@
     >
       <app-stat-value [value]="bestRecord.winPct" [subscript]="bestRecord.record" />
     </app-stat-card>
+
+    @if (bestAllPlayRecordAward(); as bestAllPlay) {
+      <app-stat-card
+        title="Best All-Play Record"
+        subtitle="Best record if you played every team every week"
+        [footer]="bestAllPlay.footer"
+      >
+        <app-stat-value [value]="bestAllPlay.record" [subscript]="bestAllPlay.winPct" />
+      </app-stat-card>
+    }
+
+    @if (worstAllPlayRecordAward(); as worstAllPlay) {
+      <app-stat-card
+        title="Worst All-Play Record"
+        subtitle="Worst record if you played every team every week"
+        [footer]="worstAllPlay.footer"
+      >
+        <app-stat-value [value]="worstAllPlay.record" [subscript]="worstAllPlay.winPct" />
+      </app-stat-card>
+    }
 
     @if (seasonHighPointsAward(); as highPoints) {
       <app-stat-card
@@ -75,31 +95,24 @@
         <app-stat-value [value]="mostTrades.value" />
       </app-stat-card>
     }
+  }
+</div>
 
-    @if (topScoringStarters().length) {
-      <app-stat-card
-        title="Top 5 Highest Scoring Starters"
-        subtitle="Regular season total starter points"
-      >
-        <app-starter-game-list
-          [items]="topScoringStarterRows()"
-          [showWeek]="false"
-        ></app-starter-game-list>
-      </app-stat-card>
-    }
+<section class="season-awards__section">
+  <div class="season-awards__grid">
+  @if (bestRecordAward()) {
 
-    @if (topSingleGameScoringStarters().length) {
-      <app-stat-card
-        title="Top 5 Highest Scoring Starters (Single Game)"
-        subtitle="Best one-week starter scores"
-      >
-        <app-starter-game-list [items]="topSingleGameScoringStarterRows()"></app-starter-game-list>
-      </app-stat-card>
-    }
+  }
+  </div>
+</section>
 
+<section class="season-awards__section">
+  <app-subsection-header title="Top 5s" />
+  <div class="season-awards__grid">
+  @if (bestRecordAward()) {
     @if (topSingleGameScoringTeams().length) {
       <app-stat-card
-        title="Top 5 Highest Scoring Teams (Single Game)"
+        title="Highest Scoring Teams (Single Game)"
         subtitle="Best one-week team scores"
       >
         <app-starter-game-list
@@ -111,7 +124,7 @@
 
     @if (topSingleGameLowestScoringTeams().length) {
       <app-stat-card
-        title="Top 5 Lowest Scoring Teams (Single Game)"
+        title="Lowest Scoring Teams (Single Game)"
         subtitle="Lowest one-week team scores"
       >
         <app-starter-game-list
@@ -123,7 +136,7 @@
 
     @if (topSingleGameBiggestLosers().length) {
       <app-stat-card
-        title="Top 5 Biggest Losers (Single Game)"
+        title="Biggest Losers (Single Game)"
         subtitle="Greatest negative point differential"
       >
         <app-starter-game-list
@@ -135,7 +148,7 @@
 
     @if (topSingleGameNarrowestVictories().length) {
       <app-stat-card
-        title="Top 5 Narrowest Victories (Single Game)"
+        title="Narrowest Victories (Single Game)"
         subtitle="Lowest positive point differential"
       >
         <app-starter-game-list
@@ -145,17 +158,39 @@
       </app-stat-card>
     }
 
+    @if (topScoringStarters().length) {
+      <app-stat-card
+        title="Highest Scoring Starters"
+        subtitle="Regular season total starter points"
+      >
+        <app-starter-game-list
+          [items]="topScoringStarterRows()"
+          [showWeek]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (topSingleGameScoringStarters().length) {
+      <app-stat-card
+        title="Highest Scoring Starters (Single Game)"
+        subtitle="Best one-week starter scores"
+      >
+        <app-starter-game-list [items]="topSingleGameScoringStarterRows()"></app-starter-game-list>
+      </app-stat-card>
+    }
+
     @if (topSingleWeekCarryStarters().length) {
       <app-stat-card
-        title="Top 5 Single Week Carry"
+        title="Single Week Carry"
         subtitle="One starter's percentage of team points"
       >
         <app-starter-game-list [items]="topSingleWeekCarryStarterRows()"></app-starter-game-list>
       </app-stat-card>
     }
   }
+  </div>
+</section>
 
-  @if (!bestRecordAward()) {
-    <p class="season-awards__empty">No season awards available.</p>
-  }
-</div>
+@if (!bestRecordAward()) {
+  <p class="season-awards__empty">No season awards available.</p>
+}
