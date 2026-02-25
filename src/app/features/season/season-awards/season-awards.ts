@@ -47,6 +47,12 @@ interface StarterGameScore {
   points: number;
 }
 
+interface TeamGameScore {
+  teamName: string;
+  managerName: string;
+  points: number;
+}
+
 @Component({
   selector: 'app-season-awards',
   imports: [SubsectionHeader, StatCard, StatList, StatValue],
@@ -442,6 +448,94 @@ export class SeasonAwards {
     this.topSingleGameScoringStarters().map((starter) => ({
       label: `${starter.playerName} (${starter.position} - ${starter.nflTeam}) - ${starter.teamName}`,
       value: starter.points.toFixed(2),
+    }))
+  );
+
+  protected readonly topSingleGameScoringTeams = computed<TeamGameScore[]>(() => {
+    const y = this.year();
+    const meta = this.seasonMeta();
+    const rows = this.rows();
+    if (y == null || !meta || !rows.length) return [];
+
+    const managerByTeam = new Map(rows.map((row) => [row.teamName, row.managerName]));
+    const gameScores: TeamGameScore[] = [];
+
+    for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(String(y), `week${week}`);
+      if (!weekData) continue;
+
+      const entries = Object.values(weekData);
+      if (!entries.length) continue;
+
+      for (const entry of entries) {
+        const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
+        const managerName = managerByTeam.get(teamName) ?? '';
+        gameScores.push({
+          teamName,
+          managerName,
+          points: Number(entry.team1Totals?.totalPoints ?? 0),
+        });
+      }
+    }
+
+    return gameScores
+      .sort((a, b) => {
+        if (b.points !== a.points) return b.points - a.points;
+        return a.teamName.localeCompare(b.teamName);
+      })
+      .slice(0, 5);
+  });
+
+  protected readonly topSingleGameScoringTeamItems = computed<StatListItem[]>(() =>
+    this.topSingleGameScoringTeams().map((team) => ({
+      label: team.managerName
+        ? `${team.teamName} - ${team.managerName}`
+        : team.teamName,
+      value: team.points.toFixed(2),
+    }))
+  );
+
+  protected readonly topSingleGameLowestScoringTeams = computed<TeamGameScore[]>(() => {
+    const y = this.year();
+    const meta = this.seasonMeta();
+    const rows = this.rows();
+    if (y == null || !meta || !rows.length) return [];
+
+    const managerByTeam = new Map(rows.map((row) => [row.teamName, row.managerName]));
+    const gameScores: TeamGameScore[] = [];
+
+    for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(String(y), `week${week}`);
+      if (!weekData) continue;
+
+      const entries = Object.values(weekData);
+      if (!entries.length) continue;
+
+      for (const entry of entries) {
+        const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
+        const managerName = managerByTeam.get(teamName) ?? '';
+        gameScores.push({
+          teamName,
+          managerName,
+          points: Number(entry.team1Totals?.totalPoints ?? 0),
+        });
+      }
+    }
+
+    return gameScores
+      .sort((a, b) => {
+        if (a.points !== b.points) return a.points - b.points;
+        return a.teamName.localeCompare(b.teamName);
+      })
+      .slice(0, 5);
+  });
+
+  protected readonly topSingleGameLowestScoringTeamItems = computed<StatListItem[]>(() =>
+    this.topSingleGameLowestScoringTeams().map((team) => ({
+      label: team.managerName
+        ? `${team.teamName} - ${team.managerName}`
+        : team.teamName,
+      value: team.points.toFixed(2),
     }))
   );
 }

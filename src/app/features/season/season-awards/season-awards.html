@@ -93,6 +93,24 @@
         <app-stat-list [items]="topSingleGameScoringStarterItems()"></app-stat-list>
       </app-stat-card>
     }
+
+    @if (topSingleGameScoringTeams().length) {
+      <app-stat-card
+        title="Top 5 Highest Scoring Teams (Single Game)"
+        subtitle="Best one-week team scores"
+      >
+        <app-stat-list [items]="topSingleGameScoringTeamItems()"></app-stat-list>
+      </app-stat-card>
+    }
+
+    @if (topSingleGameLowestScoringTeams().length) {
+      <app-stat-card
+        title="Top 5 Lowest Scoring Teams (Single Game)"
+        subtitle="Lowest one-week team scores"
+      >
+        <app-stat-list [items]="topSingleGameLowestScoringTeamItems()"></app-stat-list>
+      </app-stat-card>
+    }
   }
 
   @if (!bestRecordAward()) {
