@@ -66,8 +66,12 @@ interface TeamRecordByTeam {
   tiesByTeam: Map<string, number>;
   pointsForByTeam: Map<string, number>;
   pointsAgainstByTeam: Map<string, number>;
+  highPointFinishesByTeam: Map<string, number>;
+  lowPointFinishesByTeam: Map<string, number>;
   hasRegularSeasonHistory: boolean;
 }
+
+const EPSILON = 0.000001;
 
 function buildRegularSeasonRanks(
   rows: SeasonStandingsRow[]
@@ -153,53 +157,14 @@ export class SeasonStandingsService {
     return String(firstEntry.season);
   }
 
-  private getWeeklyPointFinishCounts(seasonId: string): Map<string, { high: number; low: number }> {
-    const counts = new Map<string, { high: number; low: number }>();
-    const seasonMeta = this.leagueMetaData.getSeasonMeta(seasonId);
-    if (!seasonMeta) return counts;
-
-    for (let week = 1; week <= seasonMeta.regularSeasonEndWeek; week += 1) {
-      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(seasonId, `week${week}`);
-      if (!weekData) continue;
-
-      const entries = Object.values(weekData);
-      if (!entries.length) continue;
-
-      const scores = entries.map((entry) => entry.team1Totals?.totalPoints ?? 0);
-      const topScore = Math.max(...scores);
-      const lowScore = Math.min(...scores);
-
-      const topTeams = entries.filter(
-        (entry) => Math.abs((entry.team1Totals?.totalPoints ?? 0) - topScore) < 0.000001
-      );
-      const lowTeams = entries.filter(
-        (entry) => Math.abs((entry.team1Totals?.totalPoints ?? 0) - lowScore) < 0.000001
-      );
-
-      for (const entry of topTeams) {
-        const team = entry.matchup?.team1Name;
-        if (!team) continue;
-        const existing = counts.get(team) ?? { high: 0, low: 0 };
-        counts.set(team, { ...existing, high: existing.high + 1 });
-      }
-
-      for (const entry of lowTeams) {
-        const team = entry.matchup?.team1Name;
-        if (!team) continue;
-        const existing = counts.get(team) ?? { high: 0, low: 0 };
-        counts.set(team, { ...existing, low: existing.low + 1 });
-      }
-    }
-
-    return counts;
-  }
-
   private getRegularSeasonRecordByTeam(seasonId: string): TeamRecordByTeam {
     const winsByTeam = new Map<string, number>();
     const lossesByTeam = new Map<string, number>();
     const tiesByTeam = new Map<string, number>();
     const pointsForByTeam = new Map<string, number>();
     const pointsAgainstByTeam = new Map<string, number>();
+    const highPointFinishesByTeam = new Map<string, number>();
+    const lowPointFinishesByTeam = new Map<string, number>();
     const seasonMeta = this.leagueMetaData.getSeasonMeta(seasonId);
     if (!seasonMeta) {
       return {
@@ -208,6 +173,8 @@ export class SeasonStandingsService {
         tiesByTeam,
         pointsForByTeam,
         pointsAgainstByTeam,
+        highPointFinishesByTeam,
+        lowPointFinishesByTeam,
         hasRegularSeasonHistory: false,
       };
     }
@@ -219,8 +186,28 @@ export class SeasonStandingsService {
       if (!weekData) continue;
 
       const seenMatchups = new Set<string>();
+      const entries = Object.values(weekData);
+      const weeklyEntriesWithTeam = entries.filter((entry) => !!entry.matchup?.team1Name);
 
-      for (const entry of Object.values(weekData)) {
+      if (weeklyEntriesWithTeam.length > 0) {
+        const scores = weeklyEntriesWithTeam.map((entry) => entry.team1Totals?.totalPoints ?? 0);
+        const topScore = Math.max(...scores);
+        const lowScore = Math.min(...scores);
+
+        for (const entry of weeklyEntriesWithTeam) {
+          const normalizedTeam = normalizeTeamName(entry.matchup?.team1Name);
+          const totalPoints = entry.team1Totals?.totalPoints ?? 0;
+
+          if (Math.abs(totalPoints - topScore) < EPSILON) {
+            incrementCount(highPointFinishesByTeam, normalizedTeam);
+          }
+          if (Math.abs(totalPoints - lowScore) < EPSILON) {
+            incrementCount(lowPointFinishesByTeam, normalizedTeam);
+          }
+        }
+      }
+
+      for (const entry of entries) {
         const matchup = entry.matchup;
         if (!matchup?.team1Name || !matchup?.team2Name) continue;
 
@@ -260,6 +247,8 @@ export class SeasonStandingsService {
       tiesByTeam,
       pointsForByTeam,
       pointsAgainstByTeam,
+      highPointFinishesByTeam,
+      lowPointFinishesByTeam,
       hasRegularSeasonHistory: matchupCount > 0,
     };
   }
@@ -290,6 +279,8 @@ export class SeasonStandingsService {
       tiesByTeam,
       pointsForByTeam,
       pointsAgainstByTeam,
+      highPointFinishesByTeam,
+      lowPointFinishesByTeam,
       hasRegularSeasonHistory,
     } =
       seasonId != null
@@ -300,11 +291,11 @@ export class SeasonStandingsService {
             tiesByTeam: new Map<string, number>(),
             pointsForByTeam: new Map<string, number>(),
             pointsAgainstByTeam: new Map<string, number>(),
+            highPointFinishesByTeam: new Map<string, number>(),
+            lowPointFinishesByTeam: new Map<string, number>(),
             hasRegularSeasonHistory: false,
           };
-    const weeklyPointFinishCounts =
-      seasonId != null ? this.getWeeklyPointFinishCounts(seasonId) : new Map();
-    const hasWeeklyHistory = weeklyPointFinishCounts.size > 0 || hasRegularSeasonHistory;
+    const hasWeeklyHistory = hasRegularSeasonHistory;
 
     const rows = Object.values(standings)
       .map((entry): SeasonStandingsRow => {
@@ -320,6 +311,8 @@ export class SeasonStandingsService {
         const matchupTie = tiesByTeam.get(normalizedTeam);
         const matchupPointsFor = pointsForByTeam.get(normalizedTeam);
         const matchupPointsAgainst = pointsAgainstByTeam.get(normalizedTeam);
+        const matchupHighPointFinishes = highPointFinishesByTeam.get(normalizedTeam);
+        const matchupLowPointFinishes = lowPointFinishesByTeam.get(normalizedTeam);
         const win = hasRegularSeasonHistory && matchupWin != null ? matchupWin : standingsWin;
         const loss =
           hasRegularSeasonHistory && matchupLoss != null ? matchupLoss : standingsLoss;
@@ -360,7 +353,7 @@ export class SeasonStandingsService {
           seasonId != null &&
           hasRegularSeasonHistory &&
           matchupPointsFor != null &&
-          Math.abs(matchupPointsFor - standingsPointsFor) >= 0.000001
+          Math.abs(matchupPointsFor - standingsPointsFor) >= EPSILON
         ) {
           this.logRecordConflict(
             seasonId,
@@ -374,7 +367,7 @@ export class SeasonStandingsService {
           seasonId != null &&
           hasRegularSeasonHistory &&
           matchupPointsAgainst != null &&
-          Math.abs(matchupPointsAgainst - standingsPointsAgainst) >= 0.000001
+          Math.abs(matchupPointsAgainst - standingsPointsAgainst) >= EPSILON
         ) {
           this.logRecordConflict(
             seasonId,
@@ -385,12 +378,11 @@ export class SeasonStandingsService {
           );
         }
         const gp = win + loss + tie;
-        const weeklyCounts = weeklyPointFinishCounts.get(team);
         const highPoints = hasWeeklyHistory
-          ? (weeklyCounts?.high ?? 0)
+          ? (matchupHighPointFinishes ?? 0)
           : (entry.points?.highPoints ?? 0);
         const lowPoints = hasWeeklyHistory
-          ? (weeklyCounts?.low ?? 0)
+          ? (matchupLowPointFinishes ?? 0)
           : (entry.points?.lowPoints ?? null);
         const rawPlayoffRank = entry.ranks?.playoffRank;
         const rawRegularSeasonRank = entry.ranks?.regularSeasonRank;
