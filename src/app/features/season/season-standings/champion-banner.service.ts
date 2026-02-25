@@ -30,34 +30,31 @@ export class ChampionBannerService {
     const meta = this.leagueMeta.getSeasonMeta(seasonId);
     if (!meta) return null;
 
-    // Seasons without full historical details have no matchup score data.
     let score: number | undefined;
     let runnerUpScore: number | undefined;
 
-    if (meta.hasFullHistoricalDetails) {
-      const finalWeekKey = `week${meta.seasonEndWeek}`;
-      const finalWeek = this.matchupsData.getMatchupsForWeek(seasonId, finalWeekKey);
+    const finalWeekKey = `week${meta.seasonEndWeek}`;
+    const finalWeek = this.matchupsData.getMatchupsForWeek(seasonId, finalWeekKey);
 
-      if (finalWeek) {
-        for (const entry of Object.values(finalWeek)) {
-          const { matchup } = entry;
-          if (!matchup) continue;
+    if (finalWeek) {
+      for (const entry of Object.values(finalWeek)) {
+        const { matchup } = entry;
+        if (!matchup) continue;
 
-          const isChampEntry =
-            matchup.team1Name === championName && matchup.team2Name === runnerUpName;
-          const isRunnerEntry =
-            matchup.team1Name === runnerUpName && matchup.team2Name === championName;
+        const isChampEntry =
+          matchup.team1Name === championName && matchup.team2Name === runnerUpName;
+        const isRunnerEntry =
+          matchup.team1Name === runnerUpName && matchup.team2Name === championName;
 
-          if (isChampEntry) {
-            score = parseFloat(matchup.team1Score);
-            runnerUpScore = parseFloat(matchup.team2Score);
-            break;
-          }
-          if (isRunnerEntry) {
-            score = parseFloat(matchup.team2Score);
-            runnerUpScore = parseFloat(matchup.team1Score);
-            break;
-          }
+        if (isChampEntry) {
+          score = parseFloat(matchup.team1Score);
+          runnerUpScore = parseFloat(matchup.team2Score);
+          break;
+        }
+        if (isRunnerEntry) {
+          score = parseFloat(matchup.team2Score);
+          runnerUpScore = parseFloat(matchup.team1Score);
+          break;
         }
       }
     }
