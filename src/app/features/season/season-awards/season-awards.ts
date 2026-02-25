@@ -53,6 +53,13 @@ interface TeamGameScore {
   points: number;
 }
 
+interface TeamGameDiff {
+  teamName: string;
+  managerName: string;
+  opponentTeamName: string;
+  diff: number;
+}
+
 @Component({
   selector: 'app-season-awards',
   imports: [SubsectionHeader, StatCard, StatList, StatValue],
@@ -536,6 +543,106 @@ export class SeasonAwards {
         ? `${team.teamName} - ${team.managerName}`
         : team.teamName,
       value: team.points.toFixed(2),
+    }))
+  );
+
+  protected readonly topSingleGameBiggestLosers = computed<TeamGameDiff[]>(() => {
+    const y = this.year();
+    const meta = this.seasonMeta();
+    const rows = this.rows();
+    if (y == null || !meta || !rows.length) return [];
+
+    const managerByTeam = new Map(rows.map((row) => [row.teamName, row.managerName]));
+    const gameDiffs: TeamGameDiff[] = [];
+
+    for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(String(y), `week${week}`);
+      if (!weekData) continue;
+
+      const entries = Object.values(weekData);
+      if (!entries.length) continue;
+
+      for (const entry of entries) {
+        const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
+        const opponentTeamName = entry.matchup?.team2Name ?? 'Unknown Team';
+        const managerName = managerByTeam.get(teamName) ?? '';
+        const teamPoints = Number(entry.team1Totals?.totalPoints ?? 0);
+        const opponentPoints = Number(entry.matchup?.team2Score ?? 0);
+        const diff = teamPoints - opponentPoints;
+
+        if (diff >= 0) continue;
+
+        gameDiffs.push({
+          teamName,
+          managerName,
+          opponentTeamName,
+          diff,
+        });
+      }
+    }
+
+    return gameDiffs
+      .sort((a, b) => {
+        if (a.diff !== b.diff) return a.diff - b.diff;
+        return a.teamName.localeCompare(b.teamName);
+      })
+      .slice(0, 5);
+  });
+
+  protected readonly topSingleGameBiggestLoserItems = computed<StatListItem[]>(() =>
+    this.topSingleGameBiggestLosers().map((team) => ({
+      label: `${team.teamName} vs ${team.opponentTeamName}`,
+      value: team.diff.toFixed(2),
+    }))
+  );
+
+  protected readonly topSingleGameNarrowestVictories = computed<TeamGameDiff[]>(() => {
+    const y = this.year();
+    const meta = this.seasonMeta();
+    const rows = this.rows();
+    if (y == null || !meta || !rows.length) return [];
+
+    const managerByTeam = new Map(rows.map((row) => [row.teamName, row.managerName]));
+    const gameDiffs: TeamGameDiff[] = [];
+
+    for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(String(y), `week${week}`);
+      if (!weekData) continue;
+
+      const entries = Object.values(weekData);
+      if (!entries.length) continue;
+
+      for (const entry of entries) {
+        const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
+        const opponentTeamName = entry.matchup?.team2Name ?? 'Unknown Team';
+        const managerName = managerByTeam.get(teamName) ?? '';
+        const teamPoints = Number(entry.team1Totals?.totalPoints ?? 0);
+        const opponentPoints = Number(entry.matchup?.team2Score ?? 0);
+        const diff = teamPoints - opponentPoints;
+
+        if (diff <= 0) continue;
+
+        gameDiffs.push({
+          teamName,
+          managerName,
+          opponentTeamName,
+          diff,
+        });
+      }
+    }
+
+    return gameDiffs
+      .sort((a, b) => {
+        if (a.diff !== b.diff) return a.diff - b.diff;
+        return a.teamName.localeCompare(b.teamName);
+      })
+      .slice(0, 5);
+  });
+
+  protected readonly topSingleGameNarrowestVictoryItems = computed<StatListItem[]>(() =>
+    this.topSingleGameNarrowestVictories().map((team) => ({
+      label: `${team.teamName} over ${team.opponentTeamName}`,
+      value: team.diff.toFixed(2),
     }))
   );
 }

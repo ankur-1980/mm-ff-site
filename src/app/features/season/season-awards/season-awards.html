@@ -111,6 +111,24 @@
         <app-stat-list [items]="topSingleGameLowestScoringTeamItems()"></app-stat-list>
       </app-stat-card>
     }
+
+    @if (topSingleGameBiggestLosers().length) {
+      <app-stat-card
+        title="Top 5 Biggest Losers (Single Game)"
+        subtitle="Greatest negative point differential"
+      >
+        <app-stat-list [items]="topSingleGameBiggestLoserItems()"></app-stat-list>
+      </app-stat-card>
+    }
+
+    @if (topSingleGameNarrowestVictories().length) {
+      <app-stat-card
+        title="Top 5 Narrowest Victories (Single Game)"
+        subtitle="Lowest positive point differential"
+      >
+        <app-stat-list [items]="topSingleGameNarrowestVictoryItems()"></app-stat-list>
+      </app-stat-card>
+    }
   }
 
   @if (!bestRecordAward()) {
