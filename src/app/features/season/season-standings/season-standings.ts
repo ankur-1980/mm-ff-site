@@ -49,4 +49,17 @@ export class SeasonStandings {
     const y = this.year();
     return y != null ? this.toiletBowlBanner.getToiletBowlData(String(y)) : null;
   });
+
+  protected readonly highScoreData = computed(() => {
+    const rows = this.tableState().data;
+    if (!rows.length) return null;
+    const top = rows.reduce((best, row) =>
+      row.pointsFor > best.pointsFor ? row : best
+    );
+    return {
+      ownerName: top.managerName,
+      teamName: top.teamName,
+      score: top.pointsFor,
+    };
+  });
 }

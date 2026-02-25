@@ -5,8 +5,8 @@ export interface ChampionBannerData {
   ownerName: string;
   teamName: string;
   score?: number;
-  runnerUpOwnerName: string;
-  runnerUpTeamName: string;
+  runnerUpOwnerName?: string;
+  runnerUpTeamName?: string;
   runnerUpScore?: number;
 }
 

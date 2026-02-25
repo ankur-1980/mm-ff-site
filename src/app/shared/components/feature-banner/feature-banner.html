@@ -7,14 +7,18 @@
       <span class="feature-banner__team">{{ d.teamName }}</span>
     </div>
 
-    @if (d.score != null && d.runnerUpScore != null) {
+    @if (d.score != null) {
       <div class="feature-banner__matchup">
         <span class="feature-banner__score">{{ d.score | number: '1.2-2' }}</span>
-        <span class="feature-banner__vs">vs</span>
-        <span class="feature-banner__score feature-banner__score--runner-up">{{ d.runnerUpScore | number: '1.2-2' }}</span>
+        @if (d.runnerUpScore != null) {
+          <span class="feature-banner__vs">vs</span>
+          <span class="feature-banner__score feature-banner__score--runner-up">{{ d.runnerUpScore | number: '1.2-2' }}</span>
+        }
       </div>
     }
 
-    <p class="feature-banner__defeated">Defeated {{ d.runnerUpOwnerName }}</p>
+    @if (d.runnerUpOwnerName) {
+      <p class="feature-banner__defeated">Defeated {{ d.runnerUpOwnerName }}</p>
+    }
   </div>
 }
