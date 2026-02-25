@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
+import { MatchupCard } from './matchup-card/matchup-card';
+import type { MatchupTeamData } from './matchup-team/matchup-team';
 
 export interface WeekItem {
   number: number;
@@ -16,7 +18,7 @@ export interface WeekItem {
 
 @Component({
   selector: 'app-season-matchups',
-  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTabsModule],
+  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTabsModule, MatchupCard],
   templateUrl: './season-matchups.html',
   styleUrl: './season-matchups.scss',
 })
@@ -70,5 +72,21 @@ export class SeasonMatchups {
     const weeks = this.weeks();
     return idx >= 0 && idx < weeks.length - 1 ? weeks[idx + 1].key : null;
   });
+
+  protected readonly mockTeam1: MatchupTeamData = {
+    teamName: 'Gridiron Gurus',
+    ownerName: 'Alice Smith',
+    totalPoints: 142.56,
+    projectedPoints: 138.20,
+    result: 'winner',
+  };
+
+  protected readonly mockTeam2: MatchupTeamData = {
+    teamName: 'Touchdown Titans',
+    ownerName: 'Bob Johnson',
+    totalPoints: 128.34,
+    projectedPoints: 145.00,
+    result: 'loser',
+  };
 }
 

@@ -2,6 +2,13 @@
   display: block;
 }
 
+.matchups__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
 .matchups__mobile-nav {
   display: none;
   align-items: center;

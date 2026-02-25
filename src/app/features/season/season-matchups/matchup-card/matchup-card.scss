@@ -1,0 +1,10 @@
+mat-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.matchup-card__halves {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
