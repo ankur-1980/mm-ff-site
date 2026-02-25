@@ -38,3 +38,14 @@
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
 }
+
+.stat-list--unranked {
+  .stat-list__item {
+    counter-increment: none;
+
+    &::before {
+      content: none;
+      min-width: 0;
+    }
+  }
+}

@@ -42,7 +42,13 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
     const cols = this.columns();
     const rows = this.data();
     const set = new Set<string>();
-    const numericFormats = ['integer', 'decimal2', 'signedDecimal2', 'percent2'] as const;
+    const numericFormats = [
+      'integer',
+      'decimal2',
+      'signedDecimal2',
+      'percent2',
+      'smartDecimal2',
+    ] as const;
     cols.forEach((c) => {
       if (c.format && numericFormats.includes(c.format)) {
         set.add(c.key);
@@ -102,7 +108,15 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
   }
 
   /** Angular number pipe format string for the column (e.g. '1.0-0', '1.2-2'). */
-  numberFormat(col: DataTableColumnDef): string {
+  numberFormatForCell(col: DataTableColumnDef, row: T): string {
+    if (col.format === 'smartDecimal2') {
+      const value = coerceNumber(row[col.key]);
+      if (typeof value === 'number') {
+        return Number.isInteger(value) ? '1.0-0' : '1.1-2';
+      }
+      return '1.1-2';
+    }
+
     switch (col.format) {
       case 'integer':
         return '1.0-0';

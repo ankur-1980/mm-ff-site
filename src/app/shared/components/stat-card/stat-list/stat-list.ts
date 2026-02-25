@@ -13,4 +13,5 @@ export interface StatListItem {
 })
 export class StatList {
   readonly items = input.required<StatListItem[]>();
+  readonly showRank = input<boolean>(true);
 }

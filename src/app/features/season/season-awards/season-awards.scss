@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.season-awards__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  padding: 1rem 0 0;
+}
+
+.season-awards__empty {
+  margin: 0;
+  opacity: 0.7;
+}
+
+@media (max-width: 959px) {
+  .season-awards__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .season-awards__grid {
+    grid-template-columns: 1fr;
+  }
+}
