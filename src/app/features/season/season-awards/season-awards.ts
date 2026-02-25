@@ -14,10 +14,10 @@ import {
 } from '../../../shared/components/stat-card/stat-list/starter-game-list/starter-game-list';
 import { StatValue } from '../../../shared/components/stat-card/stat-value/stat-value';
 import { mapTeamNameShort } from '../../../shared/mappers/team-name-short.mapper';
-import {
-  SeasonStandingsRow,
-  SeasonStandingsService,
-} from '../season-standings/season-standings.service';
+import { SeasonStandingsService } from '../season-standings/season-standings.service';
+import type { SeasonStandingsRow } from '../season-standings/season-standings.models';
+
+const EPSILON = 0.000001;
 
 interface BestRecordAward {
   record: string;
@@ -124,7 +124,7 @@ export class SeasonAwards {
     if (!rows.length) return null;
 
     const topWinPct = Math.max(...rows.map((row) => row.winPct));
-    const tiedRows = rows.filter((row) => Math.abs(row.winPct - topWinPct) < 0.000001);
+    const tiedRows = rows.filter((row) => Math.abs(row.winPct - topWinPct) < EPSILON);
 
     const displayRow = tiedRows.reduce((currentBest, row) => {
       if (row.win !== currentBest.win) {
@@ -155,7 +155,7 @@ export class SeasonAwards {
 
     const topPointsFor = Math.max(...rows.map((row) => row.pointsFor));
     const tiedRows = rows.filter(
-      (row) => Math.abs(row.pointsFor - topPointsFor) < 0.000001
+      (row) => Math.abs(row.pointsFor - topPointsFor) < EPSILON
     );
 
     return {
@@ -169,7 +169,7 @@ export class SeasonAwards {
     if (!rows.length) return null;
 
     const topDiff = Math.max(...rows.map((row) => row.diff));
-    const tiedRows = rows.filter((row) => Math.abs(row.diff - topDiff) < 0.000001);
+    const tiedRows = rows.filter((row) => Math.abs(row.diff - topDiff) < EPSILON);
 
     return {
       value: topDiff.toFixed(2),
@@ -183,7 +183,7 @@ export class SeasonAwards {
 
     const lowestPointsAgainst = Math.min(...rows.map((row) => row.pointsAgainst));
     const tiedRows = rows.filter(
-      (row) => Math.abs(row.pointsAgainst - lowestPointsAgainst) < 0.000001
+      (row) => Math.abs(row.pointsAgainst - lowestPointsAgainst) < EPSILON
     );
 
     return {
@@ -213,7 +213,7 @@ export class SeasonAwards {
       const weeklyHighPointWinners = entries.filter(
         (entry) =>
           Math.abs((entry.team1Totals?.totalPoints ?? Number.NEGATIVE_INFINITY) - topScore) <
-          0.000001
+          EPSILON
       );
 
       for (const winner of weeklyHighPointWinners) {
@@ -238,7 +238,7 @@ export class SeasonAwards {
       const winners = entries.filter(
         (entry) =>
           Math.abs((entry.points?.highPoints ?? Number.NEGATIVE_INFINITY) - topHighPoints) <
-          0.000001
+          EPSILON
       );
       if (!winners.length) return null;
 
@@ -293,7 +293,7 @@ export class SeasonAwards {
       const weeklyLowPointWinners = entries.filter(
         (entry) =>
           Math.abs((entry.team1Totals?.totalPoints ?? Number.POSITIVE_INFINITY) - lowScore) <
-          0.000001
+          EPSILON
       );
 
       for (const winner of weeklyLowPointWinners) {
