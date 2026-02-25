@@ -1,0 +1,74 @@
+:host {
+  display: block;
+}
+
+.feature-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid var(--mat-divider-color, rgba(0, 0, 0, 0.12));
+}
+
+.feature-banner__label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.feature-banner__champion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+  margin: 0.25rem 0;
+}
+
+.feature-banner__owner {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.feature-banner__team {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.feature-banner__matchup {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.feature-banner__score {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.feature-banner__score--runner-up {
+  opacity: 0.6;
+}
+
+.feature-banner__vs {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.feature-banner__defeated {
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.6;
+}

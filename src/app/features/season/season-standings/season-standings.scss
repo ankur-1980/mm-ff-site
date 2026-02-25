@@ -2,3 +2,13 @@
   display: block;
 }
 
+.standings__banners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  app-feature-banner {
+    flex: 1 1 18rem;
+  }
+}

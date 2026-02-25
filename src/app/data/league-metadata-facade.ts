@@ -5,6 +5,7 @@ import type { SeasonMetaData } from '../models/league-metadata.model';
 import { LeagueMetaDataService } from './league-metadata.service';
 import { OwnersDataService } from './owners-data.service';
 import { SeasonStandingsDataService } from './season-standings-data.service';
+import { ToiletBowlDataService } from './toilet-bowl-data.service';
 import { WeeklyMatchupsDataService } from './weekly-matchups-data.service';
 
 /** Resolved current season from meta + standings (id is the season year number). */
@@ -23,6 +24,7 @@ export class LeagueMetaDataFacade {
   private readonly owners = inject(OwnersDataService);
   private readonly seasonStandings = inject(SeasonStandingsDataService);
   private readonly weeklyMatchups = inject(WeeklyMatchupsDataService);
+  private readonly toiletBowl = inject(ToiletBowlDataService);
 
   /** Load all data sources. Safe to call multiple times; each service guards its own load. */
   loadAll(): void {
@@ -30,6 +32,7 @@ export class LeagueMetaDataFacade {
     this.owners.load();
     this.seasonStandings.load();
     this.weeklyMatchups.load();
+    this.toiletBowl.load();
   }
 
   /** League load status (passthrough). */
