@@ -7,7 +7,7 @@
 
 @if (meta().length) {
   <div class="section-header__meta">
-    @for (item of meta(); track item; let last = $last) {
+    @for (item of meta(); track $index; let last = $last) {
       <span class="section-header__meta-title">{{ item }}</span>
       @if (!last) {
         <span class="section-header__meta-sep" aria-hidden="true">&bull;</span>
