@@ -5,6 +5,7 @@ import type {
   SeasonStandingsEntry,
 } from '../../../models/season-standings.model';
 import type { DataTableColumnDef, DataTableRow } from '../../../shared/table';
+import { PythagoreanRankingsService } from './pythagorean-rankings.service';
 
 export interface SeasonPowerRankingRow extends DataTableRow {
   ownerId: string;
@@ -14,7 +15,10 @@ export interface SeasonPowerRankingRow extends DataTableRow {
   playoffRank: number | null;
   regularSeasonRank: number | null;
   pointsFor: number;
+  pointsAgainst: number;
+  gamesPlayed: number;
   pointsForRank: number;
+  pythagoreanRank: number;
   total: number | null;
 }
 
@@ -95,6 +99,8 @@ function compareNullableNumbersAsc(a: number | null, b: number | null): number {
 
 @Injectable({ providedIn: 'root' })
 export class SeasonPowerRankingsService {
+  constructor(private readonly pythagoreanRankings: PythagoreanRankingsService) {}
+
   readonly columns: DataTableColumnDef[] = [
     { key: 'teamName', header: 'Team', widthCh: 26, subscriptKey: 'managerName' },
     { key: 'playoffRank', header: 'Playoff', widthCh: 8, align: 'center', format: 'integer' },
@@ -107,8 +113,15 @@ export class SeasonPowerRankingsService {
     },
     {
       key: 'pointsForRank',
-      header: 'Points For',
+      header: 'PF Rank',
       widthCh: 11,
+      align: 'center',
+      format: 'integer',
+    },
+    {
+      key: 'pythagoreanRank',
+      header: 'Pythag Rank',
+      widthCh: 12,
       align: 'center',
       format: 'integer',
     },
@@ -126,36 +139,49 @@ export class SeasonPowerRankingsService {
     if (!standings) return { columns: this.columns, data: [] };
 
     const baseRows: SeasonPowerRankingRow[] = Object.entries(standings).map(
-      ([ownerId, entry]) => ({
-        ownerId,
-        teamName: teamName(entry),
-        managerName: entry.playerDetails?.managerName ?? '',
-        win: entry.record?.win ?? 0,
-        playoffRank: parseRank(entry.ranks?.playoffRank),
-        regularSeasonRank: parseRank(entry.ranks?.regularSeasonRank),
-        pointsFor: entry.points?.pointsFor ?? 0,
-        pointsForRank: 0,
-        total: null,
-      })
+      ([ownerId, entry]) => {
+        const win = entry.record?.win ?? 0;
+        const loss = entry.record?.loss ?? 0;
+        const tie = entry.record?.tie ?? 0;
+        const gamesPlayed = win + loss + tie;
+
+        return {
+          ownerId,
+          teamName: teamName(entry),
+          managerName: entry.playerDetails?.managerName ?? '',
+          win,
+          playoffRank: parseRank(entry.ranks?.playoffRank),
+          regularSeasonRank: parseRank(entry.ranks?.regularSeasonRank),
+          pointsFor: entry.points?.pointsFor ?? 0,
+          pointsAgainst: entry.points?.pointsAgainst ?? 0,
+          gamesPlayed,
+          pointsForRank: 0,
+          pythagoreanRank: 0,
+          total: null,
+        };
+      }
     );
 
     const pointsForRanks = buildPointsForRanks(baseRows);
     const regularSeasonRanks = buildRegularSeasonRanks(baseRows);
+    const pythagoreanRanks = this.pythagoreanRankings.buildRanks(baseRows);
 
     const rows = baseRows
       .map((row) => {
         const pointsForRank = pointsForRanks.get(row.ownerId) ?? 0;
+        const pythagoreanRank = pythagoreanRanks.get(row.ownerId) ?? 0;
         const regularSeasonRank =
           row.regularSeasonRank ?? regularSeasonRanks.get(row.ownerId) ?? null;
         const total =
           row.playoffRank != null && regularSeasonRank != null
-            ? row.playoffRank + regularSeasonRank + pointsForRank
+            ? row.playoffRank + regularSeasonRank + pointsForRank + pythagoreanRank
             : null;
 
         return {
           ...row,
           regularSeasonRank,
           pointsForRank,
+          pythagoreanRank,
           total,
         };
       })
@@ -173,6 +199,9 @@ export class SeasonPowerRankingsService {
         if (regCompare !== 0) return regCompare;
 
         if (a.pointsForRank !== b.pointsForRank) return a.pointsForRank - b.pointsForRank;
+        if (a.pythagoreanRank !== b.pythagoreanRank) {
+          return a.pythagoreanRank - b.pythagoreanRank;
+        }
         return a.teamName.localeCompare(b.teamName);
       });
 
