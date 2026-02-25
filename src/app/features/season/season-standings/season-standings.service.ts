@@ -7,13 +7,11 @@ import type {
 import type { DataTableColumnDef, DataTableRow } from '../../../shared/table';
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
-import { PythagoreanRankingsService } from '../season-power-rankings/pythagorean-rankings.service';
 import { LoggerService } from '@ankur-1980/logger';
 
 export interface SeasonStandingsRow extends DataTableRow {
   playoffRank: string | null;
   regularSeasonRank: number | null;
-  luckRank: number;
   teamName: string;
   managerName: string;
   win: number;
@@ -21,12 +19,8 @@ export interface SeasonStandingsRow extends DataTableRow {
   tie: number;
   gp: number;
   winPct: number;
-  pythagoreanExpectedWins: number;
-  luckScore: number;
   pointsFor: number;
-  avgPointsFor: number;
   pointsAgainst: number;
-  avgPointsAgainst: number;
   highPoints: number;
   lowPoints: number | null;
   diff: number;
@@ -105,27 +99,8 @@ function buildRegularSeasonRanks(
   return ranks;
 }
 
-function buildLuckRanks(rows: SeasonStandingsRow[]): Map<SeasonStandingsRow, number> {
-  const sorted = [...rows].sort((a, b) => b.luckScore - a.luckScore);
-  const ranks = new Map<SeasonStandingsRow, number>();
-
-  let currentRank = 0;
-  let lastLuckScore: number | null = null;
-
-  sorted.forEach((row, index) => {
-    if (lastLuckScore == null || row.luckScore !== lastLuckScore) {
-      currentRank = index + 1;
-      lastLuckScore = row.luckScore;
-    }
-    ranks.set(row, currentRank);
-  });
-
-  return ranks;
-}
-
 @Injectable({ providedIn: 'root' })
 export class SeasonStandingsService {
-  private readonly pythagoreanRankings = inject(PythagoreanRankingsService);
   private readonly weeklyMatchupsData = inject(WeeklyMatchupsDataService);
   private readonly leagueMetaData = inject(LeagueMetaDataService);
   private readonly logger = inject(LoggerService);
@@ -420,19 +395,12 @@ export class SeasonStandingsService {
         const rawPlayoffRank = entry.ranks?.playoffRank;
         const rawRegularSeasonRank = entry.ranks?.regularSeasonRank;
 
-        const pythagoreanExpectedWins = this.pythagoreanRankings.calculateExpectedWins(
-          pointsFor,
-          pointsAgainst,
-          gp
-        );
-
         return {
           playoffRank:
             rawPlayoffRank != null && String(rawPlayoffRank).trim() !== ''
               ? String(rawPlayoffRank).trim()
               : null,
           regularSeasonRank: parseRank(rawRegularSeasonRank),
-          luckRank: 0,
           teamName: team,
           managerName: entry.playerDetails?.managerName ?? '',
           win,
@@ -440,12 +408,8 @@ export class SeasonStandingsService {
           tie,
           gp,
           winPct: gp > 0 ? ((win + tie * 0.5) / gp) * 100 : 0,
-          pythagoreanExpectedWins,
-          luckScore: win - pythagoreanExpectedWins,
           pointsFor,
-          avgPointsFor: gp > 0 ? pointsFor / gp : 0,
           pointsAgainst,
-          avgPointsAgainst: gp > 0 ? pointsAgainst / gp : 0,
           highPoints,
           lowPoints,
           diff: pointsFor - pointsAgainst,
@@ -455,14 +419,12 @@ export class SeasonStandingsService {
       });
 
     const computedRegularSeasonRanks = buildRegularSeasonRanks(rows);
-    const computedLuckRanks = buildLuckRanks(rows);
 
     const normalizedRows = rows
       .map((row) => ({
         ...row,
         regularSeasonRank:
           row.regularSeasonRank ?? computedRegularSeasonRanks.get(row) ?? null,
-        luckRank: computedLuckRanks.get(row) ?? 0,
       }))
       .sort((a, b) => {
         const rankA = parseRank(a.playoffRank ?? undefined);
