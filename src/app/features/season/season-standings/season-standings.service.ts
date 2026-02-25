@@ -8,6 +8,7 @@ import type { DataTableColumnDef, DataTableRow } from '../../../shared/table';
 
 export interface SeasonStandingsRow extends DataTableRow {
   playoffRank: string | null;
+  regularSeasonRank: number | null;
   teamName: string;
   managerName: string;
   win: number;
@@ -42,6 +43,36 @@ function teamName(entry: SeasonStandingsEntry): string {
     : 'Unknown Team';
 }
 
+function buildRegularSeasonRanks(
+  rows: SeasonStandingsRow[]
+): Map<SeasonStandingsRow, number> {
+  const sorted = [...rows].sort((a, b) => {
+    if (b.win !== a.win) return b.win - a.win;
+    return b.pointsFor - a.pointsFor;
+  });
+  const ranks = new Map<SeasonStandingsRow, number>();
+
+  let currentRank = 0;
+  let lastWins: number | null = null;
+  let lastPointsFor: number | null = null;
+
+  sorted.forEach((row, index) => {
+    if (
+      lastWins == null ||
+      lastPointsFor == null ||
+      row.win !== lastWins ||
+      row.pointsFor !== lastPointsFor
+    ) {
+      currentRank = index + 1;
+      lastWins = row.win;
+      lastPointsFor = row.pointsFor;
+    }
+    ranks.set(row, currentRank);
+  });
+
+  return ranks;
+}
+
 @Injectable({ providedIn: 'root' })
 export class SeasonStandingsService {
   readonly columns: DataTableColumnDef[] = [
@@ -52,6 +83,13 @@ export class SeasonStandingsService {
       align: 'center',
       format: 'integer',
       defaultSort: true,
+    },
+    {
+      key: 'regularSeasonRank',
+      header: 'Regular Season',
+      widthCh: 14,
+      align: 'center',
+      format: 'integer',
     },
     { key: 'teamName', header: 'Team', widthCh: 24, subscriptKey: 'managerName' },
     { key: 'win', header: 'W', widthCh: 6, format: 'integer' },
@@ -80,12 +118,14 @@ export class SeasonStandingsService {
         const pointsFor = entry.points?.pointsFor ?? 0;
         const pointsAgainst = entry.points?.pointsAgainst ?? 0;
         const rawPlayoffRank = entry.ranks?.playoffRank;
+        const rawRegularSeasonRank = entry.ranks?.regularSeasonRank;
 
         return {
           playoffRank:
             rawPlayoffRank != null && String(rawPlayoffRank).trim() !== ''
               ? String(rawPlayoffRank).trim()
               : null,
+          regularSeasonRank: parseRank(rawRegularSeasonRank),
           teamName: teamName(entry),
           managerName: entry.playerDetails?.managerName ?? '',
           win,
@@ -101,7 +141,16 @@ export class SeasonStandingsService {
           moves: entry.transactions?.moves ?? 0,
           trades: entry.transactions?.trades ?? 0,
         };
-      })
+      });
+
+    const computedRegularSeasonRanks = buildRegularSeasonRanks(rows);
+
+    const normalizedRows = rows
+      .map((row) => ({
+        ...row,
+        regularSeasonRank:
+          row.regularSeasonRank ?? computedRegularSeasonRanks.get(row) ?? null,
+      }))
       .sort((a, b) => {
         const rankA = parseRank(a.playoffRank ?? undefined);
         const rankB = parseRank(b.playoffRank ?? undefined);
@@ -112,7 +161,7 @@ export class SeasonStandingsService {
         return b.pointsFor - a.pointsFor;
       });
 
-    return { columns: this.columns, data: rows };
+    return { columns: this.columns, data: normalizedRows };
   }
 }
 
