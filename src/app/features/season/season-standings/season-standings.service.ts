@@ -407,14 +407,21 @@ export class SeasonStandingsService {
           };
     const hasWeeklyHistory = regularSeason.hasRegularSeasonHistory;
 
-    const rows = Object.values(standings)
-      .map((entry): SeasonStandingsRow => {
-        const team = teamName(entry);
-        const normalizedTeam = normalizeTeamName(team);
-        const stats = this.resolveTeamStats(entry, normalizedTeam, regularSeason);
-        this.logConflicts(seasonId, team, stats, regularSeason);
-        return this.toStandingsRow(entry, team, stats);
-      });
+    const entries = Object.values(standings);
+    const resolvedByTeam = new Map<string, ResolvedTeamStats>();
+    for (const entry of entries) {
+      const team = teamName(entry);
+      const normalizedTeam = normalizeTeamName(team);
+      resolvedByTeam.set(normalizedTeam, this.resolveTeamStats(entry, normalizedTeam, regularSeason));
+    }
+
+    const rows = entries.map((entry): SeasonStandingsRow => {
+      const team = teamName(entry);
+      const normalizedTeam = normalizeTeamName(team);
+      const stats = resolvedByTeam.get(normalizedTeam)!;
+      this.logConflicts(seasonId, team, stats, regularSeason);
+      return this.toStandingsRow(entry, team, stats);
+    });
 
     const computedRegularSeasonRanks = buildRegularSeasonRanks(rows);
 
