@@ -5,6 +5,8 @@ import type {
   SeasonStandingsEntry,
 } from '../../../models/season-standings.model';
 import type { DataTableColumnDef, DataTableRow } from '../../../shared/table';
+import { LeagueMetaDataService } from '../../../data/league-metadata.service';
+import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
 import { PythagoreanRankingsService } from '../season-power-rankings/pythagorean-rankings.service';
 
 export interface SeasonStandingsRow extends DataTableRow {
@@ -24,6 +26,8 @@ export interface SeasonStandingsRow extends DataTableRow {
   avgPointsFor: number;
   pointsAgainst: number;
   avgPointsAgainst: number;
+  highPoints: number;
+  lowPoints: number | null;
   diff: number;
   moves: number;
   trades: number;
@@ -98,6 +102,8 @@ function buildLuckRanks(rows: SeasonStandingsRow[]): Map<SeasonStandingsRow, num
 @Injectable({ providedIn: 'root' })
 export class SeasonStandingsService {
   private readonly pythagoreanRankings = inject(PythagoreanRankingsService);
+  private readonly weeklyMatchupsData = inject(WeeklyMatchupsDataService);
+  private readonly leagueMetaData = inject(LeagueMetaDataService);
 
   readonly columns: DataTableColumnDef[] = [
     {
@@ -115,7 +121,6 @@ export class SeasonStandingsService {
       align: 'center',
       format: 'integer',
     },
-    { key: 'luckRank', header: 'Luck Rank', widthCh: 10, align: 'center', format: 'integer' },
     { key: 'teamName', header: 'Team', widthCh: 24, subscriptKey: 'managerName' },
     { key: 'win', header: 'W', widthCh: 6, format: 'integer' },
     { key: 'loss', header: 'L', widthCh: 6, format: 'integer' },
@@ -128,13 +133,77 @@ export class SeasonStandingsService {
     { key: 'avgPointsFor', header: 'Avg PF', widthCh: 10, format: 'decimal2' },
     { key: 'pointsAgainst', header: 'PA', widthCh: 12, format: 'decimal2' },
     { key: 'avgPointsAgainst', header: 'Avg PA', widthCh: 10, format: 'decimal2' },
+    { key: 'highPoints', header: 'High Pts', widthCh: 9, format: 'smartDecimal2' },
+    { key: 'lowPoints', header: 'Low Pts', widthCh: 9, format: 'smartDecimal2' },
     { key: 'diff', header: 'Diff', widthCh: 12, format: 'decimal2' },
     { key: 'moves', header: 'Moves', widthCh: 7, format: 'integer' },
     { key: 'trades', header: 'Trades', widthCh: 7, format: 'integer' },
   ];
 
+  private getColumns(hasWeeklyHistory: boolean): DataTableColumnDef[] {
+    if (hasWeeklyHistory) return this.columns;
+    return this.columns.filter(
+      (column) =>
+        column.key !== 'lowPoints' &&
+        column.key !== 'moves' &&
+        column.key !== 'trades'
+    );
+  }
+
+  private getSeasonId(standings: SeasonStandings): string | null {
+    const firstEntry = Object.values(standings)[0];
+    if (!firstEntry?.season) return null;
+    return String(firstEntry.season);
+  }
+
+  private getWeeklyPointFinishCounts(seasonId: string): Map<string, { high: number; low: number }> {
+    const counts = new Map<string, { high: number; low: number }>();
+    const seasonMeta = this.leagueMetaData.getSeasonMeta(seasonId);
+    if (!seasonMeta) return counts;
+
+    for (let week = 1; week <= seasonMeta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(seasonId, `week${week}`);
+      if (!weekData) continue;
+
+      const entries = Object.values(weekData);
+      if (!entries.length) continue;
+
+      const scores = entries.map((entry) => entry.team1Totals?.totalPoints ?? 0);
+      const topScore = Math.max(...scores);
+      const lowScore = Math.min(...scores);
+
+      const topTeams = entries.filter(
+        (entry) => Math.abs((entry.team1Totals?.totalPoints ?? 0) - topScore) < 0.000001
+      );
+      const lowTeams = entries.filter(
+        (entry) => Math.abs((entry.team1Totals?.totalPoints ?? 0) - lowScore) < 0.000001
+      );
+
+      for (const entry of topTeams) {
+        const team = entry.matchup?.team1Name;
+        if (!team) continue;
+        const existing = counts.get(team) ?? { high: 0, low: 0 };
+        counts.set(team, { ...existing, high: existing.high + 1 });
+      }
+
+      for (const entry of lowTeams) {
+        const team = entry.matchup?.team1Name;
+        if (!team) continue;
+        const existing = counts.get(team) ?? { high: 0, low: 0 };
+        counts.set(team, { ...existing, low: existing.low + 1 });
+      }
+    }
+
+    return counts;
+  }
+
   toTableState(standings: SeasonStandings | null): SeasonStandingsTableState {
-    if (!standings) return { columns: this.columns, data: [] };
+    if (!standings) return { columns: this.getColumns(false), data: [] };
+
+    const seasonId = this.getSeasonId(standings);
+    const weeklyPointFinishCounts =
+      seasonId != null ? this.getWeeklyPointFinishCounts(seasonId) : new Map();
+    const hasWeeklyHistory = weeklyPointFinishCounts.size > 0;
 
     const rows = Object.values(standings)
       .map((entry): SeasonStandingsRow => {
@@ -144,6 +213,14 @@ export class SeasonStandingsService {
         const gp = win + loss + tie;
         const pointsFor = entry.points?.pointsFor ?? 0;
         const pointsAgainst = entry.points?.pointsAgainst ?? 0;
+        const team = teamName(entry);
+        const weeklyCounts = weeklyPointFinishCounts.get(team);
+        const highPoints = hasWeeklyHistory
+          ? (weeklyCounts?.high ?? 0)
+          : (entry.points?.highPoints ?? 0);
+        const lowPoints = hasWeeklyHistory
+          ? (weeklyCounts?.low ?? 0)
+          : (entry.points?.lowPoints ?? null);
         const rawPlayoffRank = entry.ranks?.playoffRank;
         const rawRegularSeasonRank = entry.ranks?.regularSeasonRank;
 
@@ -160,7 +237,7 @@ export class SeasonStandingsService {
               : null,
           regularSeasonRank: parseRank(rawRegularSeasonRank),
           luckRank: 0,
-          teamName: teamName(entry),
+          teamName: team,
           managerName: entry.playerDetails?.managerName ?? '',
           win,
           loss,
@@ -173,6 +250,8 @@ export class SeasonStandingsService {
           avgPointsFor: gp > 0 ? pointsFor / gp : 0,
           pointsAgainst,
           avgPointsAgainst: gp > 0 ? pointsAgainst / gp : 0,
+          highPoints,
+          lowPoints,
           diff: pointsFor - pointsAgainst,
           moves: entry.transactions?.moves ?? 0,
           trades: entry.transactions?.trades ?? 0,
@@ -199,7 +278,7 @@ export class SeasonStandingsService {
         return b.pointsFor - a.pointsFor;
       });
 
-    return { columns: this.columns, data: normalizedRows };
+    return { columns: this.getColumns(hasWeeklyHistory), data: normalizedRows };
   }
 }
 

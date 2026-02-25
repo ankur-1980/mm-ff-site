@@ -22,6 +22,7 @@ export interface SeasonStandingsEntry {
     pointsFor: number;
     pointsAgainst: number;
     highPoints: number;
+    lowPoints?: number;
   };
   transactions: {
     moves: number;
