@@ -22,10 +22,16 @@ export const SEASON_ROUTES: Routes = [
       },
       {
         path: 'matchups',
-        loadComponent: () =>
-          import(
-            './season-matchups/season-matchups'
-          ).then((m) => m.SeasonMatchups),
+        children: [
+          { path: '', pathMatch: 'full', redirectTo: 'week1' },
+          {
+            path: ':week',
+            loadComponent: () =>
+              import('./season-matchups/season-matchups').then(
+                (m) => m.SeasonMatchups
+              ),
+          },
+        ],
       },
       {
         path: 'power-rankings',

@@ -1,0 +1,26 @@
+@if (rankings().length > 0) {
+  <div class="all-play">
+    <div class="all-play__header all-play__row">
+      <span class="all-play__rank"></span>
+      <span class="all-play__team">Team</span>
+      <span class="all-play__points">Pts</span>
+      <span class="all-play__record">Record</span>
+    </div>
+
+    <mat-divider />
+
+    <ol class="all-play__list">
+      @for (entry of rankings(); track entry.teamName; let i = $index) {
+        <li class="all-play__row">
+          <span class="all-play__rank">{{ i + 1 }}</span>
+          <span class="all-play__team">
+            <span class="all-play__team-name">{{ entry.teamName }}</span>
+            <span class="all-play__owner">{{ entry.ownerName }}</span>
+          </span>
+          <span class="all-play__points">{{ entry.totalPoints | number: '1.2-2' }}</span>
+          <span class="all-play__record">{{ formatRecord(entry) }}</span>
+        </li>
+      }
+    </ol>
+  </div>
+}

@@ -1,1 +1,50 @@
-<p>season-matchups works!</p>
+@if (weeks().length > 0) {
+  <!-- Desktop: tab bar -->
+  <nav class="matchups__tabs" mat-tab-nav-bar [tabPanel]="tabPanel">
+    @for (week of weeks(); track week.key) {
+      <a
+        mat-tab-link
+        [routerLink]="['..', week.key]"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [active]="rla.isActive"
+      >{{ week.number }}</a>
+    }
+  </nav>
+  <mat-tab-nav-panel #tabPanel />
+
+  <!-- Mobile: prev / Week N / next -->
+  <nav class="matchups__mobile-nav" aria-label="Week navigation">
+    <a
+      mat-icon-button
+      [routerLink]="prevWeekKey() ? ['..', prevWeekKey()] : null"
+      [disabled]="!prevWeekKey()"
+      aria-label="Previous week"
+    ><mat-icon>chevron_left</mat-icon></a>
+
+    <span class="matchups__mobile-label">{{ activeWeekLabel() }}</span>
+
+    <a
+      mat-icon-button
+      [routerLink]="nextWeekKey() ? ['..', nextWeekKey()] : null"
+      [disabled]="!nextWeekKey()"
+      aria-label="Next week"
+    ><mat-icon>chevron_right</mat-icon></a>
+  </nav>
+
+  <app-subsection-header [title]="activeWeekLabel() + ' Matchups'" [isPrimary]="true" />
+
+  <div class="matchups__cards">
+    @for (matchup of matchups(); track matchup.team1.teamName) {
+      <app-matchup-card [team1]="matchup.team1" [team2]="matchup.team2" />
+    } @empty {
+      <p>No matchup data available for this week.</p>
+    }
+  </div>
+
+  <app-subsection-header title="Weekly Awards" />
+  <app-matchup-awards [stats]="weekStats()"></app-matchup-awards>
+
+  <app-subsection-header [title]="activeWeekLabel() + ' All-Play Rankings'" />
+  <app-all-play-rankings [rankings]="weekStats()?.allPlayRankings ?? []" />
+}

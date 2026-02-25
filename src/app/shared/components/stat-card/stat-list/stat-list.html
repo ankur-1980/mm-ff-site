@@ -1,0 +1,10 @@
+<ol class="stat-list">
+  @for (item of items(); track item.label) {
+    <li class="stat-list__item">
+      <span class="stat-list__label">{{ item.label }}</span>
+      @if (item.value != null) {
+        <span class="stat-list__value">{{ item.value }}</span>
+      }
+    </li>
+  }
+</ol>
