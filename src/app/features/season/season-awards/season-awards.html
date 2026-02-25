@@ -10,6 +10,26 @@
       <app-stat-value [value]="bestRecord.winPct" [subscript]="bestRecord.record" />
     </app-stat-card>
 
+    @if (bestAllPlayRecordAward(); as bestAllPlay) {
+      <app-stat-card
+        title="Best All-Play Record"
+        subtitle="Best record if you played every team every week"
+        [footer]="bestAllPlay.footer"
+      >
+        <app-stat-value [value]="bestAllPlay.record" [subscript]="bestAllPlay.winPct" />
+      </app-stat-card>
+    }
+
+    @if (worstAllPlayRecordAward(); as worstAllPlay) {
+      <app-stat-card
+        title="Worst All-Play Record"
+        subtitle="Worst record if you played every team every week"
+        [footer]="worstAllPlay.footer"
+      >
+        <app-stat-value [value]="worstAllPlay.record" [subscript]="worstAllPlay.winPct" />
+      </app-stat-card>
+    }
+
     @if (seasonHighPointsAward(); as highPoints) {
       <app-stat-card
         title="Season High Points"
@@ -78,7 +98,7 @@
 
     @if (topScoringStarters().length) {
       <app-stat-card
-        title="Top 5 Highest Scoring Starters"
+        title="Highest Scoring Starters"
         subtitle="Regular season total starter points"
       >
         <app-starter-game-list
@@ -90,7 +110,7 @@
 
     @if (topSingleGameScoringStarters().length) {
       <app-stat-card
-        title="Top 5 Highest Scoring Starters (Single Game)"
+        title="Highest Scoring Starters (Single Game)"
         subtitle="Best one-week starter scores"
       >
         <app-starter-game-list [items]="topSingleGameScoringStarterRows()"></app-starter-game-list>
@@ -99,7 +119,7 @@
 
     @if (topSingleGameScoringTeams().length) {
       <app-stat-card
-        title="Top 5 Highest Scoring Teams (Single Game)"
+        title="Highest Scoring Teams (Single Game)"
         subtitle="Best one-week team scores"
       >
         <app-starter-game-list
@@ -111,7 +131,7 @@
 
     @if (topSingleGameLowestScoringTeams().length) {
       <app-stat-card
-        title="Top 5 Lowest Scoring Teams (Single Game)"
+        title="Lowest Scoring Teams (Single Game)"
         subtitle="Lowest one-week team scores"
       >
         <app-starter-game-list
@@ -123,7 +143,7 @@
 
     @if (topSingleGameBiggestLosers().length) {
       <app-stat-card
-        title="Top 5 Biggest Losers (Single Game)"
+        title="Biggest Losers (Single Game)"
         subtitle="Greatest negative point differential"
       >
         <app-starter-game-list
@@ -135,7 +155,7 @@
 
     @if (topSingleGameNarrowestVictories().length) {
       <app-stat-card
-        title="Top 5 Narrowest Victories (Single Game)"
+        title="Narrowest Victories (Single Game)"
         subtitle="Lowest positive point differential"
       >
         <app-starter-game-list
@@ -147,7 +167,7 @@
 
     @if (topSingleWeekCarryStarters().length) {
       <app-stat-card
-        title="Top 5 Single Week Carry"
+        title="Single Week Carry"
         subtitle="One starter's percentage of team points"
       >
         <app-starter-game-list [items]="topSingleWeekCarryStarterRows()"></app-starter-game-list>
