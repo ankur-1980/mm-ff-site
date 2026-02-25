@@ -8,10 +8,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
-import { StatList, type StatListItem } from '../../../shared/components/stat-card/stat-list/stat-list';
 import { StatValue } from '../../../shared/components/stat-card/stat-value/stat-value';
 import { MatchupCard } from './matchup-card/matchup-card';
 import { SeasonMatchupsService } from './season-matchups.service';
+import { WeeklyStatsService } from './weekly-stats.service';
 
 export interface WeekItem {
   number: number;
@@ -21,7 +21,7 @@ export interface WeekItem {
 
 @Component({
   selector: 'app-season-matchups',
-  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTabsModule, MatchupCard, StatCard, StatValue, StatList],
+  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTabsModule, MatchupCard, StatCard, StatValue],
   templateUrl: './season-matchups.html',
   styleUrl: './season-matchups.scss',
 })
@@ -29,6 +29,7 @@ export class SeasonMatchups {
   private readonly route = inject(ActivatedRoute);
   private readonly leagueMeta = inject(LeagueMetaDataService);
   private readonly seasonMatchupsService = inject(SeasonMatchupsService);
+  private readonly weeklyStatsService = inject(WeeklyStatsService);
 
   protected readonly year = toSignal(
     (this.route.parent?.parent ?? this.route).params.pipe(
@@ -77,13 +78,12 @@ export class SeasonMatchups {
     return idx >= 0 && idx < weeks.length - 1 ? weeks[idx + 1].key : null;
   });
 
-  protected readonly mockTopScorers: StatListItem[] = [
-    { label: 'Gridiron Gurus', value: '142.56' },
-    { label: 'Touchdown Titans', value: '138.20' },
-    { label: 'End Zone Elite', value: '131.44' },
-    { label: 'Blitz Brigade', value: '124.10' },
-    { label: 'Hail Mary Heroes', value: '119.88' },
-  ];
+  protected readonly weekStats = computed(() => {
+    const year = this.year();
+    const weekKey = this.activeWeekKey();
+    if (!year || !weekKey) return null;
+    return this.weeklyStatsService.getWeekStats(year, weekKey);
+  });
 
   protected readonly matchups = computed(() => {
     const year = this.year();

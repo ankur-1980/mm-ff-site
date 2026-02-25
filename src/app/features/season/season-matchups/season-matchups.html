@@ -32,15 +32,56 @@
     ><mat-icon>chevron_right</mat-icon></a>
   </nav>
 
-  <div class="matchups__stats">
-    <app-stat-card class="matchups__stat--compact" title="High Score" subtitle="This week" footer="All-time record: 198.34">
-      <app-stat-value context="Team of the Week" value="142.56" subscript="Gridiron Gurus" />
-    </app-stat-card>
+  @if (weekStats(); as stats) {
+    <div class="matchups__stats">
+      @if (stats.highScore; as high) {
+        <app-stat-card
+          class="matchups__stat--compact"
+          title="High Score"
+          [footer]="high.teamName + ' - ' + high.ownerName"
+        >
+          <app-stat-value [context]="high.teamName" [value]="high.score.toFixed(2)" [subscript]="high.ownerName" />
+        </app-stat-card>
+      }
 
-    <app-stat-card title="Top Scorers" subtitle="This week">
-      <app-stat-list [items]="mockTopScorers" />
-    </app-stat-card>
-  </div>
+      @if (stats.lowScore; as low) {
+        <app-stat-card
+          class="matchups__stat--compact"
+          title="Low Score"
+          [footer]="low.teamName + ' - ' + low.ownerName"
+        >
+          <app-stat-value [value]="low.score.toFixed(2)" />
+        </app-stat-card>
+      }
+
+      @if (stats.highStarter; as hs) {
+        <app-stat-card
+          class="matchups__stat--compact"
+          title="Top Starter"
+          [footer]="hs.teamName + ' - ' + hs.ownerName"
+        >
+          <app-stat-value
+            [context]="hs.playerName + ' · ' + (hs.position === 'R/W/T' ? 'Flex' : hs.position)"
+            [value]="hs.points.toFixed(2)"
+          />
+        </app-stat-card>
+      }
+
+      @if (stats.lowStarter; as ls) {
+        <app-stat-card
+          class="matchups__stat--compact"
+          title="Lowest Starter"
+          subtitle="Non-zero score only"
+          [footer]="ls.teamName + ' - ' + ls.ownerName"
+        >
+          <app-stat-value
+            [context]="ls.playerName + ' · ' + (ls.position === 'R/W/T' ? 'Flex' : ls.position)"
+            [value]="ls.points.toFixed(2)"
+          />
+        </app-stat-card>
+      }
+    </div>
+  }
 
   <div class="matchups__cards">
     @for (matchup of matchups(); track matchup.team1.teamName) {
