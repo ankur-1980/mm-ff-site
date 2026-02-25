@@ -32,6 +32,16 @@
     ><mat-icon>chevron_right</mat-icon></a>
   </nav>
 
+  <div class="matchups__stats">
+    <app-stat-card class="matchups__stat--compact" title="High Score" subtitle="This week" footer="All-time record: 198.34">
+      <app-stat-value context="Team of the Week" value="142.56" subscript="Gridiron Gurus" />
+    </app-stat-card>
+
+    <app-stat-card title="Top Scorers" subtitle="This week">
+      <app-stat-list [items]="mockTopScorers" />
+    </app-stat-card>
+  </div>
+
   <div class="matchups__cards">
     @for (matchup of matchups(); track matchup.team1.teamName) {
       <app-matchup-card [team1]="matchup.team1" [team2]="matchup.team2" />

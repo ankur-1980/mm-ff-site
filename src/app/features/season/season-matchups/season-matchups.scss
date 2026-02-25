@@ -2,6 +2,23 @@
   display: block;
 }
 
+.matchups__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem 0 0;
+
+  app-stat-card {
+    flex: 1 1 16rem;
+    max-width: 36rem;
+  }
+
+  app-stat-card.matchups__stat--compact {
+    flex-basis: 8rem;
+    max-width: 18rem;
+  }
+}
+
 .matchups__cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 36rem));

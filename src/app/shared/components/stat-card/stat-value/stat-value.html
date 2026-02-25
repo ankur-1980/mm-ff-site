@@ -1,0 +1,7 @@
+@if (context()) {
+  <span class="stat-value__context">{{ context() }}</span>
+}
+<span class="stat-value__value">{{ value() }}</span>
+@if (subscript()) {
+  <span class="stat-value__subscript">{{ subscript() }}</span>
+}

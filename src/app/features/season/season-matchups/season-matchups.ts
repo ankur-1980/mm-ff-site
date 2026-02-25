@@ -7,6 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
+import { StatCard } from '../../../shared/components/stat-card/stat-card';
+import { StatList, type StatListItem } from '../../../shared/components/stat-card/stat-list/stat-list';
+import { StatValue } from '../../../shared/components/stat-card/stat-value/stat-value';
 import { MatchupCard } from './matchup-card/matchup-card';
 import { SeasonMatchupsService } from './season-matchups.service';
 
@@ -18,7 +21,7 @@ export interface WeekItem {
 
 @Component({
   selector: 'app-season-matchups',
-  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTabsModule, MatchupCard],
+  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTabsModule, MatchupCard, StatCard, StatValue, StatList],
   templateUrl: './season-matchups.html',
   styleUrl: './season-matchups.scss',
 })
@@ -73,6 +76,14 @@ export class SeasonMatchups {
     const weeks = this.weeks();
     return idx >= 0 && idx < weeks.length - 1 ? weeks[idx + 1].key : null;
   });
+
+  protected readonly mockTopScorers: StatListItem[] = [
+    { label: 'Gridiron Gurus', value: '142.56' },
+    { label: 'Touchdown Titans', value: '138.20' },
+    { label: 'End Zone Elite', value: '131.44' },
+    { label: 'Blitz Brigade', value: '124.10' },
+    { label: 'Hail Mary Heroes', value: '119.88' },
+  ];
 
   protected readonly matchups = computed(() => {
     const year = this.year();
