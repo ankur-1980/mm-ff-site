@@ -57,7 +57,7 @@
 </table>
 <ng-template #cellValueTpl let-col="col" let-row="row">
   @if (isNumericCell(col) && cellValue(row, col.key) !== '—') {
-    {{ cellValue(row, col.key) | number: numberFormat(col) }}{{ numberSuffix(col) }}
+    {{ numberPrefixForCell(col, row) }}{{ cellValue(row, col.key) | number: numberFormat(col) }}{{ numberSuffix(col) }}
   } @else {
     {{ cellValue(row, col.key) }}
   }

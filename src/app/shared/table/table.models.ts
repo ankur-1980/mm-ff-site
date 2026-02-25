@@ -16,7 +16,7 @@ export interface DataTableColumnDef {
   /** If true, this column is the default sort column (ascending). */
   defaultSort?: boolean;
   /** Number display format for numeric columns. */
-  format?: 'integer' | 'decimal2' | 'percent2';
+  format?: 'integer' | 'decimal2' | 'signedDecimal2' | 'percent2';
 }
 
 /** Row type: arbitrary record for display. */

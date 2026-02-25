@@ -42,7 +42,7 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
     const cols = this.columns();
     const rows = this.data();
     const set = new Set<string>();
-    const numericFormats = ['integer', 'decimal2', 'percent2'] as const;
+    const numericFormats = ['integer', 'decimal2', 'signedDecimal2', 'percent2'] as const;
     cols.forEach((c) => {
       if (c.format && numericFormats.includes(c.format)) {
         set.add(c.key);
@@ -110,9 +110,24 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
         return '1.2-2';
       case 'decimal2':
         return '1.2-2';
+      case 'signedDecimal2':
+        return '1.2-2';
       default:
         return '1.1-1';
     }
+  }
+
+  /** Optional numeric prefix for signed formats. */
+  numberPrefix(col: DataTableColumnDef, value: number): string {
+    if (col.format !== 'signedDecimal2') return '';
+    return value >= 0 ? '+' : '';
+  }
+
+  /** Signed prefix derived from the raw row cell value. */
+  numberPrefixForCell(col: DataTableColumnDef, row: T): string {
+    const value = coerceNumber(row[col.key]);
+    if (typeof value !== 'number') return '';
+    return this.numberPrefix(col, value);
   }
 
   /** Whether to append % after the value (for percent2). */

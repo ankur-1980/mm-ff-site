@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import type {
   SeasonStandings,
   SeasonStandingsEntry,
 } from '../../../models/season-standings.model';
 import type { DataTableColumnDef, DataTableRow } from '../../../shared/table';
+import { PythagoreanRankingsService } from '../season-power-rankings/pythagorean-rankings.service';
 
 export interface SeasonStandingsRow extends DataTableRow {
   playoffRank: string | null;
+  regularSeasonRank: number | null;
+  luckRank: number;
   teamName: string;
   managerName: string;
   win: number;
@@ -15,6 +18,8 @@ export interface SeasonStandingsRow extends DataTableRow {
   tie: number;
   gp: number;
   winPct: number;
+  pythagoreanExpectedWins: number;
+  luckScore: number;
   pointsFor: number;
   avgPointsFor: number;
   pointsAgainst: number;
@@ -42,8 +47,58 @@ function teamName(entry: SeasonStandingsEntry): string {
     : 'Unknown Team';
 }
 
+function buildRegularSeasonRanks(
+  rows: SeasonStandingsRow[]
+): Map<SeasonStandingsRow, number> {
+  const sorted = [...rows].sort((a, b) => {
+    if (b.win !== a.win) return b.win - a.win;
+    return b.pointsFor - a.pointsFor;
+  });
+  const ranks = new Map<SeasonStandingsRow, number>();
+
+  let currentRank = 0;
+  let lastWins: number | null = null;
+  let lastPointsFor: number | null = null;
+
+  sorted.forEach((row, index) => {
+    if (
+      lastWins == null ||
+      lastPointsFor == null ||
+      row.win !== lastWins ||
+      row.pointsFor !== lastPointsFor
+    ) {
+      currentRank = index + 1;
+      lastWins = row.win;
+      lastPointsFor = row.pointsFor;
+    }
+    ranks.set(row, currentRank);
+  });
+
+  return ranks;
+}
+
+function buildLuckRanks(rows: SeasonStandingsRow[]): Map<SeasonStandingsRow, number> {
+  const sorted = [...rows].sort((a, b) => b.luckScore - a.luckScore);
+  const ranks = new Map<SeasonStandingsRow, number>();
+
+  let currentRank = 0;
+  let lastLuckScore: number | null = null;
+
+  sorted.forEach((row, index) => {
+    if (lastLuckScore == null || row.luckScore !== lastLuckScore) {
+      currentRank = index + 1;
+      lastLuckScore = row.luckScore;
+    }
+    ranks.set(row, currentRank);
+  });
+
+  return ranks;
+}
+
 @Injectable({ providedIn: 'root' })
 export class SeasonStandingsService {
+  private readonly pythagoreanRankings = inject(PythagoreanRankingsService);
+
   readonly columns: DataTableColumnDef[] = [
     {
       key: 'playoffRank',
@@ -53,12 +108,22 @@ export class SeasonStandingsService {
       format: 'integer',
       defaultSort: true,
     },
+    {
+      key: 'regularSeasonRank',
+      header: 'Regular Season',
+      widthCh: 14,
+      align: 'center',
+      format: 'integer',
+    },
+    { key: 'luckRank', header: 'Luck Rank', widthCh: 10, align: 'center', format: 'integer' },
     { key: 'teamName', header: 'Team', widthCh: 24, subscriptKey: 'managerName' },
     { key: 'win', header: 'W', widthCh: 6, format: 'integer' },
     { key: 'loss', header: 'L', widthCh: 6, format: 'integer' },
     { key: 'tie', header: 'T', widthCh: 6, format: 'integer' },
     { key: 'gp', header: 'GP', widthCh: 6, format: 'integer' },
     { key: 'winPct', header: 'Win %', widthCh: 8, format: 'percent2' },
+    { key: 'pythagoreanExpectedWins', header: 'Pythag W', widthCh: 10, format: 'decimal2' },
+    { key: 'luckScore', header: 'Luck', widthCh: 8, format: 'signedDecimal2' },
     { key: 'pointsFor', header: 'PF', widthCh: 12, format: 'decimal2' },
     { key: 'avgPointsFor', header: 'Avg PF', widthCh: 10, format: 'decimal2' },
     { key: 'pointsAgainst', header: 'PA', widthCh: 12, format: 'decimal2' },
@@ -80,12 +145,21 @@ export class SeasonStandingsService {
         const pointsFor = entry.points?.pointsFor ?? 0;
         const pointsAgainst = entry.points?.pointsAgainst ?? 0;
         const rawPlayoffRank = entry.ranks?.playoffRank;
+        const rawRegularSeasonRank = entry.ranks?.regularSeasonRank;
+
+        const pythagoreanExpectedWins = this.pythagoreanRankings.calculateExpectedWins(
+          pointsFor,
+          pointsAgainst,
+          gp
+        );
 
         return {
           playoffRank:
             rawPlayoffRank != null && String(rawPlayoffRank).trim() !== ''
               ? String(rawPlayoffRank).trim()
               : null,
+          regularSeasonRank: parseRank(rawRegularSeasonRank),
+          luckRank: 0,
           teamName: teamName(entry),
           managerName: entry.playerDetails?.managerName ?? '',
           win,
@@ -93,6 +167,8 @@ export class SeasonStandingsService {
           tie,
           gp,
           winPct: gp > 0 ? (win / gp) * 100 : 0,
+          pythagoreanExpectedWins,
+          luckScore: win - pythagoreanExpectedWins,
           pointsFor,
           avgPointsFor: gp > 0 ? pointsFor / gp : 0,
           pointsAgainst,
@@ -101,7 +177,18 @@ export class SeasonStandingsService {
           moves: entry.transactions?.moves ?? 0,
           trades: entry.transactions?.trades ?? 0,
         };
-      })
+      });
+
+    const computedRegularSeasonRanks = buildRegularSeasonRanks(rows);
+    const computedLuckRanks = buildLuckRanks(rows);
+
+    const normalizedRows = rows
+      .map((row) => ({
+        ...row,
+        regularSeasonRank:
+          row.regularSeasonRank ?? computedRegularSeasonRanks.get(row) ?? null,
+        luckRank: computedLuckRanks.get(row) ?? 0,
+      }))
       .sort((a, b) => {
         const rankA = parseRank(a.playoffRank ?? undefined);
         const rankB = parseRank(b.playoffRank ?? undefined);
@@ -112,7 +199,7 @@ export class SeasonStandingsService {
         return b.pointsFor - a.pointsFor;
       });
 
-    return { columns: this.columns, data: rows };
+    return { columns: this.columns, data: normalizedRows };
   }
 }
 
