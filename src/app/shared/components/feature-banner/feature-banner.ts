@@ -18,4 +18,5 @@ export interface ChampionBannerData {
 })
 export class FeatureBanner {
   readonly data = input<ChampionBannerData | null>(null);
+  readonly label = input<string>('Champion');
 }

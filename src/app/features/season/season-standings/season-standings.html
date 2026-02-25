@@ -1,4 +1,7 @@
-<app-feature-banner [data]="championData()" />
+<div class="standings__banners">
+  <app-feature-banner [data]="championData()" />
+  <app-feature-banner [data]="toiletBowlData()" label="Toilet Bowl" />
+</div>
 
 <app-data-table
   [columns]="tableState().columns"

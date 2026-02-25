@@ -8,6 +8,7 @@ import { DataTableComponent } from '../../../shared/table';
 import { FeatureBanner } from '../../../shared/components/feature-banner/feature-banner';
 import { ChampionBannerService } from './champion-banner.service';
 import { SeasonStandingsService } from './season-standings.service';
+import { ToiletBowlBannerService } from './toilet-bowl-banner.service';
 
 @Component({
   selector: 'app-season-standings',
@@ -20,6 +21,7 @@ export class SeasonStandings {
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
   private readonly seasonStandings = inject(SeasonStandingsService);
   private readonly championBanner = inject(ChampionBannerService);
+  private readonly toiletBowlBanner = inject(ToiletBowlBannerService);
 
   private readonly year = toSignal(
     (this.route.parent ?? this.route).params.pipe(
@@ -41,5 +43,10 @@ export class SeasonStandings {
   protected readonly championData = computed(() => {
     const y = this.year();
     return y != null ? this.championBanner.getChampionData(String(y)) : null;
+  });
+
+  protected readonly toiletBowlData = computed(() => {
+    const y = this.year();
+    return y != null ? this.toiletBowlBanner.getToiletBowlData(String(y)) : null;
   });
 }
