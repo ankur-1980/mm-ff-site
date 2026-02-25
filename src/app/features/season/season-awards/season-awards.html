@@ -75,6 +75,24 @@
         <app-stat-value [value]="mostTrades.value" />
       </app-stat-card>
     }
+
+    @if (topScoringStarters().length) {
+      <app-stat-card
+        title="Top 5 Highest Scoring Starters"
+        subtitle="Regular season total starter points"
+      >
+        <app-stat-list [items]="topScoringStarterItems()"></app-stat-list>
+      </app-stat-card>
+    }
+
+    @if (topSingleGameScoringStarters().length) {
+      <app-stat-card
+        title="Top 5 Highest Scoring Starters (Single Game)"
+        subtitle="Best one-week starter scores"
+      >
+        <app-stat-list [items]="topSingleGameScoringStarterItems()"></app-stat-list>
+      </app-stat-card>
+    }
   }
 
   @if (!bestRecordAward()) {

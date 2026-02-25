@@ -8,6 +8,7 @@ import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.se
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { SubsectionHeader } from '../../../shared/components/subsection-header/subsection-header';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
+import { StatList, StatListItem } from '../../../shared/components/stat-card/stat-list/stat-list';
 import { StatValue } from '../../../shared/components/stat-card/stat-value/stat-value';
 import {
   SeasonStandingsRow,
@@ -30,9 +31,25 @@ interface CountAward {
   footer: string;
 }
 
+interface StarterSeasonTotal {
+  playerName: string;
+  position: string;
+  nflTeam: string;
+  teamName: string;
+  totalPoints: number;
+}
+
+interface StarterGameScore {
+  playerName: string;
+  position: string;
+  nflTeam: string;
+  teamName: string;
+  points: number;
+}
+
 @Component({
   selector: 'app-season-awards',
-  imports: [SubsectionHeader, StatCard, StatValue],
+  imports: [SubsectionHeader, StatCard, StatList, StatValue],
   templateUrl: './season-awards.html',
   styleUrl: './season-awards.scss',
 })
@@ -320,4 +337,111 @@ export class SeasonAwards {
       footer: this.buildFooter(winners),
     };
   });
+
+  protected readonly topScoringStarters = computed<StarterSeasonTotal[]>(() => {
+    const y = this.year();
+    const meta = this.seasonMeta();
+    if (y == null || !meta) return [];
+
+    const totals = new Map<string, StarterSeasonTotal>();
+    let hasWeeklyData = false;
+
+    for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(String(y), `week${week}`);
+      if (!weekData) continue;
+
+      const entries = Object.values(weekData);
+      if (!entries.length) continue;
+      hasWeeklyData = true;
+
+      for (const entry of entries) {
+        const roster = entry.team1Roster ?? [];
+        const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
+        for (const player of roster) {
+          if (player.slot !== 'starter') continue;
+
+          const key =
+            player.playerId && String(player.playerId).trim() !== ''
+              ? `id:${player.playerId}|team:${teamName}`
+              : `name:${player.playerName}|${player.nflTeam}|team:${teamName}`;
+          const existing = totals.get(key);
+
+          if (existing) {
+            existing.totalPoints += Number(player.points ?? 0);
+          } else {
+            totals.set(key, {
+              playerName: player.playerName,
+              position: player.position,
+              nflTeam: player.nflTeam,
+              teamName,
+              totalPoints: Number(player.points ?? 0),
+            });
+          }
+        }
+      }
+    }
+
+    if (!hasWeeklyData) return [];
+
+    return Array.from(totals.values())
+      .sort((a, b) => {
+        if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
+        return a.playerName.localeCompare(b.playerName);
+      })
+      .slice(0, 5);
+  });
+
+  protected readonly topScoringStarterItems = computed<StatListItem[]>(() =>
+    this.topScoringStarters().map((starter) => ({
+      label: `${starter.playerName} (${starter.position} - ${starter.nflTeam}) - ${starter.teamName}`,
+      value: starter.totalPoints.toFixed(2),
+    }))
+  );
+
+  protected readonly topSingleGameScoringStarters = computed<StarterGameScore[]>(() => {
+    const y = this.year();
+    const meta = this.seasonMeta();
+    if (y == null || !meta) return [];
+
+    const gameScores: StarterGameScore[] = [];
+
+    for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(String(y), `week${week}`);
+      if (!weekData) continue;
+
+      const entries = Object.values(weekData);
+      if (!entries.length) continue;
+
+      for (const entry of entries) {
+        const roster = entry.team1Roster ?? [];
+        const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
+
+        for (const player of roster) {
+          if (player.slot !== 'starter') continue;
+
+          gameScores.push({
+            playerName: player.playerName,
+            position: player.position,
+            nflTeam: player.nflTeam,
+            teamName,
+            points: Number(player.points ?? 0),
+          });
+        }
+      }
+    }
+
+    return gameScores
+      .sort((a, b) => {
+        if (b.points !== a.points) return b.points - a.points;
+        return a.playerName.localeCompare(b.playerName);
+      })
+      .slice(0, 5);
+  });
+
+  protected readonly topSingleGameScoringStarterItems = computed<StatListItem[]>(() =>
+    this.topSingleGameScoringStarters().map((starter) => ({
+      label: `${starter.playerName} (${starter.position} - ${starter.nflTeam}) - ${starter.teamName}`,
+      value: starter.points.toFixed(2),
+    }))
+  );
 }
