@@ -2,15 +2,9 @@ import { DecimalPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 
-export type MatchupResult = 'winner' | 'loser' | null;
+import type { MatchupResult, MatchupTeamData } from '../matchup.models';
 
-export interface MatchupTeamData {
-  teamName: string;
-  ownerName: string;
-  totalPoints: number;
-  projectedPoints: number | null;
-  result: MatchupResult;
-}
+export type { MatchupResult, MatchupTeamData };
 
 @Component({
   selector: 'app-matchup-team',
