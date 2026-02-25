@@ -59,6 +59,22 @@
         <app-stat-value [value]="mostLowPoints.value" />
       </app-stat-card>
     }
+
+    @if (mostMovesAward(); as mostMoves) {
+      <app-stat-card title="Most Moves" subtitle="Most roster moves" [footer]="mostMoves.footer">
+        <app-stat-value [value]="mostMoves.value" />
+      </app-stat-card>
+    }
+
+    @if (mostTradesAward(); as mostTrades) {
+      <app-stat-card
+        title="Most Trades"
+        subtitle="Minimum 2 trades"
+        [footer]="mostTrades.footer"
+      >
+        <app-stat-value [value]="mostTrades.value" />
+      </app-stat-card>
+    }
   }
 
   @if (!bestRecordAward()) {

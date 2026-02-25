@@ -276,4 +276,48 @@ export class SeasonAwards {
       footer,
     };
   });
+
+  protected readonly mostMovesAward = computed<CountAward | null>(() => {
+    const y = this.year();
+    const meta = this.seasonMeta();
+    const rows = this.rows();
+    if (y == null || !meta || !rows.length) return null;
+
+    let hasHistoricalMatchupData = false;
+    for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(String(y), `week${week}`);
+      if (weekData && Object.keys(weekData).length > 0) {
+        hasHistoricalMatchupData = true;
+        break;
+      }
+    }
+
+    if (!hasHistoricalMatchupData) return null;
+
+    const topMoves = Math.max(...rows.map((row) => row.moves));
+    const winners = rows.filter((row) => row.moves === topMoves);
+    if (!winners.length) return null;
+
+    return {
+      value: `${topMoves}`,
+      footer: this.buildFooter(winners),
+    };
+  });
+
+  protected readonly mostTradesAward = computed<CountAward | null>(() => {
+    const rows = this.rows();
+    if (!rows.length) return null;
+
+    const eligibleRows = rows.filter((row) => row.trades >= 2);
+    if (!eligibleRows.length) return null;
+
+    const topTrades = Math.max(...eligibleRows.map((row) => row.trades));
+    const winners = eligibleRows.filter((row) => row.trades === topTrades);
+    if (!winners.length) return null;
+
+    return {
+      value: `${topTrades}`,
+      footer: this.buildFooter(winners),
+    };
+  });
 }
