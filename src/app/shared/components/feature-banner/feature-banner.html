@@ -1,0 +1,20 @@
+@if (data(); as d) {
+  <div class="feature-banner">
+    <p class="feature-banner__label">Champion</p>
+
+    <div class="feature-banner__champion">
+      <span class="feature-banner__owner">{{ d.ownerName }}</span>
+      <span class="feature-banner__team">{{ d.teamName }}</span>
+    </div>
+
+    @if (d.score != null && d.runnerUpScore != null) {
+      <div class="feature-banner__matchup">
+        <span class="feature-banner__score">{{ d.score | number: '1.2-2' }}</span>
+        <span class="feature-banner__vs">vs</span>
+        <span class="feature-banner__score feature-banner__score--runner-up">{{ d.runnerUpScore | number: '1.2-2' }}</span>
+      </div>
+    }
+
+    <p class="feature-banner__defeated">Defeated {{ d.runnerUpOwnerName }}</p>
+  </div>
+}
