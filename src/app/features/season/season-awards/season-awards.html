@@ -9,7 +9,59 @@
     >
       <app-stat-value [value]="bestRecord.winPct" [subscript]="bestRecord.record" />
     </app-stat-card>
-  } @else {
+
+    @if (seasonHighPointsAward(); as highPoints) {
+      <app-stat-card
+        title="Season High Points"
+        subtitle="Most points scored"
+        [footer]="highPoints.footer"
+      >
+        <app-stat-value [value]="highPoints.value" />
+      </app-stat-card>
+    }
+
+    @if (bestPointsDiffAward(); as bestDiff) {
+      <app-stat-card
+        title="Best Points Diff"
+        subtitle="Largest point differential"
+        [footer]="bestDiff.footer"
+      >
+        <app-stat-value [value]="bestDiff.value" />
+      </app-stat-card>
+    }
+
+    @if (fewestPointsAgainstAward(); as fewestAgainst) {
+      <app-stat-card
+        title="Fewest Points Against"
+        subtitle="Lowest total points allowed"
+        [footer]="fewestAgainst.footer"
+      >
+        <app-stat-value [value]="fewestAgainst.value" />
+      </app-stat-card>
+    }
+
+    @if (mostRegularSeasonHighPointsAward(); as mostHighPoints) {
+      <app-stat-card
+        title="Most Regular Season High Points"
+        subtitle="Most weekly top-score finishes"
+        [footer]="mostHighPoints.footer"
+      >
+        <app-stat-value [value]="mostHighPoints.value" />
+      </app-stat-card>
+    }
+
+    @if (mostRegularSeasonLowPointsAward(); as mostLowPoints) {
+      <app-stat-card
+        title="Most Regular Season Low Points"
+        subtitle="Most weekly low-score finishes"
+        [footer]="mostLowPoints.footer"
+      >
+        <app-stat-value [value]="mostLowPoints.value" />
+      </app-stat-card>
+    }
+  }
+
+  @if (!bestRecordAward()) {
     <p class="season-awards__empty">No season awards available.</p>
   }
 </div>
