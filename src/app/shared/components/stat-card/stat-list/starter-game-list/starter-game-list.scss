@@ -10,9 +10,9 @@
 
 .starter-game-list__row {
   display: grid;
-  grid-template-columns: 5.25rem minmax(0, 1fr) minmax(0, 18ch);
+  grid-template-columns: 5.25rem minmax(0, 1fr) minmax(0, 14ch);
   gap: 0.5rem;
-  align-items: baseline;
+  align-items: center;
   padding: 0.2rem 0;
 
   > span {
@@ -21,15 +21,15 @@
 }
 
 .starter-game-list__row--with-week {
-  grid-template-columns: 5.25rem 5.75rem minmax(0, 1fr) minmax(0, 18ch);
+  grid-template-columns: 5.25rem 5.75rem minmax(0, 1fr) minmax(0, 14ch);
 }
 
 .starter-game-list__row--no-details {
-  grid-template-columns: 5.25rem minmax(0, 18ch);
+  grid-template-columns: 5.25rem minmax(0, 14ch);
 }
 
 .starter-game-list__row--with-week.starter-game-list__row--no-details {
-  grid-template-columns: 5.25rem 5.75rem minmax(0, 18ch);
+  grid-template-columns: 5.25rem 5.75rem minmax(0, 14ch);
 }
 
 .starter-game-list__points {
@@ -41,12 +41,15 @@
 .starter-game-list__week,
 .starter-game-list__player {
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .starter-game-list__team {
   text-align: left;
   font-style: italic;
-  max-width: 18ch;
+  max-width: 14ch;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
