@@ -1,1 +1,15 @@
-<p>season-awards works!</p>
+<app-subsection-header title="Season Awards" [isPrimary]="true" />
+
+<div class="season-awards__grid">
+  @if (bestRecordAward(); as bestRecord) {
+    <app-stat-card
+      title="Best Record"
+      subtitle="Highest win percentage"
+      [footer]="bestRecord.footer"
+    >
+      <app-stat-value [value]="bestRecord.winPct" [subscript]="bestRecord.record" />
+    </app-stat-card>
+  } @else {
+    <p class="season-awards__empty">No season awards available.</p>
+  }
+</div>
