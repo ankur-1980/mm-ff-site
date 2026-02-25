@@ -2,6 +2,16 @@
   display: block;
 }
 
+app-subsection-header {
+  margin-top: 1.5rem;
+}
+
+app-subsection-header ~ app-subsection-header,
+app-matchup-awards + app-subsection-header,
+.matchups__cards + app-subsection-header {
+  margin-top: 2rem;
+}
+
 .matchups__cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 36rem));

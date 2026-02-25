@@ -32,6 +32,8 @@
     ><mat-icon>chevron_right</mat-icon></a>
   </nav>
 
+  <app-subsection-header [title]="activeWeekLabel() + ' Matchups'" [isPrimary]="true" />
+
   <div class="matchups__cards">
     @for (matchup of matchups(); track matchup.team1.teamName) {
       <app-matchup-card [team1]="matchup.team1" [team2]="matchup.team2" />
@@ -40,7 +42,9 @@
     }
   </div>
 
+  <app-subsection-header title="Weekly Awards" />
   <app-matchup-awards [stats]="weekStats()"></app-matchup-awards>
 
+  <app-subsection-header [title]="activeWeekLabel() + ' All-Play Rankings'" />
   <app-all-play-rankings [rankings]="weekStats()?.allPlayRankings ?? []" />
 }

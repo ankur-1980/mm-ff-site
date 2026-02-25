@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
+import { SubsectionHeader } from '../../../shared/components/subsection-header/subsection-header';
 import { AllPlayRankings } from './all-play-rankings/all-play-rankings';
 import { MatchupAwards } from './matchup-awards/matchup-awards';
 import { MatchupCard } from './matchup-card/matchup-card';
@@ -21,7 +22,7 @@ export interface WeekItem {
 
 @Component({
   selector: 'app-season-matchups',
-  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTabsModule, MatchupCard, MatchupAwards, AllPlayRankings],
+  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTabsModule, MatchupCard, MatchupAwards, AllPlayRankings, SubsectionHeader],
   templateUrl: './season-matchups.html',
   styleUrl: './season-matchups.scss',
 })
