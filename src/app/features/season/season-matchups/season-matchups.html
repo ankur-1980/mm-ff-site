@@ -33,7 +33,11 @@
   </nav>
 
   <div class="matchups__cards">
-    <app-matchup-card [team1]="mockTeam1" [team2]="mockTeam2" />
+    @for (matchup of matchups(); track matchup.team1.teamName) {
+      <app-matchup-card [team1]="matchup.team1" [team2]="matchup.team2" />
+    } @empty {
+      <p>No matchup data available for this week.</p>
+    }
   </div>
 }
 

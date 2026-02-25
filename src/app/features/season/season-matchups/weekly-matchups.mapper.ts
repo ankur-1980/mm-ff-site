@@ -53,6 +53,10 @@ export function toMappedMatchups(
 
   for (const entry of Object.values(weekMatchups)) {
     const { matchup, team1Totals } = entry;
+
+    // Skip placeholder entries for unplayed or missing matchups
+    if (!matchup?.team1Name || !matchup?.team2Name) continue;
+
     const key = [matchup.team1Id, matchup.team2Id].sort().join('|');
     if (seen.has(key)) continue;
     seen.add(key);

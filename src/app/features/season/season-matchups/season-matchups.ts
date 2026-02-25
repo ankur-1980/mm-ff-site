@@ -8,7 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { MatchupCard } from './matchup-card/matchup-card';
-import type { MatchupTeamData } from './matchup-team/matchup-team';
+import { SeasonMatchupsService } from './season-matchups.service';
 
 export interface WeekItem {
   number: number;
@@ -25,6 +25,7 @@ export interface WeekItem {
 export class SeasonMatchups {
   private readonly route = inject(ActivatedRoute);
   private readonly leagueMeta = inject(LeagueMetaDataService);
+  private readonly seasonMatchupsService = inject(SeasonMatchupsService);
 
   protected readonly year = toSignal(
     (this.route.parent?.parent ?? this.route).params.pipe(
@@ -73,20 +74,10 @@ export class SeasonMatchups {
     return idx >= 0 && idx < weeks.length - 1 ? weeks[idx + 1].key : null;
   });
 
-  protected readonly mockTeam1: MatchupTeamData = {
-    teamName: 'Gridiron Gurus',
-    ownerName: 'Alice Smith',
-    totalPoints: 142.56,
-    projectedPoints: 138.20,
-    result: 'winner',
-  };
-
-  protected readonly mockTeam2: MatchupTeamData = {
-    teamName: 'Touchdown Titans',
-    ownerName: 'Bob Johnson',
-    totalPoints: 128.34,
-    projectedPoints: 145.00,
-    result: 'loser',
-  };
+  protected readonly matchups = computed(() => {
+    const year = this.year();
+    const weekKey = this.activeWeekKey();
+    if (!year || !weekKey) return [];
+    return this.seasonMatchupsService.getWeekMatchups(year, weekKey);
+  });
 }
-
