@@ -1,4 +1,4 @@
-<ol class="stat-list">
+<ol class="stat-list" [class.stat-list--unranked]="!showRank()">
   @for (item of items(); track item.label) {
     <li class="stat-list__item">
       <span class="stat-list__label">{{ item.label }}</span>

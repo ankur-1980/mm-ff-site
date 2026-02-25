@@ -81,7 +81,10 @@
         title="Top 5 Highest Scoring Starters"
         subtitle="Regular season total starter points"
       >
-        <app-stat-list [items]="topScoringStarterItems()"></app-stat-list>
+        <app-starter-game-list
+          [items]="topScoringStarterRows()"
+          [showWeek]="false"
+        ></app-starter-game-list>
       </app-stat-card>
     }
 
@@ -90,7 +93,7 @@
         title="Top 5 Highest Scoring Starters (Single Game)"
         subtitle="Best one-week starter scores"
       >
-        <app-stat-list [items]="topSingleGameScoringStarterItems()"></app-stat-list>
+        <app-starter-game-list [items]="topSingleGameScoringStarterRows()"></app-starter-game-list>
       </app-stat-card>
     }
 
@@ -99,7 +102,10 @@
         title="Top 5 Highest Scoring Teams (Single Game)"
         subtitle="Best one-week team scores"
       >
-        <app-stat-list [items]="topSingleGameScoringTeamItems()"></app-stat-list>
+        <app-starter-game-list
+          [items]="topSingleGameScoringTeamRows()"
+          [showDetails]="false"
+        ></app-starter-game-list>
       </app-stat-card>
     }
 
@@ -108,7 +114,10 @@
         title="Top 5 Lowest Scoring Teams (Single Game)"
         subtitle="Lowest one-week team scores"
       >
-        <app-stat-list [items]="topSingleGameLowestScoringTeamItems()"></app-stat-list>
+        <app-starter-game-list
+          [items]="topSingleGameLowestScoringTeamRows()"
+          [showDetails]="false"
+        ></app-starter-game-list>
       </app-stat-card>
     }
 
@@ -117,7 +126,10 @@
         title="Top 5 Biggest Losers (Single Game)"
         subtitle="Greatest negative point differential"
       >
-        <app-stat-list [items]="topSingleGameBiggestLoserItems()"></app-stat-list>
+        <app-starter-game-list
+          [items]="topSingleGameBiggestLoserRows()"
+          [showDetails]="false"
+        ></app-starter-game-list>
       </app-stat-card>
     }
 
@@ -126,7 +138,19 @@
         title="Top 5 Narrowest Victories (Single Game)"
         subtitle="Lowest positive point differential"
       >
-        <app-stat-list [items]="topSingleGameNarrowestVictoryItems()"></app-stat-list>
+        <app-starter-game-list
+          [items]="topSingleGameNarrowestVictoryRows()"
+          [showDetails]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (topSingleWeekCarryStarters().length) {
+      <app-stat-card
+        title="Top 5 Single Week Carry"
+        subtitle="One starter's percentage of team points"
+      >
+        <app-starter-game-list [items]="topSingleWeekCarryStarterRows()"></app-starter-game-list>
       </app-stat-card>
     }
   }

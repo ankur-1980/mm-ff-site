@@ -8,8 +8,12 @@ import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.se
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { SubsectionHeader } from '../../../shared/components/subsection-header/subsection-header';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
-import { StatList, StatListItem } from '../../../shared/components/stat-card/stat-list/stat-list';
+import {
+  StarterGameList,
+  StarterGameListItem,
+} from '../../../shared/components/stat-card/stat-list/starter-game-list/starter-game-list';
 import { StatValue } from '../../../shared/components/stat-card/stat-value/stat-value';
+import { mapTeamNameShort } from '../../../shared/mappers/team-name-short.mapper';
 import {
   SeasonStandingsRow,
   SeasonStandingsService,
@@ -45,24 +49,35 @@ interface StarterGameScore {
   nflTeam: string;
   teamName: string;
   points: number;
+  week: number;
 }
 
 interface TeamGameScore {
   teamName: string;
-  managerName: string;
   points: number;
+  week: number;
 }
 
 interface TeamGameDiff {
   teamName: string;
-  managerName: string;
   opponentTeamName: string;
+  points: number;
+  week: number;
   diff: number;
+}
+
+interface StarterSingleWeekCarry {
+  playerName: string;
+  position: string;
+  nflTeam: string;
+  teamName: string;
+  week: number;
+  carryPct: number;
 }
 
 @Component({
   selector: 'app-season-awards',
-  imports: [SubsectionHeader, StatCard, StatList, StatValue],
+  imports: [SubsectionHeader, StatCard, StarterGameList, StatValue],
   templateUrl: './season-awards.html',
   styleUrl: './season-awards.scss',
 })
@@ -404,10 +419,11 @@ export class SeasonAwards {
       .slice(0, 5);
   });
 
-  protected readonly topScoringStarterItems = computed<StatListItem[]>(() =>
+  protected readonly topScoringStarterRows = computed<StarterGameListItem[]>(() =>
     this.topScoringStarters().map((starter) => ({
-      label: `${starter.playerName} (${starter.position} - ${starter.nflTeam}) - ${starter.teamName}`,
-      value: starter.totalPoints.toFixed(2),
+      value: starter.totalPoints,
+      playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
+      teamName: mapTeamNameShort(starter.teamName),
     }))
   );
 
@@ -438,6 +454,7 @@ export class SeasonAwards {
             nflTeam: player.nflTeam,
             teamName,
             points: Number(player.points ?? 0),
+            week,
           });
         }
       }
@@ -451,20 +468,19 @@ export class SeasonAwards {
       .slice(0, 5);
   });
 
-  protected readonly topSingleGameScoringStarterItems = computed<StatListItem[]>(() =>
+  protected readonly topSingleGameScoringStarterRows = computed<StarterGameListItem[]>(() =>
     this.topSingleGameScoringStarters().map((starter) => ({
-      label: `${starter.playerName} (${starter.position} - ${starter.nflTeam}) - ${starter.teamName}`,
-      value: starter.points.toFixed(2),
+      value: starter.points,
+      weekLabel: String(starter.week).padStart(2, '0'),
+      playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
+      teamName: mapTeamNameShort(starter.teamName),
     }))
   );
 
   protected readonly topSingleGameScoringTeams = computed<TeamGameScore[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
-    const rows = this.rows();
-    if (y == null || !meta || !rows.length) return [];
-
-    const managerByTeam = new Map(rows.map((row) => [row.teamName, row.managerName]));
+    if (y == null || !meta) return [];
     const gameScores: TeamGameScore[] = [];
 
     for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
@@ -476,11 +492,10 @@ export class SeasonAwards {
 
       for (const entry of entries) {
         const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
-        const managerName = managerByTeam.get(teamName) ?? '';
         gameScores.push({
           teamName,
-          managerName,
           points: Number(entry.team1Totals?.totalPoints ?? 0),
+          week,
         });
       }
     }
@@ -493,22 +508,18 @@ export class SeasonAwards {
       .slice(0, 5);
   });
 
-  protected readonly topSingleGameScoringTeamItems = computed<StatListItem[]>(() =>
+  protected readonly topSingleGameScoringTeamRows = computed<StarterGameListItem[]>(() =>
     this.topSingleGameScoringTeams().map((team) => ({
-      label: team.managerName
-        ? `${team.teamName} - ${team.managerName}`
-        : team.teamName,
-      value: team.points.toFixed(2),
+      value: team.points,
+      weekLabel: String(team.week).padStart(2, '0'),
+      teamName: mapTeamNameShort(team.teamName),
     }))
   );
 
   protected readonly topSingleGameLowestScoringTeams = computed<TeamGameScore[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
-    const rows = this.rows();
-    if (y == null || !meta || !rows.length) return [];
-
-    const managerByTeam = new Map(rows.map((row) => [row.teamName, row.managerName]));
+    if (y == null || !meta) return [];
     const gameScores: TeamGameScore[] = [];
 
     for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
@@ -520,11 +531,10 @@ export class SeasonAwards {
 
       for (const entry of entries) {
         const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
-        const managerName = managerByTeam.get(teamName) ?? '';
         gameScores.push({
           teamName,
-          managerName,
           points: Number(entry.team1Totals?.totalPoints ?? 0),
+          week,
         });
       }
     }
@@ -537,22 +547,18 @@ export class SeasonAwards {
       .slice(0, 5);
   });
 
-  protected readonly topSingleGameLowestScoringTeamItems = computed<StatListItem[]>(() =>
+  protected readonly topSingleGameLowestScoringTeamRows = computed<StarterGameListItem[]>(() =>
     this.topSingleGameLowestScoringTeams().map((team) => ({
-      label: team.managerName
-        ? `${team.teamName} - ${team.managerName}`
-        : team.teamName,
-      value: team.points.toFixed(2),
+      value: team.points,
+      weekLabel: String(team.week).padStart(2, '0'),
+      teamName: mapTeamNameShort(team.teamName),
     }))
   );
 
   protected readonly topSingleGameBiggestLosers = computed<TeamGameDiff[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
-    const rows = this.rows();
-    if (y == null || !meta || !rows.length) return [];
-
-    const managerByTeam = new Map(rows.map((row) => [row.teamName, row.managerName]));
+    if (y == null || !meta) return [];
     const gameDiffs: TeamGameDiff[] = [];
 
     for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
@@ -565,7 +571,6 @@ export class SeasonAwards {
       for (const entry of entries) {
         const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
         const opponentTeamName = entry.matchup?.team2Name ?? 'Unknown Team';
-        const managerName = managerByTeam.get(teamName) ?? '';
         const teamPoints = Number(entry.team1Totals?.totalPoints ?? 0);
         const opponentPoints = Number(entry.matchup?.team2Score ?? 0);
         const diff = teamPoints - opponentPoints;
@@ -574,8 +579,9 @@ export class SeasonAwards {
 
         gameDiffs.push({
           teamName,
-          managerName,
           opponentTeamName,
+          points: teamPoints,
+          week,
           diff,
         });
       }
@@ -589,20 +595,18 @@ export class SeasonAwards {
       .slice(0, 5);
   });
 
-  protected readonly topSingleGameBiggestLoserItems = computed<StatListItem[]>(() =>
+  protected readonly topSingleGameBiggestLoserRows = computed<StarterGameListItem[]>(() =>
     this.topSingleGameBiggestLosers().map((team) => ({
-      label: `${team.teamName} vs ${team.opponentTeamName}`,
-      value: team.diff.toFixed(2),
+      value: team.points,
+      weekLabel: String(team.week).padStart(2, '0'),
+      teamName: mapTeamNameShort(team.teamName),
     }))
   );
 
   protected readonly topSingleGameNarrowestVictories = computed<TeamGameDiff[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
-    const rows = this.rows();
-    if (y == null || !meta || !rows.length) return [];
-
-    const managerByTeam = new Map(rows.map((row) => [row.teamName, row.managerName]));
+    if (y == null || !meta) return [];
     const gameDiffs: TeamGameDiff[] = [];
 
     for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
@@ -615,7 +619,6 @@ export class SeasonAwards {
       for (const entry of entries) {
         const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
         const opponentTeamName = entry.matchup?.team2Name ?? 'Unknown Team';
-        const managerName = managerByTeam.get(teamName) ?? '';
         const teamPoints = Number(entry.team1Totals?.totalPoints ?? 0);
         const opponentPoints = Number(entry.matchup?.team2Score ?? 0);
         const diff = teamPoints - opponentPoints;
@@ -624,8 +627,9 @@ export class SeasonAwards {
 
         gameDiffs.push({
           teamName,
-          managerName,
           opponentTeamName,
+          points: teamPoints,
+          week,
           diff,
         });
       }
@@ -639,10 +643,63 @@ export class SeasonAwards {
       .slice(0, 5);
   });
 
-  protected readonly topSingleGameNarrowestVictoryItems = computed<StatListItem[]>(() =>
+  protected readonly topSingleGameNarrowestVictoryRows = computed<StarterGameListItem[]>(() =>
     this.topSingleGameNarrowestVictories().map((team) => ({
-      label: `${team.teamName} over ${team.opponentTeamName}`,
-      value: team.diff.toFixed(2),
+      value: team.points,
+      weekLabel: String(team.week).padStart(2, '0'),
+      teamName: mapTeamNameShort(team.teamName),
+    }))
+  );
+
+  protected readonly topSingleWeekCarryStarters = computed<StarterSingleWeekCarry[]>(() => {
+    const y = this.year();
+    const meta = this.seasonMeta();
+    if (y == null || !meta) return [];
+
+    const carryRows: StarterSingleWeekCarry[] = [];
+
+    for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(String(y), `week${week}`);
+      if (!weekData) continue;
+
+      const entries = Object.values(weekData);
+      if (!entries.length) continue;
+
+      for (const entry of entries) {
+        const teamName = entry.matchup?.team1Name ?? 'Unknown Team';
+        const teamPoints = Number(entry.team1Totals?.totalPoints ?? 0);
+        if (teamPoints <= 0) continue;
+
+        const roster = entry.team1Roster ?? [];
+        for (const player of roster) {
+          if (player.slot !== 'starter') continue;
+
+          carryRows.push({
+            playerName: player.playerName,
+            position: player.position,
+            nflTeam: player.nflTeam,
+            teamName,
+            week,
+            carryPct: (Number(player.points ?? 0) / teamPoints) * 100,
+          });
+        }
+      }
+    }
+
+    return carryRows
+      .sort((a, b) => {
+        if (b.carryPct !== a.carryPct) return b.carryPct - a.carryPct;
+        return a.playerName.localeCompare(b.playerName);
+      })
+      .slice(0, 5);
+  });
+
+  protected readonly topSingleWeekCarryStarterRows = computed<StarterGameListItem[]>(() =>
+    this.topSingleWeekCarryStarters().map((starter) => ({
+      value: `${starter.carryPct.toFixed(1)}%`,
+      weekLabel: String(starter.week).padStart(2, '0'),
+      playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
+      teamName: mapTeamNameShort(starter.teamName),
     }))
   );
 }
