@@ -1,6 +1,6 @@
 import type { WeekMatchups } from '../../../models/weekly-matchups.model';
 import type { MatchupTeamData, MappedMatchup } from './matchup.models';
-import type { PlayerStat, WeekStat, WeekStats } from './weekly-stats.models';
+import type { AllPlayEntry, PlayerStat, WeekStat, WeekStats } from './weekly-stats.models';
 
 function allTeams(matchups: MappedMatchup[]): MatchupTeamData[] {
   return matchups.flatMap((m) => [m.team1, m.team2]);
@@ -165,6 +165,40 @@ function toStarterStats(
 }
 
 /**
+ * Build all-play standings: for each team, count how many other teams they
+ * would have beaten, lost to, or tied that week.
+ * Sorted by wins desc, then total points desc.
+ */
+function toAllPlayRankings(matchups: MappedMatchup[]): AllPlayEntry[] {
+  const teams = allTeams(matchups);
+  if (teams.length === 0) return [];
+
+  return teams
+    .map((team) => {
+      let wins = 0;
+      let losses = 0;
+      let ties = 0;
+
+      for (const opponent of teams) {
+        if (opponent.teamName === team.teamName) continue;
+        if (team.totalPoints > opponent.totalPoints) wins++;
+        else if (team.totalPoints < opponent.totalPoints) losses++;
+        else ties++;
+      }
+
+      return {
+        teamName: team.teamName,
+        ownerName: team.ownerName,
+        totalPoints: team.totalPoints,
+        wins,
+        losses,
+        ties,
+      };
+    })
+    .sort((a, b) => b.wins - a.wins || b.totalPoints - a.totalPoints);
+}
+
+/**
  * Derive all aggregate stats for a single week.
  * Team stats are derived from mapped matchups; player stats from raw entries.
  */
@@ -178,5 +212,6 @@ export function toWeekStats(
     ...toProjectionStats(matchups),
     ...toMvpStat(weekMatchups, ownerIndex),
     ...toStarterStats(weekMatchups, ownerIndex),
+    allPlayRankings: toAllPlayRankings(matchups),
   };
 }

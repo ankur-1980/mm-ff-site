@@ -41,4 +41,6 @@
   </div>
 
   <app-matchup-awards [stats]="weekStats()"></app-matchup-awards>
+
+  <app-all-play-rankings [rankings]="weekStats()?.allPlayRankings ?? []" />
 }

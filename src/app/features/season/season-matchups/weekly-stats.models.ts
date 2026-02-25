@@ -21,6 +21,16 @@ export interface PlayerStat {
   percentage?: number;
 }
 
+/** One team's all-play standing for a single week. */
+export interface AllPlayEntry {
+  teamName: string;
+  ownerName: string;
+  totalPoints: number;
+  wins: number;
+  losses: number;
+  ties: number;
+}
+
 /** Aggregated stats for one week. Null when no matchup data is available. */
 export interface WeekStats {
   highScore: WeekStat | null;
@@ -32,4 +42,5 @@ export interface WeekStats {
   mvp: PlayerStat | null;
   highStarter: PlayerStat | null;
   lowStarter: PlayerStat | null;
+  allPlayRankings: AllPlayEntry[];
 }
