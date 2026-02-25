@@ -2,22 +2,11 @@
   display: block;
 }
 
-.matchups__stats {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
+.matchups__awards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.75rem;
-  padding: 1rem 0 0;
-
-  app-stat-card {
-    flex: 1 1 16rem;
-    max-width: 36rem;
-  }
-
-  app-stat-card.matchups__stat--compact {
-    flex-basis: 8rem;
-    max-width: 18rem;
-  }
+  padding: 1.5rem 0 0;
 }
 
 .matchups__cards {
@@ -56,5 +45,9 @@
 
   .matchups__cards {
     grid-template-columns: 1fr;
+  }
+
+  .matchups__awards {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

@@ -32,21 +32,27 @@
     ><mat-icon>chevron_right</mat-icon></a>
   </nav>
 
+  <div class="matchups__cards">
+    @for (matchup of matchups(); track matchup.team1.teamName) {
+      <app-matchup-card [team1]="matchup.team1" [team2]="matchup.team2" />
+    } @empty {
+      <p>No matchup data available for this week.</p>
+    }
+  </div>
+
   @if (weekStats(); as stats) {
-    <div class="matchups__stats">
+    <div class="matchups__awards">
       @if (stats.highScore; as high) {
         <app-stat-card
-          class="matchups__stat--compact"
           title="High Score"
           [footer]="high.teamName + ' - ' + high.ownerName"
         >
-          <app-stat-value [context]="high.teamName" [value]="high.score.toFixed(2)" [subscript]="high.ownerName" />
+          <app-stat-value [value]="high.score.toFixed(2)" />
         </app-stat-card>
       }
 
       @if (stats.lowScore; as low) {
         <app-stat-card
-          class="matchups__stat--compact"
           title="Low Score"
           [footer]="low.teamName + ' - ' + low.ownerName"
         >
@@ -56,7 +62,6 @@
 
       @if (stats.biggestLoser; as bl) {
         <app-stat-card
-          class="matchups__stat--compact"
           title="Biggest Loser"
           [footer]="bl.teamName + ' - ' + bl.ownerName"
         >
@@ -66,7 +71,6 @@
 
       @if (stats.narrowestWin; as nw) {
         <app-stat-card
-          class="matchups__stat--compact"
           title="Narrowest Win"
           [footer]="nw.teamName + ' - ' + nw.ownerName"
         >
@@ -76,7 +80,6 @@
 
       @if (stats.exceededExpectation; as ee) {
         <app-stat-card
-          class="matchups__stat--compact"
           title="Exceeded Expectation"
           [footer]="ee.teamName + ' - ' + ee.ownerName"
         >
@@ -86,7 +89,6 @@
 
       @if (stats.underperformed; as up) {
         <app-stat-card
-          class="matchups__stat--compact"
           title="Underperformed"
           [footer]="up.teamName + ' - ' + up.ownerName"
         >
@@ -96,12 +98,11 @@
 
       @if (stats.mvp; as mvp) {
         <app-stat-card
-          class="matchups__stat--compact"
           title="MVP"
           [footer]="mvp.teamName + ' - ' + mvp.ownerName"
         >
           <app-stat-value
-            [context]="mvp.playerName + ' · ' + (mvp.position === 'R/W/T' ? 'Flex' : mvp.position)"
+            [context]="(mvp.position === 'R/W/T' ? 'Flex' : mvp.position) + ' · ' + mvp.playerName + ' · ' + mvp.nflTeam"
             [value]="mvp.percentage!.toFixed(1) + '%'"
           />
         </app-stat-card>
@@ -109,12 +110,11 @@
 
       @if (stats.highStarter; as hs) {
         <app-stat-card
-          class="matchups__stat--compact"
           title="Top Starter"
           [footer]="hs.teamName + ' - ' + hs.ownerName"
         >
           <app-stat-value
-            [context]="hs.playerName + ' · ' + (hs.position === 'R/W/T' ? 'Flex' : hs.position)"
+            [context]="(hs.position === 'R/W/T' ? 'Flex' : hs.position) + ' · ' + hs.playerName + ' · ' + hs.nflTeam"
             [value]="hs.points.toFixed(2)"
           />
         </app-stat-card>
@@ -122,26 +122,16 @@
 
       @if (stats.lowStarter; as ls) {
         <app-stat-card
-          class="matchups__stat--compact"
           title="Lowest Starter"
           subtitle="Non-zero score only"
           [footer]="ls.teamName + ' - ' + ls.ownerName"
         >
           <app-stat-value
-            [context]="ls.playerName + ' · ' + (ls.position === 'R/W/T' ? 'Flex' : ls.position)"
+            [context]="(ls.position === 'R/W/T' ? 'Flex' : ls.position) + ' · ' + ls.playerName + ' · ' + ls.nflTeam"
             [value]="ls.points.toFixed(2)"
           />
         </app-stat-card>
       }
     </div>
   }
-
-  <div class="matchups__cards">
-    @for (matchup of matchups(); track matchup.team1.teamName) {
-      <app-matchup-card [team1]="matchup.team1" [team2]="matchup.team2" />
-    } @empty {
-      <p>No matchup data available for this week.</p>
-    }
-  </div>
 }
-
