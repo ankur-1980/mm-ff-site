@@ -14,10 +14,8 @@ import {
 } from '../../../shared/components/stat-card/stat-list/starter-game-list/starter-game-list';
 import { StatValue } from '../../../shared/components/stat-card/stat-value/stat-value';
 import { mapTeamNameShort } from '../../../shared/mappers/team-name-short.mapper';
-import {
-  SeasonStandingsRow,
-  SeasonStandingsService,
-} from '../season-standings/season-standings.service';
+import { SeasonStandingsService } from '../season-standings/season-standings.service';
+import type { SeasonStandingsRow } from '../season-standings/season-standings.models';
 
 interface BestRecordAward {
   record: string;

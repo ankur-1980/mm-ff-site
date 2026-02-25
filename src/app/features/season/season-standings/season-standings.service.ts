@@ -4,34 +4,16 @@ import type {
   SeasonStandings,
   SeasonStandingsEntry,
 } from '../../../models/season-standings.model';
-import type { DataTableColumnDef, DataTableRow } from '../../../shared/table';
+import type { DataTableColumnDef } from '../../../shared/table';
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
 import { LoggerService } from '@ankur-1980/logger';
-
-export interface SeasonStandingsRow extends DataTableRow {
-  playoffRank: string | null;
-  regularSeasonRank: number | null;
-  teamName: string;
-  managerName: string;
-  win: number;
-  loss: number;
-  tie: number;
-  gp: number;
-  winPct: number;
-  pointsFor: number;
-  pointsAgainst: number;
-  highPoints: number;
-  lowPoints: number | null;
-  diff: number;
-  moves: number;
-  trades: number;
-}
-
-export interface SeasonStandingsTableState {
-  columns: DataTableColumnDef[];
-  data: SeasonStandingsRow[];
-}
+import type {
+  ResolvedTeamStats,
+  SeasonStandingsRow,
+  SeasonStandingsTableState,
+  TeamRecordByTeam,
+} from './season-standings.models';
 
 function parseRank(value: string | undefined): number | null {
   if (value == null || String(value).trim() === '') return null;
@@ -58,17 +40,6 @@ function incrementCount(map: Map<string, number>, key: string): void {
 function addPoints(map: Map<string, number>, key: string, value: number): void {
   if (!key) return;
   map.set(key, (map.get(key) ?? 0) + value);
-}
-
-interface TeamRecordByTeam {
-  winsByTeam: Map<string, number>;
-  lossesByTeam: Map<string, number>;
-  tiesByTeam: Map<string, number>;
-  pointsForByTeam: Map<string, number>;
-  pointsAgainstByTeam: Map<string, number>;
-  highPointFinishesByTeam: Map<string, number>;
-  lowPointFinishesByTeam: Map<string, number>;
-  hasRegularSeasonHistory: boolean;
 }
 
 const EPSILON = 0.000001;
@@ -269,20 +240,159 @@ export class SeasonStandingsService {
     );
   }
 
+  private resolveTeamStats(
+    entry: SeasonStandingsEntry,
+    normalizedTeam: string,
+    regularSeason: TeamRecordByTeam
+  ): ResolvedTeamStats {
+    const standingsWin = entry.record?.win ?? 0;
+    const standingsLoss = entry.record?.loss ?? 0;
+    const standingsTie = entry.record?.tie ?? 0;
+    const standingsPointsFor = entry.points?.pointsFor ?? 0;
+    const standingsPointsAgainst = entry.points?.pointsAgainst ?? 0;
+
+    const matchupWin = regularSeason.winsByTeam.get(normalizedTeam) ?? null;
+    const matchupLoss = regularSeason.lossesByTeam.get(normalizedTeam) ?? null;
+    const matchupTie = regularSeason.tiesByTeam.get(normalizedTeam) ?? null;
+    const matchupPointsFor = regularSeason.pointsForByTeam.get(normalizedTeam) ?? null;
+    const matchupPointsAgainst = regularSeason.pointsAgainstByTeam.get(normalizedTeam) ?? null;
+    const matchupHighPointFinishes =
+      regularSeason.highPointFinishesByTeam.get(normalizedTeam) ?? null;
+    const matchupLowPointFinishes = regularSeason.lowPointFinishesByTeam.get(normalizedTeam) ?? null;
+
+    const win =
+      regularSeason.hasRegularSeasonHistory && matchupWin != null ? matchupWin : standingsWin;
+    const loss =
+      regularSeason.hasRegularSeasonHistory && matchupLoss != null ? matchupLoss : standingsLoss;
+    const tie =
+      regularSeason.hasRegularSeasonHistory && matchupTie != null ? matchupTie : standingsTie;
+    const pointsFor =
+      regularSeason.hasRegularSeasonHistory && matchupPointsFor != null
+        ? matchupPointsFor
+        : standingsPointsFor;
+    const pointsAgainst =
+      regularSeason.hasRegularSeasonHistory && matchupPointsAgainst != null
+        ? matchupPointsAgainst
+        : standingsPointsAgainst;
+    const highPoints = regularSeason.hasRegularSeasonHistory
+      ? (matchupHighPointFinishes ?? 0)
+      : (entry.points?.highPoints ?? 0);
+    const lowPoints = regularSeason.hasRegularSeasonHistory
+      ? (matchupLowPointFinishes ?? 0)
+      : (entry.points?.lowPoints ?? null);
+    const gp = win + loss + tie;
+    const winPct = gp > 0 ? ((win + tie * 0.5) / gp) * 100 : 0;
+    const diff = pointsFor - pointsAgainst;
+
+    return {
+      standingsWin,
+      standingsLoss,
+      standingsTie,
+      standingsPointsFor,
+      standingsPointsAgainst,
+      matchupWin,
+      matchupLoss,
+      matchupTie,
+      matchupPointsFor,
+      matchupPointsAgainst,
+      win,
+      loss,
+      tie,
+      pointsFor,
+      pointsAgainst,
+      highPoints,
+      lowPoints,
+      gp,
+      winPct,
+      diff,
+    };
+  }
+
+  private logConflicts(
+    seasonId: string | null,
+    team: string,
+    stats: ResolvedTeamStats,
+    regularSeason: TeamRecordByTeam
+  ): void {
+    if (seasonId == null || !regularSeason.hasRegularSeasonHistory) return;
+
+    if (stats.matchupWin != null && stats.matchupWin !== stats.standingsWin) {
+      this.logRecordConflict(seasonId, team, 'wins', stats.standingsWin, stats.matchupWin);
+    }
+    if (stats.matchupLoss != null && stats.matchupLoss !== stats.standingsLoss) {
+      this.logRecordConflict(
+        seasonId,
+        team,
+        'losses',
+        stats.standingsLoss,
+        stats.matchupLoss
+      );
+    }
+    if (stats.matchupTie != null && stats.matchupTie !== stats.standingsTie) {
+      this.logRecordConflict(seasonId, team, 'ties', stats.standingsTie, stats.matchupTie);
+    }
+    if (
+      stats.matchupPointsFor != null &&
+      Math.abs(stats.matchupPointsFor - stats.standingsPointsFor) >= EPSILON
+    ) {
+      this.logRecordConflict(
+        seasonId,
+        team,
+        'pointsFor',
+        stats.standingsPointsFor,
+        stats.matchupPointsFor
+      );
+    }
+    if (
+      stats.matchupPointsAgainst != null &&
+      Math.abs(stats.matchupPointsAgainst - stats.standingsPointsAgainst) >= EPSILON
+    ) {
+      this.logRecordConflict(
+        seasonId,
+        team,
+        'pointsAgainst',
+        stats.standingsPointsAgainst,
+        stats.matchupPointsAgainst
+      );
+    }
+  }
+
+  private toStandingsRow(
+    entry: SeasonStandingsEntry,
+    team: string,
+    stats: ResolvedTeamStats
+  ): SeasonStandingsRow {
+    const rawPlayoffRank = entry.ranks?.playoffRank;
+    const rawRegularSeasonRank = entry.ranks?.regularSeasonRank;
+
+    return {
+      playoffRank:
+        rawPlayoffRank != null && String(rawPlayoffRank).trim() !== ''
+          ? String(rawPlayoffRank).trim()
+          : null,
+      regularSeasonRank: parseRank(rawRegularSeasonRank),
+      teamName: team,
+      managerName: entry.playerDetails?.managerName ?? '',
+      win: stats.win,
+      loss: stats.loss,
+      tie: stats.tie,
+      gp: stats.gp,
+      winPct: stats.winPct,
+      pointsFor: stats.pointsFor,
+      pointsAgainst: stats.pointsAgainst,
+      highPoints: stats.highPoints,
+      lowPoints: stats.lowPoints,
+      diff: stats.diff,
+      moves: entry.transactions?.moves ?? 0,
+      trades: entry.transactions?.trades ?? 0,
+    };
+  }
+
   toTableState(standings: SeasonStandings | null): SeasonStandingsTableState {
     if (!standings) return { columns: this.getColumns(false), data: [] };
 
     const seasonId = this.getSeasonId(standings);
-    const {
-      winsByTeam,
-      lossesByTeam,
-      tiesByTeam,
-      pointsForByTeam,
-      pointsAgainstByTeam,
-      highPointFinishesByTeam,
-      lowPointFinishesByTeam,
-      hasRegularSeasonHistory,
-    } =
+    const regularSeason =
       seasonId != null
         ? this.getRegularSeasonRecordByTeam(seasonId)
         : {
@@ -295,119 +405,15 @@ export class SeasonStandingsService {
             lowPointFinishesByTeam: new Map<string, number>(),
             hasRegularSeasonHistory: false,
           };
-    const hasWeeklyHistory = hasRegularSeasonHistory;
+    const hasWeeklyHistory = regularSeason.hasRegularSeasonHistory;
 
     const rows = Object.values(standings)
       .map((entry): SeasonStandingsRow => {
-        const standingsWin = entry.record?.win ?? 0;
-        const standingsLoss = entry.record?.loss ?? 0;
-        const standingsTie = entry.record?.tie ?? 0;
-        const standingsPointsFor = entry.points?.pointsFor ?? 0;
-        const standingsPointsAgainst = entry.points?.pointsAgainst ?? 0;
         const team = teamName(entry);
         const normalizedTeam = normalizeTeamName(team);
-        const matchupWin = winsByTeam.get(normalizedTeam);
-        const matchupLoss = lossesByTeam.get(normalizedTeam);
-        const matchupTie = tiesByTeam.get(normalizedTeam);
-        const matchupPointsFor = pointsForByTeam.get(normalizedTeam);
-        const matchupPointsAgainst = pointsAgainstByTeam.get(normalizedTeam);
-        const matchupHighPointFinishes = highPointFinishesByTeam.get(normalizedTeam);
-        const matchupLowPointFinishes = lowPointFinishesByTeam.get(normalizedTeam);
-        const win = hasRegularSeasonHistory && matchupWin != null ? matchupWin : standingsWin;
-        const loss =
-          hasRegularSeasonHistory && matchupLoss != null ? matchupLoss : standingsLoss;
-        const tie = hasRegularSeasonHistory && matchupTie != null ? matchupTie : standingsTie;
-        const pointsFor =
-          hasRegularSeasonHistory && matchupPointsFor != null
-            ? matchupPointsFor
-            : standingsPointsFor;
-        const pointsAgainst =
-          hasRegularSeasonHistory && matchupPointsAgainst != null
-            ? matchupPointsAgainst
-            : standingsPointsAgainst;
-        if (
-          seasonId != null &&
-          hasRegularSeasonHistory &&
-          matchupWin != null &&
-          matchupWin !== standingsWin
-        ) {
-          this.logRecordConflict(seasonId, team, 'wins', standingsWin, matchupWin);
-        }
-        if (
-          seasonId != null &&
-          hasRegularSeasonHistory &&
-          matchupLoss != null &&
-          matchupLoss !== standingsLoss
-        ) {
-          this.logRecordConflict(seasonId, team, 'losses', standingsLoss, matchupLoss);
-        }
-        if (
-          seasonId != null &&
-          hasRegularSeasonHistory &&
-          matchupTie != null &&
-          matchupTie !== standingsTie
-        ) {
-          this.logRecordConflict(seasonId, team, 'ties', standingsTie, matchupTie);
-        }
-        if (
-          seasonId != null &&
-          hasRegularSeasonHistory &&
-          matchupPointsFor != null &&
-          Math.abs(matchupPointsFor - standingsPointsFor) >= EPSILON
-        ) {
-          this.logRecordConflict(
-            seasonId,
-            team,
-            'pointsFor',
-            standingsPointsFor,
-            matchupPointsFor
-          );
-        }
-        if (
-          seasonId != null &&
-          hasRegularSeasonHistory &&
-          matchupPointsAgainst != null &&
-          Math.abs(matchupPointsAgainst - standingsPointsAgainst) >= EPSILON
-        ) {
-          this.logRecordConflict(
-            seasonId,
-            team,
-            'pointsAgainst',
-            standingsPointsAgainst,
-            matchupPointsAgainst
-          );
-        }
-        const gp = win + loss + tie;
-        const highPoints = hasWeeklyHistory
-          ? (matchupHighPointFinishes ?? 0)
-          : (entry.points?.highPoints ?? 0);
-        const lowPoints = hasWeeklyHistory
-          ? (matchupLowPointFinishes ?? 0)
-          : (entry.points?.lowPoints ?? null);
-        const rawPlayoffRank = entry.ranks?.playoffRank;
-        const rawRegularSeasonRank = entry.ranks?.regularSeasonRank;
-
-        return {
-          playoffRank:
-            rawPlayoffRank != null && String(rawPlayoffRank).trim() !== ''
-              ? String(rawPlayoffRank).trim()
-              : null,
-          regularSeasonRank: parseRank(rawRegularSeasonRank),
-          teamName: team,
-          managerName: entry.playerDetails?.managerName ?? '',
-          win,
-          loss,
-          tie,
-          gp,
-          winPct: gp > 0 ? ((win + tie * 0.5) / gp) * 100 : 0,
-          pointsFor,
-          pointsAgainst,
-          highPoints,
-          lowPoints,
-          diff: pointsFor - pointsAgainst,
-          moves: entry.transactions?.moves ?? 0,
-          trades: entry.transactions?.trades ?? 0,
-        };
+        const stats = this.resolveTeamStats(entry, normalizedTeam, regularSeason);
+        this.logConflicts(seasonId, team, stats, regularSeason);
+        return this.toStandingsRow(entry, team, stats);
       });
 
     const computedRegularSeasonRanks = buildRegularSeasonRanks(rows);
