@@ -8,6 +8,7 @@ import type { DataTableColumnDef, DataTableRow } from '../../../shared/table';
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
 import { PythagoreanRankingsService } from '../season-power-rankings/pythagorean-rankings.service';
+import { LoggerService } from '@ankur-1980/logger';
 
 export interface SeasonStandingsRow extends DataTableRow {
   playoffRank: string | null;
@@ -49,6 +50,15 @@ function teamName(entry: SeasonStandingsEntry): string {
   return value != null && String(value).trim() !== ''
     ? String(value).trim()
     : 'Unknown Team';
+}
+
+function normalizeTeamName(value: string | null | undefined): string {
+  return value != null ? String(value).trim().toLowerCase() : '';
+}
+
+function incrementCount(map: Map<string, number>, key: string): void {
+  if (!key) return;
+  map.set(key, (map.get(key) ?? 0) + 1);
 }
 
 function buildRegularSeasonRanks(
@@ -104,6 +114,8 @@ export class SeasonStandingsService {
   private readonly pythagoreanRankings = inject(PythagoreanRankingsService);
   private readonly weeklyMatchupsData = inject(WeeklyMatchupsDataService);
   private readonly leagueMetaData = inject(LeagueMetaDataService);
+  private readonly logger = inject(LoggerService);
+  private readonly loggedWinConflicts = new Set<string>();
 
   readonly columns: DataTableColumnDef[] = [
     {
@@ -197,23 +209,84 @@ export class SeasonStandingsService {
     return counts;
   }
 
+  private getRegularSeasonWinsByTeam(
+    seasonId: string
+  ): { winsByTeam: Map<string, number>; hasRegularSeasonHistory: boolean } {
+    const winsByTeam = new Map<string, number>();
+    const seasonMeta = this.leagueMetaData.getSeasonMeta(seasonId);
+    if (!seasonMeta) return { winsByTeam, hasRegularSeasonHistory: false };
+
+    let matchupCount = 0;
+
+    for (let week = 1; week <= seasonMeta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(seasonId, `week${week}`);
+      if (!weekData) continue;
+
+      const seenMatchups = new Set<string>();
+
+      for (const entry of Object.values(weekData)) {
+        const matchup = entry.matchup;
+        if (!matchup?.team1Name || !matchup?.team2Name) continue;
+
+        const matchupKey = [matchup.team1Id, matchup.team2Id].sort().join('|');
+        if (seenMatchups.has(matchupKey)) continue;
+        seenMatchups.add(matchupKey);
+
+        const team1Score = Number(matchup.team1Score);
+        const team2Score = Number(matchup.team2Score);
+        if (Number.isNaN(team1Score) || Number.isNaN(team2Score)) continue;
+
+        matchupCount += 1;
+
+        if (team1Score > team2Score) {
+          incrementCount(winsByTeam, normalizeTeamName(matchup.team1Name));
+        } else if (team2Score > team1Score) {
+          incrementCount(winsByTeam, normalizeTeamName(matchup.team2Name));
+        }
+      }
+    }
+
+    return { winsByTeam, hasRegularSeasonHistory: matchupCount > 0 };
+  }
+
   toTableState(standings: SeasonStandings | null): SeasonStandingsTableState {
     if (!standings) return { columns: this.getColumns(false), data: [] };
 
     const seasonId = this.getSeasonId(standings);
+    const { winsByTeam, hasRegularSeasonHistory } =
+      seasonId != null
+        ? this.getRegularSeasonWinsByTeam(seasonId)
+        : { winsByTeam: new Map<string, number>(), hasRegularSeasonHistory: false };
     const weeklyPointFinishCounts =
       seasonId != null ? this.getWeeklyPointFinishCounts(seasonId) : new Map();
-    const hasWeeklyHistory = weeklyPointFinishCounts.size > 0;
+    const hasWeeklyHistory = weeklyPointFinishCounts.size > 0 || hasRegularSeasonHistory;
 
     const rows = Object.values(standings)
       .map((entry): SeasonStandingsRow => {
-        const win = entry.record?.win ?? 0;
+        const standingsWin = entry.record?.win ?? 0;
         const loss = entry.record?.loss ?? 0;
         const tie = entry.record?.tie ?? 0;
-        const gp = win + loss + tie;
         const pointsFor = entry.points?.pointsFor ?? 0;
         const pointsAgainst = entry.points?.pointsAgainst ?? 0;
         const team = teamName(entry);
+        const matchupWin = winsByTeam.get(normalizeTeamName(team));
+        const win = hasRegularSeasonHistory && matchupWin != null ? matchupWin : standingsWin;
+        if (
+          seasonId != null &&
+          hasRegularSeasonHistory &&
+          matchupWin != null &&
+          matchupWin !== standingsWin
+        ) {
+          const conflictKey = `${seasonId}|${normalizeTeamName(team)}|${standingsWin}|${matchupWin}`;
+          if (!this.loggedWinConflicts.has(conflictKey)) {
+            this.loggedWinConflicts.add(conflictKey);
+            this.logger.warn(
+              `SeasonStandingsService: wins conflict in season ${seasonId} for "${team}" ` +
+                `(standings=${standingsWin}, matchups=${matchupWin})`
+            );
+          }
+        }
+        const gp = win + loss + tie;
         const weeklyCounts = weeklyPointFinishCounts.get(team);
         const highPoints = hasWeeklyHistory
           ? (weeklyCounts?.high ?? 0)
