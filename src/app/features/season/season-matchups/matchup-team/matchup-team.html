@@ -3,10 +3,16 @@
   <span class="team__owner">{{ ownerName() }}</span>
 </header>
 
+<mat-divider />
+
 <div class="team__content">
   <span class="team__points">{{ totalPoints() | number: '1.2-2' }}</span>
-  <span class="team__projected">Proj: {{ projectedPoints() | number: '1.2-2' }}</span>
+  @if (projectedPoints()) {
+    <span class="team__projected">{{ projectedPoints() | number: '1.2-2' }} proj</span>
+  }
 </div>
+
+<mat-divider />
 
 <footer class="team__footer">
   @if (result()) {
