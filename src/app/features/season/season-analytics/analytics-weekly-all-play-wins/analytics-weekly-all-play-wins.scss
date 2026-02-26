@@ -1,0 +1,19 @@
+.weekly-all-play-wins {
+  padding: 0.5rem 0;
+}
+
+.weekly-all-play-wins__chart-wrap {
+  height: 440px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.weekly-all-play-wins__legend {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--mat-sys-outline, #666);
+}
+
+.weekly-all-play-wins__empty {
+  color: var(--mat-sys-outline, #666);
+}

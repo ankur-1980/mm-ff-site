@@ -1,0 +1,18 @@
+<div class="mov-distribution">
+  @if (distributionResult(); as result) {
+    @if (result.bins.length > 0) {
+      <div class="mov-distribution__chart-wrap">
+        <canvas
+          baseChart
+          [data]="chartData()!"
+          [options]="chartOptions()"
+          chartType="bar"
+        ></canvas>
+      </div>
+    } @else {
+      <p class="mov-distribution__empty">No matchup data for this season.</p>
+    }
+  } @else {
+    <p class="mov-distribution__empty">No data for this season.</p>
+  }
+</div>

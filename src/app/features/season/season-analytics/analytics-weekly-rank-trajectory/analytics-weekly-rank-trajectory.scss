@@ -1,0 +1,23 @@
+.analytics-weekly-rank-trajectory__heading {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.analytics-weekly-rank-trajectory__intro {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+}
+
+.analytics-weekly-rank-trajectory__chart-wrap {
+  height: 420px;
+  position: relative;
+}
+
+.analytics-weekly-rank-trajectory__empty {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  font-style: italic;
+}

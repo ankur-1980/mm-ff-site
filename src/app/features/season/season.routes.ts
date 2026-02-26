@@ -53,6 +53,58 @@ export const SEASON_ROUTES: Routes = [
           import('./season-analytics/season-analytics').then(
             (m) => m.SeasonAnalytics
           ),
+        children: [
+          { path: '', pathMatch: 'full', redirectTo: 'table' },
+          {
+            path: 'table',
+            loadComponent: () =>
+              import('./season-analytics/analytics-table/analytics-table').then(
+                (m) => m.AnalyticsTable
+              ),
+          },
+          {
+            path: 'all-play-matrix',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-all-play-matrix/analytics-all-play-matrix'
+              ).then((m) => m.AnalyticsAllPlayMatrix),
+          },
+          {
+            path: 'weekly-all-play-wins',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-weekly-all-play-wins/analytics-weekly-all-play-wins'
+              ).then((m) => m.AnalyticsWeeklyAllPlayWins),
+          },
+          {
+            path: 'weekly-rank-trajectory',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-weekly-rank-trajectory/analytics-weekly-rank-trajectory'
+              ).then((m) => m.AnalyticsWeeklyRankTrajectory),
+          },
+          {
+            path: 'pf-pa-scatter',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-pf-pa-scatter/analytics-pf-pa-scatter'
+              ).then((m) => m.AnalyticsPfPaScatter),
+          },
+          {
+            path: 'margin-of-victory-distribution',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-margin-of-victory-distribution/analytics-margin-of-victory-distribution'
+              ).then((m) => m.AnalyticsMarginOfVictoryDistribution),
+          },
+          {
+            path: 'points-distribution',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-points-distribution/analytics-points-distribution'
+              ).then((m) => m.AnalyticsPointsDistribution),
+          },
+        ],
       },
       {
         path: 'draft',

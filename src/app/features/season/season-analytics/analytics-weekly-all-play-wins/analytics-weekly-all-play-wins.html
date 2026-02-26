@@ -1,0 +1,17 @@
+<div class="weekly-all-play-wins">
+  @if (chartData(); as data) {
+    <div class="weekly-all-play-wins__chart-wrap">
+      <canvas
+        baseChart
+        type="line"
+        [data]="data"
+        [options]="chartOptions()"
+      ></canvas>
+    </div>
+    <p class="weekly-all-play-wins__legend">
+      Cumulative all-play wins through each week. Hover for weekly wins and total.
+    </p>
+  } @else {
+    <p class="weekly-all-play-wins__empty">No data for this season.</p>
+  }
+</div>

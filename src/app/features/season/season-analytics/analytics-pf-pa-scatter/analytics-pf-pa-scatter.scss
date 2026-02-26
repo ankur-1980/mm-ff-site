@@ -1,0 +1,19 @@
+.pf-pa-scatter {
+  padding: 0.5rem 0;
+}
+
+.pf-pa-scatter__chart-wrap {
+  height: 480px;
+  width: 100%;
+  max-width: 720px;
+}
+
+.pf-pa-scatter__legend {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--mat-sys-outline, #666);
+}
+
+.pf-pa-scatter__empty {
+  color: var(--mat-sys-outline, #666);
+}

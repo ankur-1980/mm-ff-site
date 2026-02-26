@@ -1,0 +1,161 @@
+.points-dist__heading {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.points-dist__intro {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+}
+
+.points-dist__chart {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 0.25rem 1rem;
+  min-height: 320px;
+}
+
+.points-dist__axis {
+  &.points-dist__axis--y {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    padding-top: 1.5rem;
+  }
+
+  &.points-dist__axis--x {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    padding-bottom: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  }
+}
+
+.points-dist__axis-label--spacer {
+  flex: 0 0 10rem;
+  min-width: 0;
+}
+
+.points-dist__axis-ticks {
+  flex: 1 1 auto;
+  position: relative;
+  height: 1.5rem;
+  min-width: 8rem;
+}
+
+.points-dist__axis-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.points-dist__axis-tick-mark {
+  width: 1px;
+  height: 0.375rem;
+  background: var(--mat-divider-color, rgba(0, 0, 0, 0.2));
+}
+
+.points-dist__axis-tick-label {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.6875rem;
+}
+
+.points-dist__axis-label {
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+
+.points-dist__rows {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  overflow: auto;
+}
+
+.points-dist__row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2rem;
+  cursor: default;
+}
+
+.points-dist__team-name {
+  flex: 0 0 10rem;
+  min-width: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.points-dist__track {
+  flex: 1 1 auto;
+  position: relative;
+  height: 1.5rem;
+  min-width: 8rem;
+  background: var(--mat-app-background-color, #f5f5f5);
+  border-radius: 2px;
+}
+
+.points-dist__whisker {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: var(--mat-primary-color, #1976d2);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.points-dist__box {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  background: var(--mat-primary-color, #1976d2);
+  opacity: 0.5;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.points-dist__median {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--mat-primary-color, #1976d2);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.points-dist__outlier {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mat-primary-color, #1976d2);
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.points-dist__empty {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  font-style: italic;
+}

@@ -1,0 +1,10 @@
+<h3 class="analytics-table__heading">Table</h3>
+@if (tableState().data.length) {
+  <app-data-table
+    [columns]="tableState().columns"
+    [data]="tableState().data"
+    defaultSortDirection="desc"
+  />
+} @else {
+  <p class="analytics-table__empty">No table data for this season.</p>
+}
