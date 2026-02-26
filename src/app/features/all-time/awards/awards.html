@@ -27,5 +27,33 @@
         ></app-starter-game-list>
       </app-stat-card>
     }
+
+    @if (topSingleGameHighPoints().length) {
+      <app-stat-card
+        title="Top 10 Single Game High Points"
+        subtitle="Points - Year Owner - Week"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="topSingleGameHighPointsRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (topSingleGameLowPoints().length) {
+      <app-stat-card
+        title="Top 10 Single Game Low Points"
+        subtitle="Points - Year Owner - Week"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="topSingleGameLowPointsRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
   </div>
 </section>
