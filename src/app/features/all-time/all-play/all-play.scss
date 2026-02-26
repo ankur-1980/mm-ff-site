@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.all-time-all-play__heading {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.all-time-all-play__note {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+}
