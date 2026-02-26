@@ -1,0 +1,63 @@
+<h3 class="points-dist__heading">Points Distribution (Regular Season)</h3>
+<p class="points-dist__intro">
+  Box plot per team: Q1–Q3 box, median line, whiskers to min/max non-outlier, dots for outliers. Teams sorted by median points. Hover for stats and outlier weeks.
+</p>
+@if (boxPlotStats(); as stats) {
+  @let s = scale();
+  <div class="points-dist__chart">
+    <div class="points-dist__axis points-dist__axis--y">
+      <span class="points-dist__axis-label">Team</span>
+    </div>
+    <div class="points-dist__axis points-dist__axis--x">
+      <span class="points-dist__axis-label">Points</span>
+      <span class="points-dist__axis-min">{{ s.min.toFixed(0) }}</span>
+      <span class="points-dist__axis-max">{{ s.max.toFixed(0) }}</span>
+    </div>
+    <div class="points-dist__rows">
+      @for (team of stats; track team.teamName) {
+        <div
+          class="points-dist__row"
+          [title]="tooltipText(team)"
+        >
+          <span class="points-dist__team-name" [title]="team.teamName">{{ team.teamName }}</span>
+          <div class="points-dist__track">
+            <!-- whisker: lower -->
+            <span
+              class="points-dist__whisker"
+              [style.left.%]="toPct(team.lowerWhisker)"
+              [style.width.%]="toPct(team.q1) - toPct(team.lowerWhisker)"
+            ></span>
+            <!-- box Q1–Q3 -->
+            <span
+              class="points-dist__box"
+              [style.left.%]="toPct(team.q1)"
+              [style.width.%]="toPct(team.q3) - toPct(team.q1)"
+            ></span>
+            <!-- median line -->
+            <span
+              class="points-dist__median"
+              [style.left.%]="toPct(team.median)"
+              [style.width]="'2px'"
+            ></span>
+            <!-- whisker: upper -->
+            <span
+              class="points-dist__whisker"
+              [style.left.%]="toPct(team.q3)"
+              [style.width.%]="toPct(team.upperWhisker) - toPct(team.q3)"
+            ></span>
+            <!-- outliers -->
+            @for (o of team.outliers; track o.week + o.points) {
+              <span
+                class="points-dist__outlier"
+                [style.left.%]="toPct(o.points)"
+                [title]="'Week ' + o.week + ': ' + o.points.toFixed(1) + ' pts'"
+              ></span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <p class="points-dist__empty">No points distribution data for this season.</p>
+}

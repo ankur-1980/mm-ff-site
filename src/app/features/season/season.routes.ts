@@ -76,6 +76,13 @@ export const SEASON_ROUTES: Routes = [
                 './season-analytics/analytics-weekly-rank-trajectory/analytics-weekly-rank-trajectory'
               ).then((m) => m.AnalyticsWeeklyRankTrajectory),
           },
+          {
+            path: 'points-distribution',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-points-distribution/analytics-points-distribution'
+              ).then((m) => m.AnalyticsPointsDistribution),
+          },
         ],
       },
       {
