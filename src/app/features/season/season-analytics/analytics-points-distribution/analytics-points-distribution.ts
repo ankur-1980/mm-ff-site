@@ -29,20 +29,23 @@ export class AnalyticsPointsDistribution {
     return this.pointsDistribution.buildBoxPlotStats(String(y));
   });
 
-  /** Global scale for horizontal axis (with padding). */
+  /** Global scale: min/max in increments of 10, extending below lowest and above highest data. */
   protected readonly scale = computed(() => {
     const stats = this.boxPlotStats();
-    if (!stats?.length) return { min: 0, max: 100 };
-    let min = Infinity;
-    let max = -Infinity;
+    if (!stats?.length) return { min: 0, max: 100, ticks: [0, 50, 100] };
+    let dataMin = Infinity;
+    let dataMax = -Infinity;
     for (const s of stats) {
       const low = Math.min(s.lowerWhisker, ...s.outliers.map((o) => o.points));
       const high = Math.max(s.upperWhisker, ...s.outliers.map((o) => o.points));
-      if (low < min) min = low;
-      if (high > max) max = high;
+      if (low < dataMin) dataMin = low;
+      if (high > dataMax) dataMax = high;
     }
-    const pad = (max - min) * 0.05 || 10;
-    return { min: min - pad, max: max + pad };
+    const min = Math.floor(dataMin / 10) * 10;
+    const max = Math.ceil(dataMax / 10) * 10;
+    const ticks: number[] = [];
+    for (let t = min; t <= max; t += 10) ticks.push(t);
+    return { min, max, ticks };
   });
 
   /** Convert points value to percentage (0–100) for horizontal position. */

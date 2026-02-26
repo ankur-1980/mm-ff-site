@@ -9,9 +9,18 @@
       <span class="points-dist__axis-label">Team</span>
     </div>
     <div class="points-dist__axis points-dist__axis--x">
-      <span class="points-dist__axis-label">Points</span>
-      <span class="points-dist__axis-min">{{ s.min.toFixed(0) }}</span>
-      <span class="points-dist__axis-max">{{ s.max.toFixed(0) }}</span>
+      <span class="points-dist__axis-label points-dist__axis-label--spacer">Points</span>
+      <div class="points-dist__axis-ticks">
+        @for (tick of s.ticks; track tick) {
+          <span
+            class="points-dist__axis-tick"
+            [style.left.%]="toPct(tick)"
+          >
+            <span class="points-dist__axis-tick-mark"></span>
+            <span class="points-dist__axis-tick-label">{{ tick }}</span>
+          </span>
+        }
+      </div>
     </div>
     <div class="points-dist__rows">
       @for (team of stats; track team.teamName) {
