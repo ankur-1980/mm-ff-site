@@ -83,5 +83,33 @@
         ></app-starter-game-list>
       </app-stat-card>
     }
+
+    @if (bestAverageWinsPerSeasonRows().length) {
+      <app-stat-card
+        title="Best Avg Wins Per Season"
+        subtitle="Avg - Owner - Seasons (Minimum 7)"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="bestAverageWinsPerSeasonRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (worstAverageWinsPerSeasonRows().length) {
+      <app-stat-card
+        title="Worst Avg Wins Per Season"
+        subtitle="Avg - Owner - Seasons (Less Than 7)"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="worstAverageWinsPerSeasonRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
   </div>
 </section>

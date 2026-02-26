@@ -9,6 +9,7 @@ import {
   StarterGameList,
   StarterGameListItem,
 } from '../../../shared/components/stat-card/stat-list/starter-game-list/starter-game-list';
+import { AllTimeRecordsService } from '../records/records.service';
 
 interface SeasonTeamPointsRow {
   points: number;
@@ -29,6 +30,12 @@ interface SeasonWinsRow {
   ownerName: string;
 }
 
+interface AverageWinsPerSeasonRow {
+  avgWins: number;
+  ownerName: string;
+  seasonsPlayed: number;
+}
+
 function normalize(value: string | null | undefined): string {
   return value != null ? String(value).trim().toLowerCase() : '';
 }
@@ -44,6 +51,7 @@ export class Awards {
   private readonly ownersData = inject(OwnersDataService);
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
   private readonly weeklyMatchupsData = inject(WeeklyMatchupsDataService);
+  private readonly allTimeRecords = inject(AllTimeRecordsService);
 
   private readonly ownerByTeamName = computed(() => {
     const ownerMap = new Map<string, string>();
@@ -259,4 +267,45 @@ export class Awards {
 
     return rows;
   });
+
+  private readonly averageWinsPerSeasonRows = computed<AverageWinsPerSeasonRow[]>(() =>
+    this.allTimeRecords
+      .toTableState()
+      .data.map((row) => ({
+        avgWins: row.totalSeasons > 0 ? row.wins / row.totalSeasons : 0,
+        ownerName: row.ownerName,
+        seasonsPlayed: row.totalSeasons,
+      }))
+      .filter((row) => row.seasonsPlayed > 0)
+  );
+
+  protected readonly bestAverageWinsPerSeasonRows = computed<StarterGameListItem[]>(() =>
+    this.averageWinsPerSeasonRows()
+      .filter((row) => row.avgWins >= 7)
+      .sort((a, b) => {
+        if (b.avgWins !== a.avgWins) return b.avgWins - a.avgWins;
+        if (b.seasonsPlayed !== a.seasonsPlayed) return b.seasonsPlayed - a.seasonsPlayed;
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+      .map((row) => ({
+        value: row.avgWins,
+        playerDetails: row.ownerName,
+        teamName: `${row.seasonsPlayed}`,
+      }))
+  );
+
+  protected readonly worstAverageWinsPerSeasonRows = computed<StarterGameListItem[]>(() =>
+    this.averageWinsPerSeasonRows()
+      .filter((row) => row.avgWins < 7)
+      .sort((a, b) => {
+        if (a.avgWins !== b.avgWins) return a.avgWins - b.avgWins;
+        if (b.seasonsPlayed !== a.seasonsPlayed) return b.seasonsPlayed - a.seasonsPlayed;
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+      .map((row) => ({
+      value: row.avgWins,
+      playerDetails: row.ownerName,
+      teamName: `${row.seasonsPlayed}`,
+    }))
+  );
 }
