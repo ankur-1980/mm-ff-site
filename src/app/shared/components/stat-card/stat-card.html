@@ -6,7 +6,10 @@
 
   <mat-divider />
 
-  <div class="stat-card__body">
+  <div
+    class="stat-card__body"
+    [class.stat-card__body--start]="bodyAlign() === 'start'"
+  >
     <ng-content />
   </div>
 

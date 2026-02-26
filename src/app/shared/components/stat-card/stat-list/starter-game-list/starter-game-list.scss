@@ -10,7 +10,7 @@
 
 .starter-game-list__row {
   display: grid;
-  grid-template-columns: 5.25rem minmax(0, 1fr) minmax(0, 14ch);
+  grid-template-columns: 5.25rem minmax(0, 1fr) minmax(0, 28ch);
   gap: 0.5rem;
   align-items: center;
   padding: 0.2rem 0;
@@ -64,8 +64,12 @@
 .starter-game-list--no-truncate .starter-game-list__week,
 .starter-game-list--no-truncate .starter-game-list__player,
 .starter-game-list--no-truncate .starter-game-list__team {
-  white-space: normal;
+  white-space: nowrap;
   overflow: visible;
   text-overflow: clip;
   max-width: none;
+}
+
+.starter-game-list--no-truncate {
+  overflow-x: auto;
 }

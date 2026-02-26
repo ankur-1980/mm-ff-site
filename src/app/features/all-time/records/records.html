@@ -11,7 +11,7 @@
     }
 
     @if (seasonHighPointsTimeline().length) {
-      <app-stat-card title="Season High Points">
+      <app-stat-card title="Season High Points" bodyAlign="start">
         <app-starter-game-list
           [items]="seasonHighPointsRows()"
           [showWeek]="false"
