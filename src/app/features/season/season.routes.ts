@@ -84,6 +84,13 @@ export const SEASON_ROUTES: Routes = [
               ).then((m) => m.AnalyticsPfPaScatter),
           },
           {
+            path: 'margin-of-victory-distribution',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-margin-of-victory-distribution/analytics-margin-of-victory-distribution'
+              ).then((m) => m.AnalyticsMarginOfVictoryDistribution),
+          },
+          {
             path: 'points-distribution',
             loadComponent: () =>
               import(

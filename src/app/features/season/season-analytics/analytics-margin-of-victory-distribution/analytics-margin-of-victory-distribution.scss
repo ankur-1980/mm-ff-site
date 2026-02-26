@@ -1,0 +1,13 @@
+.mov-distribution {
+  padding: 0.5rem 0;
+}
+
+.mov-distribution__chart-wrap {
+  height: 400px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.mov-distribution__empty {
+  color: var(--mat-sys-outline, #666);
+}
