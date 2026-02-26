@@ -1,1 +1,17 @@
-<p>awards works!</p>
+<section class="all-time-awards">
+  <div class="all-time-awards__grid">
+    @if (topSeasonHighPoints().length) {
+      <app-stat-card
+        title="Top 10 Season High Points"
+        subtitle="Points • Year • Owner"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="topSeasonHighPointsRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+  </div>
+</section>
