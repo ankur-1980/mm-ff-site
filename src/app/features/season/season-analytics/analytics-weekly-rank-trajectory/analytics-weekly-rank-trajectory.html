@@ -1,0 +1,17 @@
+<h3 class="analytics-weekly-rank-trajectory__heading">Weekly Rank Trajectory</h3>
+<p class="analytics-weekly-rank-trajectory__intro">
+  Each week teams are ranked by that week’s score (1 = highest). Rank 1 is at the top. Shows who hovered at the top, who climbed late, and who collapsed.
+</p>
+@if (chartData(); as data) {
+  <div class="analytics-weekly-rank-trajectory__chart-wrap">
+    <canvas
+      baseChart
+      type="line"
+      [data]="data"
+      [options]="chartOptions()"
+      [legend]="true"
+    ></canvas>
+  </div>
+} @else {
+  <p class="analytics-weekly-rank-trajectory__empty">No trajectory data for this season.</p>
+}

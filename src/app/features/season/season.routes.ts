@@ -69,6 +69,13 @@ export const SEASON_ROUTES: Routes = [
                 './season-analytics/analytics-all-play-matrix/analytics-all-play-matrix'
               ).then((m) => m.AnalyticsAllPlayMatrix),
           },
+          {
+            path: 'weekly-rank-trajectory',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-weekly-rank-trajectory/analytics-weekly-rank-trajectory'
+              ).then((m) => m.AnalyticsWeeklyRankTrajectory),
+          },
         ],
       },
       {
