@@ -90,6 +90,11 @@ export class AllTimeAllPlayMatrixService {
 
   buildMatrix(): AllPlayMatrixResult | null {
     const ownerIndex = this.buildOwnerIndex();
+    const ownerMeta = new Map(
+      this.owners
+        .allOwners()
+        .map((o) => [o.managerName, (o.activeSeasons?.length ?? 0) || o.seasonsPlayed || 0] as const)
+    );
     const seasonIds = this.weeklyMatchups.seasonIds();
     if (!seasonIds.length) return null;
 
@@ -166,10 +171,25 @@ export class AllTimeAllPlayMatrixService {
       (a, b) => (totalWins.get(b) ?? 0) - (totalWins.get(a) ?? 0) || a.localeCompare(b)
     );
 
-    const getRecord = (rowOwner: string, colOwner: string): AllPlayPairRecord =>
-      pairRecords.get(`${rowOwner}|${colOwner}`) ?? { wins: 0, losses: 0, ties: 0 };
+    const displayByOwner = new Map<string, string>();
+    const ownerByDisplay = new Map<string, string>();
+    for (const owner of sortedOwners) {
+      const seasonsPlayed = ownerMeta.get(owner) ?? 0;
+      const display = `${owner} (${seasonsPlayed})`;
+      displayByOwner.set(owner, display);
+      ownerByDisplay.set(display, owner);
+    }
 
-    const getTotalRecord = (owner: string): AllPlayPairRecord => {
+    const ownerFromDisplay = (display: string): string => ownerByDisplay.get(display) ?? display;
+
+    const getRecord = (rowOwnerDisplay: string, colOwnerDisplay: string): AllPlayPairRecord => {
+      const rowOwner = ownerFromDisplay(rowOwnerDisplay);
+      const colOwner = ownerFromDisplay(colOwnerDisplay);
+      return pairRecords.get(`${rowOwner}|${colOwner}`) ?? { wins: 0, losses: 0, ties: 0 };
+    };
+
+    const getTotalRecord = (ownerDisplay: string): AllPlayPairRecord => {
+      const owner = ownerFromDisplay(ownerDisplay);
       let wins = 0;
       let losses = 0;
       let ties = 0;
@@ -184,7 +204,7 @@ export class AllTimeAllPlayMatrixService {
     };
 
     return {
-      teamNames: sortedOwners,
+      teamNames: sortedOwners.map((owner) => displayByOwner.get(owner) ?? owner),
       getRecord,
       getTotalRecord,
       weeksCount,

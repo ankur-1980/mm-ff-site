@@ -12,6 +12,16 @@ export class AllPlayMatrix {
   readonly matrix = input<AllPlayMatrixResult | null>(null);
   readonly showWinPct = input<boolean>(false);
 
+  protected teamLabel(value: string): string {
+    const match = value.match(/^(.*)\s\((\d+)\)$/);
+    return match ? match[1] : value;
+  }
+
+  protected teamMeta(value: string): string {
+    const match = value.match(/^(.*)\s\((\d+)\)$/);
+    return match ? `(${match[2]})` : '';
+  }
+
   protected formatRecord(record: AllPlayPairRecord): string {
     if (record.wins === 0 && record.losses === 0 && record.ties === 0) return '—';
     if (record.ties > 0) {

@@ -98,3 +98,12 @@ tbody tr:hover .all-play-matrix__cell--data {
   background: var(--mat-app-background-color, #eee);
   opacity: 0.8;
 }
+
+.all-play-matrix__team-label {
+  font-weight: inherit;
+}
+
+.all-play-matrix__team-meta {
+  font-style: italic;
+  font-weight: 400;
+}

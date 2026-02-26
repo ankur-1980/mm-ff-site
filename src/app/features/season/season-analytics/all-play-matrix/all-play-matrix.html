@@ -12,7 +12,10 @@
             <th class="all-play-matrix__cell all-play-matrix__cell--corner"></th>
             @for (team of data.teamNames; track team) {
               <th class="all-play-matrix__cell all-play-matrix__cell--header" [title]="team">
-                {{ team }}
+                <span class="all-play-matrix__team-label">{{ teamLabel(team) }}</span>
+                @if (teamMeta(team)) {
+                  <span class="all-play-matrix__team-meta"> {{ teamMeta(team) }}</span>
+                }
               </th>
             }
             <th class="all-play-matrix__cell all-play-matrix__cell--header all-play-matrix__cell--total-header">
@@ -30,7 +33,10 @@
             @let rowTotal = data.getTotalRecord(rowTeam);
             <tr>
               <th class="all-play-matrix__cell all-play-matrix__cell--row-header" [title]="rowTeam">
-                {{ rowTeam }}
+                <span class="all-play-matrix__team-label">{{ teamLabel(rowTeam) }}</span>
+                @if (teamMeta(rowTeam)) {
+                  <span class="all-play-matrix__team-meta"> {{ teamMeta(rowTeam) }}</span>
+                }
               </th>
               @for (colTeam of data.teamNames; track colTeam) {
                 <td class="all-play-matrix__cell all-play-matrix__cell--data"
