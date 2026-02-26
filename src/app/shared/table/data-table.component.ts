@@ -69,7 +69,14 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
       this.dataSource.sort = this.matSort();
       this.dataSource.data = rows;
       this.dataSource.sortingDataAccessor = (row: T, property: string): string | number => {
-        const val = row[property];
+        const overrideKey = `${property}SortValue`;
+        const overrideVal = (row as Record<string, unknown>)[overrideKey];
+        if (overrideVal != null) {
+          const n = coerceNumber(overrideVal);
+          return typeof n === 'number' ? n : String(overrideVal);
+        }
+
+        const val = row[property as keyof T];
         if (this.numericKeys().has(property)) {
           const n = coerceNumber(val);
           return typeof n === 'number' ? n : Number.NaN;
