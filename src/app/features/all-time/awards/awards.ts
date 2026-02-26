@@ -228,7 +228,7 @@ export class Awards {
     }))
   );
 
-  protected readonly topSingleGameMargins = computed<SingleGameMarginRow[]>(() => {
+  private readonly allSingleGameMargins = computed<SingleGameMarginRow[]>(() => {
     const rows: SingleGameMarginRow[] = [];
     const ownerByTeamName = this.ownerByTeamName();
 
@@ -260,18 +260,41 @@ export class Awards {
       }
     }
 
-    return rows
+    return rows.filter((row) => row.margin > 0);
+  });
+
+  protected readonly topSingleGameMargins = computed<SingleGameMarginRow[]>(() =>
+    [...this.allSingleGameMargins()]
       .sort((a, b) => {
         if (b.margin !== a.margin) return b.margin - a.margin;
         if (b.year !== a.year) return Number(b.year) - Number(a.year);
         if (b.week !== a.week) return b.week - a.week;
         return a.ownerName.localeCompare(b.ownerName);
       })
-      .slice(0, 10);
-  });
+      .slice(0, 10)
+  );
 
   protected readonly topSingleGameMarginsRows = computed<StarterGameListItem[]>(() =>
     this.topSingleGameMargins().map((row) => ({
+      value: row.margin,
+      playerDetails: `${row.year} ${row.ownerName}`,
+      teamName: `Week ${String(row.week).padStart(2, '0')}`,
+    }))
+  );
+
+  protected readonly topSingleGameNarrowestVictories = computed<SingleGameMarginRow[]>(() =>
+    [...this.allSingleGameMargins()]
+      .sort((a, b) => {
+        if (a.margin !== b.margin) return a.margin - b.margin;
+        if (b.year !== a.year) return Number(b.year) - Number(a.year);
+        if (b.week !== a.week) return b.week - a.week;
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+      .slice(0, 10)
+  );
+
+  protected readonly topSingleGameNarrowestVictoriesRows = computed<StarterGameListItem[]>(() =>
+    this.topSingleGameNarrowestVictories().map((row) => ({
       value: row.margin,
       playerDetails: `${row.year} ${row.ownerName}`,
       teamName: `Week ${String(row.week).padStart(2, '0')}`,
