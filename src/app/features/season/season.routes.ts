@@ -70,6 +70,13 @@ export const SEASON_ROUTES: Routes = [
               ).then((m) => m.AnalyticsAllPlayMatrix),
           },
           {
+            path: 'weekly-all-play-wins',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-weekly-all-play-wins/analytics-weekly-all-play-wins'
+              ).then((m) => m.AnalyticsWeeklyAllPlayWins),
+          },
+          {
             path: 'weekly-rank-trajectory',
             loadComponent: () =>
               import(
