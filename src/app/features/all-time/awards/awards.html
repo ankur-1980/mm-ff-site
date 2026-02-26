@@ -141,27 +141,9 @@
     }
 
     @if (mostChampionshipsRows().length) {
-      <app-stat-card
-        title="Most Championships (Min 1)"
-        subtitle="Champs - Owner"
-        bodyAlign="start"
-      >
+      <app-stat-card title="Most Championships (Min 1)" subtitle="Champs - Owner" bodyAlign="start">
         <app-starter-game-list
           [items]="mostChampionshipsRows()"
-          [showWeek]="false"
-          [truncateText]="false"
-        ></app-starter-game-list>
-      </app-stat-card>
-    }
-
-    @if (highPointsAndChampionshipRows().length) {
-      <app-stat-card
-        title="Season High Points + Championship"
-        subtitle="Year - Owner"
-        bodyAlign="start"
-      >
-        <app-starter-game-list
-          [items]="highPointsAndChampionshipRows()"
           [showWeek]="false"
           [truncateText]="false"
         ></app-starter-game-list>
@@ -176,6 +158,20 @@
       >
         <app-starter-game-list
           [items]="mostRunnerUpFinishesRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (highPointsAndChampionshipRows().length) {
+      <app-stat-card
+        title="Season High Points + Championship"
+        subtitle="Year - Owner"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="highPointsAndChampionshipRows()"
           [showWeek]="false"
           [truncateText]="false"
         ></app-starter-game-list>
