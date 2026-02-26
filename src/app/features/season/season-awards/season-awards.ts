@@ -687,7 +687,7 @@ export class SeasonAwards {
 
   protected readonly topSingleGameBiggestLoserRows = computed<StarterGameListItem[]>(() =>
     this.topSingleGameBiggestLosers().map((team) => ({
-      value: team.points,
+      value: team.diff.toFixed(2),
       weekLabel: String(team.week).padStart(2, '0'),
       teamName: mapTeamNameShort(team.teamName),
     }))
@@ -735,7 +735,7 @@ export class SeasonAwards {
 
   protected readonly topSingleGameNarrowestVictoryRows = computed<StarterGameListItem[]>(() =>
     this.topSingleGameNarrowestVictories().map((team) => ({
-      value: team.points,
+      value: team.diff.toFixed(2),
       weekLabel: String(team.week).padStart(2, '0'),
       teamName: mapTeamNameShort(team.teamName),
     }))
