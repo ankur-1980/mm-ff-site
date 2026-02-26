@@ -1,0 +1,19 @@
+<div class="pf-pa-scatter">
+  @if (scatterResult(); as result) {
+    <div class="pf-pa-scatter__chart-wrap">
+      <canvas
+        baseChart
+        [data]="chartData()!"
+        [options]="chartOptions()"
+        [plugins]="chartPlugins"
+        chartType="scatter"
+      ></canvas>
+    </div>
+    <p class="pf-pa-scatter__legend">
+      Quadrants: Elite (high PF / low PA), Unlucky (high PF / high PA),
+      Lucky (low PF / low PA), Bad (low PF / high PA). Lines at league average PF and PA; diagonal = .500 (PF = PA).
+    </p>
+  } @else {
+    <p class="pf-pa-scatter__empty">No data for this season.</p>
+  }
+</div>

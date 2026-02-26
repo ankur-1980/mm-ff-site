@@ -77,6 +77,13 @@ export const SEASON_ROUTES: Routes = [
               ).then((m) => m.AnalyticsWeeklyRankTrajectory),
           },
           {
+            path: 'pf-pa-scatter',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-pf-pa-scatter/analytics-pf-pa-scatter'
+              ).then((m) => m.AnalyticsPfPaScatter),
+          },
+          {
             path: 'points-distribution',
             loadComponent: () =>
               import(
