@@ -1,4 +1,21 @@
-<section class="page-section" aria-labelledby="all-time-heading">
-  <h1 id="all-time-heading">All‑Time</h1>
-  <p>All‑time aggregates and records will go here.</p>
+<section class="page-section all-time-page" aria-label="All-Time">
+  <app-section-header heading="All-Time" />
+
+  <div class="all-time-page__toolbar">
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="all-time-page__tabs">
+      @for (tab of tabs; track tab.path) {
+        <a
+          mat-tab-link
+          [routerLink]="['/all-time', tab.path]"
+          routerLinkActive
+          #rla="routerLinkActive"
+          [active]="rla.isActive"
+        >{{ tab.label }}</a>
+      }
+    </nav>
+  </div>
+
+  <mat-tab-nav-panel #tabPanel>
+    <router-outlet />
+  </mat-tab-nav-panel>
 </section>
