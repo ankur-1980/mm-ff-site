@@ -9,6 +9,7 @@ import type { DataTableColumnDef } from '../../../shared/table';
 import type {
   AllTimeRecordRow,
   AllTimeRecordsTableState,
+  ChampionTimelineEntry,
   OwnerRecordTotals,
 } from './records.models';
 
@@ -501,5 +502,33 @@ export class AllTimeRecordsService {
     }
 
     return { columns: this.columns, data: rows };
+  }
+
+  getChampionsTimeline(): ChampionTimelineEntry[] {
+    const rows: ChampionTimelineEntry[] = [];
+    const seasonIds = this.seasonStandingsData
+      .seasonIds()
+      .sort((a, b) => Number(b) - Number(a));
+
+    for (const seasonId of seasonIds) {
+      const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
+      if (!standings) continue;
+
+      const champions = Object.values(standings)
+        .filter((entry) => {
+          const rank = Number.parseInt(String(entry.ranks?.playoffRank ?? '').trim(), 10);
+          return Number.isFinite(rank) && rank === 1;
+        })
+        .map((entry) => ({
+          year: seasonId,
+          ownerName: entry.playerDetails?.managerName ?? 'Unknown Owner',
+          teamName: entry.playerDetails?.teamName ?? 'Unknown Team',
+        }))
+        .sort((a, b) => a.ownerName.localeCompare(b.ownerName));
+
+      rows.push(...champions);
+    }
+
+    return rows;
   }
 }

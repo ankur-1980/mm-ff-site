@@ -60,3 +60,12 @@
   overflow: visible;
   text-overflow: clip;
 }
+
+.starter-game-list--no-truncate .starter-game-list__week,
+.starter-game-list--no-truncate .starter-game-list__player,
+.starter-game-list--no-truncate .starter-game-list__team {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  max-width: none;
+}

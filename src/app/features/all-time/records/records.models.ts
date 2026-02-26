@@ -28,6 +28,12 @@ export interface AllTimeRecordsTableState {
   data: AllTimeRecordRow[];
 }
 
+export interface ChampionTimelineEntry {
+  year: string;
+  ownerName: string;
+  teamName: string;
+}
+
 export interface OwnerRecordTotals {
   wins: number;
   losses: number;

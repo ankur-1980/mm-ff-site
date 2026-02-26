@@ -18,4 +18,5 @@ export class StarterGameList {
   readonly items = input.required<StarterGameListItem[]>();
   readonly showWeek = input<boolean>(true);
   readonly showDetails = input<boolean>(true);
+  readonly truncateText = input<boolean>(true);
 }

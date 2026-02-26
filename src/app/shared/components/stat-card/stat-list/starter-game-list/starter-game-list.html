@@ -1,4 +1,4 @@
-<ul class="starter-game-list">
+<ul class="starter-game-list" [class.starter-game-list--no-truncate]="!truncateText()">
   @for (item of items(); track item.playerDetails + '|' + item.teamName + '|' + item.weekLabel + '|' + item.value) {
     <li
       class="starter-game-list__row"
