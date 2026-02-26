@@ -53,6 +53,23 @@ export const SEASON_ROUTES: Routes = [
           import('./season-analytics/season-analytics').then(
             (m) => m.SeasonAnalytics
           ),
+        children: [
+          { path: '', pathMatch: 'full', redirectTo: 'table' },
+          {
+            path: 'table',
+            loadComponent: () =>
+              import('./season-analytics/analytics-table/analytics-table').then(
+                (m) => m.AnalyticsTable
+              ),
+          },
+          {
+            path: 'all-play-matrix',
+            loadComponent: () =>
+              import(
+                './season-analytics/analytics-all-play-matrix/analytics-all-play-matrix'
+              ).then((m) => m.AnalyticsAllPlayMatrix),
+          },
+        ],
       },
       {
         path: 'draft',
