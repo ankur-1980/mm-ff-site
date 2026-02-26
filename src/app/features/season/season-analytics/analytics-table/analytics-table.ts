@@ -8,6 +8,7 @@ import { DataTableComponent } from '../../../../shared/table';
 import type { DataTableColumnDef, DataTableRow } from '../../../../shared/table';
 import { SeasonStandingsService } from '../../season-standings/season-standings.service';
 import type { SeasonStandingsRow } from '../../season-standings/season-standings.models';
+import { PythagoreanRankingsService } from '../../season-power-rankings/pythagorean-rankings.service';
 
 export interface AnalyticsTableRow extends DataTableRow {
   teamName: string;
@@ -16,6 +17,7 @@ export interface AnalyticsTableRow extends DataTableRow {
   pointsAgainst: number;
   pointsForAvg: number;
   pointsAgainstAvg: number;
+  pythagoreanWins: number;
 }
 
 const ANALYTICS_COLUMNS: DataTableColumnDef[] = [
@@ -30,6 +32,12 @@ const ANALYTICS_COLUMNS: DataTableColumnDef[] = [
   { key: 'pointsAgainst', header: 'Points Against', widthCh: 14, format: 'decimal2' },
   { key: 'pointsForAvg', header: 'PF Avg', widthCh: 10, format: 'decimal2' },
   { key: 'pointsAgainstAvg', header: 'PA Avg', widthCh: 10, format: 'decimal2' },
+  {
+    key: 'pythagoreanWins',
+    header: 'PE Wins',
+    widthCh: 10,
+    format: 'decimal2',
+  },
 ];
 
 @Component({
@@ -43,6 +51,7 @@ export class AnalyticsTable {
   private readonly route = inject(ActivatedRoute);
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
   private readonly seasonStandings = inject(SeasonStandingsService);
+  private readonly pythagorean = inject(PythagoreanRankingsService);
 
   /** Year is on the :year route (parent of analytics). */
   private readonly year = toSignal(
@@ -62,6 +71,10 @@ export class AnalyticsTable {
     const state = this.seasonStandings.toTableState(this.standings());
     const rows = state.data.map((row: SeasonStandingsRow): AnalyticsTableRow => {
       const gp = row.gp ?? 0;
+      const expectedWins =
+        gp > 0
+          ? this.pythagorean.calculateExpectedWins(row.pointsFor, row.pointsAgainst, gp)
+          : 0;
       return {
         teamName: row.teamName,
         managerName: row.managerName,
@@ -69,6 +82,7 @@ export class AnalyticsTable {
         pointsAgainst: row.pointsAgainst,
         pointsForAvg: gp > 0 ? row.pointsFor / gp : 0,
         pointsAgainstAvg: gp > 0 ? row.pointsAgainst / gp : 0,
+        pythagoreanWins: expectedWins,
       };
     });
     return { columns: ANALYTICS_COLUMNS, data: rows };
