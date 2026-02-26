@@ -12,6 +12,8 @@ import type {
   OwnerRecordTotals,
 } from './records.models';
 
+const EPSILON = 0.000001;
+
 function normalize(value: string | null | undefined): string {
   return value != null ? String(value).trim().toLowerCase() : '';
 }
@@ -20,10 +22,34 @@ function addToTotals(target: OwnerRecordTotals, source: OwnerRecordTotals): void
   target.wins += source.wins;
   target.losses += source.losses;
   target.ties += source.ties;
+  target.championships += source.championships;
+  target.highPoints += source.highPoints;
+  target.lowPoints += source.lowPoints;
+  target.moves += source.moves;
+  target.trades += source.trades;
+  target.pointsFor += source.pointsFor;
+  target.pointsAgainst += source.pointsAgainst;
 }
 
 function emptyTotals(): OwnerRecordTotals {
-  return { wins: 0, losses: 0, ties: 0 };
+  return {
+    wins: 0,
+    losses: 0,
+    ties: 0,
+    championships: 0,
+    highPoints: 0,
+    lowPoints: 0,
+    moves: 0,
+    trades: 0,
+    pointsFor: 0,
+    pointsAgainst: 0,
+  };
+}
+
+function addStandingsOnly(target: OwnerRecordTotals, source: OwnerRecordTotals): void {
+  target.championships += source.championships;
+  target.moves += source.moves;
+  target.trades += source.trades;
 }
 
 interface TeamOwnerIndex {
@@ -49,9 +75,21 @@ export class AllTimeRecordsService {
 
   readonly columns: DataTableColumnDef[] = [
     { key: 'ownerName', header: 'Owner Name', widthCh: 22 },
+    { key: 'totalSeasons', header: 'Seasons', widthCh: 8, format: 'integer' },
     { key: 'wins', header: 'W', widthCh: 6, format: 'integer', defaultSort: true },
     { key: 'losses', header: 'L', widthCh: 6, format: 'integer' },
     { key: 'ties', header: 'T', widthCh: 6, format: 'integer' },
+    { key: 'championships', header: 'Champs', widthCh: 8, format: 'integer' },
+    { key: 'gp', header: 'GP', widthCh: 6, format: 'integer' },
+    { key: 'winPct', header: 'Win Pct%', widthCh: 10, format: 'percent2' },
+    { key: 'pointsFor', header: 'PF', widthCh: 12, format: 'decimal2' },
+    { key: 'pointsAgainst', header: 'PA', widthCh: 12, format: 'decimal2' },
+    { key: 'pointsDiff', header: 'Diff', widthCh: 12, format: 'signedDecimal2' },
+    { key: 'ppgAvg', header: 'PPG Avg', widthCh: 10, format: 'decimal2' },
+    { key: 'highPoints', header: 'High Pts', widthCh: 9, format: 'smartDecimal2' },
+    { key: 'lowPoints', header: 'Low Pts', widthCh: 9, format: 'smartDecimal2' },
+    { key: 'moves', header: 'Moves', widthCh: 7, format: 'integer' },
+    { key: 'trades', header: 'Trades', widthCh: 7, format: 'integer' },
   ];
 
   private buildTeamOwnerIndex(): TeamOwnerIndex {
@@ -135,8 +173,20 @@ export class AllTimeRecordsService {
       const weekData = this.weeklyMatchupsData.getMatchupsForWeek(seasonId, `week${week}`);
       if (!weekData) continue;
 
+      const weeklyScores: Array<{ owner: string; score: number }> = [];
       const seenMatchups = new Set<string>();
       for (const entry of Object.values(weekData)) {
+        const weekOwner = this.resolveOwnerByTeamName(
+          seasonId,
+          entry.matchup?.team1Name,
+          `weekly score week${week}`,
+          teamIndex
+        );
+        const weekScore = Number(entry.team1Totals?.totalPoints);
+        if (weekOwner && Number.isFinite(weekScore)) {
+          weeklyScores.push({ owner: weekOwner, score: weekScore });
+        }
+
         const matchup = entry.matchup;
         if (!matchup?.team1Name || !matchup?.team2Name) continue;
 
@@ -176,9 +226,24 @@ export class AllTimeRecordsService {
           owner1Totals.ties += 1;
           owner2Totals.ties += 1;
         }
+        owner1Totals.pointsFor += team1Score;
+        owner1Totals.pointsAgainst += team2Score;
+        owner2Totals.pointsFor += team2Score;
+        owner2Totals.pointsAgainst += team1Score;
 
         totalsByOwner.set(owner1, owner1Totals);
         totalsByOwner.set(owner2, owner2Totals);
+      }
+
+      if (weeklyScores.length > 0) {
+        const topScore = Math.max(...weeklyScores.map((s) => s.score));
+        const lowScore = Math.min(...weeklyScores.map((s) => s.score));
+        for (const row of weeklyScores) {
+          const totals = totalsByOwner.get(row.owner) ?? emptyTotals();
+          if (Math.abs(row.score - topScore) < EPSILON) totals.highPoints += 1;
+          if (Math.abs(row.score - lowScore) < EPSILON) totals.lowPoints += 1;
+          totalsByOwner.set(row.owner, totals);
+        }
       }
     }
 
@@ -207,6 +272,14 @@ export class AllTimeRecordsService {
       totals.wins += entry.record?.win ?? 0;
       totals.losses += entry.record?.loss ?? 0;
       totals.ties += entry.record?.tie ?? 0;
+      const playoffRank = Number.parseInt(String(entry.ranks?.playoffRank ?? '').trim(), 10);
+      if (Number.isFinite(playoffRank) && playoffRank === 1) totals.championships += 1;
+      totals.highPoints += entry.points?.highPoints ?? 0;
+      totals.lowPoints += entry.points?.lowPoints ?? 0;
+      totals.moves += entry.transactions?.moves ?? 0;
+      totals.trades += entry.transactions?.trades ?? 0;
+      totals.pointsFor += entry.points?.pointsFor ?? 0;
+      totals.pointsAgainst += entry.points?.pointsAgainst ?? 0;
       totalsByOwner.set(owner, totals);
     }
 
@@ -229,7 +302,7 @@ export class AllTimeRecordsService {
 
   private logOwnerMismatchIfNeeded(
     row: AllTimeRecordRow,
-    expected: OwnerRecordTotals,
+    expected: Pick<OwnerRecordTotals, 'wins' | 'losses' | 'ties'>,
     isDerivedComplete: boolean
   ): void {
     if (!isDerivedComplete) return;
@@ -289,12 +362,14 @@ export class AllTimeRecordsService {
       for (const owner of owners) {
         const ownerId = owner.managerName;
         const totals = allTimeByOwner.get(ownerId)!;
+        const fallbackTotals = fallback?.get(ownerId);
         if (useDerived && derived?.totalsByOwner.has(ownerId)) {
           addToTotals(totals, derived.totalsByOwner.get(ownerId)!);
+          if (fallbackTotals) addStandingsOnly(totals, fallbackTotals);
           continue;
         }
-        if (fallback?.has(ownerId)) {
-          addToTotals(totals, fallback.get(ownerId)!);
+        if (fallbackTotals) {
+          addToTotals(totals, fallbackTotals);
         }
       }
     }
@@ -309,12 +384,28 @@ export class AllTimeRecordsService {
     const rows: AllTimeRecordRow[] = owners
       .map((owner) => {
         const totals = allTimeByOwner.get(owner.managerName) ?? emptyTotals();
+        const gp = totals.wins + totals.losses + totals.ties;
+        const winPct = gp > 0 ? ((totals.wins + 0.5 * totals.ties) / gp) * 100 : 0;
+        const ppgAvg = gp > 0 ? totals.pointsFor / gp : 0;
+        const pointsDiff = totals.pointsFor - totals.pointsAgainst;
         const ownerRank = ownerRankByName.get(owner.managerName) ?? 999;
         return {
           ownerName: owner.managerName,
+          totalSeasons: (owner.activeSeasons?.length ?? 0) || owner.seasonsPlayed || 0,
           wins: totals.wins,
           losses: totals.losses,
           ties: totals.ties,
+          championships: totals.championships,
+          highPoints: totals.highPoints,
+          lowPoints: totals.lowPoints,
+          moves: totals.moves,
+          trades: totals.trades,
+          pointsFor: totals.pointsFor,
+          pointsAgainst: totals.pointsAgainst,
+          pointsDiff,
+          gp,
+          winPct,
+          ppgAvg,
           // Tie-break order packed for default W sort (desc):
           // wins desc, losses asc, ties desc, ownerName asc.
           winSortValue:
