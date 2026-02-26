@@ -23,6 +23,12 @@ interface SingleGamePointsRow {
   week: number;
 }
 
+interface SeasonWinsRow {
+  wins: number;
+  year: string;
+  ownerName: string;
+}
+
 function normalize(value: string | null | undefined): string {
   return value != null ? String(value).trim().toLowerCase() : '';
 }
@@ -185,4 +191,72 @@ export class Awards {
       teamName: `Week ${String(row.week).padStart(2, '0')}`,
     }))
   );
+
+  private readonly seasonWinsRows = computed<SeasonWinsRow[]>(() => {
+    const rows: SeasonWinsRow[] = [];
+
+    for (const seasonId of this.seasonStandingsData.seasonIds()) {
+      const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
+      if (!standings) continue;
+
+      for (const entry of Object.values(standings)) {
+        rows.push({
+          wins: Number(entry.record?.win ?? 0),
+          year: seasonId,
+          ownerName: entry.playerDetails?.managerName ?? 'Unknown Owner',
+        });
+      }
+    }
+
+    return rows;
+  });
+
+  protected readonly fewestSeasonWinsMaxThree = computed<SeasonWinsRow[]>(() =>
+    this.seasonWinsRows()
+      .filter((row) => row.wins <= 3)
+      .sort((a, b) => {
+        if (a.wins !== b.wins) return a.wins - b.wins;
+        if (b.year !== a.year) return Number(b.year) - Number(a.year);
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+  );
+
+  protected readonly fewestSeasonWinsMaxThreeRows = computed<StarterGameListItem[]>(() =>
+    this.fewestSeasonWinsMaxThree().map((row) => ({
+      value: `${row.wins}`,
+      playerDetails: row.year,
+      teamName: row.ownerName,
+    }))
+  );
+
+  protected readonly mostSeasonWinsMaxTwelve = computed<SeasonWinsRow[]>(() =>
+    this.seasonWinsRows()
+      .filter((row) => row.wins >= 12)
+      .sort((a, b) => {
+        if (b.wins !== a.wins) return b.wins - a.wins;
+        if (b.year !== a.year) return Number(b.year) - Number(a.year);
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+  );
+
+  protected readonly mostSeasonWinsMaxTwelveRows = computed<StarterGameListItem[]>(() => {
+    const rows: StarterGameListItem[] = this.mostSeasonWinsMaxTwelve().map((row) => ({
+      value: `${row.wins}`,
+      playerDetails: row.year,
+      teamName: row.ownerName,
+    }));
+
+    const elevenWinCount = this.seasonWinsRows().filter((row) => row.wins === 11).length;
+    const tenWinCount = this.seasonWinsRows().filter((row) => row.wins === 10).length;
+    rows.push({
+      value: '11',
+      teamName: `${elevenWinCount} teams`,
+    });
+    rows.push({
+      value: '10',
+      teamName: `${tenWinCount} teams`,
+    });
+
+    return rows;
+  });
 }

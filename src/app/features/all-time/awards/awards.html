@@ -55,5 +55,33 @@
         ></app-starter-game-list>
       </app-stat-card>
     }
+
+    @if (fewestSeasonWinsMaxThree().length) {
+      <app-stat-card
+        title="Fewest Wins In A Season (Max 3)"
+        subtitle="Wins - Year - Owner"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="fewestSeasonWinsMaxThreeRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (mostSeasonWinsMaxTwelveRows().length) {
+      <app-stat-card
+        title="Most Wins In A Season (Max 12)"
+        subtitle="Wins - Year - Owner"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="mostSeasonWinsMaxTwelveRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
   </div>
 </section>
