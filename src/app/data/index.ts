@@ -18,3 +18,7 @@ export {
   LeagueMetaDataFacade,
   type CurrentSeason
 } from './league-metadata-facade';
+export {
+  DraftRostersDataService,
+  type DraftRostersDataStatus
+} from './draft-rosters-data.service';
