@@ -17,8 +17,12 @@ export class AnalyticsPointsDistribution {
   private readonly pointsDistribution = inject(PointsDistributionService);
 
   private readonly year = toSignal(
-    (this.route.parent?.parent ?? this.route.parent ?? this.route).params.pipe(
-      map((p) => (p['year'] ? Number(p['year']) : null))
+    (this.route.parent?.parent ?? this.route.parent ?? this.route).paramMap.pipe(
+      map((pm) => {
+        const raw = pm.get('year');
+        const n = raw == null ? NaN : Number(raw);
+        return Number.isFinite(n) ? n : null;
+      })
     ),
     { initialValue: null }
   );
@@ -32,19 +36,44 @@ export class AnalyticsPointsDistribution {
   /** Global scale: min/max in increments of 10, extending below lowest and above highest data. */
   protected readonly scale = computed(() => {
     const stats = this.boxPlotStats();
-    if (!stats?.length) return { min: 0, max: 100, ticks: [0, 50, 100] };
+
+    if (!stats?.length) {
+      return { min: 0, max: 100, ticks: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] };
+    }
+
     let dataMin = Infinity;
     let dataMax = -Infinity;
+
     for (const s of stats) {
-      const low = Math.min(s.lowerWhisker, ...s.outliers.map((o) => o.points));
-      const high = Math.max(s.upperWhisker, ...s.outliers.map((o) => o.points));
-      if (low < dataMin) dataMin = low;
-      if (high > dataMax) dataMax = high;
+      const outlierPoints = s.outliers.map(o => o.points);
+
+      const low = outlierPoints.length
+        ? Math.min(s.lowerWhisker, ...outlierPoints)
+        : s.lowerWhisker;
+
+      const high = outlierPoints.length
+        ? Math.max(s.upperWhisker, ...outlierPoints)
+        : s.upperWhisker;
+
+      dataMin = Math.min(dataMin, low);
+      dataMax = Math.max(dataMax, high);
     }
-    const min = Math.floor(dataMin / 10) * 10;
-    const max = Math.ceil(dataMax / 10) * 10;
+
+    // Round to nearest 10
+    let min = Math.floor(dataMin / 10) * 10;
+    let max = Math.ceil(dataMax / 10) * 10;
+
+    // Prevent zero-width scale
+    if (min === max) {
+      min -= 10;
+      max += 10;
+    }
+
     const ticks: number[] = [];
-    for (let t = min; t <= max; t += 10) ticks.push(t);
+    for (let t = min; t <= max; t += 10) {
+      ticks.push(t);
+    }
+
     return { min, max, ticks };
   });
 
