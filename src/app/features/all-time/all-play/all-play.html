@@ -1,1 +1,8 @@
-<p>all-play works!</p>
+<section class="all-time-all-play">
+  <h2 class="all-time-all-play__heading">All-Time All-Play</h2>
+  <p class="all-time-all-play__note">
+    Regular season matchups only. Seasons 2006-2011 are excluded because weekly matchup data is unavailable.
+  </p>
+
+  <app-all-play-matrix [matrix]="matrix()" [showWinPct]="true" />
+</section>

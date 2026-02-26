@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AllPlay } from './all-play';
+import { AllTimeAllPlayMatrixService } from './all-play-matrix.service';
 
 describe('AllPlay', () => {
   let component: AllPlay;
@@ -8,7 +9,13 @@ describe('AllPlay', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AllPlay]
+      imports: [AllPlay],
+      providers: [
+        {
+          provide: AllTimeAllPlayMatrixService,
+          useValue: { buildMatrix: () => null },
+        },
+      ],
     })
     .compileComponents();
 

@@ -1,3 +1,27 @@
+@if (championsTimeline().length || seasonHighPointsTimeline().length) {
+  <div class="records__summary">
+    @if (championsTimeline().length) {
+      <app-stat-card title="Champions">
+        <app-starter-game-list
+          [items]="championRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (seasonHighPointsTimeline().length) {
+      <app-stat-card title="Season High Points" bodyAlign="start">
+        <app-starter-game-list
+          [items]="seasonHighPointsRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+  </div>
+}
+
 <app-data-table
   [columns]="tableState().columns"
   [data]="tableState().data"

@@ -9,7 +9,9 @@ import type { DataTableColumnDef } from '../../../shared/table';
 import type {
   AllTimeRecordRow,
   AllTimeRecordsTableState,
+  ChampionTimelineEntry,
   OwnerRecordTotals,
+  SeasonHighPointsTimelineEntry,
 } from './records.models';
 
 const EPSILON = 0.000001;
@@ -22,6 +24,9 @@ function addToTotals(target: OwnerRecordTotals, source: OwnerRecordTotals): void
   target.wins += source.wins;
   target.losses += source.losses;
   target.ties += source.ties;
+  target.allPlayWins += source.allPlayWins;
+  target.allPlayLosses += source.allPlayLosses;
+  target.allPlayTies += source.allPlayTies;
   target.championships += source.championships;
   target.highPoints += source.highPoints;
   target.lowPoints += source.lowPoints;
@@ -36,6 +41,9 @@ function emptyTotals(): OwnerRecordTotals {
     wins: 0,
     losses: 0,
     ties: 0,
+    allPlayWins: 0,
+    allPlayLosses: 0,
+    allPlayTies: 0,
     championships: 0,
     highPoints: 0,
     lowPoints: 0,
@@ -79,6 +87,9 @@ export class AllTimeRecordsService {
     { key: 'wins', header: 'W', widthCh: 6, format: 'integer', defaultSort: true },
     { key: 'losses', header: 'L', widthCh: 6, format: 'integer' },
     { key: 'ties', header: 'T', widthCh: 6, format: 'integer' },
+    { key: 'allPlayWins', header: 'All-Play W', widthCh: 10, format: 'integer' },
+    { key: 'allPlayLosses', header: 'All-Play L', widthCh: 10, format: 'integer' },
+    { key: 'allPlayWinPct', header: 'All-Play Win %', widthCh: 13, format: 'percent2' },
     { key: 'championships', header: 'Champs', widthCh: 8, format: 'integer' },
     { key: 'gp', header: 'GP', widthCh: 6, format: 'integer' },
     { key: 'winPct', header: 'Win Pct%', widthCh: 10, format: 'percent2' },
@@ -250,6 +261,53 @@ export class AllTimeRecordsService {
     return { hasRegularSeasonHistory: matchupCount > 0, totalsByOwner };
   }
 
+  private addAllPlayTotalsForSeason(
+    seasonId: string,
+    teamIndex: TeamOwnerIndex,
+    totalsByOwner: Map<string, OwnerRecordTotals>
+  ): void {
+    const meta = this.leagueMetaData.getSeasonMeta(seasonId);
+    const season = this.weeklyMatchupsData.getSeasonWeeks(seasonId);
+    if (!meta || !season) return;
+
+    for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
+      const weekData = season[`week${week}`];
+      if (!weekData) continue;
+
+      const ownerScores = new Map<string, number>();
+      for (const entry of Object.values(weekData)) {
+        const owner = this.resolveOwnerByTeamName(
+          seasonId,
+          entry.matchup?.team1Name,
+          `all-play week${week}`,
+          teamIndex
+        );
+        const score = Number(entry.team1Totals?.totalPoints);
+        if (!owner || !Number.isFinite(score)) continue;
+        if (!ownerScores.has(owner)) ownerScores.set(owner, score);
+      }
+
+      const owners = Array.from(ownerScores.keys());
+      if (owners.length < 2) continue;
+
+      for (const owner of owners) {
+        const rowTotals = totalsByOwner.get(owner) ?? emptyTotals();
+        const rowScore = ownerScores.get(owner)!;
+
+        for (const opponent of owners) {
+          if (opponent === owner) continue;
+          const opponentScore = ownerScores.get(opponent)!;
+          const diff = rowScore - opponentScore;
+          if (diff > EPSILON) rowTotals.allPlayWins += 1;
+          else if (diff < -EPSILON) rowTotals.allPlayLosses += 1;
+          else rowTotals.allPlayTies += 1;
+        }
+
+        totalsByOwner.set(owner, rowTotals);
+      }
+    }
+  }
+
   private fallbackSeasonTotalsFromStandings(
     seasonId: string,
     teamIndex: TeamOwnerIndex
@@ -372,6 +430,9 @@ export class AllTimeRecordsService {
           addToTotals(totals, fallbackTotals);
         }
       }
+
+      // All-play totals are always derived from weekly regular-season data where available.
+      this.addAllPlayTotalsForSeason(seasonId, teamIndex, allTimeByOwner);
     }
 
     const ownerRankByName = new Map<string, number>(
@@ -388,6 +449,11 @@ export class AllTimeRecordsService {
         const winPct = gp > 0 ? ((totals.wins + 0.5 * totals.ties) / gp) * 100 : 0;
         const ppgAvg = gp > 0 ? totals.pointsFor / gp : 0;
         const pointsDiff = totals.pointsFor - totals.pointsAgainst;
+        const allPlayGames = totals.allPlayWins + totals.allPlayLosses + totals.allPlayTies;
+        const allPlayWinPct =
+          allPlayGames > 0
+            ? ((totals.allPlayWins + 0.5 * totals.allPlayTies) / allPlayGames) * 100
+            : 0;
         const ownerRank = ownerRankByName.get(owner.managerName) ?? 999;
         return {
           ownerName: owner.managerName,
@@ -395,6 +461,9 @@ export class AllTimeRecordsService {
           wins: totals.wins,
           losses: totals.losses,
           ties: totals.ties,
+          allPlayWins: totals.allPlayWins,
+          allPlayLosses: totals.allPlayLosses,
+          allPlayWinPct,
           championships: totals.championships,
           highPoints: totals.highPoints,
           lowPoints: totals.lowPoints,
@@ -434,5 +503,62 @@ export class AllTimeRecordsService {
     }
 
     return { columns: this.columns, data: rows };
+  }
+
+  getChampionsTimeline(): ChampionTimelineEntry[] {
+    const rows: ChampionTimelineEntry[] = [];
+    const seasonIds = this.seasonStandingsData
+      .seasonIds()
+      .sort((a, b) => Number(b) - Number(a));
+
+    for (const seasonId of seasonIds) {
+      const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
+      if (!standings) continue;
+
+      const champions = Object.values(standings)
+        .filter((entry) => {
+          const rank = Number.parseInt(String(entry.ranks?.playoffRank ?? '').trim(), 10);
+          return Number.isFinite(rank) && rank === 1;
+        })
+        .map((entry) => ({
+          year: seasonId,
+          ownerName: entry.playerDetails?.managerName ?? 'Unknown Owner',
+          teamName: entry.playerDetails?.teamName ?? 'Unknown Team',
+        }))
+        .sort((a, b) => a.ownerName.localeCompare(b.ownerName));
+
+      rows.push(...champions);
+    }
+
+    return rows;
+  }
+
+  getSeasonHighPointsTimeline(): SeasonHighPointsTimelineEntry[] {
+    const rows: SeasonHighPointsTimelineEntry[] = [];
+    const seasonIds = this.seasonStandingsData
+      .seasonIds()
+      .sort((a, b) => Number(b) - Number(a));
+
+    for (const seasonId of seasonIds) {
+      const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
+      if (!standings) continue;
+
+      const entries = Object.values(standings);
+      if (!entries.length) continue;
+
+      const topPoints = Math.max(...entries.map((entry) => entry.points?.pointsFor ?? 0));
+      const winners = entries
+        .filter((entry) => Math.abs((entry.points?.pointsFor ?? 0) - topPoints) < EPSILON)
+        .map((entry) => ({
+          year: seasonId,
+          points: topPoints,
+          ownerName: entry.playerDetails?.managerName ?? 'Unknown Owner',
+        }))
+        .sort((a, b) => a.ownerName.localeCompare(b.ownerName));
+
+      rows.push(...winners);
+    }
+
+    return rows;
   }
 }

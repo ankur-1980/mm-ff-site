@@ -6,6 +6,9 @@ export interface AllTimeRecordRow extends DataTableRow {
   wins: number;
   losses: number;
   ties: number;
+  allPlayWins: number;
+  allPlayLosses: number;
+  allPlayWinPct: number;
   championships: number;
   highPoints: number;
   lowPoints: number;
@@ -25,10 +28,25 @@ export interface AllTimeRecordsTableState {
   data: AllTimeRecordRow[];
 }
 
+export interface ChampionTimelineEntry {
+  year: string;
+  ownerName: string;
+  teamName: string;
+}
+
+export interface SeasonHighPointsTimelineEntry {
+  year: string;
+  points: number;
+  ownerName: string;
+}
+
 export interface OwnerRecordTotals {
   wins: number;
   losses: number;
   ties: number;
+  allPlayWins: number;
+  allPlayLosses: number;
+  allPlayTies: number;
   championships: number;
   highPoints: number;
   lowPoints: number;

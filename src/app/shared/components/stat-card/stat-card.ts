@@ -12,4 +12,5 @@ export class StatCard {
   readonly title = input.required<string>();
   readonly subtitle = input<string>('');
   readonly footer = input<string>('');
+  readonly bodyAlign = input<'center' | 'start'>('center');
 }

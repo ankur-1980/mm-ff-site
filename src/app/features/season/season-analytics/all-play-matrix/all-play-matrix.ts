@@ -10,6 +10,17 @@ import type { AllPlayMatrixResult, AllPlayPairRecord } from '../all-play-matrix.
 })
 export class AllPlayMatrix {
   readonly matrix = input<AllPlayMatrixResult | null>(null);
+  readonly showWinPct = input<boolean>(false);
+
+  protected teamLabel(value: string): string {
+    const match = value.match(/^(.*)\s\((\d+)\)$/);
+    return match ? match[1] : value;
+  }
+
+  protected teamMeta(value: string): string {
+    const match = value.match(/^(.*)\s\((\d+)\)$/);
+    return match ? `(${match[2]})` : '';
+  }
 
   protected formatRecord(record: AllPlayPairRecord): string {
     if (record.wins === 0 && record.losses === 0 && record.ties === 0) return '—';
@@ -17,5 +28,12 @@ export class AllPlayMatrix {
       return `${record.wins}-${record.losses}-${record.ties}`;
     }
     return `${record.wins}-${record.losses}`;
+  }
+
+  protected formatWinPct(record: AllPlayPairRecord): string {
+    const games = record.wins + record.losses + record.ties;
+    if (games === 0) return '—';
+    const pct = ((record.wins + 0.5 * record.ties) / games) * 100;
+    return `${pct.toFixed(2)}%`;
   }
 }
