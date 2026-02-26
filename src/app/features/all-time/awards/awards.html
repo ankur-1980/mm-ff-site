@@ -3,11 +3,25 @@
     @if (topSeasonHighPoints().length) {
       <app-stat-card
         title="Top 10 Season High Points"
-        subtitle="Points • Year • Owner"
+        subtitle="Points - Year - Owner"
         bodyAlign="start"
       >
         <app-starter-game-list
           [items]="topSeasonHighPointsRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (topSeasonLowPoints().length) {
+      <app-stat-card
+        title="Top 10 Season Low Points"
+        subtitle="Points - Year - Owner"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="topSeasonLowPointsRows()"
           [showWeek]="false"
           [truncateText]="false"
         ></app-starter-game-list>

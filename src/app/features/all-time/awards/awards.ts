@@ -22,7 +22,7 @@ interface SeasonTeamPointsRow {
 export class Awards {
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
 
-  protected readonly topSeasonHighPoints = computed<SeasonTeamPointsRow[]>(() => {
+  private readonly seasonPointsRows = computed<SeasonTeamPointsRow[]>(() => {
     const rows: SeasonTeamPointsRow[] = [];
 
     for (const seasonId of this.seasonStandingsData.seasonIds()) {
@@ -38,17 +38,39 @@ export class Awards {
       }
     }
 
-    return rows
+    return rows;
+  });
+
+  protected readonly topSeasonHighPoints = computed<SeasonTeamPointsRow[]>(() =>
+    [...this.seasonPointsRows()]
       .sort((a, b) => {
         if (b.points !== a.points) return b.points - a.points;
         if (b.year !== a.year) return Number(b.year) - Number(a.year);
         return a.ownerName.localeCompare(b.ownerName);
       })
-      .slice(0, 10);
-  });
+      .slice(0, 10)
+  );
+
+  protected readonly topSeasonLowPoints = computed<SeasonTeamPointsRow[]>(() =>
+    [...this.seasonPointsRows()]
+      .sort((a, b) => {
+        if (a.points !== b.points) return a.points - b.points;
+        if (b.year !== a.year) return Number(b.year) - Number(a.year);
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+      .slice(0, 10)
+  );
 
   protected readonly topSeasonHighPointsRows = computed<StarterGameListItem[]>(() =>
     this.topSeasonHighPoints().map((row) => ({
+      value: row.points,
+      playerDetails: row.year,
+      teamName: row.ownerName,
+    }))
+  );
+
+  protected readonly topSeasonLowPointsRows = computed<StarterGameListItem[]>(() =>
+    this.topSeasonLowPoints().map((row) => ({
       value: row.points,
       playerDetails: row.year,
       teamName: row.ownerName,
