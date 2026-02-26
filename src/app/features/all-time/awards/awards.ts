@@ -24,6 +24,13 @@ interface SingleGamePointsRow {
   week: number;
 }
 
+interface SingleGameMarginRow {
+  margin: number;
+  year: string;
+  ownerName: string;
+  week: number;
+}
+
 interface SeasonWinsRow {
   wins: number;
   year: string;
@@ -34,6 +41,27 @@ interface AverageWinsPerSeasonRow {
   avgWins: number;
   ownerName: string;
   seasonsPlayed: number;
+}
+
+interface AveragePointsPerSeasonRow {
+  avgPointsPerSeason: number;
+  ownerName: string;
+  seasonsPlayed: number;
+}
+
+interface ChampionshipRow {
+  championships: number;
+  ownerName: string;
+}
+
+interface HighPointsChampionshipRow {
+  year: string;
+  ownerName: string;
+}
+
+interface RunnerUpRow {
+  ownerName: string;
+  count: number;
 }
 
 function normalize(value: string | null | undefined): string {
@@ -200,6 +228,56 @@ export class Awards {
     }))
   );
 
+  protected readonly topSingleGameMargins = computed<SingleGameMarginRow[]>(() => {
+    const rows: SingleGameMarginRow[] = [];
+    const ownerByTeamName = this.ownerByTeamName();
+
+    for (const seasonId of this.weeklyMatchupsData.seasonIds()) {
+      const meta = this.leagueMetaData.getSeasonMeta(seasonId);
+      if (!meta) continue;
+
+      for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
+        const weekData = this.weeklyMatchupsData.getMatchupsForWeek(seasonId, `week${week}`);
+        if (!weekData) continue;
+
+        for (const entry of Object.values(weekData)) {
+          const teamName = entry.matchup?.team1Name ?? '';
+          const ownerName = ownerByTeamName.get(normalize(teamName)) ?? 'Unknown Owner';
+          const teamScore = Number(entry.matchup?.team1Score ?? 0);
+          const opponentScore = Number(entry.matchup?.team2Score ?? 0);
+          if (!Number.isFinite(teamScore) || !Number.isFinite(opponentScore)) continue;
+
+          const margin = teamScore - opponentScore;
+          if (margin <= 0) continue;
+
+          rows.push({
+            margin,
+            year: seasonId,
+            ownerName,
+            week,
+          });
+        }
+      }
+    }
+
+    return rows
+      .sort((a, b) => {
+        if (b.margin !== a.margin) return b.margin - a.margin;
+        if (b.year !== a.year) return Number(b.year) - Number(a.year);
+        if (b.week !== a.week) return b.week - a.week;
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+      .slice(0, 10);
+  });
+
+  protected readonly topSingleGameMarginsRows = computed<StarterGameListItem[]>(() =>
+    this.topSingleGameMargins().map((row) => ({
+      value: row.margin,
+      playerDetails: `${row.year} ${row.ownerName}`,
+      teamName: `Week ${String(row.week).padStart(2, '0')}`,
+    }))
+  );
+
   private readonly seasonWinsRows = computed<SeasonWinsRow[]>(() => {
     const rows: SeasonWinsRow[] = [];
 
@@ -308,4 +386,125 @@ export class Awards {
       teamName: `${row.seasonsPlayed}`,
     }))
   );
+
+  protected readonly topAveragePointsPerSeasonRows = computed<StarterGameListItem[]>(() =>
+    this.allTimeRecords
+      .toTableState()
+      .data.map(
+        (row): AveragePointsPerSeasonRow => ({
+          avgPointsPerSeason: row.avgPointsPerSeason,
+          ownerName: row.ownerName,
+          seasonsPlayed: row.totalSeasons,
+        })
+      )
+      .filter((row) => row.seasonsPlayed > 0)
+      .sort((a, b) => {
+        if (b.avgPointsPerSeason !== a.avgPointsPerSeason) {
+          return b.avgPointsPerSeason - a.avgPointsPerSeason;
+        }
+        if (b.seasonsPlayed !== a.seasonsPlayed) return b.seasonsPlayed - a.seasonsPlayed;
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+      .slice(0, 5)
+      .map((row) => ({
+        value: row.avgPointsPerSeason,
+        playerDetails: row.ownerName,
+        teamName: `${row.seasonsPlayed}`,
+      }))
+  );
+
+  protected readonly mostChampionshipsRows = computed<StarterGameListItem[]>(() =>
+    this.allTimeRecords
+      .toTableState()
+      .data.map(
+        (row): ChampionshipRow => ({
+          championships: row.championships,
+          ownerName: row.ownerName,
+        })
+      )
+      .filter((row) => row.championships >= 1)
+      .sort((a, b) => {
+        if (b.championships !== a.championships) return b.championships - a.championships;
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+      .map((row) => ({
+        value: `${row.championships}`,
+        playerDetails: row.ownerName,
+        teamName: '',
+      }))
+  );
+
+  protected readonly highPointsAndChampionshipRows = computed<StarterGameListItem[]>(() => {
+    const rows: HighPointsChampionshipRow[] = [];
+
+    for (const seasonId of this.seasonStandingsData.seasonIds()) {
+      const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
+      if (!standings) continue;
+
+      const entries = Object.values(standings);
+      if (!entries.length) continue;
+
+      const topPoints = Math.max(...entries.map((entry) => entry.points?.pointsFor ?? 0));
+      const winners = entries.filter((entry) => {
+        const isSeasonHighPoints = (entry.points?.pointsFor ?? 0) === topPoints;
+        const playoffRank = Number.parseInt(String(entry.ranks?.playoffRank ?? '').trim(), 10);
+        const isChampion = Number.isFinite(playoffRank) && playoffRank === 1;
+        return isSeasonHighPoints && isChampion;
+      });
+
+      for (const winner of winners) {
+        const ownerName = winner.playerDetails?.managerName ?? 'Unknown Owner';
+        rows.push({
+          year: seasonId,
+          ownerName,
+        });
+      }
+    }
+
+    return rows
+      .sort((a, b) => {
+        if (a.year !== b.year) return Number(a.year) - Number(b.year);
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+      .map((row) => ({
+        value: row.year,
+        playerDetails: row.ownerName,
+        teamName: '',
+      }));
+  });
+
+  protected readonly mostRunnerUpFinishesRows = computed<StarterGameListItem[]>(() => {
+    const countsByOwner = new Map<string, number>();
+
+    for (const seasonId of this.seasonStandingsData.seasonIds()) {
+      const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
+      if (!standings) continue;
+
+      for (const entry of Object.values(standings)) {
+        const playoffRank = Number.parseInt(String(entry.ranks?.playoffRank ?? '').trim(), 10);
+        if (!Number.isFinite(playoffRank) || playoffRank !== 2) continue;
+
+        const ownerName = entry.playerDetails?.managerName ?? 'Unknown Owner';
+        countsByOwner.set(ownerName, (countsByOwner.get(ownerName) ?? 0) + 1);
+      }
+    }
+
+    return Array.from(countsByOwner.entries())
+      .map(
+        ([ownerName, count]): RunnerUpRow => ({
+          ownerName,
+          count,
+        })
+      )
+      .filter((row) => row.count >= 1)
+      .sort((a, b) => {
+        if (b.count !== a.count) return b.count - a.count;
+        return a.ownerName.localeCompare(b.ownerName);
+      })
+      .map((row) => ({
+        value: `${row.count}`,
+        playerDetails: row.ownerName,
+        teamName: '',
+      }));
+  });
 }

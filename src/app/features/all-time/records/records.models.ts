@@ -13,6 +13,7 @@ export interface AllTimeRecordRow extends DataTableRow {
   highPoints: number;
   lowPoints: number;
   pointsFor: number;
+  avgPointsPerSeason: number;
   pointsAgainst: number;
   pointsDiff: number;
   gp: number;

@@ -56,6 +56,20 @@
       </app-stat-card>
     }
 
+    @if (topSingleGameMargins().length) {
+      <app-stat-card
+        title="Top 10 Highest Margin Of Victory"
+        subtitle="Margin - Year Owner - Week"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="topSingleGameMarginsRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
     @if (fewestSeasonWinsMaxThree().length) {
       <app-stat-card
         title="Fewest Wins In A Season (Max 3)"
@@ -106,6 +120,62 @@
       >
         <app-starter-game-list
           [items]="worstAverageWinsPerSeasonRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (topAveragePointsPerSeasonRows().length) {
+      <app-stat-card
+        title="Top 5 Avg Points Per Season"
+        subtitle="Avg Pts - Owner - Seasons"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="topAveragePointsPerSeasonRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (mostChampionshipsRows().length) {
+      <app-stat-card
+        title="Most Championships (Min 1)"
+        subtitle="Champs - Owner"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="mostChampionshipsRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (highPointsAndChampionshipRows().length) {
+      <app-stat-card
+        title="Season High Points + Championship"
+        subtitle="Year - Owner"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="highPointsAndChampionshipRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-starter-game-list>
+      </app-stat-card>
+    }
+
+    @if (mostRunnerUpFinishesRows().length) {
+      <app-stat-card
+        title="Most Runner-Up Finishes (Min 1)"
+        subtitle="Runner-Ups - Owner"
+        bodyAlign="start"
+      >
+        <app-starter-game-list
+          [items]="mostRunnerUpFinishesRows()"
           [showWeek]="false"
           [truncateText]="false"
         ></app-starter-game-list>

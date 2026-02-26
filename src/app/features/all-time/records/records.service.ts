@@ -94,6 +94,7 @@ export class AllTimeRecordsService {
     { key: 'gp', header: 'GP', widthCh: 6, format: 'integer' },
     { key: 'winPct', header: 'Win Pct%', widthCh: 10, format: 'percent2' },
     { key: 'pointsFor', header: 'PF', widthCh: 12, format: 'decimal2' },
+    { key: 'avgPointsPerSeason', header: 'Avg Pts/Season', widthCh: 13, format: 'decimal2' },
     { key: 'pointsAgainst', header: 'PA', widthCh: 12, format: 'decimal2' },
     { key: 'pointsDiff', header: 'Diff', widthCh: 12, format: 'signedDecimal2' },
     { key: 'ppgAvg', header: 'PPG Avg', widthCh: 10, format: 'decimal2' },
@@ -445,9 +446,11 @@ export class AllTimeRecordsService {
     const rows: AllTimeRecordRow[] = owners
       .map((owner) => {
         const totals = allTimeByOwner.get(owner.managerName) ?? emptyTotals();
+        const totalSeasons = (owner.activeSeasons?.length ?? 0) || owner.seasonsPlayed || 0;
         const gp = totals.wins + totals.losses + totals.ties;
         const winPct = gp > 0 ? ((totals.wins + 0.5 * totals.ties) / gp) * 100 : 0;
         const ppgAvg = gp > 0 ? totals.pointsFor / gp : 0;
+        const avgPointsPerSeason = totalSeasons > 0 ? totals.pointsFor / totalSeasons : 0;
         const pointsDiff = totals.pointsFor - totals.pointsAgainst;
         const allPlayGames = totals.allPlayWins + totals.allPlayLosses + totals.allPlayTies;
         const allPlayWinPct =
@@ -457,7 +460,7 @@ export class AllTimeRecordsService {
         const ownerRank = ownerRankByName.get(owner.managerName) ?? 999;
         return {
           ownerName: owner.managerName,
-          totalSeasons: (owner.activeSeasons?.length ?? 0) || owner.seasonsPlayed || 0,
+          totalSeasons,
           wins: totals.wins,
           losses: totals.losses,
           ties: totals.ties,
@@ -470,6 +473,7 @@ export class AllTimeRecordsService {
           moves: totals.moves,
           trades: totals.trades,
           pointsFor: totals.pointsFor,
+          avgPointsPerSeason,
           pointsAgainst: totals.pointsAgainst,
           pointsDiff,
           gp,
