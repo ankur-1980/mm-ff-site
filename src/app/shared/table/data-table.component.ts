@@ -24,15 +24,17 @@ export class DataTableComponent<T extends DataTableRow = DataTableRow> {
   /** Row data (array of objects keyed by column keys). */
   readonly data = input.required<T[]>();
 
+  /** Initial sort direction when the table first loads. Defaults to 'asc'. */
+  readonly defaultSortDirection = input<'asc' | 'desc'>('asc');
+
   protected readonly dataSource = new MatTableDataSource<T>([]);
 
-  /** Default sort column key and direction for template. */
+  /** Default sort column key for template. */
   readonly defaultSortKey = computed(() => {
     const cols = this.columns();
     const def = cols.find((c) => c.defaultSort) ?? cols[0];
     return def?.key ?? null;
   });
-  protected readonly defaultSortDirection = 'asc' as const;
 
   /** Column key list for matHeaderRowDef / matRowDef. */
   readonly columnKeys = computed(() => this.columns().map((c) => c.key));

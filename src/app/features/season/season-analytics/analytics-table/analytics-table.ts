@@ -20,7 +20,13 @@ export interface AnalyticsTableRow extends DataTableRow {
 
 const ANALYTICS_COLUMNS: DataTableColumnDef[] = [
   { key: 'teamName', header: 'Team', widthCh: 24, subscriptKey: 'managerName' },
-  { key: 'pointsFor', header: 'Points For', widthCh: 12, format: 'decimal2' },
+  {
+    key: 'pointsFor',
+    header: 'Points For',
+    widthCh: 12,
+    format: 'decimal2',
+    defaultSort: true,
+  },
   { key: 'pointsAgainst', header: 'Points Against', widthCh: 14, format: 'decimal2' },
   { key: 'pointsForAvg', header: 'PF Avg', widthCh: 10, format: 'decimal2' },
   { key: 'pointsAgainstAvg', header: 'PA Avg', widthCh: 10, format: 'decimal2' },

@@ -3,6 +3,7 @@
   <app-data-table
     [columns]="tableState().columns"
     [data]="tableState().data"
+    defaultSortDirection="desc"
   />
 } @else {
   <p class="analytics-table__empty">No table data for this season.</p>

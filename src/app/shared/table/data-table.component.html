@@ -3,7 +3,7 @@
   [dataSource]="dataSource"
   matSort
   [matSortActive]="defaultSortKey()"
-  [matSortDirection]="defaultSortDirection"
+  [matSortDirection]="defaultSortDirection()"
   class="data-table"
 >
   @for (col of columns(); track col.key) {
