@@ -21,9 +21,9 @@ export const routes: Routes = [
       },
       {
         path: 'all-time',
-        loadComponent: () =>
-          import('./features/all-time/all-time.page').then(
-            (m) => m.AllTimePage
+        loadChildren: () =>
+          import('./features/all-time/all-time.routes').then(
+            (m) => m.ALL_TIME_ROUTES
           )
       },
       {
