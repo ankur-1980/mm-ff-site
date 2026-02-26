@@ -41,7 +41,15 @@ export class SeasonSelector {
   );
 
   protected onYearChange(year: number): void {
-    this.router.navigate(['/season', year, 'standings']);
+    const childPath = this.childPathFromCurrentUrl();
+    this.router.navigate(childPath.length > 0 ? ['/season', year, ...childPath] : ['/season', year]);
+  }
+
+  /** Path segments after /season/:year (e.g. ['analytics', 'table']) so we can stay on the same child route when year changes. */
+  private childPathFromCurrentUrl(): string[] {
+    const match = this.router.url.match(/\/season\/\d{4}(?:\/(.*))?$/);
+    const rest = match && match[1] ? match[1].trim() : '';
+    return rest ? rest.split('/').filter(Boolean) : [];
   }
 
   private yearFromUrl(url: string): number | null {

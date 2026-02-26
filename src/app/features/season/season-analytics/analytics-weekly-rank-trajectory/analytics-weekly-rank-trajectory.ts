@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import type { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-
 import { WeeklyRankTrajectoryService } from '../weekly-rank-trajectory.service';
 
 const TEAM_COLORS = [
@@ -46,7 +45,8 @@ export class AnalyticsWeeklyRankTrajectory {
     const result = this.trajectoryService.buildTrajectory(String(y));
     if (!result) return null;
 
-    const datasets = result.teamNames.map((name, i) => {
+    const sortedTeamNames = [...result.teamNames].sort((a, b) => a.localeCompare(b));
+    const datasets = sortedTeamNames.map((name, i) => {
       const ranks = result.rankByTeam.get(name) ?? [];
       const color = TEAM_COLORS[i % TEAM_COLORS.length];
       return {
