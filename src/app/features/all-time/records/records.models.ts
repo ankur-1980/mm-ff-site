@@ -6,6 +6,9 @@ export interface AllTimeRecordRow extends DataTableRow {
   wins: number;
   losses: number;
   ties: number;
+  allPlayWins: number;
+  allPlayLosses: number;
+  allPlayWinPct: number;
   championships: number;
   highPoints: number;
   lowPoints: number;
@@ -29,6 +32,9 @@ export interface OwnerRecordTotals {
   wins: number;
   losses: number;
   ties: number;
+  allPlayWins: number;
+  allPlayLosses: number;
+  allPlayTies: number;
   championships: number;
   highPoints: number;
   lowPoints: number;
