@@ -1,1 +1,20 @@
-<p>season-draft works!</p>
+<app-subsection-header title="Season Draft" [isPrimary]="true" />
+
+@if (draftCards().length) {
+  <div class="season-draft__grid">
+    @for (card of draftCards(); track card.teamName) {
+      <app-stat-card [title]="card.teamName" [subtitle]="card.ownerName">
+        <ul class="season-draft__list">
+          @for (row of card.rows; track row.playerLabel + '|' + row.costLabel) {
+            <li class="season-draft__row">
+              <span class="season-draft__cost">{{ row.costLabel }}</span>
+              <span class="season-draft__player">{{ row.playerLabel }}</span>
+            </li>
+          }
+        </ul>
+      </app-stat-card>
+    }
+  </div>
+} @else {
+  <p class="season-draft__empty">No draft data available for this season.</p>
+}
