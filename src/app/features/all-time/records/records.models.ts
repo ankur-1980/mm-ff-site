@@ -34,6 +34,12 @@ export interface ChampionTimelineEntry {
   teamName: string;
 }
 
+export interface SeasonHighPointsTimelineEntry {
+  year: string;
+  points: number;
+  ownerName: string;
+}
+
 export interface OwnerRecordTotals {
   wins: number;
   losses: number;

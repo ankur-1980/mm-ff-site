@@ -19,11 +19,21 @@ export class AllTimeRecords {
 
   protected readonly tableState = computed(() => this.records.toTableState());
   protected readonly championsTimeline = computed(() => this.records.getChampionsTimeline());
+  protected readonly seasonHighPointsTimeline = computed(() =>
+    this.records.getSeasonHighPointsTimeline()
+  );
   protected readonly championRows = computed<StarterGameListItem[]>(() =>
     this.championsTimeline().map((row) => ({
       value: row.year,
       playerDetails: row.ownerName,
       teamName: row.teamName,
+    }))
+  );
+  protected readonly seasonHighPointsRows = computed<StarterGameListItem[]>(() =>
+    this.seasonHighPointsTimeline().map((row) => ({
+      value: row.year,
+      playerDetails: row.points.toFixed(2),
+      teamName: row.ownerName,
     }))
   );
 }

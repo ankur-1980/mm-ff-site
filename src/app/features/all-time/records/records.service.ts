@@ -11,6 +11,7 @@ import type {
   AllTimeRecordsTableState,
   ChampionTimelineEntry,
   OwnerRecordTotals,
+  SeasonHighPointsTimelineEntry,
 } from './records.models';
 
 const EPSILON = 0.000001;
@@ -527,6 +528,35 @@ export class AllTimeRecordsService {
         .sort((a, b) => a.ownerName.localeCompare(b.ownerName));
 
       rows.push(...champions);
+    }
+
+    return rows;
+  }
+
+  getSeasonHighPointsTimeline(): SeasonHighPointsTimelineEntry[] {
+    const rows: SeasonHighPointsTimelineEntry[] = [];
+    const seasonIds = this.seasonStandingsData
+      .seasonIds()
+      .sort((a, b) => Number(b) - Number(a));
+
+    for (const seasonId of seasonIds) {
+      const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
+      if (!standings) continue;
+
+      const entries = Object.values(standings);
+      if (!entries.length) continue;
+
+      const topPoints = Math.max(...entries.map((entry) => entry.points?.pointsFor ?? 0));
+      const winners = entries
+        .filter((entry) => Math.abs((entry.points?.pointsFor ?? 0) - topPoints) < EPSILON)
+        .map((entry) => ({
+          year: seasonId,
+          points: topPoints,
+          ownerName: entry.playerDetails?.managerName ?? 'Unknown Owner',
+        }))
+        .sort((a, b) => a.ownerName.localeCompare(b.ownerName));
+
+      rows.push(...winners);
     }
 
     return rows;
