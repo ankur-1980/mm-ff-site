@@ -5,4 +5,15 @@
   </p>
 
   <app-all-play-matrix [matrix]="matrix()" [showWinPct]="true" />
+
+  <h3 class="all-time-all-play__table-heading">All-Play Records</h3>
+  @if (tableState().data.length) {
+    <app-data-table
+      [columns]="tableState().columns"
+      [data]="tableState().data"
+      defaultSortDirection="desc"
+    />
+  } @else {
+    <p class="all-time-all-play__empty">No all-play table data available.</p>
+  }
 </section>
