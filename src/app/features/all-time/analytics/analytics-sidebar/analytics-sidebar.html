@@ -37,26 +37,33 @@
       Expected Wins vs Actual Wins
     </a>
     <a
+      routerLink="all-play-matrix"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      All-Play Matrix
+    </a>
+    <a
+      routerLink="all-play-records-table"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      All-Play Records Table
+    </a>
+    <a
       routerLink="all-play-career-record"
       routerLinkActive="analytics-sidebar__nav-link--active"
       class="analytics-sidebar__nav-link"
     >
       All-Play Career Record
     </a>
+
     <a
       routerLink="consistency-index"
       routerLinkActive="analytics-sidebar__nav-link--active"
       class="analytics-sidebar__nav-link"
     >
       Consistency Index
-    </a>
-    <a
-      [routerLink]="['/all-time', 'all-play']"
-      routerLinkActive="analytics-sidebar__nav-link--active"
-      class="analytics-sidebar__nav-link"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      All-Play Records
     </a>
   </nav>
   <main class="analytics-sidebar__main">

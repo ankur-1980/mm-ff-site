@@ -76,6 +76,20 @@ export const ALL_TIME_ROUTES: Routes = [
               ).then((m) => m.AnalyticsAllPlayCareerRecord),
           },
           {
+            path: 'all-play-matrix',
+            loadComponent: () =>
+              import(
+                './analytics/analytics-all-play-matrix/analytics-all-play-matrix'
+              ).then((m) => m.AnalyticsAllPlayMatrix),
+          },
+          {
+            path: 'all-play-records-table',
+            loadComponent: () =>
+              import(
+                './analytics/analytics-all-play-records-table/analytics-all-play-records-table'
+              ).then((m) => m.AnalyticsAllPlayRecordsTable),
+          },
+          {
             path: 'consistency-index',
             loadComponent: () =>
               import(
