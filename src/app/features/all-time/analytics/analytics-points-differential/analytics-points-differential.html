@@ -1,2 +1,21 @@
 <h3 class="all-time-analytics-view__heading">Points Differential</h3>
-<p class="all-time-analytics-view__empty">All-time points differential analytics coming soon.</p>
+<div class="all-time-analytics-view">
+  @if (scatterResult()) {
+    <div class="all-time-analytics-view__chart-wrap">
+      <canvas
+        baseChart
+        [data]="chartData()!"
+        [options]="chartOptions()"
+        [plugins]="chartPlugins"
+        chartType="scatter"
+      ></canvas>
+    </div>
+    <p class="all-time-analytics-view__legend">
+      Career-scale PF vs PA scatter. Highlights historically unlucky owners (high PF/high PA),
+      defensive juggernauts (low PA), and perennial high scorers (high PF). Dashed lines show
+      average PF/PA; diagonal is parity (PF = PA).
+    </p>
+  } @else {
+    <p class="all-time-analytics-view__empty">No all-time points differential data available.</p>
+  }
+</div>
