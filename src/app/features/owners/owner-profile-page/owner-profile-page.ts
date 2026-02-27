@@ -1,4 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { OwnersDataService } from '../../../data/owners-data.service';
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
@@ -21,7 +22,7 @@ interface GamePointsAward {
 
 @Component({
   selector: 'app-owner-profile-page',
-  imports: [StatCard, StatValue],
+  imports: [RouterLink, StatCard, StatValue],
   templateUrl: './owner-profile-page.html',
   styleUrl: './owner-profile-page.scss',
 })
@@ -53,10 +54,6 @@ export class OwnerProfilePage {
     return `${owner.wins}-${owner.losses}-${owner.ties}`;
   });
 
-  protected readonly mostRecentTeamName = computed(
-    () => this.owner()?.teamNames.at(-1) ?? '--'
-  );
-
   private readonly ownerSeasonEntries = computed(() => {
     const owner = this.owner();
     if (!owner) return [];
@@ -67,6 +64,15 @@ export class OwnerProfilePage {
         season,
         entry: this.seasonStandingsData.getEntry(String(season), owner.managerName),
       }));
+  });
+
+  protected readonly mostRecentTeamName = computed(() => {
+    const owner = this.owner();
+    const latestSeasonEntry = this.ownerSeasonEntries().at(-1)?.entry;
+
+    if (!owner) return '--';
+
+    return latestSeasonEntry?.playerDetails.teamName ?? owner.teamNames[0] ?? '--';
   });
 
   protected readonly nameHistory = computed<NameHistoryItem[]>(() => {

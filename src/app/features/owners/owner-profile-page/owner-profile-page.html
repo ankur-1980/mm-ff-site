@@ -1,14 +1,21 @@
 @if (owner(); as ownerData) {
   <section class="owner-profile-page">
+    <a class="owner-profile-page__back-link" [routerLink]="['/owners']">
+      Back to Owners
+    </a>
+
     <header class="owner-profile-page__header">
       <div class="owner-profile-page__identity">
         <h1 class="owner-profile-page__name">{{ ownerData.realName }}</h1>
         <p class="owner-profile-page__team">{{ mostRecentTeamName() }}</p>
         <p class="owner-profile-page__record">All-Time Record: {{ allTimeRecord() }}</p>
       </div>
-      @if (isActiveOwner()) {
-        <span class="owner-profile-page__active-tag">Active</span>
-      }
+      <span
+        class="owner-profile-page__active-tag"
+        [class.owner-profile-page__active-tag--inactive]="!isActiveOwner()"
+      >
+        {{ isActiveOwner() ? 'Active' : 'Inactive' }}
+      </span>
     </header>
 
     <section class="owner-profile-page__section owner-profile-page__section--summary">

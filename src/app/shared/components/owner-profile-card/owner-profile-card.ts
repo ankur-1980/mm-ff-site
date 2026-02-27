@@ -19,14 +19,24 @@ export class OwnerProfileCard {
 
   protected readonly owner = computed(() => this.ownersData.getOwner(this.ownerId()));
 
-  protected readonly mostRecentTeamName = computed(
-    () => this.owner()?.teamNames.at(-1) ?? '--'
-  );
-
   protected readonly lastSeasonPlayed = computed(() => {
     const seasons = this.owner()?.activeSeasons ?? [];
     if (!seasons.length) return null;
     return Math.max(...seasons);
+  });
+
+  protected readonly mostRecentTeamName = computed(() => {
+    const owner = this.owner();
+    const lastSeasonPlayed = this.lastSeasonPlayed();
+
+    if (!owner || lastSeasonPlayed == null) return '--';
+
+    return (
+      this.standingsData.getEntry(String(lastSeasonPlayed), owner.managerName)
+        ?.playerDetails.teamName ??
+      owner.teamNames[0] ??
+      '--'
+    );
   });
 
   protected readonly isActiveOwner = computed(() => {

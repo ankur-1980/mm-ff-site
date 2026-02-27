@@ -4,6 +4,15 @@
   gap: 1.5rem;
 }
 
+.owner-profile-page__back-link {
+  align-self: flex-start;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 999px;
+  color: inherit;
+  padding: 0.45rem 0.8rem;
+  text-decoration: none;
+}
+
 .owner-profile-page__header {
   align-items: flex-start;
   display: flex;
@@ -37,6 +46,11 @@
   letter-spacing: 0.06em;
   padding: 0.25rem 0.65rem;
   text-transform: uppercase;
+}
+
+.owner-profile-page__active-tag--inactive {
+  border-color: var(--mat-sys-outline);
+  color: var(--mat-sys-outline);
 }
 
 .owner-profile-page__section {
