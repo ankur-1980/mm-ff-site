@@ -11,15 +11,13 @@ import type {
 } from '../models/weekly-matchups.model';
 import { LoggerService } from '@ankur-1980/logger';
 
-const WEEKLY_MATCHUPS_ASSET = 'assets/data/weekly_matchups-data.json';
+const WEEKLY_MATCHUPS_ASSET_DIR = 'assets/data/weekly-matchups';
 
 export type WeeklyMatchupsDataStatus = 'idle' | 'loading' | 'loaded' | 'error';
 
 /**
- * Loads weekly matchups (every matchup every week every year) from assets once
- * and exposes them as signal state. Single responsibility: weekly matchups only.
- *
- * Data shape: season id -> week key ("week1".."week17") -> team key ("teamId-X") -> entry.
+ * Loads weekly matchups from per-season assets and merges them into one in-memory map.
+ * Single responsibility: weekly matchups only.
  */
 @Injectable({ providedIn: 'root' })
 export class WeeklyMatchupsDataService {
@@ -29,6 +27,8 @@ export class WeeklyMatchupsDataService {
   private readonly status = signal<WeeklyMatchupsDataStatus>('idle');
   private readonly data = signal<WeeklyMatchupsData | null>(null);
   private readonly error = signal<string | null>(null);
+  private readonly loadedSeasons = new Set<string>();
+  private readonly loadingSeasons = new Set<string>();
 
   /** Current load status. */
   readonly loadStatus = this.status.asReadonly();
@@ -52,33 +52,52 @@ export class WeeklyMatchupsDataService {
     () => this.status() === 'loaded' || this.status() === 'error'
   );
 
-  /**
-   * Load weekly matchups from assets. Safe to call multiple times; only the first call fetches.
-   * Uses full dataset (weekly_matchups-data.json). For a smaller dev payload, point asset to MOCK_Week_Matchups.json and adapt shape if needed.
-   */
-  load(): void {
-    if (this.status() !== 'idle') return;
-    this.status.set('loading');
+  /** Load one season's weekly matchups from `assets/data/weekly-matchups/<year>.json`. */
+  loadSeason(seasonId: string): void {
+    const normalizedSeasonId = String(seasonId);
+    if (!normalizedSeasonId) return;
+    if (
+      this.loadedSeasons.has(normalizedSeasonId) ||
+      this.loadingSeasons.has(normalizedSeasonId)
+    ) {
+      return;
+    }
+
+    this.loadingSeasons.add(normalizedSeasonId);
     this.error.set(null);
+    this.status.set('loading');
 
     this.http
-      .get<WeeklyMatchupsData>(WEEKLY_MATCHUPS_ASSET)
+      .get<WeeklyMatchupsData>(
+        `${WEEKLY_MATCHUPS_ASSET_DIR}/${normalizedSeasonId}.json`
+      )
       .pipe(
         tap((payload) => {
-          this.data.set(payload);
-          this.status.set('loaded');
+          this.data.update((current) => ({ ...(current ?? {}), ...payload }));
+          this.loadedSeasons.add(normalizedSeasonId);
+          this.loadingSeasons.delete(normalizedSeasonId);
+          this.status.set(this.loadingSeasons.size > 0 ? 'loading' : 'loaded');
         }),
         catchError((err: unknown) => {
           const message =
             err instanceof Error
               ? err.message
-              : 'Failed to load weekly matchups data';
+              : `Failed to load weekly matchups data for ${normalizedSeasonId}`;
+          this.logger.error('WeeklyMatchupsDataService: failed to load', err);
           this.error.set(message);
-          this.status.set('error');
+          this.loadingSeasons.delete(normalizedSeasonId);
+          this.status.set(this.loadedSeasons.size > 0 ? 'loaded' : 'error');
           return of(null);
         })
       )
       .subscribe();
+  }
+
+  /** Load multiple seasons. Each season file is fetched at most once. */
+  loadSeasons(seasonIds: readonly string[]): void {
+    for (const seasonId of seasonIds) {
+      this.loadSeason(seasonId);
+    }
   }
 
   /**

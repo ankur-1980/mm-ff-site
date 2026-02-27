@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -58,16 +58,20 @@ export class SeasonDraft {
   private readonly draftRostersData = inject(DraftRostersDataService);
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
 
-  constructor() {
-    this.draftRostersData.load();
-  }
-
   private readonly year = toSignal(
     (this.route.parent ?? this.route).params.pipe(
       map((p) => (p['year'] ? Number(p['year']) : null))
     ),
     { initialValue: null }
   );
+
+  constructor() {
+    effect(() => {
+      const year = this.year();
+      if (year == null) return;
+      this.draftRostersData.loadSeason(String(year));
+    });
+  }
 
   protected readonly draftCards = computed<DraftTeamCard[]>(() => {
     const y = this.year();

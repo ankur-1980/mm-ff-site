@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -39,8 +39,12 @@ export class SeasonPage {
   protected readonly tabs = SEASON_TABS;
 
   constructor() {
-    this.weeklyMatchupsData.load();
-    this.toiletBowlData.load();
+    effect(() => {
+      const year = this.year();
+      if (year == null) return;
+      this.weeklyMatchupsData.loadSeason(String(year));
+      this.toiletBowlData.load();
+    });
   }
 
   /** Year parsed from the route param `:year`. Reacts to navigation between seasons. */
