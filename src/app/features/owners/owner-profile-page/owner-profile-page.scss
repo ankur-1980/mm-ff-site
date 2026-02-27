@@ -118,6 +118,30 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
+.owner-profile-page__record-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.owner-profile-page__record-row {
+  align-items: center;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+}
+
+.owner-profile-page__record-owner,
+.owner-profile-page__record-value,
+.owner-profile-page__record-pct {
+  font-variant-numeric: tabular-nums;
+}
+
+.owner-profile-page__record-value,
+.owner-profile-page__record-pct {
+  white-space: nowrap;
+}
+
 @media (max-width: 640px) {
   .owner-profile-page__header {
     align-items: flex-start;
@@ -130,5 +154,10 @@
 
   .owner-profile-page__years-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .owner-profile-page__record-row {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
   }
 }

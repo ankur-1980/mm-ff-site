@@ -8,6 +8,9 @@ import { ToiletBowlDataService } from '../../../data/toilet-bowl-data.service';
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
 import { StatValue } from '../../../shared/components/stat-card/stat-value/stat-value';
+import { HeadToHeadMatrixService } from '../../all-time/head-to-head/head-to-head-matrix.service';
+import { AllTimeAllPlayMatrixService } from '../../all-time/all-play/all-play-matrix.service';
+import type { AllPlayPairRecord } from '../../season/season-analytics/models/all-play-matrix.models';
 
 interface NameHistoryItem {
   name: string;
@@ -18,6 +21,12 @@ interface GamePointsAward {
   points: number;
   week: number;
   year: number;
+}
+
+interface OwnerRecordListItem {
+  ownerName: string;
+  record: string;
+  winPct: string;
 }
 
 @Component({
@@ -32,6 +41,8 @@ export class OwnerProfilePage {
   private readonly weeklyMatchupsData = inject(WeeklyMatchupsDataService);
   private readonly toiletBowlData = inject(ToiletBowlDataService);
   private readonly leagueMeta = inject(LeagueMetaDataService);
+  private readonly headToHeadMatrixService = inject(HeadToHeadMatrixService);
+  private readonly allPlayMatrixService = inject(AllTimeAllPlayMatrixService);
 
   readonly ownerId = input.required<string>();
 
@@ -210,6 +221,48 @@ export class OwnerProfilePage {
     return { highest, lowest };
   });
 
+  protected readonly headToHeadRecords = computed<OwnerRecordListItem[]>(() => {
+    const owner = this.owner();
+    const matrix = this.headToHeadMatrixService.buildMatrix();
+    if (!owner || !matrix) return [];
+
+    return matrix.teamNames
+      .filter((name) => name !== owner.managerName)
+      .map((name) => {
+        const record = matrix.getRecord(owner.managerName, name);
+        return {
+          ownerName: name,
+          record: this.formatRecord(record),
+          winPct: this.formatWinPct(record),
+        };
+      })
+      .sort((a, b) => a.ownerName.localeCompare(b.ownerName));
+  });
+
+  protected readonly allPlayRecords = computed<OwnerRecordListItem[]>(() => {
+    const owner = this.owner();
+    const matrix = this.allPlayMatrixService.buildMatrix();
+    if (!owner || !matrix) return [];
+
+    const ownerDisplay = matrix.teamNames.find(
+      (display) => this.parseOwnerDisplay(display).ownerName === owner.managerName
+    );
+    if (!ownerDisplay) return [];
+
+    return matrix.teamNames
+      .filter((display) => display !== ownerDisplay)
+      .map((display) => {
+        const parsed = this.parseOwnerDisplay(display);
+        const record = matrix.getRecord(ownerDisplay, display);
+        return {
+          ownerName: parsed.ownerName,
+          record: this.formatRecord(record),
+          winPct: this.formatWinPct(record),
+        };
+      })
+      .sort((a, b) => a.ownerName.localeCompare(b.ownerName));
+  });
+
   protected formatSeasonFooter(year: number | null): string {
     return year == null ? '--' : String(year);
   }
@@ -217,5 +270,25 @@ export class OwnerProfilePage {
   protected formatGameFooter(award: GamePointsAward | null): string {
     if (!award) return '--';
     return `Week ${award.week} / ${award.year}`;
+  }
+
+  private parseOwnerDisplay(value: string): { ownerName: string; seasonsActive: number } {
+    const match = value.match(/^(.*)\s\((\d+)\)$/);
+    return {
+      ownerName: match ? match[1] : value,
+      seasonsActive: match ? Number(match[2]) : 0,
+    };
+  }
+
+  private formatRecord(record: AllPlayPairRecord): string {
+    if (record.wins === 0 && record.losses === 0 && record.ties === 0) return '--';
+    return `${record.wins}-${record.losses}-${record.ties}`;
+  }
+
+  private formatWinPct(record: AllPlayPairRecord): string {
+    const games = record.wins + record.losses + record.ties;
+    if (games === 0) return '--';
+    const pct = ((record.wins + 0.5 * record.ties) / games) * 100;
+    return `${pct.toFixed(2)}%`;
   }
 }
