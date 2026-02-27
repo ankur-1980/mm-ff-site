@@ -13,6 +13,11 @@ export const ALL_TIME_ROUTES: Routes = [
           import('./records/records').then((m) => m.AllTimeRecords),
       },
       {
+        path: 'head-to-head',
+        loadComponent: () =>
+          import('./head-to-head/head-to-head').then((m) => m.HeadToHead),
+      },
+      {
         path: 'all-play',
         loadComponent: () =>
           import('./all-play/all-play').then((m) => m.AllPlay),

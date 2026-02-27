@@ -1,0 +1,83 @@
+<section class="head-to-head" aria-label="All-time head-to-head">
+  <h2 class="head-to-head__heading">Head-To-Head</h2>
+  <p class="head-to-head__note">
+    Regular season only. Includes only seasons with usable weekly matchup data.
+  </p>
+
+  @let data = matrix();
+  @if (data) {
+    <section class="head-to-head-matrix" aria-label="Head-to-head matrix">
+      <p class="head-to-head-matrix__intro">
+        Actual regular-season matchups only. Row = owner; column = opponent. Cell = W-L-T from
+        the row owner's perspective.
+      </p>
+
+      <div class="head-to-head-matrix__scroll">
+        <table class="head-to-head-matrix__table">
+          <thead>
+            <tr>
+              <th class="head-to-head-matrix__cell head-to-head-matrix__cell--corner"></th>
+              @for (owner of data.teamNames; track owner) {
+                <th class="head-to-head-matrix__cell head-to-head-matrix__cell--header" [title]="owner">
+                  {{ owner }}
+                </th>
+              }
+              <th
+                class="head-to-head-matrix__cell head-to-head-matrix__cell--header head-to-head-matrix__cell--total-header"
+              >
+                Total
+              </th>
+              <th
+                class="head-to-head-matrix__cell head-to-head-matrix__cell--header head-to-head-matrix__cell--total-header"
+              >
+                Win %
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (rowOwner of data.teamNames; track rowOwner) {
+              @let rowTotal = data.getTotalRecord(rowOwner);
+              <tr>
+                <th
+                  class="head-to-head-matrix__cell head-to-head-matrix__cell--row-header"
+                  [title]="rowOwner"
+                >
+                  {{ rowOwner }}
+                </th>
+                @for (colOwner of data.teamNames; track colOwner) {
+                  <td
+                    class="head-to-head-matrix__cell head-to-head-matrix__cell--data"
+                    [class.head-to-head-matrix__cell--diagonal]="rowOwner === colOwner"
+                  >
+                    {{ formatRecord(data.getRecord(rowOwner, colOwner)) }}
+                  </td>
+                }
+                <td
+                  class="head-to-head-matrix__cell head-to-head-matrix__cell--data head-to-head-matrix__cell--total"
+                >
+                  {{ formatRecord(rowTotal) }}
+                </td>
+                <td
+                  class="head-to-head-matrix__cell head-to-head-matrix__cell--data head-to-head-matrix__cell--total"
+                >
+                  {{ formatWinPct(rowTotal) }}
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p class="head-to-head-matrix__meta">Based on {{ data.weeksCount }} regular-season weeks.</p>
+    </section>
+
+    <h3 class="head-to-head__table-heading">Head-To-Head Summary</h3>
+    <app-data-table
+      [columns]="summaryTableState().columns"
+      [data]="summaryTableState().data"
+      defaultSortDirection="desc"
+    />
+  } @else {
+    <p class="head-to-head__empty">No head-to-head data available.</p>
+  }
+</section>

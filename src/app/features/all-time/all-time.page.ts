@@ -11,6 +11,7 @@ interface AllTimeTab {
 
 const ALL_TIME_TABS: AllTimeTab[] = [
   { path: 'records', label: 'Records' },
+  { path: 'head-to-head', label: 'Head-To-Head' },
   { path: 'all-play', label: 'All-Play' },
   { path: 'awards', label: 'Awards' },
   { path: 'analytics', label: 'Analytics' },
