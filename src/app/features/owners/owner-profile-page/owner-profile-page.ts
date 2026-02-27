@@ -73,9 +73,7 @@ export class OwnerProfilePage implements OnInit {
   ngOnInit(): void {
     const owner = this.owner();
     if (owner) {
-      this.weeklyMatchupsData.loadSeasons(
-        owner.activeSeasons.map((season) => String(season))
-      );
+      this.weeklyMatchupsData.loadSeasons(owner.activeSeasons.map((season) => String(season)));
     }
 
     this.toiletBowlData.load();
@@ -83,17 +81,11 @@ export class OwnerProfilePage implements OnInit {
 
   protected readonly owner = computed(() => this.ownersData.getOwner(this.ownerId()));
 
-  protected readonly currentSeasonId = computed(
-    () => this.leagueMeta.currentSeasonId() ?? null
-  );
+  protected readonly currentSeasonId = computed(() => this.leagueMeta.currentSeasonId() ?? null);
 
-  private readonly headToHeadMatrix = computed(() =>
-    this.headToHeadMatrixService.buildMatrix()
-  );
+  private readonly headToHeadMatrix = computed(() => this.headToHeadMatrixService.buildMatrix());
 
-  private readonly allPlayMatrix = computed(() =>
-    this.allPlayMatrixService.buildMatrix()
-  );
+  private readonly allPlayMatrix = computed(() => this.allPlayMatrixService.buildMatrix());
 
   protected readonly isActiveOwner = computed(() => {
     const owner = this.owner();
@@ -203,10 +195,10 @@ export class OwnerProfilePage implements OnInit {
     }
 
     const highest = pointsByYear.reduce((best, current) =>
-      current.points > best.points ? current : best
+      current.points > best.points ? current : best,
     );
     const lowest = pointsByYear.reduce((best, current) =>
-      current.points < best.points ? current : best
+      current.points < best.points ? current : best,
     );
 
     return { highest, lowest };
@@ -248,7 +240,7 @@ export class OwnerProfilePage implements OnInit {
             year: matchupEntry.season,
           });
           for (const starter of matchupEntry.team1Roster.filter(
-            (player) => player.slot === 'starter'
+            (player) => player.slot === 'starter',
           )) {
             starterPerformances.push({
               playerId: starter.playerId,
@@ -272,10 +264,10 @@ export class OwnerProfilePage implements OnInit {
     }
 
     const highest = scores.reduce((best, current) =>
-      current.points > best.points ? current : best
+      current.points > best.points ? current : best,
     );
     const lowest = scores.reduce((best, current) =>
-      current.points < best.points ? current : best
+      current.points < best.points ? current : best,
     );
 
     return { highest, lowest };
@@ -291,10 +283,7 @@ export class OwnerProfilePage implements OnInit {
       };
     }
 
-    const seasonTotals = new Map<
-      string,
-      { playerName: string; points: number; year: number }
-    >();
+    const seasonTotals = new Map<string, { playerName: string; points: number; year: number }>();
 
     for (const performance of performances) {
       const key = `${performance.year}|${performance.playerId}`;
@@ -311,24 +300,22 @@ export class OwnerProfilePage implements OnInit {
       }
     }
 
-    const bestSeason =
-      Array.from(seasonTotals.values()).reduce<SeasonStarterAward | null>(
-        (best, current) => {
-          if (!best || current.points > best.points) {
-            return current;
-          }
-          return best;
-        },
-        null
-      );
-
-    const bestGame =
-      performances.reduce<SingleGameStarterAward | null>((best, current) => {
+    const bestSeason = Array.from(seasonTotals.values()).reduce<SeasonStarterAward | null>(
+      (best, current) => {
         if (!best || current.points > best.points) {
           return current;
         }
         return best;
-      }, null);
+      },
+      null,
+    );
+
+    const bestGame = performances.reduce<SingleGameStarterAward | null>((best, current) => {
+      if (!best || current.points > best.points) {
+        return current;
+      }
+      return best;
+    }, null);
 
     return { bestSeason, bestGame };
   });
@@ -357,7 +344,7 @@ export class OwnerProfilePage implements OnInit {
     if (!owner || !matrix) return [];
 
     const ownerDisplay = matrix.teamNames.find(
-      (display) => this.parseOwnerDisplay(display).ownerName === owner.managerName
+      (display) => this.parseOwnerDisplay(display).ownerName === owner.managerName,
     );
     if (!ownerDisplay) return [];
 
@@ -402,7 +389,7 @@ export class OwnerProfilePage implements OnInit {
     for (const standingsEntry of Object.values(seasonStandings)) {
       seasonTeamOwnerMap.set(
         standingsEntry.playerDetails.teamName,
-        standingsEntry.playerDetails.managerName
+        standingsEntry.playerDetails.managerName,
       );
     }
 
