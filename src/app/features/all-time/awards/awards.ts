@@ -192,6 +192,7 @@ export class Awards {
 
   protected readonly topSeasonHighPointsRows = computed<StatListItem[]>(() =>
     this.topSeasonHighPoints().map((row) => ({
+      id: `season-high|${row.year}|${row.ownerName}|${row.points.toFixed(2)}`,
       value: row.points,
       playerDetails: row.year,
       teamName: row.ownerName,
@@ -200,6 +201,7 @@ export class Awards {
 
   protected readonly topSeasonLowPointsRows = computed<StatListItem[]>(() =>
     this.topSeasonLowPoints().map((row) => ({
+      id: `season-low|${row.year}|${row.ownerName}|${row.points.toFixed(2)}`,
       value: row.points,
       playerDetails: row.year,
       teamName: row.ownerName,
@@ -266,6 +268,7 @@ export class Awards {
 
   protected readonly topSingleGameHighPointsRows = computed<StatListItem[]>(() =>
     this.topSingleGameHighPoints().map((row) => ({
+      id: `game-high|${row.year}|${row.week}|${row.ownerName}|${row.points.toFixed(2)}`,
       value: row.points,
       playerDetails: `${row.year} ${row.ownerName}`,
       teamName: `Week ${String(row.week).padStart(2, '0')}`,
@@ -274,6 +277,7 @@ export class Awards {
 
   protected readonly topSingleGameLowPointsRows = computed<StatListItem[]>(() =>
     this.topSingleGameLowPoints().map((row) => ({
+      id: `game-low|${row.year}|${row.week}|${row.ownerName}|${row.points.toFixed(2)}`,
       value: row.points,
       playerDetails: `${row.year} ${row.ownerName}`,
       teamName: `Week ${String(row.week).padStart(2, '0')}`,
@@ -333,6 +337,7 @@ export class Awards {
 
   protected readonly topSingleGameMarginsRows = computed<StatListItem[]>(() =>
     this.topSingleGameMargins().map((row) => ({
+      id: `margin-high|${row.year}|${row.week}|${row.ownerName}|${row.margin.toFixed(2)}`,
       value: row.margin,
       playerDetails: `${row.year} ${row.ownerName}`,
       teamName: `Week ${String(row.week).padStart(2, '0')}`,
@@ -352,6 +357,7 @@ export class Awards {
 
   protected readonly topSingleGameNarrowestVictoriesRows = computed<StatListItem[]>(() =>
     this.topSingleGameNarrowestVictories().map((row) => ({
+      id: `margin-low|${row.year}|${row.week}|${row.ownerName}|${row.margin.toFixed(2)}`,
       value: row.margin,
       playerDetails: `${row.year} ${row.ownerName}`,
       teamName: `Week ${String(row.week).padStart(2, '0')}`,
@@ -389,6 +395,7 @@ export class Awards {
 
   protected readonly fewestSeasonWinsMaxThreeRows = computed<StatListItem[]>(() =>
     this.fewestSeasonWinsMaxThree().map((row) => ({
+      id: `fewest-wins|${row.year}|${row.ownerName}|${row.wins}`,
       value: `${row.wins}`,
       playerDetails: row.year,
       teamName: row.ownerName,
@@ -407,6 +414,7 @@ export class Awards {
 
   protected readonly mostSeasonWinsMaxTwelveRows = computed<StatListItem[]>(() => {
     const rows: StatListItem[] = this.mostSeasonWinsMaxTwelve().map((row) => ({
+      id: `most-wins|${row.year}|${row.ownerName}|${row.wins}`,
       value: `${row.wins}`,
       playerDetails: row.year,
       teamName: row.ownerName,
@@ -415,10 +423,12 @@ export class Awards {
     const elevenWinCount = this.seasonWinsRows().filter((row) => row.wins === 11).length;
     const tenWinCount = this.seasonWinsRows().filter((row) => row.wins === 10).length;
     rows.push({
+      id: 'most-wins-count|11',
       value: '11',
       teamName: `${elevenWinCount} teams`,
     });
     rows.push({
+      id: 'most-wins-count|10',
       value: '10',
       teamName: `${tenWinCount} teams`,
     });
@@ -445,6 +455,7 @@ export class Awards {
         return a.ownerName.localeCompare(b.ownerName);
       })
       .map((row) => ({
+        id: `best-avg-wins|${row.ownerName}|${row.seasonsPlayed}|${row.avgWins.toFixed(4)}`,
         value: row.avgWins,
         playerDetails: row.ownerName,
         teamName: `${row.seasonsPlayed}`,
@@ -460,6 +471,7 @@ export class Awards {
         return a.ownerName.localeCompare(b.ownerName);
       })
       .map((row) => ({
+        id: `worst-avg-wins|${row.ownerName}|${row.seasonsPlayed}|${row.avgWins.toFixed(4)}`,
         value: row.avgWins,
         playerDetails: row.ownerName,
         teamName: `${row.seasonsPlayed}`,
@@ -485,6 +497,7 @@ export class Awards {
       })
       .slice(0, 5)
       .map((row) => ({
+        id: `avg-points|${row.ownerName}|${row.seasonsPlayed}|${row.avgPointsPerSeason.toFixed(4)}`,
         value: row.avgPointsPerSeason,
         playerDetails: row.ownerName,
         teamName: `${row.seasonsPlayed}`,
@@ -505,6 +518,7 @@ export class Awards {
         return a.ownerName.localeCompare(b.ownerName);
       })
       .map((row) => ({
+        id: `championships|${row.ownerName}|${row.championships}`,
         value: `${row.championships}`,
         playerDetails: row.ownerName,
         teamName: '',
@@ -544,6 +558,7 @@ export class Awards {
         return a.ownerName.localeCompare(b.ownerName);
       })
       .map((row) => ({
+        id: `high-and-champ|${row.year}|${row.ownerName}`,
         value: row.year,
         playerDetails: row.ownerName,
         teamName: '',
@@ -579,6 +594,7 @@ export class Awards {
         return a.ownerName.localeCompare(b.ownerName);
       })
       .map((row) => ({
+        id: `runner-up|${row.ownerName}|${row.count}`,
         value: `${row.count}`,
         playerDetails: row.ownerName,
         teamName: '',

@@ -21,6 +21,7 @@ export class AllTimeRecords {
   );
   protected readonly championRows = computed<StatListItem[]>(() =>
     this.championsTimeline().map((row) => ({
+      id: `champion|${row.year}|${row.ownerName}|${row.teamName}`,
       value: row.year,
       playerDetails: row.ownerName,
       teamName: row.teamName,
@@ -28,6 +29,7 @@ export class AllTimeRecords {
   );
   protected readonly seasonHighPointsRows = computed<StatListItem[]>(() =>
     this.seasonHighPointsTimeline().map((row) => ({
+      id: `season-high|${row.year}|${row.ownerName}|${row.points.toFixed(2)}`,
       value: row.year,
       playerDetails: row.points.toFixed(2),
       teamName: row.ownerName,

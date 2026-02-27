@@ -502,6 +502,7 @@ export class SeasonAwards {
 
   protected readonly topScoringStarterRows = computed<StatListItem[]>(() =>
     this.topScoringStarters().map((starter) => ({
+      id: `${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.totalPoints.toFixed(2)}`,
       value: starter.totalPoints,
       playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
       teamName: mapTeamNameShort(starter.teamName),
@@ -551,6 +552,7 @@ export class SeasonAwards {
 
   protected readonly topSingleGameScoringStarterRows = computed<StatListItem[]>(() =>
     this.topSingleGameScoringStarters().map((starter) => ({
+      id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.points.toFixed(2)}`,
       value: starter.points,
       weekLabel: String(starter.week).padStart(2, '0'),
       playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
@@ -591,6 +593,7 @@ export class SeasonAwards {
 
   protected readonly topSingleGameScoringTeamRows = computed<StatListItem[]>(() =>
     this.topSingleGameScoringTeams().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.points.toFixed(2)}`,
       value: team.points,
       weekLabel: String(team.week).padStart(2, '0'),
       teamName: mapTeamNameShort(team.teamName),
@@ -630,6 +633,7 @@ export class SeasonAwards {
 
   protected readonly topSingleGameLowestScoringTeamRows = computed<StatListItem[]>(() =>
     this.topSingleGameLowestScoringTeams().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.points.toFixed(2)}`,
       value: team.points,
       weekLabel: String(team.week).padStart(2, '0'),
       teamName: mapTeamNameShort(team.teamName),
@@ -678,6 +682,7 @@ export class SeasonAwards {
 
   protected readonly topSingleGameBiggestLoserRows = computed<StatListItem[]>(() =>
     this.topSingleGameBiggestLosers().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
       value: team.diff.toFixed(2),
       weekLabel: String(team.week).padStart(2, '0'),
       teamName: mapTeamNameShort(team.teamName),
@@ -726,6 +731,7 @@ export class SeasonAwards {
 
   protected readonly topSingleGameNarrowestVictoryRows = computed<StatListItem[]>(() =>
     this.topSingleGameNarrowestVictories().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
       value: team.diff.toFixed(2),
       weekLabel: String(team.week).padStart(2, '0'),
       teamName: mapTeamNameShort(team.teamName),
@@ -777,6 +783,7 @@ export class SeasonAwards {
 
   protected readonly topSingleWeekCarryStarterRows = computed<StatListItem[]>(() =>
     this.topSingleWeekCarryStarters().map((starter) => ({
+      id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.carryPct.toFixed(4)}`,
       value: `${starter.carryPct.toFixed(1)}%`,
       weekLabel: String(starter.week).padStart(2, '0'),
       playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,

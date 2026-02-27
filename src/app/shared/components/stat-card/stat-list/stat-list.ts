@@ -3,7 +3,7 @@ import { DecimalPipe } from '@angular/common';
 
 export type StatListValueFormat = 'auto' | 'decimal2' | 'integer';
 export interface StatListItem {
-  id?: string | number;
+  id: string | number;
   value: string | number;
   weekLabel?: string;
   playerDetails?: string;
