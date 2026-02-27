@@ -4,6 +4,7 @@ import { AllPlayMatrix } from '../../season/season-analytics/all-play-matrix/all
 import { AllTimeAllPlayMatrixService } from './all-play-matrix.service';
 import { DataTableComponent } from '../../../shared/table';
 import type { DataTableColumnDef, DataTableRow } from '../../../shared/table';
+import { AnalyticsAllPlayCareerRecord } from '../analytics/analytics-all-play-career-record/analytics-all-play-career-record';
 
 interface AllPlayTableRow extends DataTableRow {
   ownerName: string;
@@ -27,7 +28,7 @@ const ALL_PLAY_COLUMNS: DataTableColumnDef[] = [
 
 @Component({
   selector: 'app-all-play',
-  imports: [AllPlayMatrix, DataTableComponent],
+  imports: [AllPlayMatrix, DataTableComponent, AnalyticsAllPlayCareerRecord],
   templateUrl: './all-play.html',
   styleUrl: './all-play.scss',
 })
