@@ -69,6 +69,13 @@ export const ALL_TIME_ROUTES: Routes = [
               ).then((m) => m.AnalyticsExpectedWinsVsActualWins),
           },
           {
+            path: 'all-play-career-record',
+            loadComponent: () =>
+              import(
+                './analytics/analytics-all-play-career-record/analytics-all-play-career-record'
+              ).then((m) => m.AnalyticsAllPlayCareerRecord),
+          },
+          {
             path: 'consistency-index',
             loadComponent: () =>
               import(

@@ -1,0 +1,22 @@
+<h3 class="all-time-analytics-view__heading">All-Play Career Record</h3>
+<div class="all-time-analytics-view">
+  <p class="all-time-analytics-view__note">
+    Data shown is from 2012-present, when weekly matchup data is available.
+  </p>
+  @if (result()) {
+    <div class="all-time-analytics-view__chart-wrap" [style.height.px]="chartHeightPx()">
+      <canvas
+        baseChart
+        [data]="chartData()!"
+        [options]="chartOptions()"
+        [plugins]="chartPlugins"
+        chartType="scatter"
+      ></canvas>
+    </div>
+    <p class="all-time-analytics-view__legend">
+      Dumbbell chart comparing career actual win% vs all-play win% by owner.
+    </p>
+  } @else {
+    <p class="all-time-analytics-view__empty">No all-play career record data available.</p>
+  }
+</div>
