@@ -42,6 +42,17 @@ interface OwnerRecordListItem {
   winPct: string;
 }
 
+interface OwnerWeeklySummary {
+  gameScores: GamePointsAward[];
+  starterPerformances: Array<{
+    playerId: string;
+    playerName: string;
+    points: number;
+    week: number;
+    year: number;
+  }>;
+}
+
 @Component({
   selector: 'app-owner-profile-page',
   imports: [RouterLink, StatCard, StatValue],
@@ -63,6 +74,14 @@ export class OwnerProfilePage {
 
   protected readonly currentSeasonId = computed(
     () => this.leagueMeta.currentSeasonId() ?? null
+  );
+
+  private readonly headToHeadMatrix = computed(() =>
+    this.headToHeadMatrixService.buildMatrix()
+  );
+
+  private readonly allPlayMatrix = computed(() =>
+    this.allPlayMatrixService.buildMatrix()
   );
 
   protected readonly isActiveOwner = computed(() => {
@@ -182,26 +201,22 @@ export class OwnerProfilePage {
     return { highest, lowest };
   });
 
-  private readonly ownerGameScores = computed(() => {
+  private readonly ownerWeeklySummary = computed<OwnerWeeklySummary>(() => {
     const owner = this.owner();
-    if (!owner) return [];
+    if (!owner) {
+      return {
+        gameScores: [],
+        starterPerformances: [],
+      };
+    }
 
     const ownerTeamNames = new Set(owner.teamNames);
-    const scores: GamePointsAward[] = [];
+    const gameScores: GamePointsAward[] = [];
+    const starterPerformances: OwnerWeeklySummary['starterPerformances'] = [];
 
     for (const season of owner.activeSeasons) {
       const seasonId = String(season);
-      const seasonStandings = this.seasonStandingsData.getStandingsForSeason(seasonId);
-      const seasonTeamOwnerMap = new Map<string, string>();
-
-      if (seasonStandings) {
-        for (const standingsEntry of Object.values(seasonStandings)) {
-          seasonTeamOwnerMap.set(
-            standingsEntry.playerDetails.teamName,
-            standingsEntry.playerDetails.managerName
-          );
-        }
-      }
+      const seasonTeamOwnerMap = this.getSeasonTeamOwnerMap(seasonId);
 
       for (const weekKey of this.weeklyMatchupsData.getWeekKeysForSeason(seasonId)) {
         const weekEntries = this.weeklyMatchupsData.getMatchupsForWeek(seasonId, weekKey);
@@ -216,62 +231,15 @@ export class OwnerProfilePage {
 
           if (!belongsToOwner) continue;
 
-          scores.push({
+          gameScores.push({
             points: matchupEntry.team1Totals.totalPoints,
             week: matchupEntry.week,
             year: matchupEntry.season,
           });
-        }
-      }
-    }
-
-    return scores;
-  });
-
-  private readonly ownerStarterPerformances = computed(() => {
-    const owner = this.owner();
-    if (!owner) return [];
-
-    const ownerTeamNames = new Set(owner.teamNames);
-    const performances: Array<{
-      playerId: string;
-      playerName: string;
-      points: number;
-      week: number;
-      year: number;
-    }> = [];
-
-    for (const season of owner.activeSeasons) {
-      const seasonId = String(season);
-      const seasonStandings = this.seasonStandingsData.getStandingsForSeason(seasonId);
-      const seasonTeamOwnerMap = new Map<string, string>();
-
-      if (seasonStandings) {
-        for (const standingsEntry of Object.values(seasonStandings)) {
-          seasonTeamOwnerMap.set(
-            standingsEntry.playerDetails.teamName,
-            standingsEntry.playerDetails.managerName
-          );
-        }
-      }
-
-      for (const weekKey of this.weeklyMatchupsData.getWeekKeysForSeason(seasonId)) {
-        const weekEntries = this.weeklyMatchupsData.getMatchupsForWeek(seasonId, weekKey);
-        if (!weekEntries) continue;
-
-        for (const matchupEntry of Object.values(weekEntries)) {
-          const teamName = matchupEntry.matchup.team1Name;
-          const managerForTeam = seasonTeamOwnerMap.get(teamName);
-          const belongsToOwner =
-            managerForTeam === owner.managerName ||
-            (managerForTeam == null && ownerTeamNames.has(teamName));
-
-          if (!belongsToOwner) continue;
-
           for (const starter of matchupEntry.team1Roster.filter(
             (player) => player.slot === 'starter'
           )) {
-            performances.push({
+            starterPerformances.push({
               playerId: starter.playerId,
               playerName: starter.playerName,
               points: starter.points,
@@ -283,11 +251,11 @@ export class OwnerProfilePage {
       }
     }
 
-    return performances;
+    return { gameScores, starterPerformances };
   });
 
   protected readonly gamePointsAwards = computed(() => {
-    const scores = this.ownerGameScores();
+    const scores = this.ownerWeeklySummary().gameScores;
     if (!scores.length) {
       return { highest: null, lowest: null };
     }
@@ -303,7 +271,7 @@ export class OwnerProfilePage {
   });
 
   protected readonly starterAwards = computed(() => {
-    const performances = this.ownerStarterPerformances();
+    const performances = this.ownerWeeklySummary().starterPerformances;
 
     if (!performances.length) {
       return {
@@ -356,7 +324,7 @@ export class OwnerProfilePage {
 
   protected readonly headToHeadRecords = computed<OwnerRecordListItem[]>(() => {
     const owner = this.owner();
-    const matrix = this.headToHeadMatrixService.buildMatrix();
+    const matrix = this.headToHeadMatrix();
     if (!owner || !matrix) return [];
 
     return matrix.teamNames
@@ -374,7 +342,7 @@ export class OwnerProfilePage {
 
   protected readonly allPlayRecords = computed<OwnerRecordListItem[]>(() => {
     const owner = this.owner();
-    const matrix = this.allPlayMatrixService.buildMatrix();
+    const matrix = this.allPlayMatrix();
     if (!owner || !matrix) return [];
 
     const ownerDisplay = matrix.teamNames.find(
@@ -412,6 +380,22 @@ export class OwnerProfilePage {
 
   protected formatPointsToTwoDecimals(points: number | null | undefined): string {
     return points == null ? '--' : points.toFixed(2);
+  }
+
+  private getSeasonTeamOwnerMap(seasonId: string): Map<string, string> {
+    const seasonTeamOwnerMap = new Map<string, string>();
+    const seasonStandings = this.seasonStandingsData.getStandingsForSeason(seasonId);
+
+    if (!seasonStandings) return seasonTeamOwnerMap;
+
+    for (const standingsEntry of Object.values(seasonStandings)) {
+      seasonTeamOwnerMap.set(
+        standingsEntry.playerDetails.teamName,
+        standingsEntry.playerDetails.managerName
+      );
+    }
+
+    return seasonTeamOwnerMap;
   }
 
   private parseOwnerDisplay(value: string): { ownerName: string; seasonsActive: number } {
