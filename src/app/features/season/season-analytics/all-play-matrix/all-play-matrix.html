@@ -2,8 +2,8 @@
 @if (data) {
   <section class="all-play-matrix" aria-label="All-play matrix">
     <p class="all-play-matrix__intro">
-      Record each team would have against every other team if they played every week (regular season).
-      Row = team; column = opponent. Cell = W-L or W-L-T from the row team's perspective.
+      Record each team would have against every other team if they played every week (regular
+      season). Row = team; column = opponent. Cell = W-L or W-L-T from the row team's perspective.
     </p>
     <div class="all-play-matrix__scroll">
       <table class="all-play-matrix__table">
@@ -18,11 +18,15 @@
                 }
               </th>
             }
-            <th class="all-play-matrix__cell all-play-matrix__cell--header all-play-matrix__cell--total-header">
+            <th
+              class="all-play-matrix__cell all-play-matrix__cell--header all-play-matrix__cell--total-header"
+            >
               Total
             </th>
             @if (showWinPct()) {
-              <th class="all-play-matrix__cell all-play-matrix__cell--header all-play-matrix__cell--total-header">
+              <th
+                class="all-play-matrix__cell all-play-matrix__cell--header all-play-matrix__cell--total-header"
+              >
                 Win %
               </th>
             }
@@ -39,39 +43,57 @@
                 }
               </th>
               @for (colTeam of data.teamNames; track colTeam) {
-                <td class="all-play-matrix__cell all-play-matrix__cell--data"
-                    [class.all-play-matrix__cell--diagonal]="rowTeam === colTeam">
+                <td
+                  class="all-play-matrix__cell all-play-matrix__cell--data"
+                  [class.all-play-matrix__cell--diagonal]="rowTeam === colTeam"
+                >
                   {{ formatRecord(data.getRecord(rowTeam, colTeam)) }}
                 </td>
               }
-              <td class="all-play-matrix__cell all-play-matrix__cell--data all-play-matrix__cell--total">
+              <td
+                class="all-play-matrix__cell all-play-matrix__cell--data all-play-matrix__cell--total"
+              >
                 {{ formatRecord(rowTotal) }}
               </td>
               @if (showWinPct()) {
-                <td class="all-play-matrix__cell all-play-matrix__cell--data all-play-matrix__cell--total">
+                <td
+                  class="all-play-matrix__cell all-play-matrix__cell--data all-play-matrix__cell--total"
+                >
                   {{ formatWinPct(rowTotal) }}
                 </td>
               }
             </tr>
           }
           <tr class="all-play-matrix__total-row">
-            <th class="all-play-matrix__cell all-play-matrix__cell--row-header all-play-matrix__cell--total-header">
+            <th
+              class="all-play-matrix__cell all-play-matrix__cell--row-header all-play-matrix__cell--total-header"
+            >
               Total
             </th>
             @for (colTeam of data.teamNames; track colTeam) {
-              <td class="all-play-matrix__cell all-play-matrix__cell--data all-play-matrix__cell--total">
+              <td
+                class="all-play-matrix__cell all-play-matrix__cell--data all-play-matrix__cell--total"
+              >
                 {{ formatRecord(data.getTotalRecord(colTeam)) }}
               </td>
             }
-            <td class="all-play-matrix__cell all-play-matrix__cell--corner all-play-matrix__cell--total-corner">—</td>
+            <td
+              class="all-play-matrix__cell all-play-matrix__cell--corner all-play-matrix__cell--total-corner"
+            >
+              —
+            </td>
             @if (showWinPct()) {
-              <td class="all-play-matrix__cell all-play-matrix__cell--corner all-play-matrix__cell--total-corner">—</td>
+              <td
+                class="all-play-matrix__cell all-play-matrix__cell--corner all-play-matrix__cell--total-corner"
+              >
+                —
+              </td>
             }
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="all-play-matrix__meta">Based on {{ data.weeksCount }} regular-season week(s).</p>
+    <p class="all-play-matrix__meta">Based on {{ data.weeksCount }} regular-season weeks.</p>
   </section>
 } @else {
   <p class="all-play-matrix__empty">No all-play data for this season.</p>
