@@ -1,0 +1,82 @@
+@if (owner(); as ownerData) {
+  <section class="owner-profile-page">
+    <header class="owner-profile-page__header">
+      <div class="owner-profile-page__identity">
+        <h1 class="owner-profile-page__name">{{ ownerData.realName }}</h1>
+        <p class="owner-profile-page__team">{{ mostRecentTeamName() }}</p>
+        <p class="owner-profile-page__record">All-Time Record: {{ allTimeRecord() }}</p>
+      </div>
+      @if (isActiveOwner()) {
+        <span class="owner-profile-page__active-tag">Active</span>
+      }
+    </header>
+
+    <section class="owner-profile-page__section owner-profile-page__section--summary">
+      <div class="owner-profile-page__box">
+        <h2 class="owner-profile-page__box-title">Name History</h2>
+        <ul class="owner-profile-page__name-history">
+          @for (item of nameHistory(); track item.name) {
+            <li class="owner-profile-page__name-item">
+              <span>{{ item.name }} ({{ item.lastYearUsed ?? '--' }})</span>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="owner-profile-page__box">
+        <h2 class="owner-profile-page__box-title">
+          Active Seasons ({{ ownerData.activeSeasons.length }})
+        </h2>
+        <div class="owner-profile-page__years-grid">
+          @for (season of activeSeasonYears(); track season.year) {
+            <span
+              class="owner-profile-page__year-pill"
+              [class.owner-profile-page__year-pill--championship]="season.isChampion"
+              [class.owner-profile-page__year-pill--toilet]="season.isToiletBowlChampion"
+            >
+              {{ season.year }}
+            </span>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="owner-profile-page__section">
+      <h2 class="owner-profile-page__section-title">Awards</h2>
+
+      <div class="owner-profile-page__awards-grid">
+        <app-stat-card
+          title="Most Points in a Season"
+          [footer]="formatSeasonFooter(seasonPointsAwards().highest?.year ?? null)"
+        >
+          <app-stat-value
+            [value]="seasonPointsAwards().highest?.points ?? '--'"
+          />
+        </app-stat-card>
+
+        <app-stat-card
+          title="Fewest Points in a Season"
+          [footer]="formatSeasonFooter(seasonPointsAwards().lowest?.year ?? null)"
+        >
+          <app-stat-value
+            [value]="seasonPointsAwards().lowest?.points ?? '--'"
+          />
+        </app-stat-card>
+
+        <app-stat-card
+          title="Most Points in a Game"
+          [footer]="formatGameFooter(gamePointsAwards().highest)"
+        >
+          <app-stat-value [value]="gamePointsAwards().highest?.points ?? '--'" />
+        </app-stat-card>
+
+        <app-stat-card
+          title="Fewest Points in a Game"
+          [footer]="formatGameFooter(gamePointsAwards().lowest)"
+        >
+          <app-stat-value [value]="gamePointsAwards().lowest?.points ?? '--'" />
+        </app-stat-card>
+      </div>
+    </section>
+  </section>
+}

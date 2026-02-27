@@ -1,0 +1,120 @@
+.owner-profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.owner-profile-page__header {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.owner-profile-page__identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.owner-profile-page__name {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.owner-profile-page__team,
+.owner-profile-page__record {
+  margin: 0;
+  opacity: 0.8;
+}
+
+.owner-profile-page__active-tag {
+  border: 1px solid var(--mat-sys-primary);
+  border-radius: 999px;
+  color: var(--mat-sys-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.65rem;
+  text-transform: uppercase;
+}
+
+.owner-profile-page__section {
+  display: grid;
+  gap: 1rem;
+}
+
+.owner-profile-page__section--summary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.owner-profile-page__box {
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.owner-profile-page__box-title,
+.owner-profile-page__section-title {
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.owner-profile-page__name-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.owner-profile-page__name-item {
+  display: flex;
+  font-variant-numeric: tabular-nums;
+  gap: 0.75rem;
+}
+
+.owner-profile-page__years-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.owner-profile-page__year-pill {
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.5rem;
+  text-align: center;
+}
+
+.owner-profile-page__year-pill--championship {
+  background: color-mix(in srgb, var(--mat-sys-primary) 16%, transparent);
+  border-color: var(--mat-sys-primary);
+}
+
+.owner-profile-page__year-pill--toilet {
+  box-shadow: inset 0 -2px 0 var(--mat-sys-tertiary);
+}
+
+.owner-profile-page__awards-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+@media (max-width: 640px) {
+  .owner-profile-page__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .owner-profile-page__section--summary {
+    grid-template-columns: 1fr;
+  }
+
+  .owner-profile-page__years-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
