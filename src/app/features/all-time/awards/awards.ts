@@ -80,6 +80,7 @@ export class Awards {
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
   private readonly weeklyMatchupsData = inject(WeeklyMatchupsDataService);
   private readonly allTimeRecords = inject(AllTimeRecordsService);
+  private readonly allTimeRecordRows = computed(() => this.allTimeRecords.toTableState().data);
 
   private readonly ownerByTeamName = computed(() => {
     const ownerMap = new Map<string, string>();
@@ -370,9 +371,8 @@ export class Awards {
   });
 
   private readonly averageWinsPerSeasonRows = computed<AverageWinsPerSeasonRow[]>(() =>
-    this.allTimeRecords
-      .toTableState()
-      .data.map((row) => ({
+    this.allTimeRecordRows()
+      .map((row) => ({
         avgWins: row.totalSeasons > 0 ? row.wins / row.totalSeasons : 0,
         ownerName: row.ownerName,
         seasonsPlayed: row.totalSeasons,
@@ -411,9 +411,8 @@ export class Awards {
   );
 
   protected readonly topAveragePointsPerSeasonRows = computed<StarterGameListItem[]>(() =>
-    this.allTimeRecords
-      .toTableState()
-      .data.map(
+    this.allTimeRecordRows()
+      .map(
         (row): AveragePointsPerSeasonRow => ({
           avgPointsPerSeason: row.avgPointsPerSeason,
           ownerName: row.ownerName,
@@ -437,9 +436,8 @@ export class Awards {
   );
 
   protected readonly mostChampionshipsRows = computed<StarterGameListItem[]>(() =>
-    this.allTimeRecords
-      .toTableState()
-      .data.map(
+    this.allTimeRecordRows()
+      .map(
         (row): ChampionshipRow => ({
           championships: row.championships,
           ownerName: row.ownerName,
