@@ -1,21 +1,11 @@
 <section class="page-section owners-page" aria-label="Owners">
-  <app-section-header heading="Owners" />
+  <app-section-header heading="Owners" [meta]="subtitle" />
 
-  <div class="owners-page__toolbar">
-    <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="owners-page__tabs">
-      @for (tab of tabs; track tab.path) {
-        <a
-          mat-tab-link
-          [routerLink]="['/owners', tab.path]"
-          routerLinkActive
-          #rla="routerLinkActive"
-          [active]="rla.isActive"
-        >{{ tab.label }}</a>
-      }
-    </nav>
+  <div class="owners-page__cards" aria-label="Owner links">
+    @for (owner of ownerCards; track owner.path) {
+      <a class="owners-page__card" [routerLink]="['/owners', owner.path]">
+        <h2 class="owners-page__card-title">{{ owner.label }}</h2>
+      </a>
+    }
   </div>
-
-  <mat-tab-nav-panel #tabPanel>
-    <router-outlet />
-  </mat-tab-nav-panel>
 </section>
