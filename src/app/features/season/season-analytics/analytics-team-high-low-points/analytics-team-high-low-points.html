@@ -1,0 +1,19 @@
+<h3 class="season-analytics-view__heading">Team High/Low Points</h3>
+<div class="season-analytics-view">
+  @if (result()) {
+    <div class="season-analytics-view__chart-wrap">
+      <canvas
+        baseChart
+        [data]="chartData()!"
+        [options]="chartOptions()"
+        [plugins]="chartPlugins"
+        chartType="line"
+      ></canvas>
+    </div>
+    <p class="season-analytics-view__legend">
+      Regular-season highest and lowest single-game totals for each team.
+    </p>
+  } @else {
+    <p class="season-analytics-view__empty">No team high/low points data available.</p>
+  }
+</div>

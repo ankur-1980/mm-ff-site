@@ -13,3 +13,19 @@
   font-size: 0.875rem;
   color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
 }
+
+.all-time-all-play__table-heading {
+  margin: 1rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.all-time-all-play__empty {
+  margin: 0;
+  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  font-size: 0.875rem;
+}
+
+.all-time-all-play__dumbbell {
+  margin-top: 1rem;
+}

@@ -3,11 +3,12 @@ import { LoggerService } from '@ankur-1980/logger';
 
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { OwnersDataService } from '../../../data/owners-data.service';
+import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
 import type {
   AllPlayMatrixResult,
   AllPlayPairRecord,
-} from '../../season/season-analytics/all-play-matrix.models';
+} from '../../season/season-analytics/models/all-play-matrix.models';
 
 const EPSILON = 0.000001;
 
@@ -25,6 +26,7 @@ export class AllTimeAllPlayMatrixService {
   private readonly weeklyMatchups = inject(WeeklyMatchupsDataService);
   private readonly owners = inject(OwnersDataService);
   private readonly leagueMeta = inject(LeagueMetaDataService);
+  private readonly seasonStandings = inject(SeasonStandingsDataService);
   private readonly logger = inject(LoggerService);
 
   private readonly loggedMappingErrors = new Set<string>();
@@ -53,33 +55,62 @@ export class AllTimeAllPlayMatrixService {
     return { ownerByTeam, ambiguousTeams };
   }
 
+  private buildSeasonOwnerIndex(seasonId: string): OwnerIndex | null {
+    const standings = this.seasonStandings.getStandingsForSeason(seasonId);
+    if (!standings) return null;
+
+    const ownerByTeam = new Map<string, string>();
+    const ambiguousTeams = new Set<string>();
+
+    for (const entry of Object.values(standings)) {
+      const teamName = entry.playerDetails?.teamName;
+      const managerName = entry.playerDetails?.managerName;
+      const key = normalize(teamName);
+      if (!key || !managerName) continue;
+      if (ambiguousTeams.has(key)) continue;
+
+      const existing = ownerByTeam.get(key);
+      if (existing && existing !== managerName) {
+        ownerByTeam.delete(key);
+        ambiguousTeams.add(key);
+        continue;
+      }
+
+      ownerByTeam.set(key, managerName);
+    }
+
+    return { ownerByTeam, ambiguousTeams };
+  }
+
   private resolveOwner(
     seasonId: string,
     weekNum: number,
     teamName: string | null | undefined,
-    ownerIndex: OwnerIndex
+    seasonOwnerIndex: OwnerIndex | null,
+    fallbackOwnerIndex: OwnerIndex,
   ): string | null {
     const key = normalize(teamName);
     if (!key) return null;
 
-    if (ownerIndex.ambiguousTeams.has(key)) {
+    const activeIndex = seasonOwnerIndex ?? fallbackOwnerIndex;
+    if (activeIndex.ambiguousTeams.has(key)) {
       const errorKey = `${seasonId}|${weekNum}|ambiguous|${key}`;
       if (!this.loggedMappingErrors.has(errorKey)) {
         this.loggedMappingErrors.add(errorKey);
         this.logger.error(
-          `AllTimeAllPlayMatrixService: ambiguous team mapping in season ${seasonId} week ${weekNum} for "${teamName}"`
+          `AllTimeAllPlayMatrixService: ambiguous team mapping in season ${seasonId} week ${weekNum} for "${teamName}"`,
         );
       }
       return null;
     }
 
-    const owner = ownerIndex.ownerByTeam.get(key);
+    const owner = activeIndex.ownerByTeam.get(key);
     if (!owner) {
       const errorKey = `${seasonId}|${weekNum}|missing|${key}`;
       if (!this.loggedMappingErrors.has(errorKey)) {
         this.loggedMappingErrors.add(errorKey);
         this.logger.error(
-          `AllTimeAllPlayMatrixService: missing owner mapping in season ${seasonId} week ${weekNum} for "${teamName}"`
+          `AllTimeAllPlayMatrixService: missing owner mapping in season ${seasonId} week ${weekNum} for "${teamName}"`,
         );
       }
       return null;
@@ -90,20 +121,17 @@ export class AllTimeAllPlayMatrixService {
 
   buildMatrix(): AllPlayMatrixResult | null {
     const ownerIndex = this.buildOwnerIndex();
-    const ownerMeta = new Map(
-      this.owners
-        .allOwners()
-        .map((o) => [o.managerName, (o.activeSeasons?.length ?? 0) || o.seasonsPlayed || 0] as const)
-    );
     const seasonIds = this.weeklyMatchups.seasonIds();
     if (!seasonIds.length) return null;
 
     const weeklyScoresByOwner = new Map<string, Map<string, number>>();
+    const seasonsWithRegularSeasonData = new Set<string>();
     let weeksCount = 0;
 
     for (const seasonId of seasonIds) {
       const meta = this.leagueMeta.getSeasonMeta(seasonId);
       const season = this.weeklyMatchups.getSeasonWeeks(seasonId);
+      const seasonOwnerIndex = this.buildSeasonOwnerIndex(seasonId);
       if (!meta || !season) continue;
 
       for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
@@ -113,7 +141,13 @@ export class AllTimeAllPlayMatrixService {
 
         const ownerScores = new Map<string, number>();
         for (const entry of Object.values(weekData)) {
-          const owner = this.resolveOwner(seasonId, week, entry.matchup?.team1Name, ownerIndex);
+          const owner = this.resolveOwner(
+            seasonId,
+            week,
+            entry.matchup?.team1Name,
+            seasonOwnerIndex,
+            ownerIndex,
+          );
           const points = Number(entry.team1Totals?.totalPoints);
           if (!owner || !Number.isFinite(points)) continue;
           // One score per owner per week; first valid entry wins if duplicates appear.
@@ -122,12 +156,28 @@ export class AllTimeAllPlayMatrixService {
 
         if (ownerScores.size > 0) {
           weeklyScoresByOwner.set(`${seasonId}|${weekKey}`, ownerScores);
+          seasonsWithRegularSeasonData.add(seasonId);
           weeksCount += 1;
         }
       }
     }
 
     if (weeksCount === 0) return null;
+
+    const seasonsWithDataNums = new Set(
+      Array.from(seasonsWithRegularSeasonData.values()).map((seasonId) => Number(seasonId)),
+    );
+    const ownerMeta = new Map(
+      this.owners.allOwners().map((owner) => {
+        const activeSeasons = owner.activeSeasons ?? [];
+        const seasonsWithData = activeSeasons.filter((season) =>
+          seasonsWithDataNums.has(Number(season)),
+        ).length;
+        const fallback = owner.seasonsPlayed ?? 0;
+        const seasonsPlayed = seasonsWithData > 0 ? seasonsWithData : fallback;
+        return [owner.managerName, seasonsPlayed] as const;
+      }),
+    );
 
     const ownerNames = this.owners.allOwners().map((o) => o.managerName);
     const pairRecords = new Map<string, AllPlayPairRecord>();
@@ -168,7 +218,7 @@ export class AllTimeAllPlayMatrixService {
     }
 
     const sortedOwners = [...ownerNames].sort(
-      (a, b) => (totalWins.get(b) ?? 0) - (totalWins.get(a) ?? 0) || a.localeCompare(b)
+      (a, b) => (totalWins.get(b) ?? 0) - (totalWins.get(a) ?? 0) || a.localeCompare(b),
     );
 
     const displayByOwner = new Map<string, string>();

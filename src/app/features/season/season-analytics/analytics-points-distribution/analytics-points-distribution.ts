@@ -3,8 +3,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 
-import type { BoxPlotTeamStats } from '../points-distribution.models';
-import { PointsDistributionService } from '../points-distribution.service';
+import type { BoxPlotTeamStats } from '../models/points-distribution.models';
+import { PointsDistributionService } from '../services/points-distribution.service';
 
 @Component({
   selector: 'app-analytics-points-distribution',
@@ -22,9 +22,9 @@ export class AnalyticsPointsDistribution {
         const raw = pm.get('year');
         const n = raw == null ? NaN : Number(raw);
         return Number.isFinite(n) ? n : null;
-      })
+      }),
     ),
-    { initialValue: null }
+    { initialValue: null },
   );
 
   protected readonly boxPlotStats = computed<BoxPlotTeamStats[] | null>(() => {
@@ -45,7 +45,7 @@ export class AnalyticsPointsDistribution {
     let dataMax = -Infinity;
 
     for (const s of stats) {
-      const outlierPoints = s.outliers.map(o => o.points);
+      const outlierPoints = s.outliers.map((o) => o.points);
 
       const low = outlierPoints.length
         ? Math.min(s.lowerWhisker, ...outlierPoints)
@@ -96,7 +96,7 @@ export class AnalyticsPointsDistribution {
     if (team.outliers.length > 0) {
       lines.push(
         'Outliers: ' +
-          team.outliers.map((o) => `Week ${o.week}: ${o.points.toFixed(1)}`).join(', ')
+          team.outliers.map((o) => `Week ${o.week}: ${o.points.toFixed(1)}`).join(', '),
       );
     }
     return lines.join('\n');

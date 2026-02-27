@@ -12,7 +12,7 @@ import { StatValue } from '../../../shared/components/stat-card/stat-value/stat-
 import { mapTeamNameShort } from '../../../shared/mappers/team-name-short.mapper';
 import { SeasonStandingsService } from '../season-standings/season-standings.service';
 import type { SeasonStandingsRow } from '../season-standings/season-standings.models';
-import { AllPlayMatrixService } from '../season-analytics/all-play-matrix.service';
+import { AllPlayMatrixService } from '../season-analytics/services/all-play-matrix.service';
 import { StatList, StatListItem } from '../../../shared/components/stat-card/stat-list/stat-list';
 
 const EPSILON = 0.000001;

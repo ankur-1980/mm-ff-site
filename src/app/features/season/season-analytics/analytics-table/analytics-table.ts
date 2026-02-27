@@ -9,7 +9,7 @@ import type { DataTableColumnDef, DataTableRow } from '../../../../shared/table'
 import { SeasonStandingsService } from '../../season-standings/season-standings.service';
 import type { SeasonStandingsRow } from '../../season-standings/season-standings.models';
 import { PythagoreanRankingsService } from '../../season-power-rankings/pythagorean-rankings.service';
-import { AllPlayMatrixService } from '../all-play-matrix.service';
+import { AllPlayMatrixService } from '../services/all-play-matrix.service';
 
 function formatAllPlayRecord(w: number, l: number, t: number): string {
   if (w === 0 && l === 0 && t === 0) return '—';
@@ -37,7 +37,6 @@ const ANALYTICS_COLUMNS: DataTableColumnDef[] = [
     header: 'Points For',
     widthCh: 12,
     format: 'decimal2',
-
   },
   { key: 'pointsAgainst', header: 'Points Against', widthCh: 14, format: 'decimal2' },
   { key: 'pointsForAvg', header: 'PF Avg', widthCh: 10, format: 'decimal2' },
@@ -73,9 +72,9 @@ export class AnalyticsTable {
   /** Year is on the :year route (parent of analytics). */
   private readonly year = toSignal(
     (this.route.parent?.parent ?? this.route.parent ?? this.route).params.pipe(
-      map((p) => (p['year'] ? Number(p['year']) : null))
+      map((p) => (p['year'] ? Number(p['year']) : null)),
     ),
-    { initialValue: null }
+    { initialValue: null },
   );
 
   private readonly standings = computed(() => {
@@ -91,9 +90,7 @@ export class AnalyticsTable {
     const rows = state.data.map((row: SeasonStandingsRow): AnalyticsTableRow => {
       const gp = row.gp ?? 0;
       const expectedWins =
-        gp > 0
-          ? this.pythagorean.calculateExpectedWins(row.pointsFor, row.pointsAgainst, gp)
-          : 0;
+        gp > 0 ? this.pythagorean.calculateExpectedWins(row.pointsFor, row.pointsAgainst, gp) : 0;
       const actualWins = row.win ?? 0;
       const luckScore = actualWins - expectedWins;
       const totalRecord = matrix?.getTotalRecord(row.teamName);

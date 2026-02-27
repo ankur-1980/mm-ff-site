@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 
-import type { AllPlayMatrixResult, AllPlayPairRecord } from './all-play-matrix.models';
-import { LeagueMetaDataService } from '../../../data/league-metadata.service';
-import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
+import type { AllPlayMatrixResult, AllPlayPairRecord } from '../models/all-play-matrix.models';
+import { LeagueMetaDataService } from '../../../../data/league-metadata.service';
+import { WeeklyMatchupsDataService } from '../../../../data/weekly-matchups-data.service';
 
 const EPSILON = 0.000_001;
 
@@ -99,7 +99,8 @@ export class AllPlayMatrixService {
       }
       totalWins.set(key, sum);
     }
-    const teamNames = [...allTeams].sort((a, b) => (totalWins.get(b) ?? 0) - (totalWins.get(a) ?? 0))
+    const teamNames = [...allTeams]
+      .sort((a, b) => (totalWins.get(b) ?? 0) - (totalWins.get(a) ?? 0))
       .map((key) => teamDisplayNames.get(key) ?? key);
 
     const getRecord = (rowTeam: string, colTeam: string): AllPlayPairRecord => {

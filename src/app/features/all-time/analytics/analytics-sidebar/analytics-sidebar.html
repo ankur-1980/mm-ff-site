@@ -1,0 +1,79 @@
+<div class="analytics-sidebar__layout">
+  <nav class="analytics-sidebar__nav" aria-label="All-time analytics navigation">
+    <a
+      routerLink="table"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Table
+    </a>
+    <a
+      routerLink="win-pct-over-time"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      Win% Over Time
+    </a>
+    <a
+      routerLink="total-points-for"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      Total Points For
+    </a>
+    <a
+      routerLink="points-differential"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      Points Differential
+    </a>
+    <a
+      routerLink="season-high-low-points"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      Season High/Low Points
+    </a>
+    <a
+      routerLink="expected-wins-vs-actual-wins"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      Expected Wins vs Actual Wins
+    </a>
+    <a
+      routerLink="all-play-matrix"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      All-Play Matrix
+    </a>
+    <a
+      routerLink="all-play-records-table"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      All-Play Records Table
+    </a>
+    <a
+      routerLink="all-play-career-record"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      All-Play Career Record
+    </a>
+
+    <a
+      routerLink="consistency-index"
+      routerLinkActive="analytics-sidebar__nav-link--active"
+      class="analytics-sidebar__nav-link"
+    >
+      Consistency Index
+    </a>
+  </nav>
+  <main class="analytics-sidebar__main">
+    <router-outlet />
+  </main>
+</div>

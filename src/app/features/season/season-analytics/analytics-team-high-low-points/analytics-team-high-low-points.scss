@@ -1,0 +1,27 @@
+.season-analytics-view__heading {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.season-analytics-view {
+  padding: 0.5rem 0;
+}
+
+.season-analytics-view__chart-wrap {
+  height: 620px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.season-analytics-view__legend {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+}
+
+.season-analytics-view__empty {
+  margin: 0;
+  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  font-size: 0.875rem;
+}

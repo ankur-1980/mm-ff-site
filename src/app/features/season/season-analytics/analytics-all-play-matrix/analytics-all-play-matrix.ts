@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 import { AllPlayMatrix } from '../all-play-matrix/all-play-matrix';
-import { AllPlayMatrixService } from '../all-play-matrix.service';
+import { AllPlayMatrixService } from '../services/all-play-matrix.service';
 
 @Component({
   selector: 'app-analytics-all-play-matrix',
@@ -20,9 +20,9 @@ export class AnalyticsAllPlayMatrix {
   /** Year is on the :year route (parent of analytics), not on this route's direct parent. */
   private readonly year = toSignal(
     (this.route.parent?.parent ?? this.route.parent ?? this.route).params.pipe(
-      map((p) => (p['year'] ? Number(p['year']) : null))
+      map((p) => (p['year'] ? Number(p['year']) : null)),
     ),
-    { initialValue: null }
+    { initialValue: null },
   );
 
   protected readonly allPlayMatrix = computed(() => {

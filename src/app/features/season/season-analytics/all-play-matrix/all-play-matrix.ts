@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 
-import type { AllPlayMatrixResult, AllPlayPairRecord } from '../all-play-matrix.models';
+import type { AllPlayMatrixResult, AllPlayPairRecord } from '../models/all-play-matrix.models';
 
 @Component({
   selector: 'app-all-play-matrix',

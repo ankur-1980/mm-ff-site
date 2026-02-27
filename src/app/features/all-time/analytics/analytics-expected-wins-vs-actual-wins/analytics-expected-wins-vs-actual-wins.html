@@ -1,0 +1,20 @@
+<h3 class="all-time-analytics-view__heading">Expected Wins vs Actual Wins</h3>
+<div class="all-time-analytics-view">
+  @if (result()) {
+    <div class="all-time-analytics-view__chart-wrap">
+      <canvas
+        baseChart
+        [data]="chartData()!"
+        [options]="chartOptions()"
+        [plugins]="chartPlugins"
+        chartType="scatter"
+      ></canvas>
+    </div>
+    <p class="all-time-analytics-view__legend">
+      Career Luck = Actual Wins - Expected Wins. Diagonal line is parity.
+      Above line = lucky career. Below line = snakebitten career.
+    </p>
+  } @else {
+    <p class="all-time-analytics-view__empty">No expected vs actual wins data available.</p>
+  }
+</div>

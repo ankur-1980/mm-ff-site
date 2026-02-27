@@ -1,0 +1,27 @@
+.all-time-analytics-view__heading {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.all-time-analytics-view {
+  padding: 0.5rem 0;
+}
+
+.all-time-analytics-view__chart-wrap {
+  height: 720px;
+  width: 100%;
+  // max-width: 860px;
+}
+
+.all-time-analytics-view__legend {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+}
+
+.all-time-analytics-view__empty {
+  margin: 0;
+  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  font-size: 0.875rem;
+}
