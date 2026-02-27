@@ -70,6 +70,11 @@ export class OwnerProfilePage {
 
   readonly ownerId = input.required<string>();
 
+  constructor() {
+    this.weeklyMatchupsData.load();
+    this.toiletBowlData.load();
+  }
+
   protected readonly owner = computed(() => this.ownersData.getOwner(this.ownerId()));
 
   protected readonly currentSeasonId = computed(

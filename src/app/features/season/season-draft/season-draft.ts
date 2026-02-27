@@ -58,6 +58,10 @@ export class SeasonDraft {
   private readonly draftRostersData = inject(DraftRostersDataService);
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
 
+  constructor() {
+    this.draftRostersData.load();
+  }
+
   private readonly year = toSignal(
     (this.route.parent ?? this.route).params.pipe(
       map((p) => (p['year'] ? Number(p['year']) : null))
