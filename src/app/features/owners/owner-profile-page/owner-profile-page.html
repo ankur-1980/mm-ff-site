@@ -77,6 +77,26 @@
         >
           <app-stat-value [value]="gamePointsAwards().lowest?.points ?? '--'" />
         </app-stat-card>
+
+        <app-stat-card
+          title="Starter Most Points in a Season"
+          [subtitle]="starterAwards().bestSeason?.playerName ?? ''"
+          [footer]="formatSeasonFooter(starterAwards().bestSeason?.year ?? null)"
+        >
+          <app-stat-value
+            [value]="formatPointsToTwoDecimals(starterAwards().bestSeason?.points)"
+          />
+        </app-stat-card>
+
+        <app-stat-card
+          title="Starter Most Points in a Game"
+          [subtitle]="starterAwards().bestGame?.playerName ?? ''"
+          [footer]="formatStarterGameFooter(starterAwards().bestGame)"
+        >
+          <app-stat-value
+            [value]="formatPointsToTwoDecimals(starterAwards().bestGame?.points)"
+          />
+        </app-stat-card>
       </div>
     </section>
 

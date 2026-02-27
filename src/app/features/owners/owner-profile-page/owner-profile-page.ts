@@ -23,6 +23,19 @@ interface GamePointsAward {
   year: number;
 }
 
+interface SeasonStarterAward {
+  playerName: string;
+  points: number;
+  year: number;
+}
+
+interface SingleGameStarterAward {
+  playerName: string;
+  points: number;
+  week: number;
+  year: number;
+}
+
 interface OwnerRecordListItem {
   ownerName: string;
   record: string;
@@ -205,6 +218,64 @@ export class OwnerProfilePage {
     return scores;
   });
 
+  private readonly ownerStarterPerformances = computed(() => {
+    const owner = this.owner();
+    if (!owner) return [];
+
+    const ownerTeamNames = new Set(owner.teamNames);
+    const performances: Array<{
+      playerId: string;
+      playerName: string;
+      points: number;
+      week: number;
+      year: number;
+    }> = [];
+
+    for (const season of owner.activeSeasons) {
+      const seasonId = String(season);
+      const seasonStandings = this.seasonStandingsData.getStandingsForSeason(seasonId);
+      const seasonTeamOwnerMap = new Map<string, string>();
+
+      if (seasonStandings) {
+        for (const standingsEntry of Object.values(seasonStandings)) {
+          seasonTeamOwnerMap.set(
+            standingsEntry.playerDetails.teamName,
+            standingsEntry.playerDetails.managerName
+          );
+        }
+      }
+
+      for (const weekKey of this.weeklyMatchupsData.getWeekKeysForSeason(seasonId)) {
+        const weekEntries = this.weeklyMatchupsData.getMatchupsForWeek(seasonId, weekKey);
+        if (!weekEntries) continue;
+
+        for (const matchupEntry of Object.values(weekEntries)) {
+          const teamName = matchupEntry.matchup.team1Name;
+          const managerForTeam = seasonTeamOwnerMap.get(teamName);
+          const belongsToOwner =
+            managerForTeam === owner.managerName ||
+            (managerForTeam == null && ownerTeamNames.has(teamName));
+
+          if (!belongsToOwner) continue;
+
+          for (const starter of matchupEntry.team1Roster.filter(
+            (player) => player.slot === 'starter'
+          )) {
+            performances.push({
+              playerId: starter.playerId,
+              playerName: starter.playerName,
+              points: starter.points,
+              week: matchupEntry.week,
+              year: matchupEntry.season,
+            });
+          }
+        }
+      }
+    }
+
+    return performances;
+  });
+
   protected readonly gamePointsAwards = computed(() => {
     const scores = this.ownerGameScores();
     if (!scores.length) {
@@ -219,6 +290,58 @@ export class OwnerProfilePage {
     );
 
     return { highest, lowest };
+  });
+
+  protected readonly starterAwards = computed(() => {
+    const performances = this.ownerStarterPerformances();
+
+    if (!performances.length) {
+      return {
+        bestSeason: null as SeasonStarterAward | null,
+        bestGame: null as SingleGameStarterAward | null,
+      };
+    }
+
+    const seasonTotals = new Map<
+      string,
+      { playerName: string; points: number; year: number }
+    >();
+
+    for (const performance of performances) {
+      const key = `${performance.year}|${performance.playerId}`;
+      const current = seasonTotals.get(key);
+
+      if (current) {
+        current.points += performance.points;
+      } else {
+        seasonTotals.set(key, {
+          playerName: performance.playerName,
+          points: performance.points,
+          year: performance.year,
+        });
+      }
+    }
+
+    const bestSeason =
+      Array.from(seasonTotals.values()).reduce<SeasonStarterAward | null>(
+        (best, current) => {
+          if (!best || current.points > best.points) {
+            return current;
+          }
+          return best;
+        },
+        null
+      );
+
+    const bestGame =
+      performances.reduce<SingleGameStarterAward | null>((best, current) => {
+        if (!best || current.points > best.points) {
+          return current;
+        }
+        return best;
+      }, null);
+
+    return { bestSeason, bestGame };
   });
 
   protected readonly headToHeadRecords = computed<OwnerRecordListItem[]>(() => {
@@ -270,6 +393,15 @@ export class OwnerProfilePage {
   protected formatGameFooter(award: GamePointsAward | null): string {
     if (!award) return '--';
     return `Week ${award.week} / ${award.year}`;
+  }
+
+  protected formatStarterGameFooter(award: SingleGameStarterAward | null): string {
+    if (!award) return '--';
+    return `Week ${award.week} / ${award.year}`;
+  }
+
+  protected formatPointsToTwoDecimals(points: number | null | undefined): string {
+    return points == null ? '--' : points.toFixed(2);
   }
 
   private parseOwnerDisplay(value: string): { ownerName: string; seasonsActive: number } {
