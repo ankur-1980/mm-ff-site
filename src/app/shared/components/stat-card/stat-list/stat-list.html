@@ -1,10 +1,28 @@
-<ol class="stat-list" [class.stat-list--unranked]="!showRank()">
-  @for (item of items(); track item.label) {
-    <li class="stat-list__item">
-      <span class="stat-list__label">{{ item.label }}</span>
-      @if (item.value != null) {
-        <span class="stat-list__value">{{ item.value }}</span>
+<ul class="stat-list" [class.stat-list--no-truncate]="!truncateText()">
+  @for (item of items(); track item.id ?? $index) {
+    <li
+      class="stat-list__row"
+      [class.stat-list__row--with-week]="showWeek() && !!item.weekLabel"
+      [class.stat-list__row--no-details]="!showDetails()"
+    >
+      <span class="stat-list__points">
+        @if (typeof item.value === 'number') {
+          @if (valueFormat() === 'integer') {
+            {{ item.value | number: '1.0-0' }}
+          } @else {
+            {{ item.value | number: '1.2-2' }}
+          }
+        } @else {
+          {{ item.value }}
+        }
+      </span>
+      @if (showWeek() && item.weekLabel) {
+        <span class="stat-list__week">{{ weekPrefix() }} {{ item.weekLabel }}</span>
       }
+      @if (showDetails()) {
+        <span class="stat-list__player">{{ item.playerDetails }}</span>
+      }
+      <span class="stat-list__team">{{ item.teamName }}</span>
     </li>
   }
-</ol>
+</ul>

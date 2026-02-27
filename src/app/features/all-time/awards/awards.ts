@@ -6,11 +6,8 @@ import { OwnersDataService } from '../../../data/owners-data.service';
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
-import {
-  StarterGameList,
-  StarterGameListItem,
-} from '../../../shared/components/stat-card/stat-list/starter-game-list/starter-game-list';
 import { AllTimeRecordsService } from '../records/records.service';
+import { StatList, StatListItem } from '../../../shared/components/stat-card/stat-list/stat-list';
 
 interface SeasonTeamPointsRow {
   points: number;
@@ -72,7 +69,7 @@ const EPSILON = 0.000001;
 
 @Component({
   selector: 'app-awards',
-  imports: [StatCard, StarterGameList],
+  imports: [StatCard, StatList],
   templateUrl: './awards.html',
   styleUrl: './awards.scss',
 })
@@ -113,7 +110,7 @@ export class Awards {
     teamName: string | null | undefined,
     context: string,
     seasonId: string,
-    week: number
+    week: number,
   ): string | null {
     const key = normalize(teamName);
     if (!key) {
@@ -121,7 +118,7 @@ export class Awards {
       if (!this.loggedOwnerMappingErrors.has(errorKey)) {
         this.loggedOwnerMappingErrors.add(errorKey);
         this.logger.error(
-          `AllTimeAwards: skipped ${context} in ${seasonId} week ${week}; missing team name`
+          `AllTimeAwards: skipped ${context} in ${seasonId} week ${week}; missing team name`,
         );
       }
       return null;
@@ -133,7 +130,7 @@ export class Awards {
       if (!this.loggedOwnerMappingErrors.has(errorKey)) {
         this.loggedOwnerMappingErrors.add(errorKey);
         this.logger.error(
-          `AllTimeAwards: skipped ${context} in ${seasonId} week ${week}; ambiguous team name "${teamName}"`
+          `AllTimeAwards: skipped ${context} in ${seasonId} week ${week}; ambiguous team name "${teamName}"`,
         );
       }
       return null;
@@ -145,7 +142,7 @@ export class Awards {
       if (!this.loggedOwnerMappingErrors.has(errorKey)) {
         this.loggedOwnerMappingErrors.add(errorKey);
         this.logger.error(
-          `AllTimeAwards: skipped ${context} in ${seasonId} week ${week}; no owner found for "${teamName}"`
+          `AllTimeAwards: skipped ${context} in ${seasonId} week ${week}; no owner found for "${teamName}"`,
         );
       }
       return null;
@@ -180,7 +177,7 @@ export class Awards {
         if (b.year !== a.year) return Number(b.year) - Number(a.year);
         return a.ownerName.localeCompare(b.ownerName);
       })
-      .slice(0, 10)
+      .slice(0, 10),
   );
 
   protected readonly topSeasonLowPoints = computed<SeasonTeamPointsRow[]>(() =>
@@ -190,23 +187,23 @@ export class Awards {
         if (b.year !== a.year) return Number(b.year) - Number(a.year);
         return a.ownerName.localeCompare(b.ownerName);
       })
-      .slice(0, 10)
+      .slice(0, 10),
   );
 
-  protected readonly topSeasonHighPointsRows = computed<StarterGameListItem[]>(() =>
+  protected readonly topSeasonHighPointsRows = computed<StatListItem[]>(() =>
     this.topSeasonHighPoints().map((row) => ({
       value: row.points,
       playerDetails: row.year,
       teamName: row.ownerName,
-    }))
+    })),
   );
 
-  protected readonly topSeasonLowPointsRows = computed<StarterGameListItem[]>(() =>
+  protected readonly topSeasonLowPointsRows = computed<StatListItem[]>(() =>
     this.topSeasonLowPoints().map((row) => ({
       value: row.points,
       playerDetails: row.year,
       teamName: row.ownerName,
-    }))
+    })),
   );
 
   private readonly allSingleGamePoints = computed<SingleGamePointsRow[]>(() => {
@@ -226,7 +223,7 @@ export class Awards {
             teamName,
             'single-game points',
             seasonId,
-            week
+            week,
           );
           if (!ownerName) continue;
           const points = Number(entry.team1Totals?.totalPoints ?? 0);
@@ -253,7 +250,7 @@ export class Awards {
         if (b.week !== a.week) return b.week - a.week;
         return a.ownerName.localeCompare(b.ownerName);
       })
-      .slice(0, 10)
+      .slice(0, 10),
   );
 
   protected readonly topSingleGameLowPoints = computed<SingleGamePointsRow[]>(() =>
@@ -264,23 +261,23 @@ export class Awards {
         if (a.week !== b.week) return a.week - b.week;
         return a.ownerName.localeCompare(b.ownerName);
       })
-      .slice(0, 10)
+      .slice(0, 10),
   );
 
-  protected readonly topSingleGameHighPointsRows = computed<StarterGameListItem[]>(() =>
+  protected readonly topSingleGameHighPointsRows = computed<StatListItem[]>(() =>
     this.topSingleGameHighPoints().map((row) => ({
       value: row.points,
       playerDetails: `${row.year} ${row.ownerName}`,
       teamName: `Week ${String(row.week).padStart(2, '0')}`,
-    }))
+    })),
   );
 
-  protected readonly topSingleGameLowPointsRows = computed<StarterGameListItem[]>(() =>
+  protected readonly topSingleGameLowPointsRows = computed<StatListItem[]>(() =>
     this.topSingleGameLowPoints().map((row) => ({
       value: row.points,
       playerDetails: `${row.year} ${row.ownerName}`,
       teamName: `Week ${String(row.week).padStart(2, '0')}`,
-    }))
+    })),
   );
 
   private readonly allSingleGameMargins = computed<SingleGameMarginRow[]>(() => {
@@ -300,7 +297,7 @@ export class Awards {
             teamName,
             'single-game margin',
             seasonId,
-            week
+            week,
           );
           if (!ownerName) continue;
           const teamScore = Number(entry.matchup?.team1Score ?? 0);
@@ -331,15 +328,15 @@ export class Awards {
         if (b.week !== a.week) return b.week - a.week;
         return a.ownerName.localeCompare(b.ownerName);
       })
-      .slice(0, 10)
+      .slice(0, 10),
   );
 
-  protected readonly topSingleGameMarginsRows = computed<StarterGameListItem[]>(() =>
+  protected readonly topSingleGameMarginsRows = computed<StatListItem[]>(() =>
     this.topSingleGameMargins().map((row) => ({
       value: row.margin,
       playerDetails: `${row.year} ${row.ownerName}`,
       teamName: `Week ${String(row.week).padStart(2, '0')}`,
-    }))
+    })),
   );
 
   protected readonly topSingleGameNarrowestVictories = computed<SingleGameMarginRow[]>(() =>
@@ -350,15 +347,15 @@ export class Awards {
         if (b.week !== a.week) return b.week - a.week;
         return a.ownerName.localeCompare(b.ownerName);
       })
-      .slice(0, 10)
+      .slice(0, 10),
   );
 
-  protected readonly topSingleGameNarrowestVictoriesRows = computed<StarterGameListItem[]>(() =>
+  protected readonly topSingleGameNarrowestVictoriesRows = computed<StatListItem[]>(() =>
     this.topSingleGameNarrowestVictories().map((row) => ({
       value: row.margin,
       playerDetails: `${row.year} ${row.ownerName}`,
       teamName: `Week ${String(row.week).padStart(2, '0')}`,
-    }))
+    })),
   );
 
   private readonly seasonWinsRows = computed<SeasonWinsRow[]>(() => {
@@ -387,15 +384,15 @@ export class Awards {
         if (a.wins !== b.wins) return a.wins - b.wins;
         if (b.year !== a.year) return Number(b.year) - Number(a.year);
         return a.ownerName.localeCompare(b.ownerName);
-      })
+      }),
   );
 
-  protected readonly fewestSeasonWinsMaxThreeRows = computed<StarterGameListItem[]>(() =>
+  protected readonly fewestSeasonWinsMaxThreeRows = computed<StatListItem[]>(() =>
     this.fewestSeasonWinsMaxThree().map((row) => ({
       value: `${row.wins}`,
       playerDetails: row.year,
       teamName: row.ownerName,
-    }))
+    })),
   );
 
   protected readonly mostSeasonWinsMaxTwelve = computed<SeasonWinsRow[]>(() =>
@@ -405,11 +402,11 @@ export class Awards {
         if (b.wins !== a.wins) return b.wins - a.wins;
         if (b.year !== a.year) return Number(b.year) - Number(a.year);
         return a.ownerName.localeCompare(b.ownerName);
-      })
+      }),
   );
 
-  protected readonly mostSeasonWinsMaxTwelveRows = computed<StarterGameListItem[]>(() => {
-    const rows: StarterGameListItem[] = this.mostSeasonWinsMaxTwelve().map((row) => ({
+  protected readonly mostSeasonWinsMaxTwelveRows = computed<StatListItem[]>(() => {
+    const rows: StatListItem[] = this.mostSeasonWinsMaxTwelve().map((row) => ({
       value: `${row.wins}`,
       playerDetails: row.year,
       teamName: row.ownerName,
@@ -436,10 +433,10 @@ export class Awards {
         ownerName: row.ownerName,
         seasonsPlayed: row.totalSeasons,
       }))
-      .filter((row) => row.seasonsPlayed > 0)
+      .filter((row) => row.seasonsPlayed > 0),
   );
 
-  protected readonly bestAverageWinsPerSeasonRows = computed<StarterGameListItem[]>(() =>
+  protected readonly bestAverageWinsPerSeasonRows = computed<StatListItem[]>(() =>
     this.averageWinsPerSeasonRows()
       .filter((row) => row.avgWins >= 7)
       .sort((a, b) => {
@@ -451,10 +448,10 @@ export class Awards {
         value: row.avgWins,
         playerDetails: row.ownerName,
         teamName: `${row.seasonsPlayed}`,
-      }))
+      })),
   );
 
-  protected readonly worstAverageWinsPerSeasonRows = computed<StarterGameListItem[]>(() =>
+  protected readonly worstAverageWinsPerSeasonRows = computed<StatListItem[]>(() =>
     this.averageWinsPerSeasonRows()
       .filter((row) => row.avgWins < 7)
       .sort((a, b) => {
@@ -463,20 +460,20 @@ export class Awards {
         return a.ownerName.localeCompare(b.ownerName);
       })
       .map((row) => ({
-      value: row.avgWins,
-      playerDetails: row.ownerName,
-      teamName: `${row.seasonsPlayed}`,
-    }))
+        value: row.avgWins,
+        playerDetails: row.ownerName,
+        teamName: `${row.seasonsPlayed}`,
+      })),
   );
 
-  protected readonly topAveragePointsPerSeasonRows = computed<StarterGameListItem[]>(() =>
+  protected readonly topAveragePointsPerSeasonRows = computed<StatListItem[]>(() =>
     this.allTimeRecordRows()
       .map(
         (row): AveragePointsPerSeasonRow => ({
           avgPointsPerSeason: row.avgPointsPerSeason,
           ownerName: row.ownerName,
           seasonsPlayed: row.totalSeasons,
-        })
+        }),
       )
       .filter((row) => row.seasonsPlayed > 0)
       .sort((a, b) => {
@@ -491,16 +488,16 @@ export class Awards {
         value: row.avgPointsPerSeason,
         playerDetails: row.ownerName,
         teamName: `${row.seasonsPlayed}`,
-      }))
+      })),
   );
 
-  protected readonly mostChampionshipsRows = computed<StarterGameListItem[]>(() =>
+  protected readonly mostChampionshipsRows = computed<StatListItem[]>(() =>
     this.allTimeRecordRows()
       .map(
         (row): ChampionshipRow => ({
           championships: row.championships,
           ownerName: row.ownerName,
-        })
+        }),
       )
       .filter((row) => row.championships >= 1)
       .sort((a, b) => {
@@ -511,10 +508,10 @@ export class Awards {
         value: `${row.championships}`,
         playerDetails: row.ownerName,
         teamName: '',
-      }))
+      })),
   );
 
-  protected readonly highPointsAndChampionshipRows = computed<StarterGameListItem[]>(() => {
+  protected readonly highPointsAndChampionshipRows = computed<StatListItem[]>(() => {
     const rows: HighPointsChampionshipRow[] = [];
 
     for (const seasonId of this.seasonStandingsData.seasonIds()) {
@@ -526,8 +523,7 @@ export class Awards {
 
       const topPoints = Math.max(...entries.map((entry) => entry.points?.pointsFor ?? 0));
       const winners = entries.filter((entry) => {
-        const isSeasonHighPoints =
-          Math.abs((entry.points?.pointsFor ?? 0) - topPoints) < EPSILON;
+        const isSeasonHighPoints = Math.abs((entry.points?.pointsFor ?? 0) - topPoints) < EPSILON;
         const playoffRank = Number.parseInt(String(entry.ranks?.playoffRank ?? '').trim(), 10);
         const isChampion = Number.isFinite(playoffRank) && playoffRank === 1;
         return isSeasonHighPoints && isChampion;
@@ -554,7 +550,7 @@ export class Awards {
       }));
   });
 
-  protected readonly mostRunnerUpFinishesRows = computed<StarterGameListItem[]>(() => {
+  protected readonly mostRunnerUpFinishesRows = computed<StatListItem[]>(() => {
     const countsByOwner = new Map<string, number>();
 
     for (const seasonId of this.seasonStandingsData.seasonIds()) {
@@ -575,7 +571,7 @@ export class Awards {
         ([ownerName, count]): RunnerUpRow => ({
           ownerName,
           count,
-        })
+        }),
       )
       .filter((row) => row.count >= 1)
       .sort((a, b) => {

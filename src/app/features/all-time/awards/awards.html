@@ -2,21 +2,21 @@
   <div class="all-time-awards__grid">
     @if (topSeasonHighPoints().length) {
       <app-stat-card title="Season High Points" subtitle="Points - Year - Owner" bodyAlign="start">
-        <app-starter-game-list
+        <app-stat-list
           [items]="topSeasonHighPointsRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
     @if (topSeasonLowPoints().length) {
       <app-stat-card title="Season Low Points" subtitle="Points - Year - Owner" bodyAlign="start">
-        <app-starter-game-list
+        <app-stat-list
           [items]="topSeasonLowPointsRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
@@ -26,11 +26,11 @@
         subtitle="Points - Year Owner - Week"
         bodyAlign="start"
       >
-        <app-starter-game-list
+        <app-stat-list
           [items]="topSingleGameHighPointsRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
@@ -40,11 +40,11 @@
         subtitle="Points - Year Owner - Week"
         bodyAlign="start"
       >
-        <app-starter-game-list
+        <app-stat-list
           [items]="topSingleGameLowPointsRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
@@ -54,11 +54,11 @@
         subtitle="Margin - Year Owner - Week"
         bodyAlign="start"
       >
-        <app-starter-game-list
+        <app-stat-list
           [items]="topSingleGameMarginsRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
@@ -68,11 +68,11 @@
         subtitle="Margin - Year Owner - Week"
         bodyAlign="start"
       >
-        <app-starter-game-list
+        <app-stat-list
           [items]="topSingleGameNarrowestVictoriesRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
@@ -82,21 +82,21 @@
         subtitle="Wins - Year - Owner"
         bodyAlign="start"
       >
-        <app-starter-game-list
+        <app-stat-list
           [items]="fewestSeasonWinsMaxThreeRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
     @if (mostSeasonWinsMaxTwelveRows().length) {
       <app-stat-card title="Most Wins In A Season" subtitle="Wins - Year - Owner" bodyAlign="start">
-        <app-starter-game-list
+        <app-stat-list
           [items]="mostSeasonWinsMaxTwelveRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
@@ -106,11 +106,11 @@
         subtitle="Avg - Owner - Seasons"
         bodyAlign="start"
       >
-        <app-starter-game-list
+        <app-stat-list
           [items]="bestAverageWinsPerSeasonRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
@@ -120,11 +120,11 @@
         subtitle="Avg - Owner - Seasons"
         bodyAlign="start"
       >
-        <app-starter-game-list
+        <app-stat-list
           [items]="worstAverageWinsPerSeasonRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
@@ -134,21 +134,21 @@
         subtitle="Avg Pts - Owner - Seasons"
         bodyAlign="start"
       >
-        <app-starter-game-list
+        <app-stat-list
           [items]="topAveragePointsPerSeasonRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
     @if (mostChampionshipsRows().length) {
       <app-stat-card title="Most Championships" subtitle="Champs - Owner" bodyAlign="start">
-        <app-starter-game-list
+        <app-stat-list
           [items]="mostChampionshipsRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
@@ -158,11 +158,11 @@
         subtitle="Runner-Ups - Owner"
         bodyAlign="start"
       >
-        <app-starter-game-list
+        <app-stat-list
           [items]="mostRunnerUpFinishesRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
 
@@ -172,11 +172,11 @@
         subtitle="Year - Owner"
         bodyAlign="start"
       >
-        <app-starter-game-list
+        <app-stat-list
           [items]="highPointsAndChampionshipRows()"
           [showWeek]="false"
           [truncateText]="false"
-        ></app-starter-game-list>
+        ></app-stat-list>
       </app-stat-card>
     }
   </div>
