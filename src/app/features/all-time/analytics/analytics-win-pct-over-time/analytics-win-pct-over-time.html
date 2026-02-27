@@ -1,2 +1,12 @@
 <h3 class="all-time-analytics-view__heading">Win% Over Time</h3>
-<p class="all-time-analytics-view__empty">All-time win percentage trend analytics coming soon.</p>
+<p class="all-time-analytics-view__intro">
+  Per-season win% for each owner. This highlights long-term arcs, rebuilds, late-career
+  dominance, and slow declines year to year.
+</p>
+@if (chartData(); as data) {
+  <div class="all-time-analytics-view__chart-wrap">
+    <canvas baseChart [data]="data" [options]="chartOptions()" [type]="'line'"></canvas>
+  </div>
+} @else {
+  <p class="all-time-analytics-view__empty">No all-time win% trend data available.</p>
+}
