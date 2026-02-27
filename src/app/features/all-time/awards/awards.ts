@@ -68,6 +68,7 @@ interface RunnerUpRow {
 function normalize(value: string | null | undefined): string {
   return value != null ? String(value).trim().toLowerCase() : '';
 }
+const EPSILON = 0.000001;
 
 @Component({
   selector: 'app-awards',
@@ -525,7 +526,8 @@ export class Awards {
 
       const topPoints = Math.max(...entries.map((entry) => entry.points?.pointsFor ?? 0));
       const winners = entries.filter((entry) => {
-        const isSeasonHighPoints = (entry.points?.pointsFor ?? 0) === topPoints;
+        const isSeasonHighPoints =
+          Math.abs((entry.points?.pointsFor ?? 0) - topPoints) < EPSILON;
         const playoffRank = Number.parseInt(String(entry.ranks?.playoffRank ?? '').trim(), 10);
         const isChampion = Number.isFinite(playoffRank) && playoffRank === 1;
         return isSeasonHighPoints && isChampion;
