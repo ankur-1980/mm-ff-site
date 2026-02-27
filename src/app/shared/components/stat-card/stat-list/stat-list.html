@@ -7,7 +7,7 @@
     >
       <span class="stat-list__points">
         @if (typeof item.value === 'number') {
-          @if (valueFormat() === 'integer') {
+          @if (useIntegerFormat(item.value)) {
             {{ item.value | number: '1.0-0' }}
           } @else {
             {{ item.value | number: '1.2-2' }}

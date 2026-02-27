@@ -23,4 +23,11 @@ export class StatList {
   readonly truncateText = input<boolean>(true);
   readonly valueFormat = input<StatListValueFormat>('auto');
   readonly weekPrefix = input<string>('Week');
+
+  protected useIntegerFormat(value: number): boolean {
+    const format = this.valueFormat();
+    if (format === 'integer') return true;
+    if (format === 'decimal2') return false;
+    return Number.isInteger(value);
+  }
 }

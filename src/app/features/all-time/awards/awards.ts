@@ -396,7 +396,7 @@ export class Awards {
   protected readonly fewestSeasonWinsMaxThreeRows = computed<StatListItem[]>(() =>
     this.fewestSeasonWinsMaxThree().map((row) => ({
       id: `fewest-wins|${row.year}|${row.ownerName}|${row.wins}`,
-      value: `${row.wins}`,
+      value: row.wins,
       playerDetails: row.year,
       teamName: row.ownerName,
     })),
@@ -415,7 +415,7 @@ export class Awards {
   protected readonly mostSeasonWinsMaxTwelveRows = computed<StatListItem[]>(() => {
     const rows: StatListItem[] = this.mostSeasonWinsMaxTwelve().map((row) => ({
       id: `most-wins|${row.year}|${row.ownerName}|${row.wins}`,
-      value: `${row.wins}`,
+      value: row.wins,
       playerDetails: row.year,
       teamName: row.ownerName,
     }));
@@ -424,12 +424,12 @@ export class Awards {
     const tenWinCount = this.seasonWinsRows().filter((row) => row.wins === 10).length;
     rows.push({
       id: 'most-wins-count|11',
-      value: '11',
+      value: 11,
       teamName: `${elevenWinCount} teams`,
     });
     rows.push({
       id: 'most-wins-count|10',
-      value: '10',
+      value: 10,
       teamName: `${tenWinCount} teams`,
     });
 
@@ -519,7 +519,7 @@ export class Awards {
       })
       .map((row) => ({
         id: `championships|${row.ownerName}|${row.championships}`,
-        value: `${row.championships}`,
+        value: row.championships,
         playerDetails: row.ownerName,
         teamName: '',
       })),
@@ -595,7 +595,7 @@ export class Awards {
       })
       .map((row) => ({
         id: `runner-up|${row.ownerName}|${row.count}`,
-        value: `${row.count}`,
+        value: row.count,
         playerDetails: row.ownerName,
         teamName: '',
       }));
