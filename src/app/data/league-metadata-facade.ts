@@ -5,9 +5,6 @@ import type { SeasonMetaData } from '../models/league-metadata.model';
 import { LeagueMetaDataService } from './league-metadata.service';
 import { OwnersDataService } from './owners-data.service';
 import { SeasonStandingsDataService } from './season-standings-data.service';
-import { ToiletBowlDataService } from './toilet-bowl-data.service';
-import { WeeklyMatchupsDataService } from './weekly-matchups-data.service';
-import { DraftRostersDataService } from './draft-rosters-data.service';
 
 /** Resolved current season from meta + standings (id is the season year number). */
 export interface CurrentSeason {
@@ -15,27 +12,21 @@ export interface CurrentSeason {
 }
 
 /**
- * Single entry point to load all league data at app init.
+ * Single entry point to load the lightweight core league data at app init.
  * Components should still inject the individual data services (LeagueDataService, etc.)
- * for type-safe access; use this facade only to trigger load() on all of them.
+ * for type-safe access; feature routes load heavy datasets on demand.
  */
 @Injectable({ providedIn: 'root' })
 export class LeagueMetaDataFacade {
   private readonly league = inject(LeagueMetaDataService);
   private readonly owners = inject(OwnersDataService);
   private readonly seasonStandings = inject(SeasonStandingsDataService);
-  private readonly weeklyMatchups = inject(WeeklyMatchupsDataService);
-  private readonly toiletBowl = inject(ToiletBowlDataService);
-  private readonly draftRosters = inject(DraftRostersDataService);
 
-  /** Load all data sources. Safe to call multiple times; each service guards its own load. */
+  /** Load the shared core data sources. Safe to call multiple times; each service guards its own load. */
   loadAll(): void {
     this.league.load();
     this.owners.load();
     this.seasonStandings.load();
-    this.weeklyMatchups.load();
-    this.toiletBowl.load();
-    this.draftRosters.load();
   }
 
   /** League load status (passthrough). */

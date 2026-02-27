@@ -1,0 +1,170 @@
+{
+  "2006": {
+    "week14": {
+      "teamId-1": {
+        "season": 2006,
+        "week": 14,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Hedd Hunters",
+          "team1Score": "104.4",
+          "team2Id": "101",
+          "team2Name": "Desi Pride",
+          "team2Score": "66.7"
+        },
+        "team1Totals": {
+          "totalPoints": 104.4,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2006,
+        "week": 14,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Da Squad",
+          "team1Score": "118.7",
+          "team2Id": "102",
+          "team2Name": "Cleveland Steamers",
+          "team2Score": "113"
+        },
+        "team1Totals": {
+          "totalPoints": 118.7,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-3": {
+        "season": 2006,
+        "week": 14,
+        "teamId": "3",
+        "matchup": {
+          "team1Id": "3",
+          "team1Name": "Don't Burn the Pigskin",
+          "team1Score": "106",
+          "team2Id": "103",
+          "team2Name": "ESSENTIALLY…",
+          "team2Score": "89.6"
+        },
+        "team1Totals": {
+          "totalPoints": 106,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-4": {
+        "season": 2006,
+        "week": 14,
+        "teamId": "4",
+        "matchup": {
+          "team1Id": "4",
+          "team1Name": "Gavin A",
+          "team1Score": "133.4",
+          "team2Id": "104",
+          "team2Name": "The Professor",
+          "team2Score": "113.9"
+        },
+        "team1Totals": {
+          "totalPoints": 133.4,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week15": {
+      "teamId-1": {
+        "season": 2006,
+        "week": 15,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Uncle Rico's Football Academy",
+          "team1Score": "145.8",
+          "team2Id": "101",
+          "team2Name": "Da Squad",
+          "team2Score": "64.6"
+        },
+        "team1Totals": {
+          "totalPoints": 145.8,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2006,
+        "week": 15,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "TheStevens",
+          "team1Score": "92.4",
+          "team2Id": "102",
+          "team2Name": "Hedd Hunters",
+          "team2Score": "49.9"
+        },
+        "team1Totals": {
+          "totalPoints": 92.4,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week16": {
+      "teamId-1": {
+        "season": 2006,
+        "week": 16,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "TheStevens",
+          "team1Score": "122.3",
+          "team2Id": "101",
+          "team2Name": "Uncle Rico's Football Academy",
+          "team2Score": "80.8"
+        },
+        "team1Totals": {
+          "totalPoints": 122.3,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2006,
+        "week": 16,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Gavin A",
+          "team1Score": "95.9",
+          "team2Id": "102",
+          "team2Name": "Don't Burn the Pigskin",
+          "team2Score": "64.2"
+        },
+        "team1Totals": {
+          "totalPoints": 95.9,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    }
+  }
+}

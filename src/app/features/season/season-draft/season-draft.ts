@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -64,6 +64,14 @@ export class SeasonDraft {
     ),
     { initialValue: null }
   );
+
+  constructor() {
+    effect(() => {
+      const year = this.year();
+      if (year == null) return;
+      this.draftRostersData.loadSeason(String(year));
+    });
+  }
 
   protected readonly draftCards = computed<DraftTeamCard[]>(() => {
     const y = this.year();

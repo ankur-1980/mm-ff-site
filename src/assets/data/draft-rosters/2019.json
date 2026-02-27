@@ -1,0 +1,1284 @@
+{
+  "2019": {
+    "Return of the Steamers": [
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "1",
+        "PlayerName": "Alvin Kamara",
+        "PlayerId": "2558019",
+        "Position": "RB",
+        "NFLTeam": "NO",
+        "Cost": ""
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "2",
+        "PlayerName": "Saquon Barkley",
+        "PlayerId": "2560968",
+        "Position": "RB",
+        "NFLTeam": "NYG",
+        "Cost": "$67"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "3",
+        "PlayerName": "Julian Edelman",
+        "PlayerId": "238498",
+        "Position": "WR",
+        "NFLTeam": "NE",
+        "Cost": "$30"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "6",
+        "PlayerName": "Philip Rivers",
+        "PlayerId": "2506121",
+        "Position": "QB",
+        "NFLTeam": "LAC",
+        "Cost": "$2"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "7",
+        "PlayerName": "Derrius Guice",
+        "PlayerId": "2561000",
+        "Position": "RB",
+        "NFLTeam": "WAS",
+        "Cost": "$5"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "8",
+        "PlayerName": "Robert Woods",
+        "PlayerId": "2540169",
+        "Position": "WR",
+        "NFLTeam": "LA",
+        "Cost": "$20"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "8",
+        "PlayerName": "Vance McDonald",
+        "PlayerId": "2540215",
+        "Position": "TE",
+        "NFLTeam": "PIT",
+        "Cost": "$2"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "8",
+        "PlayerName": "Los Angeles Chargers",
+        "PlayerId": "100028",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "8",
+        "PlayerName": "Calvin Ridley",
+        "PlayerId": "2560854",
+        "Position": "WR",
+        "NFLTeam": "ATL",
+        "Cost": "$14"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "10",
+        "PlayerName": "Minnesota Vikings",
+        "PlayerId": "100020",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "13",
+        "PlayerName": "Darrell Henderson",
+        "PlayerId": "2562574",
+        "Position": "RB",
+        "NFLTeam": "LA",
+        "Cost": "$9"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "14",
+        "PlayerName": "Carson Wentz",
+        "PlayerId": "2555259",
+        "Position": "QB",
+        "NFLTeam": "PHI",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "14",
+        "PlayerName": "Damien Harris",
+        "PlayerId": "2562281",
+        "Position": "RB",
+        "NFLTeam": "NE",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Return of the Steamers",
+        "PickOrder": "14",
+        "PlayerName": "Mike Badgley",
+        "PlayerId": "2560965",
+        "Position": "K",
+        "NFLTeam": "LAC",
+        "Cost": "$1"
+      }
+    ],
+    "A Team Has No Name": [
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "1",
+        "PlayerName": "Kerryon Johnson",
+        "PlayerId": "2560765",
+        "Position": "RB",
+        "NFLTeam": "DET",
+        "Cost": ""
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "2",
+        "PlayerName": "Baker Mayfield",
+        "PlayerId": "2560800",
+        "Position": "QB",
+        "NFLTeam": "CLE",
+        "Cost": "$12"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "2",
+        "PlayerName": "Patrick Mahomes",
+        "PlayerId": "2558125",
+        "Position": "QB",
+        "NFLTeam": "KC",
+        "Cost": "$41"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "3",
+        "PlayerName": "Adam Thielen",
+        "PlayerId": "2541785",
+        "Position": "WR",
+        "NFLTeam": "MIN",
+        "Cost": "$34"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "4",
+        "PlayerName": "Cam Newton",
+        "PlayerId": "2495455",
+        "Position": "QB",
+        "NFLTeam": "CAR",
+        "Cost": "$7"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "5",
+        "PlayerName": "Mark Ingram",
+        "PlayerId": "2495466",
+        "Position": "RB",
+        "NFLTeam": "BAL",
+        "Cost": "$17"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "5",
+        "PlayerName": "Amari Cooper",
+        "PlayerId": "2552487",
+        "Position": "WR",
+        "NFLTeam": "DAL",
+        "Cost": "$27"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "6",
+        "PlayerName": "Tarik Cohen",
+        "PlayerId": "2558250",
+        "Position": "RB",
+        "NFLTeam": "CHI",
+        "Cost": "$8"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "6",
+        "PlayerName": "Hunter Henry",
+        "PlayerId": "2555341",
+        "Position": "TE",
+        "NFLTeam": "LAC",
+        "Cost": "$11"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "7",
+        "PlayerName": "Phillip Lindsay",
+        "PlayerId": "2559947",
+        "Position": "RB",
+        "NFLTeam": "DEN",
+        "Cost": "$10"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "8",
+        "PlayerName": "New England Patriots",
+        "PlayerId": "100021",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "11",
+        "PlayerName": "Wil Lutz",
+        "PlayerId": "2556601",
+        "Position": "K",
+        "NFLTeam": "NO",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "12",
+        "PlayerName": "Cole Beasley",
+        "PlayerId": "2535698",
+        "Position": "WR",
+        "NFLTeam": "BUF",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "A Team Has No Name",
+        "PickOrder": "13",
+        "PlayerName": "Adrian Peterson",
+        "PlayerId": "2507164",
+        "Position": "RB",
+        "NFLTeam": "WAS",
+        "Cost": "$1"
+      }
+    ],
+    "HeddHunters": [
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "1",
+        "PlayerName": "Odell Beckham",
+        "PlayerId": "2543496",
+        "Position": "WR",
+        "NFLTeam": "CLE",
+        "Cost": ""
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "2",
+        "PlayerName": "DeAndre Hopkins",
+        "PlayerId": "2540165",
+        "Position": "WR",
+        "NFLTeam": "HOU",
+        "Cost": "$50"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "2",
+        "PlayerName": "Travis Kelce",
+        "PlayerId": "2540258",
+        "Position": "TE",
+        "NFLTeam": "KC",
+        "Cost": "$33"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "4",
+        "PlayerName": "Todd Gurley",
+        "PlayerId": "2552475",
+        "Position": "RB",
+        "NFLTeam": "LA",
+        "Cost": "$37"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "4",
+        "PlayerName": "Drew Brees",
+        "PlayerId": "2504775",
+        "Position": "QB",
+        "NFLTeam": "NO",
+        "Cost": "$11"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "4",
+        "PlayerName": "Kenyan Drake",
+        "PlayerId": "2555230",
+        "Position": "RB",
+        "NFLTeam": "ARI",
+        "Cost": "$9"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "8",
+        "PlayerName": "Rashaad Penny",
+        "PlayerId": "2560835",
+        "Position": "RB",
+        "NFLTeam": "SEA",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "8",
+        "PlayerName": "Ka'imi Fairbairn",
+        "PlayerId": "2556521",
+        "Position": "K",
+        "NFLTeam": "HOU",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "9",
+        "PlayerName": "Baltimore Ravens",
+        "PlayerId": "100002",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$2"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "10",
+        "PlayerName": "Sammy Watkins",
+        "PlayerId": "2543457",
+        "Position": "WR",
+        "NFLTeam": "KC",
+        "Cost": "$6"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "11",
+        "PlayerName": "Jalen Richard",
+        "PlayerId": "2556885",
+        "Position": "RB",
+        "NFLTeam": "LV",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "11",
+        "PlayerName": "C.J. Anderson",
+        "PlayerId": "2540269",
+        "Position": "RB",
+        "NFLTeam": "",
+        "Cost": "$2"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "11",
+        "PlayerName": "Will Fuller",
+        "PlayerId": "2555346",
+        "Position": "WR",
+        "NFLTeam": "HOU",
+        "Cost": "$7"
+      },
+      {
+        "TeamName": "HeddHunters",
+        "PickOrder": "12",
+        "PlayerName": "Marvin Jones",
+        "PlayerId": "2532884",
+        "Position": "WR",
+        "NFLTeam": "DET",
+        "Cost": "$3"
+      }
+    ],
+    "Show Me Your TDs": [
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "1",
+        "PlayerName": "Keenan Allen",
+        "PlayerId": "2540154",
+        "Position": "WR",
+        "NFLTeam": "LAC",
+        "Cost": ""
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "2",
+        "PlayerName": "Julio Jones",
+        "PlayerId": "2495454",
+        "Position": "WR",
+        "NFLTeam": "ATL",
+        "Cost": "$45"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "2",
+        "PlayerName": "Melvin Gordon",
+        "PlayerId": "2552469",
+        "Position": "RB",
+        "NFLTeam": "LAC",
+        "Cost": "$23"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "4",
+        "PlayerName": "Leonard Fournette",
+        "PlayerId": "2557973",
+        "Position": "RB",
+        "NFLTeam": "JAX",
+        "Cost": "$19"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "4",
+        "PlayerName": "T.Y. Hilton",
+        "PlayerId": "2532865",
+        "Position": "WR",
+        "NFLTeam": "IND",
+        "Cost": "$21"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "4",
+        "PlayerName": "George Kittle",
+        "PlayerId": "2558266",
+        "Position": "TE",
+        "NFLTeam": "SF",
+        "Cost": "$17"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "7",
+        "PlayerName": "Jameis Winston",
+        "PlayerId": "2552033",
+        "Position": "QB",
+        "NFLTeam": "TB",
+        "Cost": "$4"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "7",
+        "PlayerName": "Los Angeles Rams",
+        "PlayerId": "100017",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$4"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "7",
+        "PlayerName": "James White",
+        "PlayerId": "2543773",
+        "Position": "RB",
+        "NFLTeam": "NE",
+        "Cost": "$11"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "8",
+        "PlayerName": "Tevin Coleman",
+        "PlayerId": "2552453",
+        "Position": "RB",
+        "NFLTeam": "SF",
+        "Cost": "$15"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "10",
+        "PlayerName": "Greg Zuerlein",
+        "PlayerId": "2534797",
+        "Position": "K",
+        "NFLTeam": "LA",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "12",
+        "PlayerName": "Geronimo Allison",
+        "PlayerId": "2556460",
+        "Position": "WR",
+        "NFLTeam": "GB",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "13",
+        "PlayerName": "Robby Anderson",
+        "PlayerId": "2556462",
+        "Position": "WR",
+        "NFLTeam": "NYJ",
+        "Cost": "$5"
+      },
+      {
+        "TeamName": "Show Me Your TDs",
+        "PickOrder": "13",
+        "PlayerName": "Greg Olsen",
+        "PlayerId": "2495700",
+        "Position": "TE",
+        "NFLTeam": "CAR",
+        "Cost": "$1"
+      }
+    ],
+    "Beam Me Up Scotty": [
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "1",
+        "PlayerName": "Dalvin Cook",
+        "PlayerId": "2557991",
+        "Position": "RB",
+        "NFLTeam": "MIN",
+        "Cost": ""
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "3",
+        "PlayerName": "Tyreek Hill",
+        "PlayerId": "2556214",
+        "Position": "WR",
+        "NFLTeam": "KC",
+        "Cost": "$47"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "4",
+        "PlayerName": "Zach Ertz",
+        "PlayerId": "2540158",
+        "Position": "TE",
+        "NFLTeam": "PHI",
+        "Cost": "$20"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "4",
+        "PlayerName": "Josh Jacobs",
+        "PlayerId": "2562377",
+        "Position": "RB",
+        "NFLTeam": "LV",
+        "Cost": "$42"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "5",
+        "PlayerName": "Ben Roethlisberger",
+        "PlayerId": "2506109",
+        "Position": "QB",
+        "NFLTeam": "PIT",
+        "Cost": "$4"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "6",
+        "PlayerName": "Austin Ekeler",
+        "PlayerId": "2559169",
+        "Position": "RB",
+        "NFLTeam": "LAC",
+        "Cost": "$8"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "7",
+        "PlayerName": "Harrison Butker",
+        "PlayerId": "2558245",
+        "Position": "K",
+        "NFLTeam": "KC",
+        "Cost": "$2"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "9",
+        "PlayerName": "D.J. Moore",
+        "PlayerId": "2560813",
+        "Position": "WR",
+        "NFLTeam": "CAR",
+        "Cost": "$16"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "11",
+        "PlayerName": "Marquise Goodwin",
+        "PlayerId": "2539964",
+        "Position": "WR",
+        "NFLTeam": "SF",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "12",
+        "PlayerName": "LeSean McCoy",
+        "PlayerId": "79607",
+        "Position": "RB",
+        "NFLTeam": "KC",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "13",
+        "PlayerName": "DeSean Jackson",
+        "PlayerId": "1581",
+        "Position": "WR",
+        "NFLTeam": "PHI",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "14",
+        "PlayerName": "Kirk Cousins",
+        "PlayerId": "2532820",
+        "Position": "QB",
+        "NFLTeam": "MIN",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "14",
+        "PlayerName": "Alexander Mattison",
+        "PlayerId": "2562682",
+        "Position": "RB",
+        "NFLTeam": "MIN",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "Beam Me Up Scotty",
+        "PickOrder": "14",
+        "PlayerName": "New Orleans Saints",
+        "PlayerId": "100022",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$1"
+      }
+    ],
+    "Da Squad": [
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "1",
+        "PlayerName": "Marlon Mack",
+        "PlayerId": "2558123",
+        "Position": "RB",
+        "NFLTeam": "IND",
+        "Cost": ""
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "5",
+        "PlayerName": "Kenny Golladay",
+        "PlayerId": "2558052",
+        "Position": "WR",
+        "NFLTeam": "DET",
+        "Cost": "$17"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "5",
+        "PlayerName": "A.J. Green",
+        "PlayerId": "2495450",
+        "Position": "WR",
+        "NFLTeam": "CIN",
+        "Cost": "$15"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "5",
+        "PlayerName": "Aaron Jones",
+        "PlayerId": "2558116",
+        "Position": "RB",
+        "NFLTeam": "GB",
+        "Cost": "$36"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "6",
+        "PlayerName": "Tyler Lockett",
+        "PlayerId": "2552430",
+        "Position": "WR",
+        "NFLTeam": "SEA",
+        "Cost": "$11"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "6",
+        "PlayerName": "Evan Engram",
+        "PlayerId": "2557858",
+        "Position": "TE",
+        "NFLTeam": "NYG",
+        "Cost": "$21"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "8",
+        "PlayerName": "Chicago Bears",
+        "PlayerId": "100005",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$4"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "9",
+        "PlayerName": "Kareem Hunt",
+        "PlayerId": "2557917",
+        "Position": "RB",
+        "NFLTeam": "CLE",
+        "Cost": "$8"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "10",
+        "PlayerName": "Josh Gordon",
+        "PlayerId": "2537931",
+        "Position": "WR",
+        "NFLTeam": "SEA",
+        "Cost": "$11"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "10",
+        "PlayerName": "Duke Johnson",
+        "PlayerId": "2552461",
+        "Position": "RB",
+        "NFLTeam": "HOU",
+        "Cost": "$15"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "11",
+        "PlayerName": "Russell Wilson",
+        "PlayerId": "2532975",
+        "Position": "QB",
+        "NFLTeam": "SEA",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "11",
+        "PlayerName": "Chris Godwin",
+        "PlayerId": "2558105",
+        "Position": "WR",
+        "NFLTeam": "TB",
+        "Cost": "$11"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "11",
+        "PlayerName": "David Montgomery",
+        "PlayerId": "2562502",
+        "Position": "RB",
+        "NFLTeam": "CHI",
+        "Cost": "$38"
+      },
+      {
+        "TeamName": "Da Squad",
+        "PickOrder": "13",
+        "PlayerName": "Mason Crosby",
+        "PlayerId": "2507232",
+        "Position": "K",
+        "NFLTeam": "GB",
+        "Cost": "$1"
+      }
+    ],
+    "Big Dog": [
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "1",
+        "PlayerName": "Christian McCaffrey",
+        "PlayerId": "2557997",
+        "Position": "RB",
+        "NFLTeam": "CAR",
+        "Cost": ""
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "3",
+        "PlayerName": "Michael Thomas",
+        "PlayerId": "2556370",
+        "Position": "WR",
+        "NFLTeam": "NO",
+        "Cost": "$49"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "3",
+        "PlayerName": "Nick Chubb",
+        "PlayerId": "2561021",
+        "Position": "RB",
+        "NFLTeam": "CLE",
+        "Cost": "$46"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "5",
+        "PlayerName": "Deshaun Watson",
+        "PlayerId": "2558063",
+        "Position": "QB",
+        "NFLTeam": "HOU",
+        "Cost": "$14"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "7",
+        "PlayerName": "Cooper Kupp",
+        "PlayerId": "2557898",
+        "Position": "WR",
+        "NFLTeam": "LA",
+        "Cost": "$9"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "8",
+        "PlayerName": "O.J. Howard",
+        "PlayerId": "2557856",
+        "Position": "TE",
+        "NFLTeam": "TB",
+        "Cost": "$5"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "9",
+        "PlayerName": "Tyler Boyd",
+        "PlayerId": "2555466",
+        "Position": "WR",
+        "NFLTeam": "CIN",
+        "Cost": "$16"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "9",
+        "PlayerName": "Jacksonville Jaguars",
+        "PlayerId": "100015",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "10",
+        "PlayerName": "Justin Tucker",
+        "PlayerId": "2536340",
+        "Position": "K",
+        "NFLTeam": "BAL",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "12",
+        "PlayerName": "Larry Fitzgerald",
+        "PlayerId": "2506106",
+        "Position": "WR",
+        "NFLTeam": "ARI",
+        "Cost": "$2"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "12",
+        "PlayerName": "Christian Kirk",
+        "PlayerId": "2560781",
+        "Position": "WR",
+        "NFLTeam": "ARI",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "14",
+        "PlayerName": "Keke Coutee",
+        "PlayerId": "2561029",
+        "Position": "WR",
+        "NFLTeam": "HOU",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "14",
+        "PlayerName": "N'Keal Harry",
+        "PlayerId": "2562659",
+        "Position": "WR",
+        "NFLTeam": "NE",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Big Dog",
+        "PickOrder": "14",
+        "PlayerName": "Devin Singletary",
+        "PlayerId": "2562734",
+        "Position": "RB",
+        "NFLTeam": "BUF",
+        "Cost": "$1"
+      }
+    ],
+    "Uncle Rico's Football Academy": [
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "1",
+        "PlayerName": "Aaron Rodgers",
+        "PlayerId": "2506363",
+        "Position": "QB",
+        "NFLTeam": "GB",
+        "Cost": ""
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "2",
+        "PlayerName": "Davante Adams",
+        "PlayerId": "2543495",
+        "Position": "WR",
+        "NFLTeam": "GB",
+        "Cost": "$51"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "2",
+        "PlayerName": "Antonio Brown",
+        "PlayerId": "2508061",
+        "Position": "WR",
+        "NFLTeam": "",
+        "Cost": "$34"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "3",
+        "PlayerName": "James Conner",
+        "PlayerId": "2557978",
+        "Position": "RB",
+        "NFLTeam": "PIT",
+        "Cost": "$42"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "3",
+        "PlayerName": "Joe Mixon",
+        "PlayerId": "2557976",
+        "Position": "RB",
+        "NFLTeam": "CIN",
+        "Cost": "$36"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "7",
+        "PlayerName": "Stephen Gostkowski",
+        "PlayerId": "2506922",
+        "Position": "K",
+        "NFLTeam": "NE",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "9",
+        "PlayerName": "Kyler Murray",
+        "PlayerId": "2562382",
+        "Position": "QB",
+        "NFLTeam": "ARI",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "9",
+        "PlayerName": "Allen Robinson",
+        "PlayerId": "2543509",
+        "Position": "WR",
+        "NFLTeam": "CHI",
+        "Cost": "$6"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "10",
+        "PlayerName": "Jordan Reed",
+        "PlayerId": "2540160",
+        "Position": "TE",
+        "NFLTeam": "WAS",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "11",
+        "PlayerName": "Pittsburgh Steelers",
+        "PlayerId": "100027",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "12",
+        "PlayerName": "Emmanuel Sanders",
+        "PlayerId": "497322",
+        "Position": "WR",
+        "NFLTeam": "SF",
+        "Cost": "$8"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "13",
+        "PlayerName": "Delanie Walker",
+        "PlayerId": "2495966",
+        "Position": "TE",
+        "NFLTeam": "TEN",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "13",
+        "PlayerName": "Jerick McKinnon",
+        "PlayerId": "2543715",
+        "Position": "RB",
+        "NFLTeam": "SF",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Uncle Rico's Football Academy",
+        "PickOrder": "14",
+        "PlayerName": "Jordan Howard",
+        "PlayerId": "2555418",
+        "Position": "RB",
+        "NFLTeam": "PHI",
+        "Cost": "$1"
+      }
+    ],
+    "RV": [
+      {
+        "TeamName": "RV",
+        "PickOrder": "1",
+        "PlayerName": "Eric Ebron",
+        "PlayerId": "2543466",
+        "Position": "TE",
+        "NFLTeam": "IND",
+        "Cost": ""
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "2",
+        "PlayerName": "Ezekiel Elliott",
+        "PlayerId": "2555224",
+        "Position": "RB",
+        "NFLTeam": "DAL",
+        "Cost": "$46"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "3",
+        "PlayerName": "Le'Veon Bell",
+        "PlayerId": "2540175",
+        "Position": "RB",
+        "NFLTeam": "NYJ",
+        "Cost": "$51"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "5",
+        "PlayerName": "Devonta Freeman",
+        "PlayerId": "2543583",
+        "Position": "RB",
+        "NFLTeam": "ATL",
+        "Cost": "$20"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "6",
+        "PlayerName": "Stefon Diggs",
+        "PlayerId": "2552608",
+        "Position": "WR",
+        "NFLTeam": "MIN",
+        "Cost": "$14"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "6",
+        "PlayerName": "Jared Goff",
+        "PlayerId": "2555334",
+        "Position": "QB",
+        "NFLTeam": "LA",
+        "Cost": "$3"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "7",
+        "PlayerName": "Jarvis Landry",
+        "PlayerId": "2543488",
+        "Position": "WR",
+        "NFLTeam": "CLE",
+        "Cost": "$9"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "9",
+        "PlayerName": "Chris Carson",
+        "PlayerId": "2558865",
+        "Position": "RB",
+        "NFLTeam": "SEA",
+        "Cost": "$25"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "9",
+        "PlayerName": "Jared Cook",
+        "PlayerId": "71265",
+        "Position": "TE",
+        "NFLTeam": "NO",
+        "Cost": "$4"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "10",
+        "PlayerName": "Alshon Jeffery",
+        "PlayerId": "2533039",
+        "Position": "WR",
+        "NFLTeam": "PHI",
+        "Cost": "$8"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "10",
+        "PlayerName": "Lamar Miller",
+        "PlayerId": "2533034",
+        "Position": "RB",
+        "NFLTeam": "HOU",
+        "Cost": "$2"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "11",
+        "PlayerName": "Houston Texans",
+        "PlayerId": "100013",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "12",
+        "PlayerName": "Mike Williams",
+        "PlayerId": "2558846",
+        "Position": "WR",
+        "NFLTeam": "LAC",
+        "Cost": "$8"
+      },
+      {
+        "TeamName": "RV",
+        "PickOrder": "12",
+        "PlayerName": "Robbie Gould",
+        "PlayerId": "2506264",
+        "Position": "K",
+        "NFLTeam": "SF",
+        "Cost": "$2"
+      }
+    ],
+    "Walken Dead": [
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "1",
+        "PlayerName": "JuJu Smith-Schuster",
+        "PlayerId": "2558149",
+        "Position": "WR",
+        "NFLTeam": "PIT",
+        "Cost": ""
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "3",
+        "PlayerName": "Damien Williams",
+        "PlayerId": "2550512",
+        "Position": "RB",
+        "NFLTeam": "KC",
+        "Cost": "$16"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "3",
+        "PlayerName": "Mike Evans",
+        "PlayerId": "2543468",
+        "Position": "WR",
+        "NFLTeam": "TB",
+        "Cost": "$26"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "4",
+        "PlayerName": "David Johnson",
+        "PlayerId": "2553435",
+        "Position": "RB",
+        "NFLTeam": "ARI",
+        "Cost": "$43"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "5",
+        "PlayerName": "Matt Ryan",
+        "PlayerId": "310",
+        "Position": "QB",
+        "NFLTeam": "ATL",
+        "Cost": "$12"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "5",
+        "PlayerName": "Sony Michel",
+        "PlayerId": "2560809",
+        "Position": "RB",
+        "NFLTeam": "NE",
+        "Cost": "$18"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "6",
+        "PlayerName": "T.J. Hockenson",
+        "PlayerId": "2562378",
+        "Position": "TE",
+        "NFLTeam": "DET",
+        "Cost": "$5"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "6",
+        "PlayerName": "Derrick Henry",
+        "PlayerId": "2556075",
+        "Position": "RB",
+        "NFLTeam": "TEN",
+        "Cost": "$9"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "7",
+        "PlayerName": "Brandin Cooks",
+        "PlayerId": "2543498",
+        "Position": "WR",
+        "NFLTeam": "LA",
+        "Cost": "$15"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "9",
+        "PlayerName": "Miles Sanders",
+        "PlayerId": "2562722",
+        "Position": "RB",
+        "NFLTeam": "PHI",
+        "Cost": "$8"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "10",
+        "PlayerName": "Dede Westbrook",
+        "PlayerId": "2557895",
+        "Position": "WR",
+        "NFLTeam": "JAX",
+        "Cost": "$10"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "12",
+        "PlayerName": "Kansas City Chiefs",
+        "PlayerId": "100016",
+        "Position": "DEF",
+        "NFLTeam": "",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "13",
+        "PlayerName": "Giorgio Tavecchio",
+        "PlayerId": "2535686",
+        "Position": "K",
+        "NFLTeam": "",
+        "Cost": "$1"
+      },
+      {
+        "TeamName": "Walken Dead",
+        "PickOrder": "13",
+        "PlayerName": "Darwin Thompson",
+        "PlayerId": "2562832",
+        "Position": "RB",
+        "NFLTeam": "KC",
+        "Cost": "$2"
+      }
+    ]
+  }
+}

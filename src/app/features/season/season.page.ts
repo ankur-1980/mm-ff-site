@@ -1,10 +1,12 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { LeagueMetaDataService } from '../../data/league-metadata.service';
+import { ToiletBowlDataService } from '../../data/toilet-bowl-data.service';
+import { WeeklyMatchupsDataService } from '../../data/weekly-matchups-data.service';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { SeasonSelector } from './season-selector/season-selector';
 
@@ -31,8 +33,19 @@ const SEASON_TABS: SeasonTab[] = [
 export class SeasonPage {
   private readonly route = inject(ActivatedRoute);
   private readonly leagueMeta = inject(LeagueMetaDataService);
+  private readonly weeklyMatchupsData = inject(WeeklyMatchupsDataService);
+  private readonly toiletBowlData = inject(ToiletBowlDataService);
 
   protected readonly tabs = SEASON_TABS;
+
+  constructor() {
+    effect(() => {
+      const year = this.year();
+      if (year == null) return;
+      this.weeklyMatchupsData.loadSeason(String(year));
+      this.toiletBowlData.load();
+    });
+  }
 
   /** Year parsed from the route param `:year`. Reacts to navigation between seasons. */
   protected readonly year = toSignal(
