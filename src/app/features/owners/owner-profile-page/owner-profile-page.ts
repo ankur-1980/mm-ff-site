@@ -104,14 +104,24 @@ export class OwnerProfilePage {
     const seasonEntries = this.ownerSeasonEntries();
     if (!owner) return [];
 
-    return owner.teamNames.map((teamName) => {
-      const lastYearUsed = seasonEntries.reduce<number | null>((latest, item) => {
-        if (item.entry?.playerDetails.teamName !== teamName) return latest;
-        return latest == null || item.season > latest ? item.season : latest;
-      }, null);
+    return owner.teamNames
+      .map((teamName) => {
+        const lastYearUsed = seasonEntries.reduce<number | null>((latest, item) => {
+          if (item.entry?.playerDetails.teamName !== teamName) return latest;
+          return latest == null || item.season > latest ? item.season : latest;
+        }, null);
 
-      return { name: teamName, lastYearUsed };
-    });
+        return { name: teamName, lastYearUsed };
+      })
+      .sort((a, b) => {
+        if (a.lastYearUsed == null && b.lastYearUsed == null) {
+          return a.name.localeCompare(b.name);
+        }
+        if (a.lastYearUsed == null) return 1;
+        if (b.lastYearUsed == null) return -1;
+        if (b.lastYearUsed !== a.lastYearUsed) return b.lastYearUsed - a.lastYearUsed;
+        return a.name.localeCompare(b.name);
+      });
   });
 
   protected readonly championshipYears = computed<Set<number>>(() => {

@@ -6,13 +6,13 @@
   />
 
   <div class="owners-page__cards" aria-label="Owner links">
-    @for (owner of ownerCards; track owner.path) {
+    @for (owner of ownerCards(); track owner.path) {
       <a
         class="owners-page__card-link"
         [routerLink]="['/owners', owner.path]"
         [attr.aria-label]="'View ' + owner.label + ' profile'"
       >
-        <app-owner-profile-card [ownerId]="owner.label" />
+        <app-owner-profile-card [ownerId]="owner.ownerId" />
       </a>
     }
   </div>

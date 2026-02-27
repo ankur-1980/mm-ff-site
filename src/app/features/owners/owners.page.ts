@@ -5,7 +5,13 @@ import { LeagueMetaDataService } from '../../data/league-metadata.service';
 import { OwnersDataService } from '../../data/owners-data.service';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { OwnerProfileCard } from '../../shared/components/owner-profile-card/owner-profile-card';
-import { OWNER_TABS } from './owners-tabs';
+import { toOwnerSlug } from './owners.utils';
+
+interface OwnerCardLink {
+  ownerId: string;
+  path: string;
+  label: string;
+}
 
 @Component({
   selector: 'app-owners-page',
@@ -17,7 +23,13 @@ export class OwnersPage {
   private readonly ownersData = inject(OwnersDataService);
   private readonly leagueMeta = inject(LeagueMetaDataService);
 
-  protected readonly ownerCards = OWNER_TABS;
+  protected readonly ownerCards = computed<OwnerCardLink[]>(() =>
+    this.ownersData.allOwners().map((owner) => ({
+      ownerId: owner.managerName,
+      path: toOwnerSlug(owner.managerName),
+      label: owner.managerName,
+    }))
+  );
 
   protected readonly subtitle = computed(() => {
     const owners = this.ownersData.allOwners();
