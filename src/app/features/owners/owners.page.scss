@@ -1,9 +1,10 @@
-.page-section {
-  h1 {
-    margin: 0 0 0.5rem;
+.owners-page {
+  &__toolbar {
+    margin: 0.25rem 0 1.25rem;
   }
 
-  p {
-    margin: 0;
+  &__tabs {
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+    overflow-x: auto;
   }
 }

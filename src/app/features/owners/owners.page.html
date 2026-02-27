@@ -1,4 +1,21 @@
-<section class="page-section" aria-labelledby="owners-heading">
-  <h1 id="owners-heading">Owners</h1>
-  <p>Owners list and owner detail navigation will go here.</p>
+<section class="page-section owners-page" aria-label="Owners">
+  <app-section-header heading="Owners" />
+
+  <div class="owners-page__toolbar">
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="owners-page__tabs">
+      @for (tab of tabs; track tab.path) {
+        <a
+          mat-tab-link
+          [routerLink]="['/owners', tab.path]"
+          routerLinkActive
+          #rla="routerLinkActive"
+          [active]="rla.isActive"
+        >{{ tab.label }}</a>
+      }
+    </nav>
+  </div>
+
+  <mat-tab-nav-panel #tabPanel>
+    <router-outlet />
+  </mat-tab-nav-panel>
 </section>
