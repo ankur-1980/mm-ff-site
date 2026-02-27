@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 
 import { DataTableComponent } from '../../../shared/table';
 import type { DataTableColumnDef, DataTableRow } from '../../../shared/table';
-import type { AllPlayPairRecord } from '../../season/season-analytics/all-play-matrix.models';
+import type { AllPlayPairRecord } from '../../season/season-analytics/models/all-play-matrix.models';
 import { HeadToHeadMatrixService } from './head-to-head-matrix.service';
 
 interface HeadToHeadSummaryRow extends DataTableRow {

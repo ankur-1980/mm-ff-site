@@ -5,11 +5,8 @@ import { map } from 'rxjs/operators';
 import type { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
-import { PfPaScatterService } from '../pf-pa-scatter.service';
-import {
-  pfPaScatterLinesPlugin,
-  pfPaScatterLabelsPlugin,
-} from './pf-pa-scatter-chart.plugin';
+import { PfPaScatterService } from '../services/pf-pa-scatter.service';
+import { pfPaScatterLinesPlugin, pfPaScatterLabelsPlugin } from './pf-pa-scatter-chart.plugin';
 
 @Component({
   selector: 'app-analytics-pf-pa-scatter',
@@ -24,9 +21,9 @@ export class AnalyticsPfPaScatter {
 
   private readonly year = toSignal(
     (this.route.parent?.parent ?? this.route.parent ?? this.route).params.pipe(
-      map((p) => (p['year'] ? Number(p['year']) : null))
+      map((p) => (p['year'] ? Number(p['year']) : null)),
     ),
-    { initialValue: null }
+    { initialValue: null },
   );
 
   protected readonly scatterResult = computed(() => {
@@ -94,12 +91,10 @@ export class AnalyticsPfPaScatter {
               const pa = raw?.pointsAgainst ?? ctx.parsed.y;
               const exp = raw?.expectedWins;
               const luck = raw?.luck;
-              const parts = [
-                `PF: ${Number(pf).toFixed(1)}`,
-                `PA: ${Number(pa).toFixed(1)}`,
-              ];
+              const parts = [`PF: ${Number(pf).toFixed(1)}`, `PA: ${Number(pa).toFixed(1)}`];
               if (exp != null) parts.push(`Expected Wins: ${Number(exp).toFixed(2)}`);
-              if (luck != null) parts.push(`Luck: ${luck >= 0 ? '+' : ''}${Number(luck).toFixed(2)}`);
+              if (luck != null)
+                parts.push(`Luck: ${luck >= 0 ? '+' : ''}${Number(luck).toFixed(2)}`);
               return parts;
             },
           },

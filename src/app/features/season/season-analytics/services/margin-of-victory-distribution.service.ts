@@ -3,9 +3,9 @@ import { inject, Injectable } from '@angular/core';
 import type {
   MarginOfVictoryBin,
   MarginOfVictoryDistributionResult,
-} from './margin-of-victory-distribution.models';
-import { LeagueMetaDataService } from '../../../data/league-metadata.service';
-import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
+} from '../models/margin-of-victory-distribution.models';
+import { LeagueMetaDataService } from '../../../../data/league-metadata.service';
+import { WeeklyMatchupsDataService } from '../../../../data/weekly-matchups-data.service';
 
 const BIN_WIDTH = 5;
 
@@ -21,10 +21,7 @@ export class MarginOfVictoryDistributionService {
     const margins: number[] = [];
 
     for (let week = 1; week <= meta.regularSeasonEndWeek; week += 1) {
-      const weekData = this.weeklyMatchups.getMatchupsForWeek(
-        seasonId,
-        `week${week}`
-      );
+      const weekData = this.weeklyMatchups.getMatchupsForWeek(seasonId, `week${week}`);
       if (!weekData) continue;
 
       const seenMatchups = new Set<string>();
@@ -53,19 +50,14 @@ export class MarginOfVictoryDistributionService {
     const binCounts = new Array<number>(numBins).fill(0);
 
     for (const m of margins) {
-      const index = Math.min(
-        Math.floor(m / BIN_WIDTH),
-        numBins - 1
-      );
+      const index = Math.min(Math.floor(m / BIN_WIDTH), numBins - 1);
       binCounts[index] += 1;
     }
 
     const bins: MarginOfVictoryBin[] = binCounts.map((count, i) => {
       const min = i * BIN_WIDTH;
       const max = min + BIN_WIDTH;
-      const label = max > maxMargin && i === numBins - 1
-        ? `${min}+`
-        : `${min}–${max}`;
+      const label = max > maxMargin && i === numBins - 1 ? `${min}+` : `${min}–${max}`;
       return { label, min, max, count };
     });
 

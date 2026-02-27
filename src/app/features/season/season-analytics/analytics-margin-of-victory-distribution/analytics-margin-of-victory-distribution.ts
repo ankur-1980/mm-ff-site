@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import type { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
-import { MarginOfVictoryDistributionService } from '../margin-of-victory-distribution.service';
+import { MarginOfVictoryDistributionService } from '../services/margin-of-victory-distribution.service';
 
 @Component({
   selector: 'app-analytics-margin-of-victory-distribution',
@@ -20,9 +20,9 @@ export class AnalyticsMarginOfVictoryDistribution {
 
   private readonly year = toSignal(
     (this.route.parent?.parent ?? this.route.parent ?? this.route).params.pipe(
-      map((p) => (p['year'] ? Number(p['year']) : null))
+      map((p) => (p['year'] ? Number(p['year']) : null)),
     ),
-    { initialValue: null }
+    { initialValue: null },
   );
 
   protected readonly distributionResult = computed(() => {
@@ -31,9 +31,7 @@ export class AnalyticsMarginOfVictoryDistribution {
     return this.movService.buildDistribution(String(y));
   });
 
-  protected readonly chartData = computed<
-    ChartConfiguration<'bar'>['data'] | null
-  >(() => {
+  protected readonly chartData = computed<ChartConfiguration<'bar'>['data'] | null>(() => {
     const result = this.distributionResult();
     if (!result || result.bins.length === 0) return null;
 
@@ -51,9 +49,7 @@ export class AnalyticsMarginOfVictoryDistribution {
     };
   });
 
-  protected readonly chartOptions = computed<
-    ChartConfiguration<'bar'>['options']
-  >(() => ({
+  protected readonly chartOptions = computed<ChartConfiguration<'bar'>['options']>(() => ({
     responsive: true,
     maintainAspectRatio: false,
     plugins: {

@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 
-import type { BoxPlotTeamStats, WeekPoints } from './points-distribution.models';
-import { LeagueMetaDataService } from '../../../data/league-metadata.service';
-import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
+import type { BoxPlotTeamStats, WeekPoints } from '../models/points-distribution.models';
+import { LeagueMetaDataService } from '../../../../data/league-metadata.service';
+import { WeeklyMatchupsDataService } from '../../../../data/weekly-matchups-data.service';
 
 function normalizeKey(name: string): string {
   return name != null ? String(name).trim().toLowerCase() : '';
@@ -87,7 +87,9 @@ export class PointsDistributionService {
       const upperFence = q3 + 1.5 * iqr;
 
       const outliers = weekPoints.filter((wp) => wp.points < lowerFence || wp.points > upperFence);
-      const nonOutliers = weekPoints.filter((wp) => wp.points >= lowerFence && wp.points <= upperFence);
+      const nonOutliers = weekPoints.filter(
+        (wp) => wp.points >= lowerFence && wp.points <= upperFence,
+      );
 
       const lowerWhisker =
         nonOutliers.length > 0 ? Math.min(...nonOutliers.map((wp) => wp.points)) : sorted[0];

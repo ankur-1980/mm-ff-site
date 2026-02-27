@@ -8,7 +8,7 @@ import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.se
 import type {
   AllPlayMatrixResult,
   AllPlayPairRecord,
-} from '../../season/season-analytics/all-play-matrix.models';
+} from '../../season/season-analytics/models/all-play-matrix.models';
 
 const EPSILON = 0.000001;
 
@@ -87,7 +87,7 @@ export class HeadToHeadMatrixService {
     weekNum: number,
     teamName: string | null | undefined,
     seasonOwnerIndex: OwnerIndex | null,
-    fallbackOwnerIndex: OwnerIndex
+    fallbackOwnerIndex: OwnerIndex,
   ): string | null {
     const key = normalize(teamName);
     if (!key) return null;
@@ -98,7 +98,7 @@ export class HeadToHeadMatrixService {
       if (!this.loggedMappingErrors.has(errorKey)) {
         this.loggedMappingErrors.add(errorKey);
         this.logger.error(
-          `HeadToHeadMatrixService: ambiguous team mapping in season ${seasonId} week ${weekNum} for "${teamName}"`
+          `HeadToHeadMatrixService: ambiguous team mapping in season ${seasonId} week ${weekNum} for "${teamName}"`,
         );
       }
       return null;
@@ -110,7 +110,7 @@ export class HeadToHeadMatrixService {
       if (!this.loggedMappingErrors.has(errorKey)) {
         this.loggedMappingErrors.add(errorKey);
         this.logger.error(
-          `HeadToHeadMatrixService: missing owner mapping in season ${seasonId} week ${weekNum} for "${teamName}"`
+          `HeadToHeadMatrixService: missing owner mapping in season ${seasonId} week ${weekNum} for "${teamName}"`,
         );
       }
       return null;
@@ -170,14 +170,14 @@ export class HeadToHeadMatrixService {
             week,
             team1Name,
             seasonOwnerIndex,
-            fallbackOwnerIndex
+            fallbackOwnerIndex,
           );
           const owner2 = this.resolveOwner(
             seasonId,
             week,
             team2Name,
             seasonOwnerIndex,
-            fallbackOwnerIndex
+            fallbackOwnerIndex,
           );
           if (!owner1 || !owner2 || owner1 === owner2) continue;
 
@@ -187,8 +187,16 @@ export class HeadToHeadMatrixService {
 
           hasAnyMatchup = true;
 
-          const rowVsCol = pairRecords.get(`${owner1}|${owner2}`) ?? { wins: 0, losses: 0, ties: 0 };
-          const colVsRow = pairRecords.get(`${owner2}|${owner1}`) ?? { wins: 0, losses: 0, ties: 0 };
+          const rowVsCol = pairRecords.get(`${owner1}|${owner2}`) ?? {
+            wins: 0,
+            losses: 0,
+            ties: 0,
+          };
+          const colVsRow = pairRecords.get(`${owner2}|${owner1}`) ?? {
+            wins: 0,
+            losses: 0,
+            ties: 0,
+          };
           const diff = score1 - score2;
 
           if (diff > EPSILON) {

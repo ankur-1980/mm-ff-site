@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 
-import type { PfPaScatterPoint, PfPaScatterResult } from './pf-pa-scatter.models';
-import { PythagoreanRankingsService } from '../season-power-rankings/pythagorean-rankings.service';
-import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
-import { SeasonStandingsService } from '../season-standings/season-standings.service';
-import { mapTeamNameShort } from '../../../shared/mappers/team-name-short.mapper';
+import type { PfPaScatterPoint, PfPaScatterResult } from '../models/pf-pa-scatter.models';
+import { PythagoreanRankingsService } from '../../season-power-rankings/pythagorean-rankings.service';
+import { SeasonStandingsDataService } from '../../../../data/season-standings-data.service';
+import { SeasonStandingsService } from '../../season-standings/season-standings.service';
+import { mapTeamNameShort } from '../../../../shared/mappers/team-name-short.mapper';
 
 @Injectable({ providedIn: 'root' })
 export class PfPaScatterService {
@@ -25,10 +25,7 @@ export class PfPaScatterService {
       const pf = row.pointsFor;
       const pa = row.pointsAgainst;
       const gp = row.gp ?? 0;
-      const expectedWins =
-        gp > 0
-          ? this.pythagorean.calculateExpectedWins(pf, pa, gp)
-          : 0;
+      const expectedWins = gp > 0 ? this.pythagorean.calculateExpectedWins(pf, pa, gp) : 0;
       const actualWins = row.win ?? 0;
       const luck = actualWins - expectedWins;
       sumPF += pf;

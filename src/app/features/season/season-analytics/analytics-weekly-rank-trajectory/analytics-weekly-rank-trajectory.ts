@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import type { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { WeeklyRankTrajectoryService } from '../weekly-rank-trajectory.service';
+import { WeeklyRankTrajectoryService } from '../services/weekly-rank-trajectory.service';
 
 const TEAM_COLORS = [
   '#1976d2',
@@ -34,9 +34,9 @@ export class AnalyticsWeeklyRankTrajectory {
 
   private readonly year = toSignal(
     (this.route.parent?.parent ?? this.route.parent ?? this.route).params.pipe(
-      map((p) => (p['year'] ? Number(p['year']) : null))
+      map((p) => (p['year'] ? Number(p['year']) : null)),
     ),
-    { initialValue: null }
+    { initialValue: null },
   );
 
   protected readonly chartData = computed<ChartConfiguration<'line'>['data'] | null>(() => {

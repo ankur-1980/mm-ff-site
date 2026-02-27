@@ -1,25 +1,23 @@
 import { inject, Injectable } from '@angular/core';
 
-import type { WeeklyAllPlayWinsResult } from './weekly-all-play-wins.models';
-import { LeagueMetaDataService } from '../../../data/league-metadata.service';
-import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
-
-const EPSILON = 0.000_001;
+import type { WeeklyRankTrajectoryResult } from '../models/weekly-rank-trajectory.models';
+import { LeagueMetaDataService } from '../../../../data/league-metadata.service';
+import { WeeklyMatchupsDataService } from '../../../../data/weekly-matchups-data.service';
 
 function normalizeKey(name: string): string {
   return name != null ? String(name).trim().toLowerCase() : '';
 }
 
 /**
- * For each regular-season week, compute all-play wins per team (number of opponents
- * they outscored) and cumulative all-play wins through that week.
+ * For each week, rank teams by that week's score (1 = highest).
+ * Returns week numbers, team names, and per-team array of rank per week.
  */
 @Injectable({ providedIn: 'root' })
-export class WeeklyAllPlayWinsService {
+export class WeeklyRankTrajectoryService {
   private readonly weeklyMatchups = inject(WeeklyMatchupsDataService);
   private readonly leagueMeta = inject(LeagueMetaDataService);
 
-  buildWeeklyAllPlayWins(seasonId: string): WeeklyAllPlayWinsResult | null {
+  buildTrajectory(seasonId: string): WeeklyRankTrajectoryResult | null {
     const meta = this.leagueMeta.getSeasonMeta(seasonId);
     if (!meta) return null;
 
@@ -53,55 +51,55 @@ export class WeeklyAllPlayWinsService {
     if (weekNumbers.length === 0) return null;
 
     const allTeamKeys = Array.from(teamDisplayNames.keys());
-    const weeklyWinsByTeam = new Map<string, number[]>();
-    const cumulativeByTeam = new Map<string, number[]>();
+    const rankByTeam = new Map<string, (number | null)[]>();
 
-    for (const key of allTeamKeys) {
-      const name = teamDisplayNames.get(key)!;
-      weeklyWinsByTeam.set(name, []);
-      cumulativeByTeam.set(name, []);
-    }
-
-    let cumulativeSoFar = new Map<string, number>();
-    for (const key of allTeamKeys) {
-      cumulativeSoFar.set(teamDisplayNames.get(key)!, 0);
-    }
-
+    let weekIndex = 0;
     for (const weekKey of regularSeasonWeekKeys) {
       const weekData = season[weekKey];
       if (!weekData) continue;
 
-      const scoresByKey = new Map<string, number>();
+      const entries: { key: string; points: number }[] = [];
       for (const entry of Object.values(weekData)) {
         const name = entry?.matchup?.team1Name;
         if (name == null || String(name).trim() === '') continue;
         const points = entry?.team1Totals?.totalPoints ?? 0;
         const key = normalizeKey(name);
-        scoresByKey.set(key, points);
+        entries.push({ key, points });
+      }
+
+      entries.sort((a, b) => b.points - a.points);
+
+      const rankByKey = new Map<string, number>();
+      for (let i = 0; i < entries.length; i++) {
+        const rank =
+          i > 0 && entries[i].points === entries[i - 1].points
+            ? rankByKey.get(entries[i - 1].key)!
+            : i + 1;
+        rankByKey.set(entries[i].key, rank);
       }
 
       for (const key of allTeamKeys) {
         const name = teamDisplayNames.get(key)!;
-        const score = scoresByKey.get(key) ?? 0;
-        let wins = 0;
-        for (const otherKey of allTeamKeys) {
-          if (otherKey === key) continue;
-          const otherScore = scoresByKey.get(otherKey) ?? 0;
-          if (score - otherScore > EPSILON) wins += 1;
+        let arr = rankByTeam.get(name);
+        if (!arr) {
+          arr = [];
+          rankByTeam.set(name, arr);
         }
-        weeklyWinsByTeam.get(name)!.push(wins);
-        const cum = (cumulativeSoFar.get(name) ?? 0) + wins;
-        cumulativeSoFar.set(name, cum);
-        cumulativeByTeam.get(name)!.push(cum);
+        while (arr.length < weekIndex) arr.push(null);
+        arr.push(rankByKey.get(key) ?? null);
       }
+      weekIndex += 1;
+    }
+
+    for (const [, arr] of rankByTeam) {
+      while (arr.length < weekNumbers.length) arr.push(null);
     }
 
     const teamNames = Array.from(teamDisplayNames.values());
     return {
       weekNumbers,
       teamNames,
-      weeklyWinsByTeam,
-      cumulativeByTeam,
+      rankByTeam,
     };
   }
 }
