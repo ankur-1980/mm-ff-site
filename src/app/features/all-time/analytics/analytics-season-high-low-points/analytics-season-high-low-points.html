@@ -1,0 +1,21 @@
+<h3 class="all-time-analytics-view__heading">Season High/Low Points</h3>
+<div class="all-time-analytics-view">
+  @if (result()) {
+    <div class="all-time-analytics-view__chart-wrap">
+      <canvas
+        baseChart
+        [data]="chartData()!"
+        [options]="chartOptions()"
+        [plugins]="chartPlugins"
+        chartType="line"
+      ></canvas>
+    </div>
+    <p class="all-time-analytics-view__legend">
+      Vertical dumbbell chart by season showing regular-season single-game highs and lows.
+    </p>
+  } @else {
+    <p class="all-time-analytics-view__empty">
+      No regular-season high/low points data available.
+    </p>
+  }
+</div>

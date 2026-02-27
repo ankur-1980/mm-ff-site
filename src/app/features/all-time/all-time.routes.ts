@@ -62,6 +62,13 @@ export const ALL_TIME_ROUTES: Routes = [
               ).then((m) => m.AnalyticsPointsDifferential),
           },
           {
+            path: 'season-high-low-points',
+            loadComponent: () =>
+              import(
+                './analytics/analytics-season-high-low-points/analytics-season-high-low-points'
+              ).then((m) => m.AnalyticsSeasonHighLowPoints),
+          },
+          {
             path: 'expected-wins-vs-actual-wins',
             loadComponent: () =>
               import(
