@@ -12,6 +12,8 @@ import type {
   ChampionTimelineEntry,
   OwnerRecordTotals,
   SeasonHighPointsTimelineEntry,
+  StarterSeasonRecordEntry,
+  StarterSingleGameRecordEntry,
 } from './records.models';
 
 const EPSILON = 0.000001;
@@ -564,5 +566,107 @@ export class AllTimeRecordsService {
     }
 
     return rows;
+  }
+
+  getTopStarterSingleGameRecords(limit = 10): StarterSingleGameRecordEntry[] {
+    const teamIndex = this.buildTeamOwnerIndex();
+    const rows: StarterSingleGameRecordEntry[] = [];
+
+    for (const seasonId of this.weeklyMatchupsData.seasonIds()) {
+      const seasonWeeks = this.weeklyMatchupsData.getSeasonWeeks(seasonId);
+      if (!seasonWeeks) continue;
+
+      for (const weekKey of this.weeklyMatchupsData.getWeekKeysForSeason(seasonId)) {
+        const weekEntries = seasonWeeks[weekKey];
+        if (!weekEntries) continue;
+
+        for (const entry of Object.values(weekEntries)) {
+          const ownerName = this.resolveOwnerByTeamName(
+            seasonId,
+            entry.matchup?.team1Name,
+            `starter single game ${weekKey}`,
+            teamIndex
+          );
+          if (!ownerName) continue;
+
+          for (const starter of entry.team1Roster.filter(
+            (player) => player.slot === 'starter'
+          )) {
+            rows.push({
+              ownerName,
+              playerName: starter.playerName,
+              points: starter.points,
+              year: entry.season,
+              week: entry.week,
+            });
+          }
+        }
+      }
+    }
+
+    return rows
+      .sort((a, b) => {
+        if (b.points !== a.points) return b.points - a.points;
+        if (b.year !== a.year) return b.year - a.year;
+        if (b.week !== a.week) return b.week - a.week;
+        if (a.ownerName !== b.ownerName) return a.ownerName.localeCompare(b.ownerName);
+        return a.playerName.localeCompare(b.playerName);
+      })
+      .slice(0, limit);
+  }
+
+  getTopStarterSeasonRecords(limit = 10): StarterSeasonRecordEntry[] {
+    const teamIndex = this.buildTeamOwnerIndex();
+    const seasonTotals = new Map<
+      string,
+      { ownerName: string; playerName: string; points: number; year: number }
+    >();
+
+    for (const seasonId of this.weeklyMatchupsData.seasonIds()) {
+      const seasonWeeks = this.weeklyMatchupsData.getSeasonWeeks(seasonId);
+      if (!seasonWeeks) continue;
+
+      for (const weekKey of this.weeklyMatchupsData.getWeekKeysForSeason(seasonId)) {
+        const weekEntries = seasonWeeks[weekKey];
+        if (!weekEntries) continue;
+
+        for (const entry of Object.values(weekEntries)) {
+          const ownerName = this.resolveOwnerByTeamName(
+            seasonId,
+            entry.matchup?.team1Name,
+            `starter season ${weekKey}`,
+            teamIndex
+          );
+          if (!ownerName) continue;
+
+          for (const starter of entry.team1Roster.filter(
+            (player) => player.slot === 'starter'
+          )) {
+            const recordKey = `${entry.season}|${ownerName}|${starter.playerId}`;
+            const existing = seasonTotals.get(recordKey);
+
+            if (existing) {
+              existing.points += starter.points;
+            } else {
+              seasonTotals.set(recordKey, {
+                ownerName,
+                playerName: starter.playerName,
+                points: starter.points,
+                year: entry.season,
+              });
+            }
+          }
+        }
+      }
+    }
+
+    return Array.from(seasonTotals.values())
+      .sort((a, b) => {
+        if (b.points !== a.points) return b.points - a.points;
+        if (b.year !== a.year) return b.year - a.year;
+        if (a.ownerName !== b.ownerName) return a.ownerName.localeCompare(b.ownerName);
+        return a.playerName.localeCompare(b.playerName);
+      })
+      .slice(0, limit);
   }
 }

@@ -525,6 +525,24 @@ export class Awards {
       })),
   );
 
+  protected readonly starterSingleGameRows = computed<StatListItem[]>(() =>
+    this.allTimeRecords.getTopStarterSingleGameRecords().map((row) => ({
+      id: `starter-game|${row.year}|${row.week}|${row.ownerName}|${row.playerName}|${row.points.toFixed(2)}`,
+      value: row.points,
+      playerDetails: row.ownerName,
+      teamName: `${row.playerName} (W${row.week}/${row.year})`,
+    })),
+  );
+
+  protected readonly starterSeasonRows = computed<StatListItem[]>(() =>
+    this.allTimeRecords.getTopStarterSeasonRecords().map((row) => ({
+      id: `starter-season|${row.year}|${row.ownerName}|${row.playerName}|${row.points.toFixed(2)}`,
+      value: row.points,
+      playerDetails: row.ownerName,
+      teamName: `${row.playerName} (${row.year})`,
+    })),
+  );
+
   protected readonly highPointsAndChampionshipRows = computed<StatListItem[]>(() => {
     const rows: HighPointsChampionshipRow[] = [];
 

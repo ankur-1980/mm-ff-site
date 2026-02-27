@@ -28,8 +28,10 @@ export const routes: Routes = [
       },
       {
         path: 'owners',
-        loadComponent: () =>
-          import('./features/owners/owners.page').then((m) => m.OwnersPage)
+        loadChildren: () =>
+          import('./features/owners/owners.routes').then(
+            (m) => m.OWNERS_ROUTES
+          )
       },
       {
         path: 'records',

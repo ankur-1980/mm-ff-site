@@ -1,9 +1,14 @@
-.page-section {
-  h1 {
-    margin: 0 0 0.5rem;
+.owners-page {
+  &__cards {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    margin-top: 1.25rem;
   }
 
-  p {
-    margin: 0;
+  &__card-link {
+    color: inherit;
+    display: block;
+    text-decoration: none;
   }
 }

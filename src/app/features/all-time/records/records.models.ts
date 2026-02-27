@@ -41,6 +41,21 @@ export interface SeasonHighPointsTimelineEntry {
   ownerName: string;
 }
 
+export interface StarterSingleGameRecordEntry {
+  ownerName: string;
+  playerName: string;
+  points: number;
+  year: number;
+  week: number;
+}
+
+export interface StarterSeasonRecordEntry {
+  ownerName: string;
+  playerName: string;
+  points: number;
+  year: number;
+}
+
 export interface OwnerRecordTotals {
   wins: number;
   losses: number;

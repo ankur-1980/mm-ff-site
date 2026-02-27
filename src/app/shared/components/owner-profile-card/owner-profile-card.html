@@ -1,0 +1,56 @@
+@if (owner(); as ownerData) {
+  <article
+    class="owner-profile-card"
+    [class.owner-profile-card--active]="isActiveOwner()"
+    aria-label="Owner profile card"
+  >
+    <header class="owner-profile-card__header">
+      <h1 class="owner-profile-card__name">{{ ownerData.realName }}</h1>
+      <p class="owner-profile-card__team-name">{{ mostRecentTeamName() }}</p>
+    </header>
+
+    <div class="owner-profile-card__divider" aria-hidden="true"></div>
+
+    <section class="owner-profile-card__block" aria-label="Championships">
+      <p class="owner-profile-card__label">Number of Championships</p>
+      <p class="owner-profile-card__value">{{ ownerData.championships }}</p>
+    </section>
+
+    <div class="owner-profile-card__divider" aria-hidden="true"></div>
+
+    <section class="owner-profile-card__block owner-profile-card__block--split">
+      <div class="owner-profile-card__split-item">
+        <p class="owner-profile-card__label">Seasons</p>
+        <p class="owner-profile-card__value">{{ ownerData.seasonsPlayed }}</p>
+      </div>
+      <div class="owner-profile-card__split-divider" aria-hidden="true"></div>
+      <div class="owner-profile-card__split-item">
+        <p class="owner-profile-card__label">Regular Season Wins (All-Time)</p>
+        <p class="owner-profile-card__value">{{ ownerData.wins }}</p>
+      </div>
+    </section>
+
+    <div class="owner-profile-card__divider" aria-hidden="true"></div>
+
+    @if (isActiveOwner()) {
+      <section class="owner-profile-card__block owner-profile-card__block--split">
+        <div class="owner-profile-card__split-item">
+          <p class="owner-profile-card__label">Current Season</p>
+          <p class="owner-profile-card__value">{{ currentSeasonRecord() }}</p>
+        </div>
+        <div class="owner-profile-card__split-divider" aria-hidden="true"></div>
+        <div class="owner-profile-card__split-item">
+          <p class="owner-profile-card__label">Playoff Rank</p>
+          <p class="owner-profile-card__value">{{ currentSeasonPlayoffRank() }}</p>
+        </div>
+      </section>
+    } @else {
+      <section class="owner-profile-card__block">
+        <p class="owner-profile-card__label">Last Season Played</p>
+        <p class="owner-profile-card__value">{{ lastSeasonPlayed() ?? '--' }}</p>
+      </section>
+    }
+  </article>
+} @else {
+  <p class="owner-profile-card__not-found">Owner not found.</p>
+}

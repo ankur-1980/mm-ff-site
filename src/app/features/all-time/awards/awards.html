@@ -48,6 +48,34 @@
       </app-stat-card>
     }
 
+    @if (starterSingleGameRows().length) {
+      <app-stat-card
+        title="High Points Starter - Single Game"
+        subtitle="Points - Owner - Player (Week/Year)"
+        bodyAlign="start"
+      >
+        <app-stat-list
+          [items]="starterSingleGameRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-stat-list>
+      </app-stat-card>
+    }
+
+    @if (starterSeasonRows().length) {
+      <app-stat-card
+        title="High Points Starter - Season"
+        subtitle="Points - Owner - Player (Year)"
+        bodyAlign="start"
+      >
+        <app-stat-list
+          [items]="starterSeasonRows()"
+          [showWeek]="false"
+          [truncateText]="false"
+        ></app-stat-list>
+      </app-stat-card>
+    }
+
     @if (topSingleGameMargins().length) {
       <app-stat-card
         title="Highest Margin Of Victory"
