@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { OwnerProfilePage } from '../../owner-profile-page/owner-profile-page';
+import { OwnerProfilePage } from '../owner-profile-page/owner-profile-page';
 
 @Component({
   selector: 'app-owner-fancett-page',

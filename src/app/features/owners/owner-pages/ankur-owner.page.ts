@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-
-import { OwnerProfilePage } from '../../owner-profile-page/owner-profile-page';
+import { OwnerProfilePage } from '../owner-profile-page/owner-profile-page';
 
 @Component({
-  selector: 'app-owner-dan-page',
+  selector: 'app-owner-ankur-page',
   imports: [OwnerProfilePage],
   template: `
     <section class="page-section owner-detail-page" aria-label="Owner detail">
-      <app-owner-profile-page ownerId="Dan" />
+      <app-owner-profile-page ownerId="Ankur" />
     </section>
-  `
+  `,
 })
-export class DanOwnerPage {}
+export class AnkurOwnerPage {}
