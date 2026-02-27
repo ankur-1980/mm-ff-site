@@ -1,4 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
+import { LoggerService } from '@ankur-1980/logger';
 
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { OwnersDataService } from '../../../data/owners-data.service';
@@ -80,9 +81,11 @@ export class Awards {
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
   private readonly weeklyMatchupsData = inject(WeeklyMatchupsDataService);
   private readonly allTimeRecords = inject(AllTimeRecordsService);
+  private readonly logger = inject(LoggerService);
   private readonly allTimeRecordRows = computed(() => this.allTimeRecords.toTableState().data);
+  private readonly loggedOwnerMappingErrors = new Set<string>();
 
-  private readonly ownerByTeamName = computed(() => {
+  private readonly ownerLookup = computed(() => {
     const ownerMap = new Map<string, string>();
     const ambiguous = new Set<string>();
 
@@ -102,8 +105,53 @@ export class Awards {
       }
     }
 
-    return ownerMap;
+    return { ownerMap, ambiguous };
   });
+
+  private resolveOwnerFromTeamName(
+    teamName: string | null | undefined,
+    context: string,
+    seasonId: string,
+    week: number
+  ): string | null {
+    const key = normalize(teamName);
+    if (!key) {
+      const errorKey = `${seasonId}|${week}|${context}|missing-team`;
+      if (!this.loggedOwnerMappingErrors.has(errorKey)) {
+        this.loggedOwnerMappingErrors.add(errorKey);
+        this.logger.error(
+          `AllTimeAwards: skipped ${context} in ${seasonId} week ${week}; missing team name`
+        );
+      }
+      return null;
+    }
+
+    const { ownerMap, ambiguous } = this.ownerLookup();
+    if (ambiguous.has(key)) {
+      const errorKey = `${seasonId}|${week}|${context}|ambiguous|${key}`;
+      if (!this.loggedOwnerMappingErrors.has(errorKey)) {
+        this.loggedOwnerMappingErrors.add(errorKey);
+        this.logger.error(
+          `AllTimeAwards: skipped ${context} in ${seasonId} week ${week}; ambiguous team name "${teamName}"`
+        );
+      }
+      return null;
+    }
+
+    const ownerName = ownerMap.get(key);
+    if (!ownerName) {
+      const errorKey = `${seasonId}|${week}|${context}|missing-owner|${key}`;
+      if (!this.loggedOwnerMappingErrors.has(errorKey)) {
+        this.loggedOwnerMappingErrors.add(errorKey);
+        this.logger.error(
+          `AllTimeAwards: skipped ${context} in ${seasonId} week ${week}; no owner found for "${teamName}"`
+        );
+      }
+      return null;
+    }
+
+    return ownerName;
+  }
 
   private readonly seasonPointsRows = computed<SeasonTeamPointsRow[]>(() => {
     const rows: SeasonTeamPointsRow[] = [];
@@ -162,7 +210,6 @@ export class Awards {
 
   private readonly allSingleGamePoints = computed<SingleGamePointsRow[]>(() => {
     const rows: SingleGamePointsRow[] = [];
-    const ownerByTeamName = this.ownerByTeamName();
 
     for (const seasonId of this.weeklyMatchupsData.seasonIds()) {
       const meta = this.leagueMetaData.getSeasonMeta(seasonId);
@@ -174,7 +221,13 @@ export class Awards {
 
         for (const entry of Object.values(weekData)) {
           const teamName = entry.matchup?.team1Name ?? '';
-          const ownerName = ownerByTeamName.get(normalize(teamName)) ?? 'Unknown Owner';
+          const ownerName = this.resolveOwnerFromTeamName(
+            teamName,
+            'single-game points',
+            seasonId,
+            week
+          );
+          if (!ownerName) continue;
           const points = Number(entry.team1Totals?.totalPoints ?? 0);
           if (!Number.isFinite(points)) continue;
 
@@ -231,7 +284,6 @@ export class Awards {
 
   private readonly allSingleGameMargins = computed<SingleGameMarginRow[]>(() => {
     const rows: SingleGameMarginRow[] = [];
-    const ownerByTeamName = this.ownerByTeamName();
 
     for (const seasonId of this.weeklyMatchupsData.seasonIds()) {
       const meta = this.leagueMetaData.getSeasonMeta(seasonId);
@@ -243,7 +295,13 @@ export class Awards {
 
         for (const entry of Object.values(weekData)) {
           const teamName = entry.matchup?.team1Name ?? '';
-          const ownerName = ownerByTeamName.get(normalize(teamName)) ?? 'Unknown Owner';
+          const ownerName = this.resolveOwnerFromTeamName(
+            teamName,
+            'single-game margin',
+            seasonId,
+            week
+          );
+          if (!ownerName) continue;
           const teamScore = Number(entry.matchup?.team1Score ?? 0);
           const opponentScore = Number(entry.matchup?.team2Score ?? 0);
           if (!Number.isFinite(teamScore) || !Number.isFinite(opponentScore)) continue;
