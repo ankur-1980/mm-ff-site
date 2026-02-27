@@ -1,0 +1,170 @@
+{
+  "2011": {
+    "week14": {
+      "teamId-1": {
+        "season": 2011,
+        "week": 14,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Big Dogs",
+          "team1Score": "162.5",
+          "team2Id": "101",
+          "team2Name": "Don't Effing Care Anymore",
+          "team2Score": "134.9"
+        },
+        "team1Totals": {
+          "totalPoints": 162.5,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2011,
+        "week": 14,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Uncle Rico's Football Academy",
+          "team1Score": "167",
+          "team2Id": "102",
+          "team2Name": "Da Squad",
+          "team2Score": "132.8"
+        },
+        "team1Totals": {
+          "totalPoints": 167,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-3": {
+        "season": 2011,
+        "week": 14,
+        "teamId": "3",
+        "matchup": {
+          "team1Id": "3",
+          "team1Name": "Famous Titles",
+          "team1Score": "97.8",
+          "team2Id": "103",
+          "team2Name": "Hedd Hunters",
+          "team2Score": "80.5"
+        },
+        "team1Totals": {
+          "totalPoints": 97.8,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-4": {
+        "season": 2011,
+        "week": 14,
+        "teamId": "4",
+        "matchup": {
+          "team1Id": "4",
+          "team1Name": "The Flaming Pepper",
+          "team1Score": "111.7",
+          "team2Id": "104",
+          "team2Name": "Millen's Minions",
+          "team2Score": "105.5"
+        },
+        "team1Totals": {
+          "totalPoints": 111.7,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week15": {
+      "teamId-1": {
+        "season": 2011,
+        "week": 15,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Show Me Your TD's",
+          "team1Score": "87.1",
+          "team2Id": "101",
+          "team2Name": "Uncle Rico's Football Academy",
+          "team2Score": "78.4"
+        },
+        "team1Totals": {
+          "totalPoints": 87.1,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2011,
+        "week": 15,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Return of the Steamers",
+          "team1Score": "129",
+          "team2Id": "102",
+          "team2Name": "Big Dogs",
+          "team2Score": "106.4"
+        },
+        "team1Totals": {
+          "totalPoints": 129,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week16": {
+      "teamId-1": {
+        "season": 2011,
+        "week": 16,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Return of the Steamers",
+          "team1Score": "113.6",
+          "team2Id": "101",
+          "team2Name": "Show Me Your TD's",
+          "team2Score": "105.2"
+        },
+        "team1Totals": {
+          "totalPoints": 113.6,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2011,
+        "week": 16,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Famous Titles",
+          "team1Score": "103.6",
+          "team2Id": "102",
+          "team2Name": "The Flaming Pepper",
+          "team2Score": "91"
+        },
+        "team1Totals": {
+          "totalPoints": 103.6,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "2007": {
+    "week14": {
+      "teamId-1": {
+        "season": 2007,
+        "week": 14,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Famous Titles",
+          "team1Score": "125.1",
+          "team2Id": "101",
+          "team2Name": "Cleveland Steamers",
+          "team2Score": "116"
+        },
+        "team1Totals": {
+          "totalPoints": 125.1,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2007,
+        "week": 14,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Big Dogs",
+          "team1Score": "107",
+          "team2Id": "102",
+          "team2Name": "Hedd Hunters",
+          "team2Score": "104"
+        },
+        "team1Totals": {
+          "totalPoints": 107,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-3": {
+        "season": 2007,
+        "week": 14,
+        "teamId": "3",
+        "matchup": {
+          "team1Id": "3",
+          "team1Name": "The Mitch Buchannon All-Stars",
+          "team1Score": "115.2",
+          "team2Id": "103",
+          "team2Name": "Da Squad",
+          "team2Score": "65.4"
+        },
+        "team1Totals": {
+          "totalPoints": 115.2,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-4": {
+        "season": 2007,
+        "week": 14,
+        "teamId": "4",
+        "matchup": {
+          "team1Id": "4",
+          "team1Name": "Desi Pride",
+          "team1Score": "137.8",
+          "team2Id": "104",
+          "team2Name": "Gavin A",
+          "team2Score": "62.8"
+        },
+        "team1Totals": {
+          "totalPoints": 137.8,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week15": {
+      "teamId-1": {
+        "season": 2007,
+        "week": 15,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Big Dogs",
+          "team1Score": "102.1",
+          "team2Id": "101",
+          "team2Name": "Uncle Rico's Football Academy",
+          "team2Score": "101.6"
+        },
+        "team1Totals": {
+          "totalPoints": 102.1,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2007,
+        "week": 15,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Don't Burn the Pigskin",
+          "team1Score": "121.3",
+          "team2Id": "102",
+          "team2Name": "Famous Titles",
+          "team2Score": "99.3"
+        },
+        "team1Totals": {
+          "totalPoints": 121.3,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week16": {
+      "teamId-1": {
+        "season": 2007,
+        "week": 16,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Big Dogs",
+          "team1Score": "107.5",
+          "team2Id": "101",
+          "team2Name": "Don't Burn the Pigskin",
+          "team2Score": "100.9"
+        },
+        "team1Totals": {
+          "totalPoints": 107.5,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2007,
+        "week": 16,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "The Mitch Buchannon All-Stars",
+          "team1Score": "82.3",
+          "team2Id": "102",
+          "team2Name": "Desi Pride",
+          "team2Score": "60.5"
+        },
+        "team1Totals": {
+          "totalPoints": 82.3,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    }
+  }
+}

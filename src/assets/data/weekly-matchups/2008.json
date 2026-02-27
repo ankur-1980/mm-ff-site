@@ -1,0 +1,170 @@
+{
+  "2008": {
+    "week14": {
+      "teamId-1": {
+        "season": 2008,
+        "week": 14,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Big Dogs",
+          "team1Score": "120.9",
+          "team2Id": "101",
+          "team2Name": "Famous Titles",
+          "team2Score": "116"
+        },
+        "team1Totals": {
+          "totalPoints": 120.9,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2008,
+        "week": 14,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Gavin A",
+          "team1Score": "99.9",
+          "team2Id": "102",
+          "team2Name": "The Mitch Buchannon All-Stars",
+          "team2Score": "74"
+        },
+        "team1Totals": {
+          "totalPoints": 99.9,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-3": {
+        "season": 2008,
+        "week": 14,
+        "teamId": "3",
+        "matchup": {
+          "team1Id": "3",
+          "team1Name": "Uncle Rico's Football Academy",
+          "team1Score": "100.4",
+          "team2Id": "103",
+          "team2Name": "Desi Pride",
+          "team2Score": "93.3"
+        },
+        "team1Totals": {
+          "totalPoints": 100.4,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-4": {
+        "season": 2008,
+        "week": 14,
+        "teamId": "4",
+        "matchup": {
+          "team1Id": "4",
+          "team1Name": "Return of the Steamers",
+          "team1Score": "90.8",
+          "team2Id": "104",
+          "team2Name": "Show Me Your TD's",
+          "team2Score": "75.6"
+        },
+        "team1Totals": {
+          "totalPoints": 90.8,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week15": {
+      "teamId-1": {
+        "season": 2008,
+        "week": 15,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Da Squad",
+          "team1Score": "90.4",
+          "team2Id": "101",
+          "team2Name": "Gavin A",
+          "team2Score": "87.2"
+        },
+        "team1Totals": {
+          "totalPoints": 90.4,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2008,
+        "week": 15,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Big Dogs",
+          "team1Score": "116.4",
+          "team2Id": "102",
+          "team2Name": "Hedd Hunters",
+          "team2Score": "99.8"
+        },
+        "team1Totals": {
+          "totalPoints": 116.4,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week16": {
+      "teamId-1": {
+        "season": 2008,
+        "week": 16,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Big Dogs",
+          "team1Score": "120.9",
+          "team2Id": "101",
+          "team2Name": "Da Squad",
+          "team2Score": "113.7"
+        },
+        "team1Totals": {
+          "totalPoints": 120.9,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2008,
+        "week": 16,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Uncle Rico's Football Academy",
+          "team1Score": "117.9",
+          "team2Id": "102",
+          "team2Name": "Return of the Steamers",
+          "team2Score": "111.8"
+        },
+        "team1Totals": {
+          "totalPoints": 117.9,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    }
+  }
+}

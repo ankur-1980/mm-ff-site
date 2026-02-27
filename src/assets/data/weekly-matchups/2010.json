@@ -1,0 +1,170 @@
+{
+  "2010": {
+    "week14": {
+      "teamId-1": {
+        "season": 2010,
+        "week": 14,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Da Squad",
+          "team1Score": "115.8",
+          "team2Id": "101",
+          "team2Name": "Uncle Rico's Football Academy",
+          "team2Score": "90.2"
+        },
+        "team1Totals": {
+          "totalPoints": 115.8,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2010,
+        "week": 14,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Show Me Your TD's",
+          "team1Score": "93.1",
+          "team2Id": "102",
+          "team2Name": "Brett Favre's Dick",
+          "team2Score": "82.8"
+        },
+        "team1Totals": {
+          "totalPoints": 93.1,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-3": {
+        "season": 2010,
+        "week": 14,
+        "teamId": "3",
+        "matchup": {
+          "team1Id": "3",
+          "team1Name": "Jr Peporium's Wonder Emporium",
+          "team1Score": "84.6",
+          "team2Id": "103",
+          "team2Name": "Hedd Hunters",
+          "team2Score": "52.7"
+        },
+        "team1Totals": {
+          "totalPoints": 84.6,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-4": {
+        "season": 2010,
+        "week": 14,
+        "teamId": "4",
+        "matchup": {
+          "team1Id": "4",
+          "team1Name": "Big Dogs",
+          "team1Score": "94.5",
+          "team2Id": "104",
+          "team2Name": "Desi Pride",
+          "team2Score": "68.3"
+        },
+        "team1Totals": {
+          "totalPoints": 94.5,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week15": {
+      "teamId-1": {
+        "season": 2010,
+        "week": 15,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Return of the Steamers",
+          "team1Score": "120.4",
+          "team2Id": "101",
+          "team2Name": "Show Me Your TD's",
+          "team2Score": "88.3"
+        },
+        "team1Totals": {
+          "totalPoints": 120.4,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2010,
+        "week": 15,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Da Squad",
+          "team1Score": "124.6",
+          "team2Id": "102",
+          "team2Name": "Famous Titles",
+          "team2Score": "68.3"
+        },
+        "team1Totals": {
+          "totalPoints": 124.6,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week16": {
+      "teamId-1": {
+        "season": 2010,
+        "week": 16,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Da Squad",
+          "team1Score": "93.5",
+          "team2Id": "101",
+          "team2Name": "Return of the Steamers",
+          "team2Score": "84.1"
+        },
+        "team1Totals": {
+          "totalPoints": 93.5,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2010,
+        "week": 16,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Jr Peporium's Wonder Emporium",
+          "team1Score": "104.3",
+          "team2Id": "102",
+          "team2Name": "Big Dogs",
+          "team2Score": "87.1"
+        },
+        "team1Totals": {
+          "totalPoints": 104.3,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    }
+  }
+}

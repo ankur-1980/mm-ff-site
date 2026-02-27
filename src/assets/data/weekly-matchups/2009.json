@@ -1,0 +1,170 @@
+{
+  "2009": {
+    "week14": {
+      "teamId-1": {
+        "season": 2009,
+        "week": 14,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Da Squad",
+          "team1Score": "114.3",
+          "team2Id": "101",
+          "team2Name": "Jr Peporium's Wonder Emporium",
+          "team2Score": "92.8"
+        },
+        "team1Totals": {
+          "totalPoints": 114.3,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2009,
+        "week": 14,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Big Dogs",
+          "team1Score": "101.3",
+          "team2Id": "102",
+          "team2Name": "Return of the Steamers",
+          "team2Score": "93.6"
+        },
+        "team1Totals": {
+          "totalPoints": 101.3,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-3": {
+        "season": 2009,
+        "week": 14,
+        "teamId": "3",
+        "matchup": {
+          "team1Id": "3",
+          "team1Name": "Show Me Your TD's",
+          "team1Score": "96.8",
+          "team2Id": "103",
+          "team2Name": "Uncle Rico's Football Academy",
+          "team2Score": "78.1"
+        },
+        "team1Totals": {
+          "totalPoints": 96.8,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-4": {
+        "season": 2009,
+        "week": 14,
+        "teamId": "4",
+        "matchup": {
+          "team1Id": "4",
+          "team1Name": "Hedd Hunters",
+          "team1Score": "109.7",
+          "team2Id": "104",
+          "team2Name": "Desi Pride",
+          "team2Score": "104.9"
+        },
+        "team1Totals": {
+          "totalPoints": 109.7,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week15": {
+      "teamId-1": {
+        "season": 2009,
+        "week": 15,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Famous Titles",
+          "team1Score": "113.6",
+          "team2Id": "101",
+          "team2Name": "Big Dogs",
+          "team2Score": "80.9"
+        },
+        "team1Totals": {
+          "totalPoints": 113.6,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2009,
+        "week": 15,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Da Squad",
+          "team1Score": "116",
+          "team2Id": "102",
+          "team2Name": "The Mitch Buchannon All-Stars",
+          "team2Score": "91.9"
+        },
+        "team1Totals": {
+          "totalPoints": 116,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    },
+    "week16": {
+      "teamId-1": {
+        "season": 2009,
+        "week": 16,
+        "teamId": "1",
+        "matchup": {
+          "team1Id": "1",
+          "team1Name": "Da Squad",
+          "team1Score": "99.6",
+          "team2Id": "101",
+          "team2Name": "Famous Titles",
+          "team2Score": "93.7"
+        },
+        "team1Totals": {
+          "totalPoints": 99.6,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      },
+      "teamId-2": {
+        "season": 2009,
+        "week": 16,
+        "teamId": "2",
+        "matchup": {
+          "team1Id": "2",
+          "team1Name": "Show Me Your TD's",
+          "team1Score": "102.7",
+          "team2Id": "102",
+          "team2Name": "Hedd Hunters",
+          "team2Score": "88.6"
+        },
+        "team1Totals": {
+          "totalPoints": 102.7,
+          "totalProjected": 0,
+          "benchPoints": 0,
+          "benchProjected": 0
+        },
+        "team1Roster": []
+      }
+    }
+  }
+}
