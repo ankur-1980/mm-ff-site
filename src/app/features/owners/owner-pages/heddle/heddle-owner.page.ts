@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 
+import { OwnerProfileCard } from '../../../../shared/components/owner-profile-card/owner-profile-card';
+
 @Component({
   selector: 'app-owner-heddle-page',
+  imports: [OwnerProfileCard],
   template: `
-    <section class="owner-page" aria-labelledby="heddle-heading">
-      <h2 id="heddle-heading">Heddle</h2>
-      <p>Owner-specific content for Heddle will go here.</p>
+    <section class="page-section owner-detail-page" aria-label="Owner detail">
+      <app-owner-profile-card ownerId="Heddle" />
     </section>
   `
 })
