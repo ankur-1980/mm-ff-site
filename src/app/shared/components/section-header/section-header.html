@@ -15,3 +15,14 @@
     }
   </div>
 }
+
+@if (tertiaryMeta().length) {
+  <div class="section-header__meta section-header__meta--tertiary">
+    @for (item of tertiaryMeta(); track $index; let last = $last) {
+      <span class="section-header__meta-title">{{ item }}</span>
+      @if (!last) {
+        <span class="section-header__meta-sep" aria-hidden="true">|</span>
+      }
+    }
+  </div>
+}

@@ -10,4 +10,5 @@ export class SectionHeader {
   readonly label = input<string>('');
   readonly heading = input<string>('');
   readonly meta = input<string[]>([]);
+  readonly tertiaryMeta = input<string[]>([]);
 }
