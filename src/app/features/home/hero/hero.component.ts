@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, computed, effect, inject, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -17,7 +18,7 @@ interface HeroStat {
   selector: 'app-hero',
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
-  imports: [MatIconModule, IntersectDirective],
+  imports: [NgOptimizedImage, MatIconModule, IntersectDirective],
   host: { '[class.hero--hidden]': '!isVisible()' },
 })
 export class HeroComponent {

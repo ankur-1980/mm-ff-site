@@ -8,13 +8,23 @@
     <div class="hero__backdrop" aria-hidden="true"></div>
 
     <div class="hero__content">
-      <h1 class="hero__title">{{ leagueName() }}</h1>
+      <img
+        class="hero__logo"
+        ngSrc="assets/img/midwest-madness-logo.png"
+        width="1288"
+        height="800"
+        alt="Midwest Madness"
+        priority
+      />
 
-      <p class="hero__since" aria-label="Since 2006">
+      <h1 class="hero__title-sr">{{ leagueName() }}</h1>
+
+      <!-- leave commented out may use in the future -->
+      <!-- <p class="hero__since" aria-label="Since 2006">
         <span class="hero__since-line" aria-hidden="true"></span>
         <span class="hero__since-copy">Since 2006</span>
         <span class="hero__since-line" aria-hidden="true"></span>
-      </p>
+      </p> -->
 
       <p class="hero__meta">
         @for (item of heroMeta(); track item; let last = $last) {
