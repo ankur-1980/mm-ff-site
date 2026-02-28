@@ -56,6 +56,21 @@ export class HomePage {
     return null;
   });
 
+  protected readonly currentRunnerUpData = computed<HonorBannerData | null>(() => {
+    const currentSeasonId = this.leagueData.currentSeason()?.id;
+    if (currentSeasonId != null) {
+      const currentRunnerUp = this.getRunnerUpHonorData(String(currentSeasonId));
+      if (currentRunnerUp) return currentRunnerUp;
+    }
+
+    for (const seasonId of this.seasonStandingsData.seasonIds()) {
+      const runnerUp = this.getRunnerUpHonorData(seasonId);
+      if (runnerUp) return runnerUp;
+    }
+
+    return null;
+  });
+
   private getChampionHonorData(seasonId: string): HonorBannerData | null {
     const banner = this.seasonBanner.getChampionData(seasonId);
     if (!banner) return null;
@@ -117,6 +132,29 @@ export class HomePage {
               loserScore: banner.score,
             }
           : undefined,
+    };
+  }
+
+  private getRunnerUpHonorData(seasonId: string): HonorBannerData | null {
+    const banner = this.seasonBanner.getChampionData(seasonId);
+    if (!banner?.runnerUpOwnerName) return null;
+
+    const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
+    if (!standings) return null;
+
+    const runnerUpEntry = Object.values(standings).find(
+      (entry) => entry.playerDetails?.managerName === banner.runnerUpOwnerName,
+    );
+    if (!runnerUpEntry) return null;
+
+    const record = runnerUpEntry.record;
+
+    return {
+      type: 'runnerUp',
+      ownerName: banner.runnerUpOwnerName,
+      teamName: banner.runnerUpTeamName ?? runnerUpEntry.playerDetails?.teamName ?? '',
+      year: Number(seasonId),
+      record: `${record.win}-${record.loss}-${record.tie}`,
     };
   }
 }

@@ -16,10 +16,8 @@ mat-card.honor-banner {
 }
 
 mat-card.honor-banner--consolation {
-  border: 2px solid var(--champion-gold);
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--loss) 18%, transparent),
-    var(--shadow-rest);
+  border: 3px solid var(--champion-gold);
+  box-shadow: var(--shadow-rest);
 }
 
 .honor-banner__header {
