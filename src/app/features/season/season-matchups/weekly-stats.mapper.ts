@@ -1,5 +1,5 @@
 import type { WeekMatchups } from '../../../models/weekly-matchups.model';
-import type { MatchupTeamData, MappedMatchup } from './matchup.models';
+import type { MatchupTeamData, MappedMatchup } from '../../../models/matchup.model';
 import type { AllPlayEntry, PlayerStat, WeekStat, WeekStats } from './weekly-stats.models';
 
 function allTeams(matchups: MappedMatchup[]): MatchupTeamData[] {

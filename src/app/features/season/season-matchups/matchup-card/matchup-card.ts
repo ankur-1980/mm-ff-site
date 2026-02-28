@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 
-import type { MatchupTeamData } from '../matchup.models';
+import type { MatchupTeamData } from '../../../../models/matchup.model';
 import { MatchupTeam } from '../matchup-team/matchup-team';
 
 @Component({

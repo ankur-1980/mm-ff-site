@@ -1,0 +1,224 @@
+@mixin apply-material-overrides() {
+  .mat-mdc-card {
+    background-color: var(--surface);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-rest);
+    color: var(--text-primary);
+  }
+
+  .mat-mdc-card .mat-mdc-card-subtitle {
+    color: var(--text-muted);
+  }
+
+  .mat-mdc-table {
+    width: 100%;
+    background-color: var(--surface);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-md);
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: var(--shadow-rest);
+    overflow: hidden;
+  }
+
+  .mat-mdc-header-row {
+    background-color: var(--surface-variant);
+  }
+
+  .mat-mdc-row,
+  .mat-mdc-footer-row {
+    background-color: var(--surface);
+  }
+
+  .mat-mdc-header-cell,
+  .mat-mdc-cell,
+  .mat-mdc-footer-cell {
+    border-bottom-color: var(--divider);
+    color: var(--text-primary);
+  }
+
+  .mat-mdc-header-cell {
+    background-color: var(--surface-variant);
+  }
+
+  .mat-mdc-row:hover .mat-mdc-cell,
+  .mat-mdc-row:hover .mat-mdc-footer-cell {
+    background-color: var(--hover-tint);
+  }
+
+  .mat-mdc-row:nth-child(odd),
+  .mat-mdc-row:nth-child(even) {
+    background-color: var(--surface);
+  }
+
+  .mat-mdc-unelevated-button,
+  .mat-mdc-raised-button,
+  .mat-mdc-outlined-button,
+  .mat-mdc-button {
+    border-radius: var(--radius-sm);
+    transition:
+      background-color var(--motion-duration-fast) var(--motion-ease),
+      border-color var(--motion-duration-fast) var(--motion-ease),
+      color var(--motion-duration-fast) var(--motion-ease),
+      box-shadow var(--motion-duration-fast) var(--motion-ease);
+  }
+
+  .mat-mdc-unelevated-button:not(:disabled),
+  .mat-mdc-raised-button:not(:disabled) {
+    background-color: var(--interactive);
+    color: var(--surface);
+    box-shadow: none;
+  }
+
+  .mat-mdc-outlined-button:not(:disabled) {
+    background-color: transparent;
+    border-color: var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .mat-mdc-button:not(:disabled) {
+    color: var(--interactive);
+  }
+
+  .mat-mdc-unelevated-button:not(:disabled):hover,
+  .mat-mdc-raised-button:not(:disabled):hover {
+    background-color: color-mix(in srgb, var(--interactive) 88%, black);
+  }
+
+  .mat-mdc-outlined-button:not(:disabled):hover,
+  .mat-mdc-button:not(:disabled):hover {
+    background-color: var(--hover-tint);
+  }
+
+  .mat-mdc-unelevated-button.mat-warn:not(:disabled),
+  .mat-mdc-raised-button.mat-warn:not(:disabled) {
+    background-color: var(--error);
+    color: var(--text-primary);
+  }
+
+  .mat-mdc-unelevated-button.mat-warn:not(:disabled):hover,
+  .mat-mdc-raised-button.mat-warn:not(:disabled):hover {
+    background-color: color-mix(in srgb, var(--error) 88%, black);
+  }
+
+  .mat-mdc-outlined-button.mat-warn:not(:disabled),
+  .mat-mdc-button.mat-warn:not(:disabled) {
+    border-color: var(--error);
+    color: var(--error);
+  }
+
+  .mat-mdc-outlined-button.mat-warn:not(:disabled):hover,
+  .mat-mdc-button.mat-warn:not(:disabled):hover {
+    background-color: color-mix(in srgb, var(--error) 12%, transparent);
+  }
+
+  .mat-mdc-button-base:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  .mat-mdc-tab-group,
+  .mat-mdc-tab-nav-bar {
+    --mat-tab-header-divider-color: var(--divider);
+    --mat-tab-header-inactive-label-text-color: var(--text-muted);
+    --mat-tab-header-active-label-text-color: var(--text-primary);
+    --mat-tab-header-active-ripple-color: var(--interactive);
+    --mat-tab-header-inactive-ripple-color: var(--interactive);
+    --mat-tab-header-active-focus-label-text-color: var(--text-primary);
+    --mat-tab-header-active-hover-label-text-color: var(--text-primary);
+    --mat-tab-header-inactive-focus-label-text-color: var(--text-primary);
+    --mat-tab-header-inactive-hover-label-text-color: var(--text-primary);
+    --mat-tab-header-active-focus-indicator-color: var(--interactive);
+    --mat-tab-header-active-hover-indicator-color: var(--interactive);
+    --mat-tab-header-active-indicator-color: var(--interactive);
+  }
+
+  .mat-mdc-tab-header,
+  .mat-mdc-tab-link-container {
+    background-color: transparent;
+  }
+
+  .mat-mdc-tab,
+  .mat-mdc-tab-link {
+    background-color: transparent;
+  }
+
+  .mat-mdc-tab:hover,
+  .mat-mdc-tab-link:hover {
+    background-color: var(--hover-tint);
+  }
+
+  .mat-mdc-tab .mdc-tab-indicator__content--underline,
+  .mat-mdc-tab-link .mdc-tab-indicator__content--underline {
+    border-color: var(--interactive);
+  }
+
+  .mat-mdc-tab .mdc-tab__ripple::before,
+  .mat-mdc-tab .mat-ripple-element,
+  .mat-mdc-tab-link .mdc-tab__ripple::before,
+  .mat-mdc-tab-link .mat-ripple-element {
+    background-color: var(--interactive);
+  }
+
+  .mat-mdc-standard-chip {
+    background-color: transparent;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 999px;
+    box-shadow: none;
+    min-height: 1.5rem;
+  }
+
+  .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled):hover {
+    background-color: var(--hover-tint);
+  }
+
+  .mat-mdc-standard-chip .mdc-evolution-chip__action--primary,
+  .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
+    color: var(--text-muted);
+  }
+
+  .mat-mdc-standard-chip.mat-mdc-chip-selected {
+    background-color: var(--active-tint);
+    border-color: var(--interactive);
+  }
+
+  .mat-mdc-standard-chip.mat-mdc-chip-selected .mdc-evolution-chip__action--primary,
+  .mat-mdc-standard-chip.mat-mdc-chip-selected .mdc-evolution-chip__text-label {
+    color: var(--text-primary);
+  }
+
+  .mat-mdc-standard-chip.ds-chip--champion {
+    background-color: var(--champion);
+    border-color: var(--champion);
+  }
+
+  .mat-mdc-standard-chip.ds-chip--champion .mdc-evolution-chip__action--primary,
+  .mat-mdc-standard-chip.ds-chip--champion .mdc-evolution-chip__text-label {
+    color: var(--surface);
+  }
+
+  .mat-mdc-standard-chip.ds-chip--loss {
+    background-color: var(--loss);
+    border-color: var(--loss);
+  }
+
+  .mat-mdc-standard-chip.ds-chip--positive {
+    background-color: var(--positive);
+    border-color: var(--positive);
+  }
+
+  .mat-mdc-standard-chip.mat-warn {
+    background-color: var(--error);
+    border-color: var(--error);
+  }
+
+  .mat-mdc-standard-chip.ds-chip--loss .mdc-evolution-chip__action--primary,
+  .mat-mdc-standard-chip.ds-chip--loss .mdc-evolution-chip__text-label,
+  .mat-mdc-standard-chip.ds-chip--positive .mdc-evolution-chip__action--primary,
+  .mat-mdc-standard-chip.ds-chip--positive .mdc-evolution-chip__text-label,
+  .mat-mdc-standard-chip.mat-warn .mdc-evolution-chip__action--primary,
+  .mat-mdc-standard-chip.mat-warn .mdc-evolution-chip__text-label {
+    color: var(--text-primary);
+  }
+}

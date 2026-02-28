@@ -6,6 +6,17 @@ export type {
   SeasonStandingsData
 } from './season-standings.model';
 export type {
+  MatchupResult,
+  MatchupTeam,
+  MatchupTeamData,
+  MappedMatchup
+} from './matchup.model';
+export type {
+  HonorType,
+  HonorBannerMatchup,
+  HonorBannerData
+} from './honor-banner.model';
+export type {
   RosterPlayer,
   MatchupSummary,
   TeamTotals,

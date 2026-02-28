@@ -2,7 +2,7 @@ import { computed, inject, Injectable } from '@angular/core';
 
 import { OwnersDataService } from '../../../data/owners-data.service';
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
-import type { MappedMatchup } from './matchup.models';
+import type { MappedMatchup } from '../../../models/matchup.model';
 import { buildOwnerIndex, toMappedMatchups } from './weekly-matchups.mapper';
 
 @Injectable({ providedIn: 'root' })

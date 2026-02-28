@@ -1,0 +1,310 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+mat-card.honor-banner {
+  padding: 0;
+  overflow: hidden;
+  color: var(--champion);
+  border: 3px solid var(--champion-gold);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-rest);
+}
+
+mat-card.honor-banner--consolation {
+  border: 3px solid var(--champion-gold);
+  box-shadow: var(--shadow-rest);
+}
+
+.honor-banner__header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--divider);
+}
+
+.honor-banner__header-title {
+  margin: 0;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.honor-banner__main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.honor-banner__main-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.honor-banner__main-block--right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.honor-banner__summary,
+.honor-banner__score {
+  margin: 0;
+  color: var(--champion);
+}
+
+.honor-banner__summary {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.honor-banner__owner {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.honor-banner__team,
+.honor-banner__record,
+.honor-banner__score-team,
+.honor-banner__note,
+.honor-banner__footer-copy {
+  margin: 0;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+}
+
+.honor-banner__team,
+.honor-banner__record,
+.honor-banner__score-team {
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.honor-banner__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-variant) 72%, var(--surface));
+}
+
+.honor-banner__icon-wrap .honor-banner__consolation-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--loss);
+}
+
+.honor-banner__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--champion);
+}
+
+.honor-banner__secondary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem;
+  border-top: 1px solid var(--divider);
+  background: var(--surface);
+}
+
+.honor-banner__score-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.honor-banner__score-side--team2 {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.honor-banner__score {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.honor-banner__score-team {
+  overflow-wrap: anywhere;
+}
+
+.honor-banner__versus {
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.honor-banner__note {
+  grid-column: 1 / -1;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.honor-banner__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem 1rem;
+  border-top: 1px solid var(--divider);
+}
+
+.honor-banner__footer-copy {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.honor-banner--premier {
+  border: 2px solid var(--champion-gold);
+  box-shadow:
+    0 0 0 1px var(--champion-glow),
+    var(--shadow-rest);
+}
+
+.honor-banner--premier .honor-banner__header {
+  border-bottom-color: var(--champion-gold);
+}
+
+.honor-banner--premier .honor-banner__summary,
+.honor-banner--premier .honor-banner__score,
+.honor-banner--premier .honor-banner__owner,
+.honor-banner--premier .honor-banner__icon {
+  color: var(--champion-gold);
+}
+
+.honor-banner--premier .honor-banner__footer {
+  border-top-color: var(--champion-gold);
+}
+
+.honor-banner--premier .honor-banner__header-title,
+.honor-banner--premier .honor-banner__versus,
+.honor-banner--premier .honor-banner__footer-copy {
+  color: var(--champion-gold);
+}
+
+.honor-banner--premier .honor-banner__team,
+.honor-banner--premier .honor-banner__record,
+.honor-banner--premier .honor-banner__score-team,
+.honor-banner--premier .honor-banner__note {
+  color: var(--champion);
+}
+
+.honor-banner--premier .honor-banner__icon-wrap {
+  border-color: var(--champion-gold);
+}
+
+.honor-banner--consolation .honor-banner__header {
+  background: var(--loss);
+  border-bottom-color: var(--champion-gold);
+}
+
+.honor-banner--consolation .honor-banner__summary,
+.honor-banner--consolation .honor-banner__score,
+.honor-banner--consolation .honor-banner__owner,
+.honor-banner--consolation .honor-banner__icon {
+  color: var(--champion);
+}
+
+.honor-banner--consolation .honor-banner__main,
+.honor-banner--consolation .honor-banner__secondary {
+  background: var(--surface);
+}
+
+.honor-banner--consolation .honor-banner__icon-wrap {
+  background: var(--champion);
+}
+
+.honor-banner--consolation .honor-banner__footer {
+  background: var(--surface-variant);
+  border-top-color: var(--champion-gold);
+}
+
+.honor-banner--consolation .honor-banner__header-title,
+.honor-banner--consolation .honor-banner__versus,
+.honor-banner--consolation .honor-banner__footer-copy {
+  color: var(--champion);
+}
+
+.honor-banner--consolation .honor-banner__team,
+.honor-banner--consolation .honor-banner__record,
+.honor-banner--consolation .honor-banner__score-team,
+.honor-banner--consolation .honor-banner__note {
+  color: var(--champion-gold);
+}
+
+.honor-banner--consolation .honor-banner__icon-wrap {
+  border-color: var(--loss);
+}
+
+.honor-banner--runner-up {
+  border: 3px solid color-mix(in srgb, var(--interactive) 28%, var(--border-color));
+  box-shadow: var(--shadow-rest);
+}
+
+.honor-banner--runner-up .honor-banner__header {
+  background: color-mix(in srgb, var(--interactive) 10%, var(--surface-variant));
+}
+
+.honor-banner--runner-up .honor-banner__summary,
+.honor-banner--runner-up .honor-banner__icon {
+  color: var(--interactive);
+}
+
+@media (min-width: 768px) {
+  .honor-banner__header {
+    padding-inline: 1.25rem;
+  }
+
+  .honor-banner__main,
+  .honor-banner__secondary,
+  .honor-banner__footer {
+    padding-inline: 1.25rem;
+  }
+
+  .honor-banner__main {
+    padding-block: 1.25rem;
+  }
+
+  .honor-banner__owner,
+  .honor-banner__summary {
+    font-size: 1.125rem;
+  }
+
+  .honor-banner__score {
+    font-size: 1.75rem;
+  }
+}

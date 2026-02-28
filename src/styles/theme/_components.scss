@@ -1,0 +1,110 @@
+@mixin apply-components() {
+  .ds-page {
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--text-primary);
+  }
+
+  .ds-surface,
+  .ds-card,
+  .ds-panel,
+  .ds-table {
+    background: var(--surface);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-rest);
+    color: var(--text-primary);
+  }
+
+  .ds-surface-variant {
+    background: var(--surface-variant);
+    color: var(--text-primary);
+  }
+
+  .ds-text-primary {
+    color: var(--text-primary);
+  }
+
+  .ds-text-muted {
+    color: var(--text-muted);
+  }
+
+  .ds-focusable:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  .ds-divider {
+    border: 0;
+    border-top: 1px solid var(--divider);
+  }
+
+  .ds-border {
+    border: var(--border-width) solid var(--border-color);
+  }
+
+  .ds-surface:hover,
+  .ds-card:hover,
+  .ds-panel:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .ds-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+  }
+
+  .ds-table thead {
+    background: var(--surface-variant);
+  }
+
+  .ds-table tr + tr {
+    border-top: 1px solid var(--divider);
+  }
+
+  .ds-table tbody tr:hover {
+    background: var(--hover-tint);
+  }
+
+  .ds-surface,
+  .ds-card,
+  .ds-panel,
+  .ds-table,
+  .ds-focusable,
+  .ds-divider,
+  .ds-border {
+    transition:
+      background-color var(--motion-duration-fast) var(--motion-ease),
+      border-color var(--motion-duration-fast) var(--motion-ease),
+      box-shadow var(--motion-duration-fast) var(--motion-ease),
+      color var(--motion-duration-fast) var(--motion-ease),
+      transform var(--motion-duration-fast) var(--motion-ease);
+  }
+
+  .ds-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-height: 1.5rem;
+    padding-inline: 0.625rem;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 999px;
+    color: var(--text-muted);
+    background: transparent;
+    line-height: 1;
+  }
+
+  .ds-badge--champion {
+    border-color: var(--champion);
+    background: var(--champion);
+    color: var(--surface);
+  }
+
+  .ds-badge--loss {
+    border-color: var(--loss);
+    background: var(--loss);
+    color: var(--text-primary);
+  }
+}

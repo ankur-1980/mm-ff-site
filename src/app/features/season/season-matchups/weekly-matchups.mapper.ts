@@ -1,6 +1,6 @@
 import type { WeekMatchups } from '../../../models/weekly-matchups.model';
 import type { OwnersData } from '../../../models/owner.model';
-import type { MatchupResult, MatchupTeamData, MappedMatchup } from './matchup.models';
+import type { MatchupResult, MatchupTeamData, MappedMatchup } from '../../../models/matchup.model';
 
 /**
  * Build a lookup map from every known team name to the manager name of its owner.

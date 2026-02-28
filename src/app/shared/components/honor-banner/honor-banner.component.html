@@ -1,0 +1,57 @@
+<mat-card class="honor-banner ds-surface" [class]="config().themeClass">
+  <header class="honor-banner__header ds-surface-variant">
+    <p class="honor-banner__header-title">{{ config().headerTitle }}</p>
+  </header>
+
+  <section class="honor-banner__main">
+    <div class="honor-banner__main-block honor-banner__main-block--left">
+      <p class="honor-banner__owner">{{ honor().ownerName }}</p>
+      <p class="honor-banner__team">{{ honor().teamName }}</p>
+      <ng-content select="[mainExtra]" />
+    </div>
+
+    <div class="honor-banner__icon-wrap" aria-hidden="true">
+      @if (config().iconKind === 'image') {
+        <mat-icon class="honor-banner__consolation-icon" [svgIcon]="config().iconValue"> </mat-icon>
+      } @else {
+        <mat-icon class="honor-banner__icon">{{ config().iconValue }}</mat-icon>
+      }
+    </div>
+
+    <div class="honor-banner__main-block honor-banner__main-block--right">
+      <p class="honor-banner__summary">{{ honorLabel() }}</p>
+      <p class="honor-banner__record">{{ honor().record }}</p>
+    </div>
+  </section>
+
+  @if (matchup(); as matchup) {
+    <section class="honor-banner__secondary">
+      <div class="honor-banner__score-side">
+        <p class="honor-banner__score">{{ matchup.team1.totalPoints | number: '1.2-2' }}</p>
+        @if (matchup.team1.teamName) {
+          <p class="honor-banner__score-team">{{ matchup.team1.teamName }}</p>
+        }
+      </div>
+
+      <div class="honor-banner__versus">vs</div>
+
+      <div class="honor-banner__score-side honor-banner__score-side--team2">
+        <p class="honor-banner__score">{{ matchup.team2.totalPoints | number: '1.2-2' }}</p>
+        @if (matchup.team2.teamName) {
+          <p class="honor-banner__score-team">{{ matchup.team2.teamName }}</p>
+        }
+      </div>
+
+      @if (matchup.note) {
+        <p class="honor-banner__note">{{ matchup.note }}</p>
+      }
+
+      <ng-content select="[secondaryExtra]" />
+    </section>
+  }
+
+  <footer class="honor-banner__footer ds-surface-variant">
+    <p class="honor-banner__footer-copy">{{ footerContext() }}</p>
+    <ng-content select="[footerExtra]" />
+  </footer>
+</mat-card>
