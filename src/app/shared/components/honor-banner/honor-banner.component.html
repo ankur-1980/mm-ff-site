@@ -12,13 +12,7 @@
 
     <div class="honor-banner__icon-wrap" aria-hidden="true">
       @if (config().iconKind === 'image') {
-        <img
-          class="honor-banner__icon"
-          ngSrc="assets/icons/toilet.svg"
-          width="24"
-          height="24"
-          alt=""
-        />
+        <mat-icon class="honor-banner__consolation-icon" svgIcon="toilet"> </mat-icon>
       } @else {
         <mat-icon class="honor-banner__icon">{{ config().iconValue }}</mat-icon>
       }
@@ -34,14 +28,18 @@
     <section class="honor-banner__secondary">
       <div class="honor-banner__score-side honor-banner__score-side--left">
         <p class="honor-banner__score">{{ matchup.leftScore | number: '1.2-2' }}</p>
-        <p class="honor-banner__score-team">{{ matchup.leftTeamName }}</p>
+        @if (matchup.leftTeamName) {
+          <p class="honor-banner__score-team">{{ matchup.leftTeamName }}</p>
+        }
       </div>
 
       <div class="honor-banner__versus">vs</div>
 
       <div class="honor-banner__score-side honor-banner__score-side--right">
         <p class="honor-banner__score">{{ matchup.rightScore | number: '1.2-2' }}</p>
-        <p class="honor-banner__score-team">{{ matchup.rightTeamName }}</p>
+        @if (matchup.rightTeamName) {
+          <p class="honor-banner__score-team">{{ matchup.rightTeamName }}</p>
+        }
       </div>
 
       @if (matchup.note) {

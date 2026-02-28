@@ -15,6 +15,13 @@ mat-card.honor-banner {
   box-shadow: var(--shadow-rest);
 }
 
+mat-card.honor-banner--consolation {
+  border: 2px solid var(--champion-gold);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--loss) 18%, transparent),
+    var(--shadow-rest);
+}
+
 .honor-banner__header {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--divider);
@@ -99,6 +106,17 @@ mat-card.honor-banner {
   border: 1px solid var(--border-color);
   border-radius: 999px;
   background: color-mix(in srgb, var(--surface-variant) 72%, var(--surface));
+}
+
+.honor-banner__icon-wrap .honor-banner__consolation-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--loss);
 }
 
 .honor-banner__icon {
@@ -216,39 +234,43 @@ mat-card.honor-banner {
   border-color: var(--champion-gold);
 }
 
-.honor-banner--consolation {
-  border: 2px solid var(--loss);
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--loss) 18%, transparent),
-    var(--shadow-rest);
-}
-
 .honor-banner--consolation .honor-banner__header {
-  border-bottom-color: var(--loss);
+  background: var(--loss);
+  border-bottom-color: var(--champion-gold);
 }
 
 .honor-banner--consolation .honor-banner__summary,
 .honor-banner--consolation .honor-banner__score,
 .honor-banner--consolation .honor-banner__owner,
 .honor-banner--consolation .honor-banner__icon {
-  color: var(--loss);
+  color: var(--champion);
+}
+
+.honor-banner--consolation .honor-banner__main,
+.honor-banner--consolation .honor-banner__secondary {
+  background: var(--surface);
+}
+
+.honor-banner--consolation .honor-banner__icon-wrap {
+  background: #e8dcc0;
 }
 
 .honor-banner--consolation .honor-banner__footer {
-  border-top-color: var(--loss);
+  background: var(--surface-variant);
+  border-top-color: var(--champion-gold);
 }
 
 .honor-banner--consolation .honor-banner__header-title,
 .honor-banner--consolation .honor-banner__versus,
 .honor-banner--consolation .honor-banner__footer-copy {
-  color: var(--loss);
+  color: var(--champion);
 }
 
 .honor-banner--consolation .honor-banner__team,
 .honor-banner--consolation .honor-banner__record,
 .honor-banner--consolation .honor-banner__score-team,
 .honor-banner--consolation .honor-banner__note {
-  color: var(--text-primary);
+  color: var(--champion-gold);
 }
 
 .honor-banner--consolation .honor-banner__icon-wrap {

@@ -80,7 +80,6 @@ export class HomePage {
         banner.score != null && banner.runnerUpScore != null && banner.runnerUpTeamName
           ? {
               winnerScore: banner.score,
-              winnerTeamName: banner.teamName,
               loserScore: banner.runnerUpScore,
               loserTeamName: banner.runnerUpTeamName,
             }
@@ -113,10 +112,9 @@ export class HomePage {
       matchup:
         banner?.score != null && banner.runnerUpScore != null && banner.runnerUpTeamName
           ? {
-              winnerScore: banner.score,
-              winnerTeamName: teamName,
-              loserScore: banner.runnerUpScore,
-              loserTeamName: banner.runnerUpTeamName,
+              winnerScore: banner.runnerUpScore,
+              winnerTeamName: banner.runnerUpTeamName,
+              loserScore: banner.score,
             }
           : undefined,
     };

@@ -1,18 +1,19 @@
-import { DecimalPipe, NgOptimizedImage } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 
 import { OwnersDataService } from '../../../data/owners-data.service';
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export type HonorType = 'premier' | 'consolation' | 'runnerUp';
 
 export interface HonorBannerMatchup {
   winnerScore: number;
-  winnerTeamName: string;
+  winnerTeamName?: string;
   loserScore: number;
-  loserTeamName: string;
+  loserTeamName?: string;
   note?: string;
 }
 
@@ -27,9 +28,9 @@ export interface HonorBannerData {
 
 interface HonorBannerResolvedMatchup {
   leftScore: number;
-  leftTeamName: string;
+  leftTeamName?: string;
   rightScore: number;
-  rightTeamName: string;
+  rightTeamName?: string;
   note?: string;
 }
 
@@ -46,11 +47,13 @@ interface HonorBannerTypeConfig {
 
 @Component({
   selector: 'app-honor-banner',
-  imports: [DecimalPipe, NgOptimizedImage, MatCardModule, MatIconModule],
+  imports: [DecimalPipe, MatCardModule, MatIconModule],
   templateUrl: './honor-banner.component.html',
   styleUrl: './honor-banner.component.scss',
 })
 export class HonorBannerComponent {
+  private readonly matIconRegistry = inject(MatIconRegistry);
+  private readonly sanitizer = inject(DomSanitizer);
   private readonly ownersData = inject(OwnersDataService);
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
 
@@ -127,6 +130,10 @@ export class HonorBannerComponent {
   constructor() {
     this.ownersData.load();
     this.seasonStandingsData.load();
+    this.matIconRegistry.addSvgIcon(
+      'toilet',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/toilet.svg'),
+    );
   }
 
   private resolvePremierFooter(honor: HonorBannerData): string {
