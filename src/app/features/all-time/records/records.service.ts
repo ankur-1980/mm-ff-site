@@ -134,7 +134,7 @@ export class AllTimeRecordsService {
     seasonId: string,
     teamName: string | null | undefined,
     sourceContext: string,
-    teamIndex: TeamOwnerIndex
+    teamIndex: TeamOwnerIndex,
   ): string | null {
     const key = normalize(teamName);
     if (!key) {
@@ -142,7 +142,7 @@ export class AllTimeRecordsService {
       if (!this.loggedTeamMappingErrors.has(errorKey)) {
         this.loggedTeamMappingErrors.add(errorKey);
         this.logger.error(
-          `AllTimeRecordsService: skipped ${sourceContext} in season ${seasonId} due to missing team name`
+          `AllTimeRecordsService: skipped ${sourceContext} in season ${seasonId} due to missing team name`,
         );
       }
       return null;
@@ -153,7 +153,7 @@ export class AllTimeRecordsService {
       if (!this.loggedTeamMappingErrors.has(errorKey)) {
         this.loggedTeamMappingErrors.add(errorKey);
         this.logger.error(
-          `AllTimeRecordsService: skipped ${sourceContext} in season ${seasonId}; ambiguous team name "${teamName}"`
+          `AllTimeRecordsService: skipped ${sourceContext} in season ${seasonId}; ambiguous team name "${teamName}"`,
         );
       }
       return null;
@@ -165,7 +165,7 @@ export class AllTimeRecordsService {
       if (!this.loggedTeamMappingErrors.has(errorKey)) {
         this.loggedTeamMappingErrors.add(errorKey);
         this.logger.error(
-          `AllTimeRecordsService: skipped ${sourceContext} in season ${seasonId}; no owner found for team "${teamName}"`
+          `AllTimeRecordsService: skipped ${sourceContext} in season ${seasonId}; no owner found for team "${teamName}"`,
         );
       }
       return null;
@@ -176,7 +176,7 @@ export class AllTimeRecordsService {
 
   private deriveRegularSeasonTotalsByOwner(
     seasonId: string,
-    teamIndex: TeamOwnerIndex
+    teamIndex: TeamOwnerIndex,
   ): DerivedSeasonTotals {
     const totalsByOwner = new Map<string, OwnerRecordTotals>();
     const meta = this.leagueMetaData.getSeasonMeta(seasonId);
@@ -194,7 +194,7 @@ export class AllTimeRecordsService {
           seasonId,
           entry.matchup?.team1Name,
           `weekly score week${week}`,
-          teamIndex
+          teamIndex,
         );
         const weekScore = Number(entry.team1Totals?.totalPoints);
         if (weekOwner && Number.isFinite(weekScore)) {
@@ -216,13 +216,13 @@ export class AllTimeRecordsService {
           seasonId,
           matchup.team1Name,
           `weekly matchup week${week}`,
-          teamIndex
+          teamIndex,
         );
         const owner2 = this.resolveOwnerByTeamName(
           seasonId,
           matchup.team2Name,
           `weekly matchup week${week}`,
-          teamIndex
+          teamIndex,
         );
         if (!owner1 || !owner2) continue;
 
@@ -267,7 +267,7 @@ export class AllTimeRecordsService {
   private addAllPlayTotalsForSeason(
     seasonId: string,
     teamIndex: TeamOwnerIndex,
-    totalsByOwner: Map<string, OwnerRecordTotals>
+    totalsByOwner: Map<string, OwnerRecordTotals>,
   ): void {
     const meta = this.leagueMetaData.getSeasonMeta(seasonId);
     const season = this.weeklyMatchupsData.getSeasonWeeks(seasonId);
@@ -283,7 +283,7 @@ export class AllTimeRecordsService {
           seasonId,
           entry.matchup?.team1Name,
           `all-play week${week}`,
-          teamIndex
+          teamIndex,
         );
         const score = Number(entry.team1Totals?.totalPoints);
         if (!owner || !Number.isFinite(score)) continue;
@@ -313,7 +313,7 @@ export class AllTimeRecordsService {
 
   private fallbackSeasonTotalsFromStandings(
     seasonId: string,
-    teamIndex: TeamOwnerIndex
+    teamIndex: TeamOwnerIndex,
   ): Map<string, OwnerRecordTotals> {
     const totalsByOwner = new Map<string, OwnerRecordTotals>();
     const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
@@ -325,7 +325,7 @@ export class AllTimeRecordsService {
         seasonId,
         team,
         'season standings fallback',
-        teamIndex
+        teamIndex,
       );
       if (!owner) continue;
 
@@ -350,7 +350,7 @@ export class AllTimeRecordsService {
   private ownerHasCompleteDerivedHistory(
     ownerId: string,
     activeSeasons: number[],
-    derivedBySeason: Map<string, DerivedSeasonTotals>
+    derivedBySeason: Map<string, DerivedSeasonTotals>,
   ): boolean {
     for (const season of activeSeasons) {
       const seasonId = String(season);
@@ -364,7 +364,7 @@ export class AllTimeRecordsService {
   private logOwnerMismatchIfNeeded(
     row: AllTimeRecordRow,
     expected: Pick<OwnerRecordTotals, 'wins' | 'losses' | 'ties'>,
-    isDerivedComplete: boolean
+    isDerivedComplete: boolean,
   ): void {
     if (!isDerivedComplete) return;
     if (
@@ -381,7 +381,7 @@ export class AllTimeRecordsService {
 
     this.logger.error(
       `AllTimeRecordsService: owner totals mismatch for ${row.ownerName} ` +
-        `(derived=${row.wins}-${row.losses}-${row.ties}, owners=${expected.wins}-${expected.losses}-${expected.ties})`
+        `(derived=${row.wins}-${row.losses}-${row.ties}, owners=${expected.wins}-${expected.losses}-${expected.ties})`,
     );
   }
 
@@ -400,14 +400,8 @@ export class AllTimeRecordsService {
     const fallbackBySeason = new Map<string, Map<string, OwnerRecordTotals>>();
 
     for (const seasonId of seasonIds) {
-      derivedBySeason.set(
-        seasonId,
-        this.deriveRegularSeasonTotalsByOwner(seasonId, teamIndex)
-      );
-      fallbackBySeason.set(
-        seasonId,
-        this.fallbackSeasonTotalsFromStandings(seasonId, teamIndex)
-      );
+      derivedBySeason.set(seasonId, this.deriveRegularSeasonTotalsByOwner(seasonId, teamIndex));
+      fallbackBySeason.set(seasonId, this.fallbackSeasonTotalsFromStandings(seasonId, teamIndex));
     }
 
     const allTimeByOwner = new Map<string, OwnerRecordTotals>();
@@ -442,7 +436,7 @@ export class AllTimeRecordsService {
       owners
         .map((o) => o.managerName)
         .sort((a, b) => a.localeCompare(b))
-        .map((name, index) => [name, index] as const)
+        .map((name, index) => [name, index] as const),
     );
 
     const rows: AllTimeRecordRow[] = owners
@@ -503,7 +497,7 @@ export class AllTimeRecordsService {
       const isComplete = this.ownerHasCompleteDerivedHistory(
         owner.managerName,
         owner.activeSeasons ?? [],
-        derivedBySeason
+        derivedBySeason,
       );
       this.logOwnerMismatchIfNeeded(row, owner, isComplete);
     }
@@ -513,9 +507,7 @@ export class AllTimeRecordsService {
 
   getChampionsTimeline(): ChampionTimelineEntry[] {
     const rows: ChampionTimelineEntry[] = [];
-    const seasonIds = this.seasonStandingsData
-      .seasonIds()
-      .sort((a, b) => Number(b) - Number(a));
+    const seasonIds = this.seasonStandingsData.seasonIds().sort((a, b) => Number(b) - Number(a));
 
     for (const seasonId of seasonIds) {
       const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
@@ -541,9 +533,7 @@ export class AllTimeRecordsService {
 
   getSeasonHighPointsTimeline(): SeasonHighPointsTimelineEntry[] {
     const rows: SeasonHighPointsTimelineEntry[] = [];
-    const seasonIds = this.seasonStandingsData
-      .seasonIds()
-      .sort((a, b) => Number(b) - Number(a));
+    const seasonIds = this.seasonStandingsData.seasonIds().sort((a, b) => Number(b) - Number(a));
 
     for (const seasonId of seasonIds) {
       const standings = this.seasonStandingsData.getStandingsForSeason(seasonId);
@@ -585,13 +575,11 @@ export class AllTimeRecordsService {
             seasonId,
             entry.matchup?.team1Name,
             `starter single game ${weekKey}`,
-            teamIndex
+            teamIndex,
           );
           if (!ownerName) continue;
 
-          for (const starter of entry.team1Roster.filter(
-            (player) => player.slot === 'starter'
-          )) {
+          for (const starter of entry.team1Roster.filter((player) => player.slot === 'starter')) {
             rows.push({
               ownerName,
               playerName: starter.playerName,
@@ -635,13 +623,11 @@ export class AllTimeRecordsService {
             seasonId,
             entry.matchup?.team1Name,
             `starter season ${weekKey}`,
-            teamIndex
+            teamIndex,
           );
           if (!ownerName) continue;
 
-          for (const starter of entry.team1Roster.filter(
-            (player) => player.slot === 'starter'
-          )) {
+          for (const starter of entry.team1Roster.filter((player) => player.slot === 'starter')) {
             const recordKey = `${entry.season}|${ownerName}|${starter.playerId}`;
             const existing = seasonTotals.get(recordKey);
 
