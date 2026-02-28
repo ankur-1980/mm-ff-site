@@ -6,10 +6,48 @@
       color: (
         theme-type: dark,
         primary: mat.$blue-palette,
-        tertiary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
       ),
       typography: 'Source Sans 3, Arial, sans-serif',
       density: 0,
     )
   );
+
+  // Remap Material system roles to the project token vocabulary so Angular
+  // Material and custom components resolve from the same source of truth.
+  --mat-sys-primary: var(--interactive);
+  --mat-sys-on-primary: var(--surface);
+  --mat-sys-primary-container: var(--surface-variant);
+  --mat-sys-on-primary-container: var(--text-primary);
+  --mat-sys-secondary: var(--text-muted);
+  --mat-sys-on-secondary: var(--surface);
+  --mat-sys-secondary-container: var(--surface-variant);
+  --mat-sys-on-secondary-container: var(--text-primary);
+  --mat-sys-tertiary: var(--interactive);
+  --mat-sys-on-tertiary: var(--surface);
+  --mat-sys-tertiary-container: var(--surface-variant);
+  --mat-sys-on-tertiary-container: var(--text-primary);
+  --mat-sys-error: var(--error);
+  --mat-sys-on-error: var(--text-primary);
+  --mat-sys-error-container: color-mix(in srgb, var(--error) 32%, var(--surface));
+  --mat-sys-on-error-container: var(--text-primary);
+  --mat-sys-background: var(--bg);
+  --mat-sys-on-background: var(--text-primary);
+  --mat-sys-surface: var(--bg);
+  --mat-sys-on-surface: var(--text-primary);
+  --mat-sys-surface-variant: var(--surface-variant);
+  --mat-sys-on-surface-variant: var(--text-muted);
+  --mat-sys-surface-container-lowest: var(--bg);
+  --mat-sys-surface-container-low: color-mix(in srgb, var(--bg) 72%, var(--surface));
+  --mat-sys-surface-container: var(--surface);
+  --mat-sys-surface-container-high: color-mix(
+    in srgb,
+    var(--surface) 76%,
+    var(--surface-variant)
+  );
+  --mat-sys-surface-container-highest: var(--surface-variant);
+  --mat-sys-outline: var(--border-color);
+  --mat-sys-outline-variant: var(--divider);
+  --mat-sys-inverse-surface: var(--text-primary);
+  --mat-sys-inverse-on-surface: var(--surface);
 }
