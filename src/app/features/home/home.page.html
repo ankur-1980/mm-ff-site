@@ -17,7 +17,9 @@
     @if (currentChampionData(); as champion) {
       <app-honor-banner [honor]="champion" />
     } @else {
-      <div class="home__placeholder home__champion-fallback">Current champion spotlight</div>
+      <div class="home__placeholder home__champion-fallback">
+        Current champion spotlight missing
+      </div>
     }
   </section>
 

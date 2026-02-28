@@ -8,7 +8,7 @@
 mat-card.honor-banner {
   padding: 0;
   overflow: hidden;
-  color: var(--text-primary);
+  color: var(--champion);
   border: 3px solid var(--champion-gold);
   border-radius: var(--radius-lg);
   background: var(--surface);
@@ -23,11 +23,12 @@ mat-card.honor-banner {
 .honor-banner__header-title {
   margin: 0;
   color: var(--text-muted);
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.25em;
   line-height: 1.2;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -51,17 +52,22 @@ mat-card.honor-banner {
   align-items: flex-end;
 }
 
-.honor-banner__owner,
 .honor-banner__summary,
 .honor-banner__score {
   margin: 0;
-  color: var(--text-primary);
+  color: var(--champion);
 }
 
-.honor-banner__owner,
 .honor-banner__summary {
-  font-family: var(--font-ui);
+  font-family: var(--font-display);
   font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.honor-banner__owner {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -88,8 +94,8 @@ mat-card.honor-banner {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   border: 1px solid var(--border-color);
   border-radius: 999px;
   background: color-mix(in srgb, var(--surface-variant) 72%, var(--surface));
@@ -99,9 +105,9 @@ mat-card.honor-banner {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  font-size: 1.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 2.25rem;
   line-height: 1;
   color: var(--champion);
 }
@@ -113,7 +119,7 @@ mat-card.honor-banner {
   align-items: center;
   padding: 1rem;
   border-top: 1px solid var(--divider);
-  background: color-mix(in srgb, var(--surface-variant) 45%, var(--surface));
+  background: color-mix(in srgb, var(--surface) 45%, var(--surface));
 }
 
 .honor-banner__score-side {
@@ -156,13 +162,14 @@ mat-card.honor-banner {
 .honor-banner__footer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 1rem 1rem;
   border-top: 1px solid var(--divider);
 }
 
 .honor-banner__footer-copy {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -174,32 +181,31 @@ mat-card.honor-banner {
 }
 
 .honor-banner--premier .honor-banner__header {
-  background: var(--champion-surface);
   border-bottom-color: var(--champion-gold);
 }
 
 .honor-banner--premier .honor-banner__summary,
 .honor-banner--premier .honor-banner__score,
+.honor-banner--premier .honor-banner__owner,
 .honor-banner--premier .honor-banner__icon {
   color: var(--champion-gold);
 }
 
 .honor-banner--premier .honor-banner__footer {
-  background: var(--champion-surface);
   border-top-color: var(--champion-gold);
 }
 
 .honor-banner--premier .honor-banner__header-title,
-.honor-banner--premier .honor-banner__versus {
+.honor-banner--premier .honor-banner__versus,
+.honor-banner--premier .honor-banner__footer-copy {
   color: var(--champion-gold);
 }
 
 .honor-banner--premier .honor-banner__team,
 .honor-banner--premier .honor-banner__record,
 .honor-banner--premier .honor-banner__score-team,
-.honor-banner--premier .honor-banner__note,
-.honor-banner--premier .honor-banner__footer-copy {
-  color: var(--text-primary);
+.honor-banner--premier .honor-banner__note {
+  color: var(--champion);
 }
 
 .honor-banner--premier .honor-banner__header-title {
@@ -208,7 +214,6 @@ mat-card.honor-banner {
 
 .honor-banner--premier .honor-banner__icon-wrap {
   border-color: var(--champion-gold);
-  background: var(--champion-surface);
 }
 
 .honor-banner--consolation {

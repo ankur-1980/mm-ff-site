@@ -61,7 +61,7 @@ export class HonorBannerComponent {
   private readonly configByType: Record<HonorType, HonorBannerTypeConfig> = {
     premier: {
       headerTitle: 'Champion',
-      labelText: 'Champion',
+      labelText: 'Record',
       themeClass: 'honor-banner--premier',
       iconKind: 'mat',
       iconValue: 'emoji_events',
@@ -92,14 +92,12 @@ export class HonorBannerComponent {
   };
 
   protected readonly config = computed(() => this.configByType[this.honor().type]);
-  protected readonly honorLabel = computed(
-    () => `${this.honor().year} ${this.config().labelText}`,
-  );
+  protected readonly honorLabel = computed(() => `${this.honor().year} ${this.config().labelText}`);
   protected readonly hasSecondary = computed(
     () => this.config().showMatchup && this.honor().matchup != null,
   );
-  protected readonly footerContext = computed(
-    () => this.config().footerContextResolver(this.honor()),
+  protected readonly footerContext = computed(() =>
+    this.config().footerContextResolver(this.honor()),
   );
   protected readonly resolvedMatchup = computed<HonorBannerResolvedMatchup | null>(() => {
     if (!this.hasSecondary()) return null;
@@ -152,8 +150,7 @@ export class HonorBannerComponent {
   }
 
   private resolveConsolationFooter(honor: HonorBannerData): string {
-    const regularSeasonRank = this.seasonStandingsData
-      .getEntry(String(honor.year), honor.ownerName)
+    const regularSeasonRank = this.seasonStandingsData.getEntry(String(honor.year), honor.ownerName)
       ?.ranks?.regularSeasonRank;
 
     const rank = String(regularSeasonRank ?? '').trim();
