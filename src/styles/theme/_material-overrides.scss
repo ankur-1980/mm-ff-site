@@ -1,0 +1,24 @@
+@mixin apply-material-overrides() {
+  .mat-mdc-card {
+    background-color: var(--surface);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-rest);
+    color: var(--text-primary);
+  }
+
+  .mat-mdc-unelevated-button:not(:disabled) {
+    background-color: var(--interactive);
+    color: var(--surface);
+  }
+
+  .mat-mdc-outlined-button:not(:disabled) {
+    border-color: var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .mat-mdc-button-base:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+  }
+}

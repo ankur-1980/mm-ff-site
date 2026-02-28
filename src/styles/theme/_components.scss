@@ -1,0 +1,66 @@
+@mixin apply-components() {
+  .ds-card,
+  .ds-panel {
+    background: var(--surface);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-rest);
+    color: var(--text-primary);
+  }
+
+  .ds-card:hover,
+  .ds-panel:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+    transition:
+      transform var(--motion-duration-fast) var(--motion-ease),
+      box-shadow var(--motion-duration-fast) var(--motion-ease);
+  }
+
+  .ds-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    color: var(--text-primary);
+  }
+
+  .ds-table thead {
+    background: var(--surface-variant);
+  }
+
+  .ds-table tr + tr {
+    border-top: 1px solid var(--divider);
+  }
+
+  .ds-table tbody tr:hover {
+    background: var(--hover-tint);
+  }
+
+  .ds-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-height: 1.5rem;
+    padding-inline: 0.625rem;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 999px;
+    color: var(--text-muted);
+    background: transparent;
+    line-height: 1;
+  }
+
+  .ds-badge--champion {
+    border-color: var(--champion);
+    background: var(--champion);
+    color: var(--surface);
+  }
+
+  .ds-badge--loss {
+    border-color: var(--loss);
+    background: var(--loss);
+    color: var(--text-primary);
+  }
+}
