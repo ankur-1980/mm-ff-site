@@ -77,7 +77,7 @@ export class HonorBannerComponent {
       labelText: 'Record',
       themeClass: 'honor-banner--consolation',
       iconKind: 'image',
-      iconValue: 'assets/icons/toilet.svg',
+      iconValue: 'toilet',
       showMatchup: true,
       matchupInverted: true,
       footerContextResolver: (honor) => this.resolveConsolationFooter(honor),

@@ -12,7 +12,7 @@
 
     <div class="honor-banner__icon-wrap" aria-hidden="true">
       @if (config().iconKind === 'image') {
-        <mat-icon class="honor-banner__consolation-icon" svgIcon="toilet"> </mat-icon>
+        <mat-icon class="honor-banner__consolation-icon" [svgIcon]="config().iconValue"> </mat-icon>
       } @else {
         <mat-icon class="honor-banner__icon">{{ config().iconValue }}</mat-icon>
       }
