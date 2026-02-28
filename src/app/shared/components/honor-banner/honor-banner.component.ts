@@ -70,8 +70,8 @@ export class HonorBannerComponent {
       footerContextResolver: (honor) => this.resolvePremierFooter(honor),
     },
     consolation: {
-      headerTitle: 'Toilet Bowl Winner',
-      labelText: 'Toilet Bowl Winner',
+      headerTitle: 'Ultimate Loser',
+      labelText: 'Record',
       themeClass: 'honor-banner--consolation',
       iconKind: 'image',
       iconValue: 'assets/icons/toilet.svg',

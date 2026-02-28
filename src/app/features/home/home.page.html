@@ -23,6 +23,12 @@
     }
   </section>
 
+  @if (currentUltimateLoserData(); as ultimateLoser) {
+    <section class="home__champion" aria-label="Ultimate loser">
+      <app-honor-banner [honor]="ultimateLoser" />
+    </section>
+  }
+
   <section class="home__block">
     <h3 class="home__section-heading">Legendary Moments</h3>
     <div class="home__legendary-grid">

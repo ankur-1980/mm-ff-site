@@ -217,15 +217,42 @@ mat-card.honor-banner {
 }
 
 .honor-banner--consolation {
-  border-color: color-mix(in srgb, var(--loss) 34%, var(--border-color));
+  border: 2px solid var(--loss);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--loss) 18%, transparent),
+    var(--shadow-rest);
 }
 
 .honor-banner--consolation .honor-banner__header {
-  background: color-mix(in srgb, var(--loss) 12%, var(--surface-variant));
+  border-bottom-color: var(--loss);
 }
 
-.honor-banner--consolation .honor-banner__secondary {
-  background: color-mix(in srgb, var(--loss) 14%, var(--surface));
+.honor-banner--consolation .honor-banner__summary,
+.honor-banner--consolation .honor-banner__score,
+.honor-banner--consolation .honor-banner__owner,
+.honor-banner--consolation .honor-banner__icon {
+  color: var(--loss);
+}
+
+.honor-banner--consolation .honor-banner__footer {
+  border-top-color: var(--loss);
+}
+
+.honor-banner--consolation .honor-banner__header-title,
+.honor-banner--consolation .honor-banner__versus,
+.honor-banner--consolation .honor-banner__footer-copy {
+  color: var(--loss);
+}
+
+.honor-banner--consolation .honor-banner__team,
+.honor-banner--consolation .honor-banner__record,
+.honor-banner--consolation .honor-banner__score-team,
+.honor-banner--consolation .honor-banner__note {
+  color: var(--text-primary);
+}
+
+.honor-banner--consolation .honor-banner__icon-wrap {
+  border-color: var(--loss);
 }
 
 .honor-banner--runner-up {
