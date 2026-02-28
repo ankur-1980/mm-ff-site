@@ -1,26 +1,26 @@
 <app-hero />
 <section id="home-content" class="page-section" aria-labelledby="home-heading">
-  <h2 id="home-heading">Home</h2>
-
   @if (leagueData.loadStatus() === 'loading') {
-    <p class="home__state home__state--loading" aria-live="polite">
-      Loading league…
-    </p>
+    <p class="home__state home__state--loading" aria-live="polite">Loading league…</p>
   } @else if (leagueData.loadStatus() === 'error') {
     <p class="home__state home__state--error" role="alert">
       {{ leagueData.loadError() }}
     </p>
   } @else if (leagueData.loadStatus() === 'loaded' && leagueData.leagueData(); as league) {
     <p class="home__league-name">{{ league.name }}</p>
-    <p class="home__current-season">
-      Current Season: {{ leagueData.currentSeason()?.id ?? '—' }}
-    </p>
+    <p class="home__current-season">Current Season: {{ leagueData.currentSeason()?.id ?? '—' }}</p>
   } @else {
     <p class="home__state">League overview coming soon.</p>
   }
 
-  <section class="home__champion home__placeholder" aria-label="Current champion">
-    Current champion spotlight
+  <section class="home__champion" aria-label="Current champion">
+    @if (currentChampionData(); as champion) {
+      <app-feature-banner [data]="champion" label="Current Champion" />
+    } @else {
+      <div class="home__placeholder home__champion-fallback">
+        Current champion spotlight
+      </div>
+    }
   </section>
 
   <section class="home__block">
@@ -35,15 +35,11 @@
   <section class="home__block">
     <h3 class="home__section-heading">Owners</h3>
     <div class="home__owners-grid">
-      @for (owner of [1,2,3,4,5,6,7,8,9,10]; track owner) {
-        <div class="home__owner-pill home__placeholder">
-          Owner {{ owner }}
-        </div>
+      @for (owner of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track owner) {
+        <div class="home__owner-pill home__placeholder">Owner {{ owner }}</div>
       }
     </div>
-    <button type="button" class="home__owners-cta">
-      View all owners
-    </button>
+    <button type="button" class="home__owners-cta">View all owners</button>
   </section>
 
   <section class="home__block">
