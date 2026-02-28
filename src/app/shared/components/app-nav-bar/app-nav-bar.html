@@ -1,0 +1,40 @@
+<header class="app-nav" role="banner">
+  <div class="app-nav__inner">
+    <a
+      class="app-nav__brand ds-focusable"
+      routerLink="/home"
+      aria-label="Midwest Madness home"
+    >
+      <span class="app-nav__wordmark">{{ brand() }}</span>
+      <span class="app-nav__tagline" aria-label="{{ establishedLabel() }}">
+        <span class="app-nav__tagline-line" aria-hidden="true"></span>
+        <span class="app-nav__tagline-copy">{{ establishedLabel() }}</span>
+        <span class="app-nav__tagline-line" aria-hidden="true"></span>
+      </span>
+    </a>
+
+    <button
+      type="button"
+      class="app-nav__menu ds-focusable"
+      aria-label="Open menu"
+      (click)="requestMenu()"
+    >
+      <span class="app-nav__menu-line" aria-hidden="true"></span>
+      <span class="app-nav__menu-line" aria-hidden="true"></span>
+      <span class="app-nav__menu-line" aria-hidden="true"></span>
+    </button>
+
+    <nav class="app-nav__links" aria-label="Primary">
+      @for (link of links(); track link.route) {
+        <a
+          class="app-nav__link ds-focusable"
+          [routerLink]="link.route"
+          routerLinkActive="app-nav__link--active"
+          [routerLinkActiveOptions]="{ exact: link.route === '/home' }"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </nav>
+  </div>
+</header>

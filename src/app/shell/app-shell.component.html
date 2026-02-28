@@ -1,31 +1,4 @@
-<mat-toolbar color="primary" class="app-toolbar">
-  <button
-    mat-icon-button
-    class="app-toolbar__menu-btn"
-    type="button"
-    aria-label="Open menu"
-    (click)="toggleDrawer()"
-  >
-    <mat-icon>menu</mat-icon>
-  </button>
-
-  <span class="app-toolbar__title">Midwest Madness</span>
-
-  <span class="app-toolbar__spacer"></span>
-
-  <nav class="app-toolbar__nav" aria-label="Main">
-    @for (link of navLinks; track link.route) {
-      <a
-        mat-button
-        [routerLink]="link.route"
-        routerLinkActive="app-toolbar__link--active"
-        [routerLinkActiveOptions]="{ exact: link.route === '/home' }"
-      >
-        {{ link.label }}
-      </a>
-    }
-  </nav>
-</mat-toolbar>
+<app-nav-bar [links]="navLinks" (menuRequested)="toggleDrawer()" />
 
 <mat-sidenav-container class="app-shell__sidenav-container">
   <mat-sidenav
