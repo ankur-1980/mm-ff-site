@@ -89,8 +89,7 @@ mat-card.honor-banner--consolation {
 
 .honor-banner__team,
 .honor-banner__record,
-.honor-banner__score-team,
-.honor-banner__footer-copy {
+.honor-banner__score-team {
   font-size: 0.8125rem;
   line-height: 1.35;
 }
@@ -135,7 +134,7 @@ mat-card.honor-banner--consolation {
   align-items: center;
   padding: 1rem;
   border-top: 1px solid var(--divider);
-  background: color-mix(in srgb, var(--surface) 45%, var(--surface));
+  background: var(--surface);
 }
 
 .honor-banner__score-side {
@@ -224,10 +223,6 @@ mat-card.honor-banner--consolation {
   color: var(--champion);
 }
 
-.honor-banner--premier .honor-banner__header-title {
-  color: var(--champion-gold);
-}
-
 .honor-banner--premier .honor-banner__icon-wrap {
   border-color: var(--champion-gold);
 }
@@ -276,7 +271,8 @@ mat-card.honor-banner--consolation {
 }
 
 .honor-banner--runner-up {
-  border-color: color-mix(in srgb, var(--interactive) 28%, var(--border-color));
+  border: 3px solid color-mix(in srgb, var(--interactive) 28%, var(--border-color));
+  box-shadow: var(--shadow-rest);
 }
 
 .honor-banner--runner-up .honor-banner__header {

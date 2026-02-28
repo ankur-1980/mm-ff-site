@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 
 import { LeagueMetaDataFacade, SeasonStandingsDataService } from '../../data';
 import type { HonorBannerData } from '../../models/honor-banner.model';
+import { OwnersDataService } from '../../data/owners-data.service';
 import { ToiletBowlDataService } from '../../data/toilet-bowl-data.service';
 import { HonorBannerComponent } from '../../shared/components/honor-banner/honor-banner.component';
 import { SeasonBannerService } from '../season/season-standings/season-banner.service';
@@ -15,11 +16,14 @@ import { HeroComponent } from './hero/hero.component';
 })
 export class HomePage {
   protected readonly leagueData = inject(LeagueMetaDataFacade);
+  private readonly ownersData = inject(OwnersDataService);
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
   private readonly toiletBowlData = inject(ToiletBowlDataService);
   private readonly seasonBanner = inject(SeasonBannerService);
 
   constructor() {
+    this.ownersData.load();
+    this.seasonStandingsData.load();
     this.toiletBowlData.load();
   }
 

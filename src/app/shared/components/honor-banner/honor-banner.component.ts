@@ -63,6 +63,8 @@ export class HonorBannerComponent {
       themeClass: 'honor-banner--runner-up',
       iconKind: 'mat',
       iconValue: 'looks_two',
+      // Runner-up can still be passed matchup data, but this banner intentionally
+      // renders as a summary-only variant with no secondary matchup section.
       showMatchup: false,
       footerContextResolver: (honor) => this.resolveRunnerUpFooter(honor),
     },
@@ -81,8 +83,6 @@ export class HonorBannerComponent {
   );
 
   constructor() {
-    this.ownersData.load();
-    this.seasonStandingsData.load();
     this.matIconRegistry.addSvgIcon(
       'toilet',
       this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/toilet.svg'),
@@ -96,14 +96,7 @@ export class HonorBannerComponent {
   }
 
   private resolveRunnerUpFooter(honor: HonorBannerData): string {
-    const count = this.seasonStandingsData.seasonIds().reduce((total, seasonId) => {
-      const entry = this.seasonStandingsData.getEntry(seasonId, honor.ownerName);
-      if (String(entry?.ranks?.playoffRank ?? '').trim() === '2') {
-        return total + 1;
-      }
-
-      return total;
-    }, 0);
+    const count = this.seasonStandingsData.getRunnerUpCount(honor.ownerName);
 
     const label = count === 1 ? 'runner-up finish' : 'runner-up finishes';
     return `${count} ${label}`;

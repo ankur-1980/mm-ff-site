@@ -41,6 +41,22 @@ export class SeasonStandingsDataService {
     return Object.keys(map).sort((a, b) => Number(b) - Number(a));
   });
 
+  /** Cached runner-up finish counts by owner id across all loaded seasons. */
+  readonly runnerUpCounts = computed(() => {
+    const standings = this.data();
+    const counts = new Map<string, number>();
+    if (!standings) return counts;
+
+    for (const season of Object.values(standings)) {
+      for (const [ownerId, entry] of Object.entries(season)) {
+        if (String(entry.ranks?.playoffRank ?? '').trim() !== '2') continue;
+        counts.set(ownerId, (counts.get(ownerId) ?? 0) + 1);
+      }
+    }
+
+    return counts;
+  });
+
   /** Whether data has been loaded successfully. */
   readonly isLoaded = computed(() => this.status() === 'loaded');
 
@@ -91,6 +107,13 @@ export class SeasonStandingsDataService {
   getEntry(seasonId: string, ownerId: string): SeasonStandingsEntry | null {
     const season = this.getStandingsForSeason(seasonId);
     return season?.[ownerId] ?? null;
+  }
+
+  /**
+   * Get cached runner-up finish count for one owner across all loaded seasons.
+   */
+  getRunnerUpCount(ownerId: string): number {
+    return this.runnerUpCounts().get(ownerId) ?? 0;
   }
 
   /**
