@@ -9,7 +9,7 @@ mat-card.honor-banner {
   padding: 0;
   overflow: hidden;
   color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  border: 3px solid var(--champion-gold);
   border-radius: var(--radius-lg);
   background: var(--surface);
   box-shadow: var(--shadow-rest);
@@ -96,9 +96,13 @@ mat-card.honor-banner {
 }
 
 .honor-banner__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 1.5rem;
   height: 1.5rem;
   font-size: 1.5rem;
+  line-height: 1;
   color: var(--champion);
 }
 
@@ -163,17 +167,48 @@ mat-card.honor-banner {
 }
 
 .honor-banner--premier {
-  border-color: color-mix(in srgb, var(--champion) 24%, var(--border-color));
+  border: 2px solid var(--champion-gold);
+  box-shadow:
+    0 0 0 1px var(--champion-glow),
+    var(--shadow-rest);
 }
 
 .honor-banner--premier .honor-banner__header {
-  background: color-mix(in srgb, var(--champion) 10%, var(--surface-variant));
+  background: var(--champion-surface);
+  border-bottom-color: var(--champion-gold);
 }
 
 .honor-banner--premier .honor-banner__summary,
 .honor-banner--premier .honor-banner__score,
 .honor-banner--premier .honor-banner__icon {
-  color: var(--champion);
+  color: var(--champion-gold);
+}
+
+.honor-banner--premier .honor-banner__footer {
+  background: var(--champion-surface);
+  border-top-color: var(--champion-gold);
+}
+
+.honor-banner--premier .honor-banner__header-title,
+.honor-banner--premier .honor-banner__versus {
+  color: var(--champion-gold);
+}
+
+.honor-banner--premier .honor-banner__team,
+.honor-banner--premier .honor-banner__record,
+.honor-banner--premier .honor-banner__score-team,
+.honor-banner--premier .honor-banner__note,
+.honor-banner--premier .honor-banner__footer-copy {
+  color: var(--text-primary);
+}
+
+.honor-banner--premier .honor-banner__header-title {
+  color: var(--champion-gold);
+}
+
+.honor-banner--premier .honor-banner__icon-wrap {
+  border-color: var(--champion-gold);
+  background: var(--champion-surface);
 }
 
 .honor-banner--consolation {

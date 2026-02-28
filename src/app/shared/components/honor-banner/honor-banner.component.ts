@@ -64,7 +64,7 @@ export class HonorBannerComponent {
       labelText: 'Champion',
       themeClass: 'honor-banner--premier',
       iconKind: 'mat',
-      iconValue: 'trophy',
+      iconValue: 'emoji_events',
       showMatchup: true,
       matchupInverted: false,
       footerContextResolver: (honor) => this.resolvePremierFooter(honor),

@@ -15,11 +15,9 @@
 
   <section class="home__champion" aria-label="Current champion">
     @if (currentChampionData(); as champion) {
-      <app-feature-banner [data]="champion" label="Current Champion" />
+      <app-honor-banner [honor]="champion" />
     } @else {
-      <div class="home__placeholder home__champion-fallback">
-        Current champion spotlight
-      </div>
+      <div class="home__placeholder home__champion-fallback">Current champion spotlight</div>
     }
   </section>
 

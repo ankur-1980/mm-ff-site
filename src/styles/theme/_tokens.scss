@@ -100,7 +100,9 @@
 :root,
 .theme-default {
   font-variant-numeric: tabular-nums;
-  font-feature-settings: 'tnum' 1, 'lnum' 1;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1;
   --app-toolbar-height: 56px;
   --bg: #162233;
   --surface: #003049;
@@ -112,6 +114,9 @@
   --text-muted: #9fb3c8;
   --interactive: #669bbc;
   --champion: #fdf0d5;
+  --champion-gold: #d4af37;
+  --champion-surface: #3a2f14;
+  --champion-glow: rgba(212, 175, 55, 0.15);
   --loss: #780000;
   --positive: #2f6f5e;
   --error: #c1121f;
@@ -127,16 +132,8 @@
   --motion-duration-base: 180ms;
   --motion-ease: ease-out;
   --font-ui:
-    'Inter',
-    'Source Sans 3',
-    'IBM Plex Sans',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+    'Inter', 'Source Sans 3', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-hero: 'Rockwell', 'Clarendon BT', Georgia, serif;
   --font-body: var(--font-ui);
   --font-display: var(--font-hero);
