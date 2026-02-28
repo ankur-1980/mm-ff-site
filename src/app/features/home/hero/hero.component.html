@@ -39,14 +39,7 @@
 
       <div class="hero__stats">
         @for (stat of stats(); track stat.label) {
-          <article class="hero__stat ds-surface">
-            @if (stat.icon) {
-              <mat-icon class="hero__stat-icon" [fontIcon]="stat.icon" aria-hidden="true" />
-            } @else {
-              <p class="hero__stat-value">{{ stat.value }}</p>
-            }
-            <p class="hero__stat-label">{{ stat.label }}</p>
-          </article>
+          <app-stat-card-simple [stat]="stat"></app-stat-card-simple>
         }
       </div>
 

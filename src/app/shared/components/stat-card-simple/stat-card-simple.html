@@ -1,0 +1,8 @@
+<article class="hero__stat ds-surface">
+  @if (stat().icon) {
+    <mat-icon class="hero__stat-icon" [fontIcon]="stat().icon!" aria-hidden="true" />
+  } @else {
+    <p class="hero__stat-value">{{ stat().value }}</p>
+  }
+  <p class="hero__stat-label">{{ stat().label }}</p>
+</article>

@@ -23,11 +23,12 @@
     }
   </section>
 
-  @if (currentRunnerUpData(); as runnerUp) {
+  <!-- TODO: Revisit, is it necessary to display the runner-up? -->
+  <!-- @if (currentRunnerUpData(); as runnerUp) {
     <section class="home__champion" aria-label="Current runner up">
       <app-honor-banner [honor]="runnerUp" />
     </section>
-  }
+  } -->
 
   @if (currentUltimateLoserData(); as ultimateLoser) {
     <section class="home__champion" aria-label="Ultimate loser">

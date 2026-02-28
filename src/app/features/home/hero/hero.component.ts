@@ -7,18 +7,14 @@ import { OwnersDataService } from '../../../data/owners-data.service';
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
 import { IntersectDirective } from '../../../shared/intersect.directive';
-
-interface HeroStat {
-  readonly label: string;
-  readonly value: string;
-  readonly icon?: string;
-}
+import { StatCardSimple } from '../../../shared/components/stat-card-simple/stat-card-simple';
+import { HeroStat } from '../../../models/hero-stat';
 
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
-  imports: [NgOptimizedImage, MatIconModule, IntersectDirective],
+  imports: [NgOptimizedImage, MatIconModule, IntersectDirective, StatCardSimple],
   host: { '[class.hero--hidden]': '!isVisible()' },
 })
 export class HeroComponent {
