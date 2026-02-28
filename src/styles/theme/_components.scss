@@ -1,6 +1,14 @@
 @mixin apply-components() {
+  .ds-page {
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--text-primary);
+  }
+
+  .ds-surface,
   .ds-card,
-  .ds-panel {
+  .ds-panel,
+  .ds-table {
     background: var(--surface);
     border: var(--border-width) solid var(--border-color);
     border-radius: var(--radius-md);
@@ -8,23 +16,44 @@
     color: var(--text-primary);
   }
 
+  .ds-surface-variant {
+    background: var(--surface-variant);
+    color: var(--text-primary);
+  }
+
+  .ds-text-primary {
+    color: var(--text-primary);
+  }
+
+  .ds-text-muted {
+    color: var(--text-muted);
+  }
+
+  .ds-focusable:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  .ds-divider {
+    border: 0;
+    border-top: 1px solid var(--divider);
+  }
+
+  .ds-border {
+    border: var(--border-width) solid var(--border-color);
+  }
+
+  .ds-surface:hover,
   .ds-card:hover,
   .ds-panel:hover {
-    box-shadow: var(--shadow-hover);
     transform: translateY(-1px);
-    transition:
-      transform var(--motion-duration-fast) var(--motion-ease),
-      box-shadow var(--motion-duration-fast) var(--motion-ease);
+    box-shadow: var(--shadow-hover);
   }
 
   .ds-table {
     width: 100%;
     border-collapse: collapse;
-    background: var(--surface);
-    border: var(--border-width) solid var(--border-color);
-    border-radius: var(--radius-md);
     overflow: hidden;
-    color: var(--text-primary);
   }
 
   .ds-table thead {
@@ -37,6 +66,21 @@
 
   .ds-table tbody tr:hover {
     background: var(--hover-tint);
+  }
+
+  .ds-surface,
+  .ds-card,
+  .ds-panel,
+  .ds-table,
+  .ds-focusable,
+  .ds-divider,
+  .ds-border {
+    transition:
+      background-color var(--motion-duration-fast) var(--motion-ease),
+      border-color var(--motion-duration-fast) var(--motion-ease),
+      box-shadow var(--motion-duration-fast) var(--motion-ease),
+      color var(--motion-duration-fast) var(--motion-ease),
+      transform var(--motion-duration-fast) var(--motion-ease);
   }
 
   .ds-badge {
