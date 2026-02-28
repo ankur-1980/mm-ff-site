@@ -1,5 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AppHamburgerMenu } from '../app-hamburger-menu/app-hamburger-menu';
 
 type AppNavLink = {
   route: string;
@@ -8,7 +9,7 @@ type AppNavLink = {
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [AppHamburgerMenu, RouterLink, RouterLinkActive],
   templateUrl: './app-nav-bar.html',
   styleUrl: './app-nav-bar.scss',
 })
