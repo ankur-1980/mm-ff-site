@@ -4,55 +4,50 @@
   appIntersect
   (intersect)="isVisible.set($event)"
 >
-  <div class="hero__backdrop" aria-hidden="true"></div>
-  <div class="hero__content">
-    <div class="hero__logo hero__placeholder">
-      League Logo
+  <div class="hero__panel">
+    <div class="hero__backdrop" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <h1 class="hero__title">{{ leagueName() }}</h1>
+
+      <p class="hero__since" aria-label="Since 2006">
+        <span class="hero__since-line" aria-hidden="true"></span>
+        <span class="hero__since-copy">Since 2006</span>
+        <span class="hero__since-line" aria-hidden="true"></span>
+      </p>
+
+      <p class="hero__meta">
+        @for (item of heroMeta(); track item; let last = $last) {
+          <span class="hero__meta-item">{{ item }}</span>
+          @if (!last) {
+            <span class="hero__meta-separator" aria-hidden="true">&bull;</span>
+          }
+        }
+      </p>
+
+      <div class="hero__divider" aria-hidden="true"></div>
+
+      <div class="hero__stats">
+        @for (stat of stats(); track stat.label) {
+          <article class="hero__stat ds-surface">
+            @if (stat.icon) {
+              <mat-icon class="hero__stat-icon" [fontIcon]="stat.icon" aria-hidden="true" />
+            } @else {
+              <p class="hero__stat-value">{{ stat.value }}</p>
+            }
+            <p class="hero__stat-label">{{ stat.label }}</p>
+          </article>
+        }
+      </div>
+
+      <button
+        type="button"
+        class="hero__cta ds-focusable"
+        aria-label="Explore the league"
+        (click)="scrollToContent()"
+      >
+        Explore the League
+      </button>
     </div>
-
-    <h1 class="hero__title">League Name</h1>
-
-    <p class="hero__since hero__placeholder">
-      Since 2006
-    </p>
-
-    <p class="hero__meta">
-      <span class="hero__meta-item hero__placeholder">
-        Total seasons
-      </span>
-      <span class="hero__meta-separator">•</span>
-      <span class="hero__meta-item hero__placeholder">
-        Total owners
-      </span>
-      <span class="hero__meta-separator">•</span>
-      <span class="hero__meta-item">
-        Countless regrets
-      </span>
-    </p>
   </div>
-  <div class="hero__stats">
-    <div class="hero__stat hero__placeholder">
-      Games played
-    </div>
-    <div class="hero__stat hero__placeholder">
-      Points scored
-    </div>
-    <div class="hero__stat hero__placeholder">
-      Commissioners (times fired ∞)
-    </div>
-    <div class="hero__stat hero__placeholder">
-      Some stat 1
-    </div>
-    <div class="hero__stat hero__placeholder">
-      Some stat 2
-    </div>
-  </div>
-  <button
-    type="button"
-    class="hero__chevron"
-    aria-label="Scroll to content"
-    (click)="scrollToContent()"
-  >
-    <mat-icon fontIcon="expand_more" aria-hidden="true"></mat-icon>
-  </button>
 </section>
