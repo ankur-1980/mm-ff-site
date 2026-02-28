@@ -8,10 +8,27 @@
         primary: mat.$blue-palette,
         tertiary: mat.$blue-palette,
       ),
-      typography: 'Source Sans 3, Arial, sans-serif',
+      typography:
+        'Inter, "Source Sans 3", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       density: 0,
     )
   );
+
+  --mat-sys-body-large-font: var(--font-ui);
+  --mat-sys-body-medium-font: var(--font-ui);
+  --mat-sys-body-small-font: var(--font-ui);
+  --mat-sys-label-large-font: var(--font-ui);
+  --mat-sys-label-medium-font: var(--font-ui);
+  --mat-sys-label-small-font: var(--font-ui);
+  --mat-sys-title-large-font: var(--font-ui);
+  --mat-sys-title-medium-font: var(--font-ui);
+  --mat-sys-title-small-font: var(--font-ui);
+  --mat-sys-headline-large-font: var(--font-hero);
+  --mat-sys-headline-medium-font: var(--font-hero);
+  --mat-sys-headline-small-font: var(--font-hero);
+  --mat-sys-display-large-font: var(--font-hero);
+  --mat-sys-display-medium-font: var(--font-hero);
+  --mat-sys-display-small-font: var(--font-hero);
 
   // Remap Material system roles to the project token vocabulary so Angular
   // Material and custom components resolve from the same source of truth.
