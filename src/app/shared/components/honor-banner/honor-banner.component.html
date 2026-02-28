@@ -24,21 +24,21 @@
     </div>
   </section>
 
-  @if (resolvedMatchup(); as matchup) {
+  @if (matchup(); as matchup) {
     <section class="honor-banner__secondary">
-      <div class="honor-banner__score-side honor-banner__score-side--left">
-        <p class="honor-banner__score">{{ matchup.leftScore | number: '1.2-2' }}</p>
-        @if (matchup.leftTeamName) {
-          <p class="honor-banner__score-team">{{ matchup.leftTeamName }}</p>
+      <div class="honor-banner__score-side">
+        <p class="honor-banner__score">{{ matchup.team1.totalPoints | number: '1.2-2' }}</p>
+        @if (matchup.team1.teamName) {
+          <p class="honor-banner__score-team">{{ matchup.team1.teamName }}</p>
         }
       </div>
 
       <div class="honor-banner__versus">vs</div>
 
-      <div class="honor-banner__score-side honor-banner__score-side--right">
-        <p class="honor-banner__score">{{ matchup.rightScore | number: '1.2-2' }}</p>
-        @if (matchup.rightTeamName) {
-          <p class="honor-banner__score-team">{{ matchup.rightTeamName }}</p>
+      <div class="honor-banner__score-side honor-banner__score-side--team2">
+        <p class="honor-banner__score">{{ matchup.team2.totalPoints | number: '1.2-2' }}</p>
+        @if (matchup.team2.teamName) {
+          <p class="honor-banner__score-team">{{ matchup.team2.teamName }}</p>
         }
       </div>
 

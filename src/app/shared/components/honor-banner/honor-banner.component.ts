@@ -1,38 +1,16 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 
+import type {
+  HonorBannerData,
+  HonorBannerMatchup,
+  HonorType
+} from '../../../models/honor-banner.model';
 import { OwnersDataService } from '../../../data/owners-data.service';
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
-import { DomSanitizer } from '@angular/platform-browser';
-
-export type HonorType = 'premier' | 'consolation' | 'runnerUp';
-
-export interface HonorBannerMatchup {
-  winnerScore: number;
-  winnerTeamName?: string;
-  loserScore: number;
-  loserTeamName?: string;
-  note?: string;
-}
-
-export interface HonorBannerData {
-  type: HonorType;
-  ownerName: string;
-  teamName: string;
-  year: number;
-  record: string;
-  matchup?: HonorBannerMatchup;
-}
-
-interface HonorBannerResolvedMatchup {
-  leftScore: number;
-  leftTeamName?: string;
-  rightScore: number;
-  rightTeamName?: string;
-  note?: string;
-}
 
 interface HonorBannerTypeConfig {
   headerTitle: string;
@@ -41,7 +19,6 @@ interface HonorBannerTypeConfig {
   iconKind: 'mat' | 'image';
   iconValue: string;
   showMatchup: boolean;
-  matchupInverted: boolean;
   footerContextResolver: (honor: HonorBannerData) => string;
 }
 
@@ -69,7 +46,6 @@ export class HonorBannerComponent {
       iconKind: 'mat',
       iconValue: 'emoji_events',
       showMatchup: true,
-      matchupInverted: false,
       footerContextResolver: (honor) => this.resolvePremierFooter(honor),
     },
     consolation: {
@@ -79,7 +55,6 @@ export class HonorBannerComponent {
       iconKind: 'image',
       iconValue: 'toilet',
       showMatchup: true,
-      matchupInverted: true,
       footerContextResolver: (honor) => this.resolveConsolationFooter(honor),
     },
     runnerUp: {
@@ -89,7 +64,6 @@ export class HonorBannerComponent {
       iconKind: 'mat',
       iconValue: 'looks_two',
       showMatchup: false,
-      matchupInverted: false,
       footerContextResolver: (honor) => this.resolveRunnerUpFooter(honor),
     },
   };
@@ -99,33 +73,12 @@ export class HonorBannerComponent {
   protected readonly hasSecondary = computed(
     () => this.config().showMatchup && this.honor().matchup != null,
   );
+  protected readonly matchup = computed<HonorBannerMatchup | null>(() =>
+    this.hasSecondary() ? this.honor().matchup ?? null : null,
+  );
   protected readonly footerContext = computed(() =>
     this.config().footerContextResolver(this.honor()),
   );
-  protected readonly resolvedMatchup = computed<HonorBannerResolvedMatchup | null>(() => {
-    if (!this.hasSecondary()) return null;
-
-    const matchup = this.honor().matchup;
-    if (!matchup) return null;
-
-    if (this.config().matchupInverted) {
-      return {
-        leftScore: matchup.loserScore,
-        leftTeamName: matchup.loserTeamName,
-        rightScore: matchup.winnerScore,
-        rightTeamName: matchup.winnerTeamName,
-        note: matchup.note,
-      };
-    }
-
-    return {
-      leftScore: matchup.winnerScore,
-      leftTeamName: matchup.winnerTeamName,
-      rightScore: matchup.loserScore,
-      rightTeamName: matchup.loserTeamName,
-      note: matchup.note,
-    };
-  });
 
   constructor() {
     this.ownersData.load();

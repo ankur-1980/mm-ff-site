@@ -1,11 +1,9 @@
 import { Component, computed, inject } from '@angular/core';
 
 import { LeagueMetaDataFacade, SeasonStandingsDataService } from '../../data';
+import type { HonorBannerData } from '../../models/honor-banner.model';
 import { ToiletBowlDataService } from '../../data/toilet-bowl-data.service';
-import {
-  HonorBannerComponent,
-  type HonorBannerData,
-} from '../../shared/components/honor-banner/honor-banner.component';
+import { HonorBannerComponent } from '../../shared/components/honor-banner/honor-banner.component';
 import { SeasonBannerService } from '../season/season-standings/season-banner.service';
 import { HeroComponent } from './hero/hero.component';
 
@@ -94,9 +92,18 @@ export class HomePage {
       matchup:
         banner.score != null && banner.runnerUpScore != null && banner.runnerUpTeamName
           ? {
-              winnerScore: banner.score,
-              loserScore: banner.runnerUpScore,
-              loserTeamName: banner.runnerUpTeamName,
+              team1: {
+                teamName: banner.teamName,
+                ownerName: banner.ownerName,
+                totalPoints: banner.score,
+                result: 'winner',
+              },
+              team2: {
+                teamName: banner.runnerUpTeamName,
+                ownerName: banner.runnerUpOwnerName,
+                totalPoints: banner.runnerUpScore,
+                result: 'loser',
+              },
             }
           : undefined,
     };
@@ -127,9 +134,18 @@ export class HomePage {
       matchup:
         banner?.score != null && banner.runnerUpScore != null && banner.runnerUpTeamName
           ? {
-              winnerScore: banner.runnerUpScore,
-              winnerTeamName: banner.runnerUpTeamName,
-              loserScore: banner.score,
+              team1: {
+                teamName: banner.runnerUpTeamName,
+                ownerName: banner.runnerUpOwnerName,
+                totalPoints: banner.runnerUpScore,
+                result: 'loser',
+              },
+              team2: {
+                teamName,
+                ownerName: toiletBowlEntry.champion,
+                totalPoints: banner.score,
+                result: 'winner',
+              },
             }
           : undefined,
     };

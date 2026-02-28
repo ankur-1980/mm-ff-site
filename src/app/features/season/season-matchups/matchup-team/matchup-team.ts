@@ -2,7 +2,7 @@ import { DecimalPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 
-import type { MatchupResult, MatchupTeamData } from '../matchup.models';
+import type { MatchupResult, MatchupTeamData } from '../../../../models/matchup.model';
 
 export type { MatchupResult, MatchupTeamData };
 
