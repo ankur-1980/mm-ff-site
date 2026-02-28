@@ -8,8 +8,6 @@
         primary: mat.$blue-palette,
         tertiary: mat.$blue-palette,
       ),
-      typography:
-        'Inter, "Source Sans 3", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       density: 0,
     )
   );
@@ -50,7 +48,7 @@
   --mat-sys-on-error-container: var(--text-primary);
   --mat-sys-background: var(--bg);
   --mat-sys-on-background: var(--text-primary);
-  --mat-sys-surface: var(--bg);
+  --mat-sys-surface: var(--surface);
   --mat-sys-on-surface: var(--text-primary);
   --mat-sys-surface-variant: var(--surface-variant);
   --mat-sys-on-surface-variant: var(--text-muted);

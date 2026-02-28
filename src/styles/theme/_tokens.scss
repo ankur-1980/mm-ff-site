@@ -3,9 +3,86 @@
   src:
     local('Inter Regular'),
     local('Inter'),
-    url('/assets/Inter Regular.ttf') format('truetype');
+    url('/assets/inter/Inter_18pt-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    local('Inter Italic'),
+    local('Inter-Italic'),
+    url('/assets/inter/Inter_18pt-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    local('Inter Medium'),
+    local('Inter-Medium'),
+    url('/assets/inter/Inter_18pt-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    local('Inter Medium Italic'),
+    local('Inter-MediumItalic'),
+    url('/assets/inter/Inter_18pt-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    local('Inter Semi Bold'),
+    local('Inter-SemiBold'),
+    url('/assets/inter/Inter_18pt-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    local('Inter Semi Bold Italic'),
+    local('Inter-SemiBoldItalic'),
+    url('/assets/inter/Inter_18pt-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    local('Inter Bold'),
+    local('Inter-Bold'),
+    url('/assets/inter/Inter_18pt-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    local('Inter Bold Italic'),
+    local('Inter-BoldItalic'),
+    url('/assets/inter/Inter_18pt-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -22,6 +99,8 @@
 
 :root,
 .theme-default {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1, 'lnum' 1;
   --app-toolbar-height: 56px;
   --bg: #162233;
   --surface: #003049;
