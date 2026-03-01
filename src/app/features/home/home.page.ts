@@ -184,7 +184,7 @@ export class HomePage {
         banner.score != null && banner.runnerUpScore != null && banner.runnerUpTeamName
           ? {
               team1: {
-                teamName: banner.teamName,
+                // teamName: banner.teamName,
                 ownerName: banner.ownerName,
                 totalPoints: banner.score,
                 result: 'winner',
@@ -226,16 +226,16 @@ export class HomePage {
         banner?.score != null && banner.runnerUpScore != null && banner.runnerUpTeamName
           ? {
               team1: {
+                // teamName,
+                ownerName: toiletBowlEntry.champion,
+                totalPoints: banner.score,
+                result: 'winner',
+              },
+              team2: {
                 teamName: banner.runnerUpTeamName,
                 ownerName: banner.runnerUpOwnerName,
                 totalPoints: banner.runnerUpScore,
                 result: 'loser',
-              },
-              team2: {
-                teamName,
-                ownerName: toiletBowlEntry.champion,
-                totalPoints: banner.score,
-                result: 'winner',
               },
             }
           : undefined,

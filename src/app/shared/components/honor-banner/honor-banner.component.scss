@@ -71,6 +71,7 @@ mat-card.honor-banner--consolation {
 }
 
 .honor-banner__owner {
+  margin: 0;
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
@@ -124,7 +125,6 @@ mat-card.honor-banner--consolation {
   height: 2.25rem;
   font-size: 2.25rem;
   line-height: 1;
-  color: var(--champion);
 }
 
 .honor-banner__secondary {
@@ -153,6 +153,10 @@ mat-card.honor-banner--consolation {
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1;
+}
+
+.honor-banner__score--team1 {
+  font-size: 1.75rem;
 }
 
 .honor-banner__score-team {
@@ -295,16 +299,27 @@ mat-card.honor-banner--consolation {
     padding-inline: 1.25rem;
   }
 
+  .honor-banner__team,
+  .honor-banner__record,
+  .honor-banner__score-team {
+    font-size: 1.1rem;
+    line-height: 1.35;
+  }
+
   .honor-banner__main {
     padding-block: 1.25rem;
   }
 
   .honor-banner__owner,
   .honor-banner__summary {
-    font-size: 1.125rem;
+    font-size: 2rem;
   }
 
   .honor-banner__score {
     font-size: 1.75rem;
+  }
+
+  .honor-banner__score--team1 {
+    font-size: 2.15rem;
   }
 }

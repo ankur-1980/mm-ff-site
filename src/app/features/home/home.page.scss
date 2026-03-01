@@ -82,6 +82,11 @@
 }
 
 @media (min-width: 48rem) {
+  .home__champion {
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
   .home__legendary-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
