@@ -1,6 +1,6 @@
 :host {
   display: block;
-  width: 100%;
+  width: fit-content;
   max-width: 100%;
   overflow-x: auto;
   align-self: start;
@@ -13,7 +13,7 @@
 
 .data-table {
   width: max-content;
-  min-width: 100%;
+  min-width: 0;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--surface);
