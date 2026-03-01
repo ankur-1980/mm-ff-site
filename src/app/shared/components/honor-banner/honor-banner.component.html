@@ -19,7 +19,9 @@
     </div>
 
     <div class="honor-banner__main-block honor-banner__main-block--right">
-      <p class="honor-banner__summary">{{ honorLabel() }}</p>
+      @if (honorLabel()) {
+        <p class="honor-banner__summary">{{ honorLabel() }}</p>
+      }
       <p class="honor-banner__record">{{ honor().record }}</p>
     </div>
   </section>

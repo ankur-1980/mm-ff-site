@@ -8,7 +8,12 @@
   }
 
   @if (highScoreHonorData(); as highScore) {
-    <app-honor-banner [honor]="highScore" />
+    <app-honor-banner
+      [honor]="highScore"
+      [footerText]="highScoreFooterText()"
+      title="Season High Score"
+      iconValue="score"
+    />
   }
 </div>
 

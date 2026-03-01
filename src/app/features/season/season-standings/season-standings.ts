@@ -4,11 +4,15 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 import type { HonorBannerData } from '../../../models/honor-banner.model';
+import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
+import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
 import { DataTableComponent } from '../../../shared/table';
 import { HonorBannerComponent } from '../../../shared/components/honor-banner/honor-banner.component';
 import { SeasonBannerService } from './season-banner.service';
 import { SeasonStandingsService } from './season-standings.service';
+
+const EPSILON = 0.000001;
 
 @Component({
   selector: 'app-season-standings',
@@ -18,15 +22,17 @@ import { SeasonStandingsService } from './season-standings.service';
 })
 export class SeasonStandings {
   private readonly route = inject(ActivatedRoute);
+  private readonly leagueMeta = inject(LeagueMetaDataService);
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
+  private readonly weeklyMatchupsData = inject(WeeklyMatchupsDataService);
   private readonly seasonStandings = inject(SeasonStandingsService);
   private readonly seasonBanner = inject(SeasonBannerService);
 
   private readonly year = toSignal(
     (this.route.parent ?? this.route).params.pipe(
-      map((p) => (p['year'] ? Number(p['year']) : null))
+      map((p) => (p['year'] ? Number(p['year']) : null)),
     ),
-    { initialValue: null }
+    { initialValue: null },
   );
 
   private readonly standings = computed(() => {
@@ -36,8 +42,51 @@ export class SeasonStandings {
   });
 
   protected readonly tableState = computed(() =>
-    this.seasonStandings.toTableState(this.standings())
+    this.seasonStandings.toTableState(this.standings()),
   );
+
+  protected readonly highScoreFooterText = computed(() => {
+    const y = this.year();
+    if (y == null) return null;
+
+    const rows = this.tableState().data;
+    if (!rows.length) return null;
+
+    const top = rows.reduce((best, row) => (row.pointsFor > best.pointsFor ? row : best));
+    const seasonMeta = this.leagueMeta.getSeasonMeta(String(y));
+    if (!seasonMeta) return null;
+
+    let weeklyHighPointCount = 0;
+
+    for (let week = 1; week <= seasonMeta.regularSeasonEndWeek; week += 1) {
+      const weekData = this.weeklyMatchupsData.getMatchupsForWeek(String(y), `week${week}`);
+      if (!weekData) continue;
+
+      const entries = Object.values(weekData);
+      if (!entries.length) continue;
+
+      const topScore = Math.max(
+        ...entries.map((entry) => Number(entry.team1Totals?.totalPoints ?? Number.NEGATIVE_INFINITY)),
+      );
+
+      const isWeeklyHigh = entries.some((entry) => {
+        const teamName = entry.matchup?.team1Name;
+        const totalPoints = Number(entry.team1Totals?.totalPoints ?? Number.NEGATIVE_INFINITY);
+        return (
+          teamName === top.teamName &&
+          Math.abs(totalPoints - topScore) < EPSILON
+        );
+      });
+
+      if (isWeeklyHigh) {
+        weeklyHighPointCount += 1;
+      }
+    }
+
+    const count = weeklyHighPointCount || top.highPoints;
+    const label = count === 1 ? 'weekly high score' : 'weekly high scores';
+    return `${count} ${label}`;
+  });
 
   protected readonly championHonorData = computed<HonorBannerData | null>(() => {
     const y = this.year();
@@ -128,12 +177,10 @@ export class SeasonStandings {
     const rows = this.tableState().data;
     if (!rows.length) return null;
 
-    const top = rows.reduce((best, row) =>
-      row.pointsFor > best.pointsFor ? row : best
-    );
+    const top = rows.reduce((best, row) => (row.pointsFor > best.pointsFor ? row : best));
 
     return {
-      type: 'runnerUp',
+      type: 'generic',
       ownerName: top.managerName,
       teamName: top.teamName,
       year: y,
