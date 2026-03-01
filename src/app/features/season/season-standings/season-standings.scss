@@ -2,13 +2,14 @@
   display: block;
 }
 
-.standings__banners {
+.season-standings__honors {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  width: min(100%, 40rem);
+  margin: 0 auto;
+}
 
-  app-feature-banner {
-    flex: 1 1 18rem;
-  }
+.season-standings__table {
+  margin-top: 2rem;
 }

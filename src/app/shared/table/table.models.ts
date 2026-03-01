@@ -15,6 +15,10 @@ export interface DataTableColumnDef {
   subscriptKey?: string;
   /** If true, this column is the default sort column (ascending). */
   defaultSort?: boolean;
+  /** If true, render a vertical divider after this column. */
+  dividerAfter?: boolean;
+  /** If true, render body cells for this column with the accent fill. */
+  accentFill?: boolean;
   /** Number display format for numeric columns. */
   format?: 'integer' | 'decimal2' | 'signedDecimal2' | 'percent2' | 'smartDecimal2';
 }

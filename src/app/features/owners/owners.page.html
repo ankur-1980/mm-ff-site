@@ -1,9 +1,5 @@
 <section class="page-section owners-page" aria-label="Owners">
-  <app-section-header
-    heading="Owners"
-    [meta]="subtitle()"
-    [tertiaryMeta]="tertiarySubtitle()"
-  />
+  <app-section-header heading="Owners" [meta]="subtitle()" [secondaryMeta]="secondarySubTitle()" />
 
   <div class="owners-page__cards" aria-label="Owner links">
     @for (owner of ownerCards(); track owner.path) {

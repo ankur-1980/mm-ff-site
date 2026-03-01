@@ -1,0 +1,28 @@
+// Chart.js canvas styles need concrete color values, so these mirror the theme tokens.
+export const SEASON_ANALYTICS_CHART_THEME = {
+  chartBackground: '#c7d3e3',
+  axisText: '#003049',
+  grid: 'rgba(47, 64, 92, 0.18)',
+  primary: '#669bbc',
+  primaryFill: '#669bbc2e',
+  loss: '#780000',
+  lossFill: '#7800002e',
+  connector: '#2a0f12',
+  referenceLine: 'rgba(47, 64, 92, 0.45)',
+  referenceLineStrong: 'rgba(47, 64, 92, 0.7)',
+  pointLabel: '#243a54',
+  teamSeries: [
+    '#1976d2',
+    '#d32f2f',
+    '#388e3c',
+    '#f57c00',
+    '#7b1fa2',
+    '#0097a7',
+    '#c2185b',
+    '#5d4037',
+    '#455a64',
+    '#689f38',
+    '#ff8f00',
+    '#00796b',
+  ],
+} as const;

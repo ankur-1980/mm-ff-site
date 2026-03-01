@@ -17,7 +17,7 @@ interface OwnerCardLink {
   selector: 'app-owners-page',
   imports: [SectionHeader, RouterLink, OwnerProfileCard],
   templateUrl: './owners.page.html',
-  styleUrl: './owners.page.scss'
+  styleUrl: './owners.page.scss',
 })
 export class OwnersPage {
   private readonly ownersData = inject(OwnersDataService);
@@ -28,7 +28,7 @@ export class OwnersPage {
       ownerId: owner.managerName,
       path: toOwnerSlug(owner.managerName),
       label: owner.managerName,
-    }))
+    })),
   );
 
   protected readonly subtitle = computed(() => {
@@ -43,7 +43,7 @@ export class OwnersPage {
     ];
   });
 
-  protected readonly tertiarySubtitle = computed(() => {
+  protected readonly secondarySubTitle = computed(() => {
     const owners = this.ownersData.allOwners();
     const winsLeader = this.getWinsLeaderName(owners);
     const championshipsLeader = this.getChampionshipsLeaderName(owners);
@@ -70,9 +70,7 @@ export class OwnersPage {
     return owners.filter((owner) => owner.activeSeasons.includes(targetSeason)).length;
   }
 
-  private getMostRecentSeason(
-    owners: ReturnType<OwnersDataService['allOwners']>
-  ): number | null {
+  private getMostRecentSeason(owners: ReturnType<OwnersDataService['allOwners']>): number | null {
     const seasons = owners.flatMap((owner) => owner.activeSeasons);
     if (!seasons.length) return null;
     return Math.max(...seasons);
@@ -83,12 +81,9 @@ export class OwnersPage {
     return owners.reduce((best, owner) => (owner.wins > best.wins ? owner : best)).managerName;
   }
 
-  private getChampionshipsLeaderName(
-    owners: ReturnType<OwnersDataService['allOwners']>
-  ): string {
+  private getChampionshipsLeaderName(owners: ReturnType<OwnersDataService['allOwners']>): string {
     if (!owners.length) return '--';
-    return owners.reduce((best, owner) =>
-      owner.championships > best.championships ? owner : best
-    ).managerName;
+    return owners.reduce((best, owner) => (owner.championships > best.championships ? owner : best))
+      .managerName;
   }
 }

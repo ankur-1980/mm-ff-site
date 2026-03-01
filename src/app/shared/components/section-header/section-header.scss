@@ -1,60 +1,118 @@
 :host {
-  min-height: 20vh;
+  display: block;
+}
+
+.section-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 20vh;
+  padding: 1rem 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--loss);
   text-align: center;
-  gap: 0.75rem;
-  padding: 1.25rem 0.5rem 0.75rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.45);
 }
 
-.section-header__left {
+.section-header__main {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.2rem;
+}
+
+.section-header__label,
+.section-header__heading,
+.section-header__meta-item {
+  margin: 0;
 }
 
 .section-header__label {
-  margin: 0;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
   font-size: 0.8rem;
+  font-weight: 600;
   letter-spacing: 0.12em;
+  line-height: 1.2;
   text-transform: uppercase;
-  color: rgba(100, 116, 139, 1);
 }
 
 .section-header__heading {
-  margin: 0;
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  color: var(--champion);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4rem);
   font-weight: 700;
+  line-height: 1.1;
 }
 
 .section-header__meta {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.4rem 0;
+  margin-top: 0.65rem;
 }
 
-.section-header__meta-title {
+.section-header__meta-item {
+  display: inline-flex;
+  align-items: center;
+  color: var(--champion-variant);
+  font-family: var(--font-ui);
   font-size: 0.8rem;
   font-weight: 500;
+  line-height: 1.35;
 }
 
-.section-header__meta--tertiary .section-header__meta-title {
+.section-header__meta-item + .section-header__meta-item::before {
+  content: '';
+  width: 1px;
+  height: 0.9em;
+  margin: 0 0.55rem;
+  background: color-mix(in srgb, var(--text-muted) 50%, transparent);
+}
+
+.section-header__meta--secondary {
+  margin-top: 0.45rem;
+}
+
+.section-header__meta--secondary .section-header__meta-item {
+  color: var(--champion-variant);
   font-size: 0.9rem;
   font-weight: 600;
 }
 
-.section-header__meta-sep {
-  font-size: 0.6rem;
-  color: rgba(100, 116, 139, 0.6);
-  align-self: center;
+.section-header__extra {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.75rem;
 }
 
-@media (max-width: 767.98px) {
-  :host {
-    padding-top: 1rem;
+.section-header__extra:empty {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .section-header {
+    padding: 1.25rem 0.75rem 0.9rem;
+  }
+
+  .section-header__heading {
+    font-size: clamp(4rem, 10vw, 6rem);
+  }
+
+  .section-header__label,
+  .section-header__meta-item {
+    font-size: 1.2rem;
+  }
+
+  .section-header__meta--secondary .section-header__meta-item {
+    font-size: 1.2rem;
+  }
+
+  .section-header__meta {
+    margin-top: 0.75rem;
+  }
+
+  .section-header__extra {
+    margin-top: 0.9rem;
   }
 }

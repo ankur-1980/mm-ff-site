@@ -1,6 +1,6 @@
 import type { MatchupTeam } from './matchup.model';
 
-export type HonorType = 'premier' | 'consolation' | 'runnerUp';
+export type HonorType = 'premier' | 'consolation' | 'generic';
 
 export interface HonorBannerMatchup {
   team1: MatchupTeam;

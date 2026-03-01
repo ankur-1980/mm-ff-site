@@ -1,9 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 
-import type {
-  SeasonStandings,
-  SeasonStandingsEntry,
-} from '../../../models/season-standings.model';
+import type { SeasonStandings, SeasonStandingsEntry } from '../../../models/season-standings.model';
 import type { DataTableColumnDef } from '../../../shared/table';
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
@@ -23,9 +20,7 @@ function parseRank(value: string | undefined): number | null {
 
 function teamName(entry: SeasonStandingsEntry): string {
   const value = entry.playerDetails?.teamName;
-  return value != null && String(value).trim() !== ''
-    ? String(value).trim()
-    : 'Unknown Team';
+  return value != null && String(value).trim() !== '' ? String(value).trim() : 'Unknown Team';
 }
 
 function normalizeTeamName(value: string | null | undefined): string {
@@ -44,9 +39,7 @@ function addPoints(map: Map<string, number>, key: string, value: number): void {
 
 const EPSILON = 0.000001;
 
-function buildRegularSeasonRanks(
-  rows: SeasonStandingsRow[]
-): Map<SeasonStandingsRow, number> {
+function buildRegularSeasonRanks(rows: SeasonStandingsRow[]): Map<SeasonStandingsRow, number> {
   const sorted = [...rows].sort((a, b) => {
     if (b.win !== a.win) return b.win - a.win;
     return b.pointsFor - a.pointsFor;
@@ -84,7 +77,7 @@ export class SeasonStandingsService {
   readonly columns: DataTableColumnDef[] = [
     {
       key: 'playoffRank',
-      header: 'Playoff Rank',
+      header: 'End of\nSeason',
       widthCh: 12,
       align: 'center',
       format: 'integer',
@@ -92,33 +85,55 @@ export class SeasonStandingsService {
     },
     {
       key: 'regularSeasonRank',
-      header: 'Regular Season',
+      header: 'Regular\nSeason',
       widthCh: 14,
       align: 'center',
       format: 'integer',
     },
-    { key: 'teamName', header: 'Team', widthCh: 24, subscriptKey: 'managerName' },
-    { key: 'win', header: 'W', widthCh: 6, format: 'integer' },
+    {
+      key: 'teamName',
+      header: 'Team',
+      widthCh: 24,
+      subscriptKey: 'managerName',
+      dividerAfter: true,
+    },
+    { key: 'win', header: 'W', widthCh: 6, format: 'integer', accentFill: true },
     { key: 'loss', header: 'L', widthCh: 6, format: 'integer' },
-    { key: 'tie', header: 'T', widthCh: 6, format: 'integer' },
+    { key: 'tie', header: 'T', widthCh: 6, format: 'integer', accentFill: true },
     { key: 'gp', header: 'GP', widthCh: 6, format: 'integer' },
-    { key: 'winPct', header: 'Win %', widthCh: 8, format: 'percent2' },
+    {
+      key: 'winPct',
+      header: 'Win %',
+      widthCh: 8,
+      format: 'percent2',
+      dividerAfter: true,
+      accentFill: true,
+    },
     { key: 'pointsFor', header: 'PF', widthCh: 12, format: 'decimal2' },
-    { key: 'pointsAgainst', header: 'PA', widthCh: 12, format: 'decimal2' },
-    { key: 'diff', header: 'Diff', widthCh: 12, format: 'decimal2' },
-    { key: 'highPoints', header: 'High Pts', widthCh: 9, format: 'smartDecimal2' },
-    { key: 'lowPoints', header: 'Low Pts', widthCh: 9, format: 'smartDecimal2' },
-    { key: 'moves', header: 'Moves', widthCh: 7, format: 'integer' },
-    { key: 'trades', header: 'Trades', widthCh: 7, format: 'integer' },
+    { key: 'pointsAgainst', header: 'PA', widthCh: 12, format: 'decimal2', accentFill: true },
+    { key: 'diff', header: 'Diff', widthCh: 12, format: 'decimal2', dividerAfter: true },
+    {
+      key: 'highPoints',
+      header: 'High Pts',
+      widthCh: 7,
+      format: 'smartDecimal2',
+      accentFill: true,
+    },
+    {
+      key: 'lowPoints',
+      header: 'Low Pts',
+      widthCh: 7,
+      format: 'smartDecimal2',
+      dividerAfter: true,
+    },
+    { key: 'moves', header: 'Moves', widthCh: 5, format: 'integer', accentFill: true },
+    { key: 'trades', header: 'Trades', widthCh: 5, format: 'integer' },
   ];
 
   private getColumns(hasWeeklyHistory: boolean): DataTableColumnDef[] {
     if (hasWeeklyHistory) return this.columns;
     return this.columns.filter(
-      (column) =>
-        column.key !== 'lowPoints' &&
-        column.key !== 'moves' &&
-        column.key !== 'trades'
+      (column) => column.key !== 'lowPoints' && column.key !== 'moves' && column.key !== 'trades',
     );
   }
 
@@ -229,21 +244,21 @@ export class SeasonStandingsService {
     team: string,
     field: 'wins' | 'losses' | 'ties' | 'pointsFor' | 'pointsAgainst',
     standingsValue: number,
-    matchupValue: number
+    matchupValue: number,
   ): void {
     const conflictKey = `${seasonId}|${field}|${normalizeTeamName(team)}|${standingsValue}|${matchupValue}`;
     if (this.loggedRecordConflicts.has(conflictKey)) return;
     this.loggedRecordConflicts.add(conflictKey);
     this.logger.warn(
       `SeasonStandingsService: ${field} conflict in season ${seasonId} for "${team}" ` +
-        `(standings=${standingsValue}, matchups=${matchupValue})`
+        `(standings=${standingsValue}, matchups=${matchupValue})`,
     );
   }
 
   private resolveTeamStats(
     entry: SeasonStandingsEntry,
     normalizedTeam: string,
-    regularSeason: TeamRecordByTeam
+    regularSeason: TeamRecordByTeam,
   ): ResolvedTeamStats {
     const standingsWin = entry.record?.win ?? 0;
     const standingsLoss = entry.record?.loss ?? 0;
@@ -258,7 +273,8 @@ export class SeasonStandingsService {
     const matchupPointsAgainst = regularSeason.pointsAgainstByTeam.get(normalizedTeam) ?? null;
     const matchupHighPointFinishes =
       regularSeason.highPointFinishesByTeam.get(normalizedTeam) ?? null;
-    const matchupLowPointFinishes = regularSeason.lowPointFinishesByTeam.get(normalizedTeam) ?? null;
+    const matchupLowPointFinishes =
+      regularSeason.lowPointFinishesByTeam.get(normalizedTeam) ?? null;
 
     const win =
       regularSeason.hasRegularSeasonHistory && matchupWin != null ? matchupWin : standingsWin;
@@ -312,7 +328,7 @@ export class SeasonStandingsService {
     seasonId: string | null,
     team: string,
     stats: ResolvedTeamStats,
-    regularSeason: TeamRecordByTeam
+    regularSeason: TeamRecordByTeam,
   ): void {
     if (seasonId == null || !regularSeason.hasRegularSeasonHistory) return;
 
@@ -320,13 +336,7 @@ export class SeasonStandingsService {
       this.logRecordConflict(seasonId, team, 'wins', stats.standingsWin, stats.matchupWin);
     }
     if (stats.matchupLoss != null && stats.matchupLoss !== stats.standingsLoss) {
-      this.logRecordConflict(
-        seasonId,
-        team,
-        'losses',
-        stats.standingsLoss,
-        stats.matchupLoss
-      );
+      this.logRecordConflict(seasonId, team, 'losses', stats.standingsLoss, stats.matchupLoss);
     }
     if (stats.matchupTie != null && stats.matchupTie !== stats.standingsTie) {
       this.logRecordConflict(seasonId, team, 'ties', stats.standingsTie, stats.matchupTie);
@@ -340,7 +350,7 @@ export class SeasonStandingsService {
         team,
         'pointsFor',
         stats.standingsPointsFor,
-        stats.matchupPointsFor
+        stats.matchupPointsFor,
       );
     }
     if (
@@ -352,7 +362,7 @@ export class SeasonStandingsService {
         team,
         'pointsAgainst',
         stats.standingsPointsAgainst,
-        stats.matchupPointsAgainst
+        stats.matchupPointsAgainst,
       );
     }
   }
@@ -360,7 +370,7 @@ export class SeasonStandingsService {
   private toStandingsRow(
     entry: SeasonStandingsEntry,
     team: string,
-    stats: ResolvedTeamStats
+    stats: ResolvedTeamStats,
   ): SeasonStandingsRow {
     const rawPlayoffRank = entry.ranks?.playoffRank;
     const rawRegularSeasonRank = entry.ranks?.regularSeasonRank;
@@ -412,7 +422,10 @@ export class SeasonStandingsService {
     for (const entry of entries) {
       const team = teamName(entry);
       const normalizedTeam = normalizeTeamName(team);
-      resolvedByTeam.set(normalizedTeam, this.resolveTeamStats(entry, normalizedTeam, regularSeason));
+      resolvedByTeam.set(
+        normalizedTeam,
+        this.resolveTeamStats(entry, normalizedTeam, regularSeason),
+      );
     }
 
     const rows = entries.map((entry): SeasonStandingsRow => {
@@ -428,8 +441,7 @@ export class SeasonStandingsService {
     const normalizedRows = rows
       .map((row) => ({
         ...row,
-        regularSeasonRank:
-          row.regularSeasonRank ?? computedRegularSeasonRanks.get(row) ?? null,
+        regularSeasonRank: row.regularSeasonRank ?? computedRegularSeasonRanks.get(row) ?? null,
       }))
       .sort((a, b) => {
         const rankA = parseRank(a.playoffRank ?? undefined);
@@ -444,4 +456,3 @@ export class SeasonStandingsService {
     return { columns: this.getColumns(hasWeeklyHistory), data: normalizedRows };
   }
 }
-

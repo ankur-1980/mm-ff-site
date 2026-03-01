@@ -19,7 +19,7 @@ app-matchup-awards + app-subsection-header,
   gap: 0.75rem;
   padding: 1rem 0;
 
-  app-matchup-card:last-child:nth-child(odd) {
+  app-matchup-card-v2:last-child:nth-child(odd) {
     grid-column: 1 / -1;
     justify-self: center;
     width: 100%;

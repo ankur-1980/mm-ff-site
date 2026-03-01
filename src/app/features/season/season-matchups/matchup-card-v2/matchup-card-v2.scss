@@ -1,0 +1,161 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 36rem;
+}
+
+.matchup-card-v2 {
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--interactive);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-rest);
+}
+
+.matchup-card-v2__layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.matchup-card-v2__team {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-width: 0;
+  background: var(--surface);
+}
+
+.matchup-card-v2__team:first-child {
+  border-right: 1px solid var(--interactive);
+}
+
+.matchup-card-v2__band,
+.matchup-card-v2__team-name,
+.matchup-card-v2__owner-name,
+.matchup-card-v2__score,
+.matchup-card-v2__projection,
+.matchup-card-v2__result {
+  margin: 0;
+}
+
+.matchup-card-v2__band {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.18rem;
+  min-height: 4.25rem;
+  padding: 0.85rem 0.9rem;
+  background: color-mix(in srgb, var(--surface-variant) 72%, var(--surface));
+}
+
+.matchup-card-v2__band--header {
+  block-size: 5.5rem;
+  border-bottom: 1px solid var(--divider);
+}
+
+.matchup-card-v2__band--footer {
+  min-height: 2.4rem;
+  padding-block: 0.6rem;
+  border-top: 1px solid var(--divider);
+}
+
+.matchup-card-v2__team-name {
+  color: var(--champion);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.05;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.matchup-card-v2__owner-name {
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.matchup-card-v2__score-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 6.4rem;
+  padding: 1rem 0.9rem;
+  background: var(--surface);
+}
+
+.matchup-card-v2__score {
+  color: var(--champion);
+  font-family: var(--font-display);
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.matchup-card-v2__projection {
+  color: var(--interactive);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: lowercase;
+}
+
+.matchup-card-v2__result {
+  color: var(--surface);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.matchup-card-v2__team--winner .matchup-card-v2__score {
+  color: var(--champion);
+}
+
+.matchup-card-v2__team--winner .matchup-card-v2__band--footer {
+  background: var(--champion);
+}
+
+.matchup-card-v2__team--loser .matchup-card-v2__band--footer {
+  background: var(--loss);
+}
+
+.matchup-card-v2__team--loser .matchup-card-v2__result {
+  color: var(--champion);
+}
+
+@media (max-width: 599px) {
+  :host {
+    max-width: none;
+  }
+
+  .matchup-card-v2__band--header {
+    block-size: 5rem;
+  }
+
+  .matchup-card-v2__team-name {
+    font-size: 1.05rem;
+  }
+
+  .matchup-card-v2__score {
+    font-size: 2rem;
+  }
+
+  .matchup-card-v2__result {
+    font-size: 0.85rem;
+  }
+}

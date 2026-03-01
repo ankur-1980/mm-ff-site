@@ -7,7 +7,7 @@
 .points-dist__intro {
   margin: 0 0 1rem;
   font-size: 0.875rem;
-  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  color: var(--text-muted);
 }
 
 .points-dist__chart {
@@ -16,6 +16,11 @@
   grid-template-rows: auto 1fr;
   gap: 0.25rem 1rem;
   min-height: 320px;
+  margin-inline: auto;
+  width: min(100%, 900px);
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  background: var(--text-card);
 }
 
 .points-dist__axis {
@@ -34,7 +39,7 @@
     gap: 0.5rem;
     padding-bottom: 0.25rem;
     font-size: 0.75rem;
-    color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+    color: var(--text-muted);
   }
 }
 
@@ -63,17 +68,19 @@
 .points-dist__axis-tick-mark {
   width: 1px;
   height: 0.375rem;
-  background: var(--mat-divider-color, rgba(0, 0, 0, 0.2));
+  background: var(--divider);
 }
 
 .points-dist__axis-tick-label {
   font-variant-numeric: tabular-nums;
   font-size: 0.6875rem;
+  color: var(--text-muted);
 }
 
 .points-dist__axis-label {
   font-weight: 600;
   font-size: 0.8125rem;
+  color: var(--text-muted);
 }
 
 .points-dist__rows {
@@ -108,7 +115,7 @@
   position: relative;
   height: 1.5rem;
   min-width: 8rem;
-  background: var(--mat-app-background-color, #f5f5f5);
+  background: rgba(47, 64, 92, 0.08);
   border-radius: 2px;
 }
 
@@ -117,7 +124,7 @@
   top: 50%;
   transform: translateY(-50%);
   height: 2px;
-  background: var(--mat-primary-color, #1976d2);
+  background: var(--interactive);
   opacity: 0.8;
   pointer-events: none;
 }
@@ -126,7 +133,7 @@
   position: absolute;
   top: 10%;
   bottom: 10%;
-  background: var(--mat-primary-color, #1976d2);
+  background: var(--interactive);
   opacity: 0.5;
   border-radius: 2px;
   pointer-events: none;
@@ -136,7 +143,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  background: var(--mat-primary-color, #1976d2);
+  background: var(--interactive);
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -147,15 +154,15 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--mat-primary-color, #1976d2);
+  background: var(--interactive);
   transform: translate(-50%, -50%);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
   pointer-events: none;
 }
 
 .points-dist__empty {
   margin: 0;
   font-size: 0.875rem;
-  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  color: var(--text-muted);
   font-style: italic;
 }

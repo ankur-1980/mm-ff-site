@@ -7,19 +7,24 @@ import { DraftRostersDataService } from '../../../data/draft-rosters-data.servic
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
 import type { DraftRosterPlayer } from '../../../models/draft-rosters.model';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
+import {
+  StatListV3Component,
+  type StatListV3Row,
+} from '../../../shared/components/stat-card/stat-list-v3/stat-list-v3.component';
 import { SubsectionHeader } from '../../../shared/components/subsection-header/subsection-header';
 
 interface DraftRow {
   costLabel: string;
   sortCost: number;
   isKeeper: boolean;
-  playerLabel: string;
+  playerName: string;
+  metaLabel: string;
 }
 
 interface DraftTeamCard {
   teamName: string;
   ownerName: string;
-  rows: DraftRow[];
+  rows: StatListV3Row[];
 }
 
 function normalizeTeamForMatch(name: string): string {
@@ -36,20 +41,24 @@ function parseCost(cost: string): number | null {
 function toDraftRow(player: DraftRosterPlayer): DraftRow {
   const parsedCost = parseCost(player.Cost);
   const isKeeper = parsedCost == null || parsedCost === 0;
+  const playerName = (player.PlayerName ?? '').trim();
+  const position = (player.Position ?? '').trim();
   const nflTeam = (player.NFLTeam ?? '').trim();
-  const teamContext = nflTeam ? nflTeam : '-';
+  const teamContext = nflTeam || '-';
+  const positionContext = position || '-';
 
   return {
     costLabel: isKeeper ? 'Keeper' : `$${parsedCost}`,
     sortCost: parsedCost ?? 0,
     isKeeper,
-    playerLabel: `${player.PlayerName} (${player.Position} - ${teamContext})`,
+    playerName,
+    metaLabel: `${positionContext} - ${teamContext}`,
   };
 }
 
 @Component({
   selector: 'app-season-draft',
-  imports: [SubsectionHeader, StatCard],
+  imports: [SubsectionHeader, StatCard, StatListV3Component],
   templateUrl: './season-draft.html',
   styleUrl: './season-draft.scss',
 })
@@ -99,8 +108,14 @@ export class SeasonDraft {
           .sort((a, b) => {
             if (a.isKeeper !== b.isKeeper) return a.isKeeper ? -1 : 1;
             if (a.sortCost !== b.sortCost) return b.sortCost - a.sortCost;
-            return a.playerLabel.localeCompare(b.playerLabel);
-          });
+            return a.playerName.localeCompare(b.playerName);
+          })
+          .map<StatListV3Row>((row) => ({
+            id: `${row.playerName}|${row.costLabel}`,
+            value: row.costLabel,
+            primary: row.playerName,
+            meta1: row.metaLabel,
+          }));
 
         return {
           teamName,

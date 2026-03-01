@@ -3,8 +3,9 @@
   <section class="all-play-matrix" aria-label="All-play matrix">
     <p class="all-play-matrix__intro">
       Record each team would have against every other team if they played every week (regular
-      season). Row = team; column = opponent. Cell = W-L or W-L-T from the row team's perspective.
+      season). Row = team; column = opponent.
     </p>
+    <p class="all-play-matrix__meta">Based on {{ data.weeksCount }} regular-season weeks.</p>
     <div class="all-play-matrix__scroll">
       <table class="all-play-matrix__table">
         <thead>
@@ -93,7 +94,6 @@
         </tbody>
       </table>
     </div>
-    <p class="all-play-matrix__meta">Based on {{ data.weeksCount }} regular-season weeks.</p>
   </section>
 } @else {
   <p class="all-play-matrix__empty">No all-play data for this season.</p>

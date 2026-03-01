@@ -153,8 +153,8 @@ export class HomePage {
     }
 
     for (const seasonId of this.seasonStandingsData.seasonIds()) {
-      const runnerUp = this.getRunnerUpHonorData(seasonId);
-      if (runnerUp) return runnerUp;
+      const generic = this.getRunnerUpHonorData(seasonId);
+      if (generic) return generic;
     }
 
     return null;
@@ -257,7 +257,7 @@ export class HomePage {
     const record = runnerUpEntry.record;
 
     return {
-      type: 'runnerUp',
+      type: 'generic',
       ownerName: banner.runnerUpOwnerName,
       teamName: banner.runnerUpTeamName ?? runnerUpEntry.playerDetails?.teamName ?? '',
       year: Number(seasonId),

@@ -4,14 +4,7 @@
   <div class="season-draft__grid">
     @for (card of draftCards(); track card.teamName) {
       <app-stat-card [title]="card.teamName" [subtitle]="card.ownerName">
-        <ul class="season-draft__list">
-          @for (row of card.rows; track row.playerLabel + '|' + row.costLabel) {
-            <li class="season-draft__row">
-              <span class="season-draft__cost">{{ row.costLabel }}</span>
-              <span class="season-draft__player">{{ row.playerLabel }}</span>
-            </li>
-          }
-        </ul>
+        <app-stat-list-v3 [rows]="card.rows" />
       </app-stat-card>
     }
   </div>

@@ -151,14 +151,14 @@
 
   .mat-mdc-tab .mdc-tab-indicator__content--underline,
   .mat-mdc-tab-link .mdc-tab-indicator__content--underline {
-    border-color: var(--interactive);
+    border-color: var(--mdc-tab-indicator-active-indicator-color, var(--loss));
   }
 
   .mat-mdc-tab .mdc-tab__ripple::before,
   .mat-mdc-tab .mat-ripple-element,
   .mat-mdc-tab-link .mdc-tab__ripple::before,
   .mat-mdc-tab-link .mat-ripple-element {
-    background-color: var(--interactive);
+    background-color: var(--loss);
   }
 
   .mat-mdc-standard-chip {
