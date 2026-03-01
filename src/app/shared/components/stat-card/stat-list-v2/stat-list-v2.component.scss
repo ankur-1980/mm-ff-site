@@ -5,12 +5,6 @@
   --stat-list-v2-max-width-sm: 34rem;
   --stat-list-v2-max-width-lg: 48rem;
   --stat-list-v2-max-width: var(--stat-list-v2-max-width-sm);
-  --stat-list-v2-row-gap-sm: 0.35rem;
-  --stat-list-v2-row-gap-md: 0.5rem;
-  --stat-list-v2-row-gap: var(--stat-list-v2-row-gap-md);
-  --stat-list-v2-row-padding-block-sm: 0.2rem;
-  --stat-list-v2-row-padding-block-md: 0.3rem;
-  --stat-list-v2-row-padding-block: var(--stat-list-v2-row-padding-block-md);
   --stat-list-v2-inline-gap: 0.65rem;
   --stat-list-v2-meta-gap: 0.75rem;
   --stat-list-v2-value-width: 5.25rem;
@@ -32,22 +26,17 @@
 }
 
 :host(.stat-list-v2-host--density-sm) {
-  --stat-list-v2-row-gap: var(--stat-list-v2-row-gap-sm);
-  --stat-list-v2-row-padding-block: var(--stat-list-v2-row-padding-block-sm);
   --stat-list-v2-value-size: var(--stat-list-v2-value-size-sm);
   --stat-list-v2-text-size: var(--stat-list-v2-text-size-sm);
 }
 
 :host(.stat-list-v2-host--density-md) {
-  --stat-list-v2-row-gap: var(--stat-list-v2-row-gap-md);
-  --stat-list-v2-row-padding-block: var(--stat-list-v2-row-padding-block-md);
   --stat-list-v2-value-size: var(--stat-list-v2-value-size-md);
   --stat-list-v2-text-size: var(--stat-list-v2-text-size-md);
 }
 
 .stat-list-v2 {
   display: grid;
-  gap: var(--stat-list-v2-row-gap);
   width: min(100%, var(--stat-list-v2-max-width));
   margin-inline: auto;
   padding: 0.5rem 1rem 0.75rem;
@@ -56,9 +45,7 @@
 .stat-list-v2__row {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: var(--stat-list-v2-inline-gap);
   align-items: center;
-  padding-block: var(--stat-list-v2-row-padding-block);
 }
 
 .stat-list-v2__left-group {
