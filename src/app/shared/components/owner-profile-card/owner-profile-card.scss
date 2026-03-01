@@ -2,60 +2,12 @@
   display: block;
 }
 
-.owner-profile-card--compact {
-  height: 100%;
-  border: 2px solid var(--border-color);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background: var(--surface);
-  box-shadow: var(--shadow-rest);
-}
-
-.owner-profile-card__compact-header,
-.owner-profile-card__compact-footer {
-  padding: 0.75rem 0.875rem;
-  background: var(--surface-variant);
-  text-align: center;
-}
-
-.owner-profile-card__compact-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.18rem;
-}
-
-.owner-profile-card__compact-name {
-  margin: 0;
-  color: var(--champion-gold);
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.1;
-}
-
-.owner-profile-card__compact-team {
-  margin: 0;
-  color: var(--champion);
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.owner-profile-card__compact-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 5rem;
-  padding: 0.9rem 0.875rem;
-  background: var(--surface);
-}
-
 .owner-profile-card__trophies {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
+  gap: 0.4rem;
 }
 
 .owner-profile-card__trophies--empty {
@@ -63,10 +15,10 @@
 }
 
 .owner-profile-card__trophy {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
   color: var(--champion-gold);
-  font-size: 1.25rem;
+  font-size: 1.75rem;
 }
 
 .owner-profile-card__zero {
@@ -152,6 +104,60 @@
 
 .owner-profile-card__not-found {
   margin: 0;
+}
+
+.owner-profile-card--compact {
+  height: 100%;
+  border: 1px solid var(--text-muted);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-rest);
+}
+
+.owner-profile-card__compact-header,
+.owner-profile-card__compact-footer {
+  padding: 0.75rem 0.875rem;
+  background: var(--surface-variant);
+  text-align: center;
+}
+
+.owner-profile-card__compact-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.owner-profile-card__compact-footer {
+  border-top: 1px solid var(--border-color);
+}
+
+.owner-profile-card__compact-name {
+  margin: 0;
+  color: var(--champion-gold);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.owner-profile-card__compact-team {
+  margin: 0;
+  color: var(--champion);
+  font-family: var(--font-ui);
+  font-size: 0.5rem;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.owner-profile-card__compact-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
 }
 
 @media (max-width: 640px) {

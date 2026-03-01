@@ -9,14 +9,14 @@ mat-card.honor-banner {
   padding: 0;
   overflow: hidden;
   color: var(--champion);
-  border: 3px solid var(--champion-gold);
+  border: 4px solid var(--champion-gold);
   border-radius: var(--radius-lg);
   background: var(--surface);
   box-shadow: var(--shadow-rest);
 }
 
 mat-card.honor-banner--consolation {
-  border: 3px solid var(--champion-gold);
+  border: 4px solid var(--champion-gold);
   box-shadow: var(--shadow-rest);
 }
 
