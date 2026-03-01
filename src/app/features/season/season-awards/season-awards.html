@@ -105,7 +105,7 @@
   <div class="season-awards__grid">
     @if (bestRecordAward()) {
       @if (topSingleGameScoringTeams().length) {
-        <app-stat-card title="Highest Scoring Team (SINGLE Game)" bodyAlign="start">
+        <app-stat-card title="Highest Scoring Team" bodyAlign="start">
           <app-stat-list-v3 [rows]="topSingleGameScoringTeamRowsV3()" />
         </app-stat-card>
       }
@@ -113,7 +113,7 @@
       @if (topScoringStarters().length) {
         <app-stat-card
           title="Highest Scoring Starter"
-          subtitle="Points Player Team"
+          subtitle="Total of points scored in weeks started"
           bodyAlign="start"
         >
           <app-stat-list-v3 [rows]="topScoringStarterRowsV3()" layout="stackedMeta" />
@@ -121,35 +121,35 @@
       }
 
       @if (topSingleGameLowestScoringTeams().length) {
-        <app-stat-card title="Lowest Scoring Team (SINGLE Game)" bodyAlign="start">
+        <app-stat-card title="Lowest Scoring Team" bodyAlign="start">
           <app-stat-list-v3 [rows]="topSingleGameLowestScoringTeamRowsV3()" />
         </app-stat-card>
       }
 
       @if (topSingleGameBiggestLosers().length) {
-        <app-stat-card title="Biggest Loser (SINGLE Game)" bodyAlign="start">
+        <app-stat-card title="Biggest Loser" bodyAlign="start">
           <app-stat-list-v3 [rows]="topSingleGameBiggestLoserRowsV3()" />
         </app-stat-card>
       }
 
       @if (topSingleGameNarrowestVictories().length) {
-        <app-stat-card title="Narrowest Victory (SINGLE Game)" bodyAlign="start">
+        <app-stat-card title="Narrowest Victory" bodyAlign="start">
           <app-stat-list-v3 [rows]="topSingleGameNarrowestVictoryRowsV3()" />
         </app-stat-card>
       }
 
       @if (topSingleGameScoringStarters().length) {
-        <app-stat-card
-          title="Highest Scoring Starter (SINGLE Game)"
-          subtitle="Points Week Player Team"
-          bodyAlign="start"
-        >
+        <app-stat-card title="Highest Scoring Starter" bodyAlign="start">
           <app-stat-list-v3 [rows]="topSingleGameScoringStarterRowsV3()" layout="splitMeta" />
         </app-stat-card>
       }
 
       @if (topSingleWeekCarryStarters().length) {
-        <app-stat-card title="Single Week Carry" subtitle="Pct Week Player Team" bodyAlign="start">
+        <app-stat-card
+          title="Single Week Carry"
+          subtitle="Pct of points starter had compared to team total"
+          bodyAlign="start"
+        >
           <app-stat-list-v3 [rows]="topSingleWeekCarryStarterRowsV3()" layout="splitMeta" />
         </app-stat-card>
       }

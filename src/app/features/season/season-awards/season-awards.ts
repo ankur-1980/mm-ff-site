@@ -87,7 +87,14 @@ interface StarterSingleWeekCarry {
 
 @Component({
   selector: 'app-season-awards',
-  imports: [SubsectionHeader, StatCard, StatValue, StatList, StatListV2Component, StatListV3Component],
+  imports: [
+    SubsectionHeader,
+    StatCard,
+    StatValue,
+    StatList,
+    StatListV2Component,
+    StatListV3Component,
+  ],
   templateUrl: './season-awards.html',
   styleUrl: './season-awards.scss',
 })
@@ -763,7 +770,8 @@ export class SeasonAwards {
       id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
       value: team.diff.toFixed(2),
       weekLabel: String(team.week).padStart(2, '0'),
-      teamName: mapTeamNameShort(team.teamName),
+      // teamName: mapTeamNameShort(team.teamName),
+      teamName: team.teamName,
     })),
   );
 
@@ -781,7 +789,7 @@ export class SeasonAwards {
       id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
       value: team.diff.toFixed(2),
       primary: `Week ${String(team.week).padStart(2, '0')}`,
-      meta1: mapTeamNameShort(team.teamName),
+      meta1: team.teamName,
     })),
   );
 
