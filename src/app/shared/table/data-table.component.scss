@@ -1,27 +1,72 @@
 :host {
   display: block;
-  width: fit-content;
-  // If the table somehow exceeds the viewport, scroll rather than overflow.
+  width: 100%;
   max-width: 100%;
   overflow-x: auto;
   align-self: start;
-  // Single source of truth for sort-icon width. Used by both the spacer
-  // element and the calc() offset so right-aligned values stay under their
-  // column header label rather than the sort arrow.
+  border: var(--border-width) solid var(--interactive);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-rest);
   --data-table-sort-icon-width: 20px;
 }
 
 .data-table {
-  width: fit-content;
+  width: max-content;
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
 
   th,
   td {
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem;
     vertical-align: middle;
-    // Prevent text wrapping — column widths are fixed via widthCh and the
-    // host scrolls horizontally, so there is no reason to wrap cell content.
+  }
+
+  th {
+    border-bottom: 1px solid var(--loss);
+    background: var(--surface-variant);
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  td {
+    border-bottom: 1px solid var(--loss-surface-variant);
+    background: var(--surface);
+    color: var(--text-primary);
+    font-size: 0.95rem;
     white-space: nowrap;
   }
+}
+
+tr[mat-header-row] th:first-child {
+  border-top-left-radius: calc(var(--radius-md) - 1px);
+}
+
+tr[mat-header-row] th:last-child {
+  border-top-right-radius: calc(var(--radius-md) - 1px);
+}
+
+tr[mat-row]:last-child td {
+  border-bottom: 0;
+}
+
+tr[mat-row] td {
+  transition: background-color var(--motion-duration-fast) var(--motion-ease);
+}
+
+tr[mat-row]:hover td {
+  background: var(--hover-tint);
+}
+
+tr[mat-row]:hover td.data-table__cell--accent {
+  background: var(--interactive);
 }
 
 .data-table__header--right,
@@ -34,9 +79,43 @@
   text-align: center;
 }
 
-// ::ng-deep is required here because .mat-sort-header-container lives inside
-// Angular Material's own component template (separate view encapsulation).
+.data-table__cell--accent .data-table__subscript {
+  color: color-mix(in srgb, var(--surface) 80%, transparent);
+}
+.data-table__header--divider {
+  border-right: 1px solid var(--loss);
+}
+
+.data-table__cell--divider {
+  border-right: 1px solid var(--loss-surface-variant);
+}
+
+.data-table__header-label {
+  display: inline-block;
+  white-space: pre-line;
+  line-height: 1.2;
+}
+
 :host ::ng-deep {
+  .mat-sort-header-container {
+    gap: 0.35rem;
+  }
+
+  .mat-sort-header-container:hover .mat-sort-header-content,
+  .mat-sort-header-container:hover .mat-sort-header-arrow {
+    color: var(--interactive);
+  }
+
+  .mat-sort-header-container:focus-visible {
+    border-radius: var(--radius-sm);
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  .mat-sort-header-arrow {
+    color: var(--interactive);
+  }
+
   .data-table__header--right .mat-sort-header-container {
     justify-content: flex-end;
   }
@@ -71,9 +150,16 @@
   display: flex;
   flex-direction: column;
   align-items: inherit;
+  gap: 0.15rem;
+}
+
+.data-table__cell-value {
+  font-weight: 500;
 }
 
 .data-table__subscript {
-  font-size: 0.75em;
-  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-style: normal;
+  line-height: 1.3;
 }

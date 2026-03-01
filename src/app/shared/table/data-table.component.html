@@ -17,8 +17,9 @@
         [style.width.ch]="col.widthCh"
         [class.data-table__header--right]="getAlign(col) === 'right'"
         [class.data-table__header--center]="getAlign(col) === 'center'"
+        [class.data-table__header--divider]="col.dividerAfter"
       >
-        {{ col.header }}
+        <span class="data-table__header-label">{{ col.header }}</span>
       </th>
       <td
         mat-cell
@@ -26,6 +27,8 @@
         [style.width.ch]="col.widthCh"
         [class.data-table__cell--right]="getAlign(col) === 'right'"
         [class.data-table__cell--center]="getAlign(col) === 'center'"
+        [class.data-table__cell--divider]="col.dividerAfter"
+        [class.data-table__cell--accent]="col.accentFill"
       >
         <span class="data-table__cell-content">
           @if (col.subscriptKey) {
