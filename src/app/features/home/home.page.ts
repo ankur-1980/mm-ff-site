@@ -6,6 +6,7 @@ import { OwnersDataService } from '../../data/owners-data.service';
 import { ToiletBowlDataService } from '../../data/toilet-bowl-data.service';
 import { WeeklyMatchupsDataService } from '../../data/weekly-matchups-data.service';
 import { HonorBannerComponent } from '../../shared/components/honor-banner/honor-banner.component';
+import { OwnerProfileCard } from '../../shared/components/owner-profile-card/owner-profile-card';
 import { StatCard } from '../../shared/components/stat-card/stat-card';
 import { StatValue } from '../../shared/components/stat-card/stat-value/stat-value';
 import { SubsectionHeader } from '../../shared/components/subsection-header/subsection-header';
@@ -15,7 +16,7 @@ import { HeroComponent } from './hero/hero.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [HeroComponent, HonorBannerComponent, StatCard, StatValue, SubsectionHeader],
+  imports: [HeroComponent, HonorBannerComponent, OwnerProfileCard, StatCard, StatValue, SubsectionHeader],
   templateUrl: './home.page.html',
   styleUrl: './home.page.scss',
 })
@@ -65,6 +66,16 @@ export class HomePage {
 
   protected readonly legendaryHighPointsStarterSeason = computed(
     () => this.allTimeRecords.getTopStarterSeasonRecords(1)[0] ?? null,
+  );
+
+  protected readonly ownerCards = computed(() =>
+    this.ownersData
+      .allOwners()
+      .slice()
+      .sort((a, b) => {
+        if (b.championships !== a.championships) return b.championships - a.championships;
+        return a.managerName.localeCompare(b.managerName);
+      }),
   );
 
   protected formatSeasonsPlayed(count: number | null | undefined): string {

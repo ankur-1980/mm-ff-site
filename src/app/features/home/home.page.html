@@ -82,13 +82,12 @@
   </section>
 
   <section class="home__block">
-    <h3 class="home__section-heading">Owners</h3>
+    <app-subsection-header title="Owners" [isPrimary]="true" />
     <div class="home__owners-grid">
-      @for (owner of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track owner) {
-        <div class="home__owner-pill home__placeholder">Owner {{ owner }}</div>
+      @for (owner of ownerCards(); track owner.managerName) {
+        <app-owner-profile-card [ownerId]="owner.managerName" [variant]="'compact'" />
       }
     </div>
-    <button type="button" class="home__owners-cta">View all owners</button>
   </section>
 
   <section class="home__block">
