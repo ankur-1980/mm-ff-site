@@ -8,16 +8,18 @@
 
   &__card-link {
     color: inherit;
+    cursor: pointer;
     display: block;
     height: 100%;
     text-decoration: none;
+    cursor: pointer;
   }
 
   &__card-link:hover .owner-profile-card,
   &__card-link:focus-visible .owner-profile-card {
     border-color: var(--interactive);
     box-shadow: var(--shadow-hover);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 
   &__card-link:focus-visible {

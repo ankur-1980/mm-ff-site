@@ -104,9 +104,11 @@
       <div class="owner-profile-card__divider" aria-hidden="true"></div>
 
       @if (isActiveOwner()) {
-        <section class="owner-profile-card__block owner-profile-card__block--split">
+        <section
+          class="owner-profile-card__block owner-profile-card__block--split owner-profile-card__block--footer-split"
+        >
           <div class="owner-profile-card__split-item">
-            <p class="owner-profile-card__label">Current Season</p>
+            <p class="owner-profile-card__label">Last Season</p>
             <p class="owner-profile-card__value">{{ currentSeasonRecord() }}</p>
           </div>
           <div class="owner-profile-card__split-divider" aria-hidden="true"></div>
@@ -116,7 +118,7 @@
           </div>
         </section>
       } @else {
-        <section class="owner-profile-card__block">
+        <section class="owner-profile-card__block owner-profile-card__block--footer-single">
           <p class="owner-profile-card__label">Last Season Played</p>
           <p class="owner-profile-card__value">{{ lastSeasonPlayed() ?? '--' }}</p>
         </section>
