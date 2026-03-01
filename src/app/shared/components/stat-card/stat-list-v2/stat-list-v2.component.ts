@@ -23,12 +23,15 @@ export type StatListV2Row = {
     '[class.stat-list-v2-host--lg]': 'width() === "lg"',
     '[class.stat-list-v2-host--density-sm]': 'density() === "sm"',
     '[class.stat-list-v2-host--density-md]': 'density() === "md"',
+    '[class.stat-list-v2-host--mobile-stack]': 'mobileLayout() === "stack"',
+    '[class.stat-list-v2-host--mobile-inline]': 'mobileLayout() === "inline"',
   },
 })
 export class StatListV2Component {
   readonly rows = input.required<StatListV2Row[]>();
   readonly width = input<'sm' | 'lg'>('sm');
   readonly density = input<'sm' | 'md'>('md');
+  readonly mobileLayout = input<'stack' | 'inline'>('stack');
   readonly defaultValueFormat = input<StatListV2ValueFormat>('auto');
 
   protected readonly normalizedRows = computed(() =>

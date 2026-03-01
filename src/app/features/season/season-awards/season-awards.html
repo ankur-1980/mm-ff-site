@@ -105,84 +105,72 @@
   <div class="season-awards__grid">
     @if (bestRecordAward()) {
       @if (topSingleGameScoringTeams().length) {
-        <app-stat-card
-          title="Highest Scoring Team (SINGLE Game)"
-          subtitle="Best one-week team scores"
-          bodyAlign="start"
-        >
-          <app-stat-list-v2 [rows]="topSingleGameScoringTeamRowsV2()" />
-        </app-stat-card>
-      }
-
-      @if (topSingleGameScoringTeams().length) {
-        <app-stat-card
-          title="Highest Scoring Teams (Single Game)"
-          subtitle="Best one-week team scores"
-        >
-          <app-stat-list
-            [items]="topSingleGameScoringTeamRows()"
-            [showDetails]="false"
-          ></app-stat-list>
+        <app-stat-card title="Highest Scoring Team (SINGLE Game)" bodyAlign="start">
+          <app-stat-list-v2
+            [rows]="topSingleGameScoringTeamRowsV2()"
+            density="sm"
+            mobileLayout="inline"
+          />
         </app-stat-card>
       }
 
       @if (topSingleGameLowestScoringTeams().length) {
-        <app-stat-card
-          title="Lowest Scoring Teams (Single Game)"
-          subtitle="Lowest one-week team scores"
-        >
-          <app-stat-list
-            [items]="topSingleGameLowestScoringTeamRows()"
-            [showDetails]="false"
-          ></app-stat-list>
+        <app-stat-card title="Lowest Scoring Team (SINGLE Game)" bodyAlign="start">
+          <app-stat-list-v2
+            [rows]="topSingleGameLowestScoringTeamRowsV2()"
+            density="sm"
+            mobileLayout="inline"
+          />
         </app-stat-card>
       }
 
       @if (topSingleGameBiggestLosers().length) {
-        <app-stat-card
-          title="Biggest Losers (Single Game)"
-          subtitle="Greatest negative point differential"
-        >
-          <app-stat-list
-            [items]="topSingleGameBiggestLoserRows()"
-            [showDetails]="false"
-          ></app-stat-list>
+        <app-stat-card title="Biggest Loser (SINGLE Game)" bodyAlign="start">
+          <app-stat-list-v2
+            [rows]="topSingleGameBiggestLoserRowsV2()"
+            density="sm"
+            mobileLayout="inline"
+          />
         </app-stat-card>
       }
 
       @if (topSingleGameNarrowestVictories().length) {
         <app-stat-card
-          title="Narrowest Victories (Single Game)"
-          subtitle="Lowest positive point differential"
+          title="Narrowest Victory (SINGLE Game)"
+          subtitle="Diff Week TeamName"
+          bodyAlign="start"
         >
-          <app-stat-list
-            [items]="topSingleGameNarrowestVictoryRows()"
-            [showDetails]="false"
-          ></app-stat-list>
+          <app-stat-list-v2
+            [rows]="topSingleGameNarrowestVictoryRowsV2()"
+            density="sm"
+            mobileLayout="inline"
+          />
         </app-stat-card>
       }
 
       @if (topScoringStarters().length) {
         <app-stat-card
-          title="Highest Scoring Starters"
-          subtitle="Regular season total starter points"
+          title="Highest Scoring Starter"
+          subtitle="Points Player Team"
+          bodyAlign="start"
         >
-          <app-stat-list [items]="topScoringStarterRows()" [showWeek]="false"></app-stat-list>
+          <app-stat-list-v2 [rows]="topScoringStarterRowsV2()" />
         </app-stat-card>
       }
 
       @if (topSingleGameScoringStarters().length) {
         <app-stat-card
-          title="Highest Scoring Starters (Single Game)"
-          subtitle="Best one-week starter scores"
+          title="Highest Scoring Starter (SINGLE Game)"
+          subtitle="Points Week Player Team"
+          bodyAlign="start"
         >
-          <app-stat-list [items]="topSingleGameScoringStarterRows()"></app-stat-list>
+          <app-stat-list-v2 [rows]="topSingleGameScoringStarterRowsV2()" />
         </app-stat-card>
       }
 
       @if (topSingleWeekCarryStarters().length) {
-        <app-stat-card title="Single Week Carry" subtitle="One starter's percentage of team points">
-          <app-stat-list [items]="topSingleWeekCarryStarterRows()"></app-stat-list>
+        <app-stat-card title="Single Week Carry" subtitle="Pct Week Player Team" bodyAlign="start">
+          <app-stat-list-v2 [rows]="topSingleWeekCarryStarterRowsV2()" />
         </app-stat-card>
       }
     }

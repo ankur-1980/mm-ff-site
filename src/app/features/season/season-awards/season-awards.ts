@@ -513,6 +513,16 @@ export class SeasonAwards {
     })),
   );
 
+  protected readonly topScoringStarterRowsV2 = computed<StatListV2Row[]>(() =>
+    this.topScoringStarters().map((starter) => ({
+      id: `${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.totalPoints.toFixed(2)}`,
+      value: starter.totalPoints,
+      primary: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
+      meta: [mapTeamNameShort(starter.teamName)],
+      valueFormat: '2',
+    })),
+  );
+
   protected readonly topSingleGameScoringStarters = computed<StarterGameScore[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
@@ -561,6 +571,19 @@ export class SeasonAwards {
       weekLabel: String(starter.week).padStart(2, '0'),
       playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
       teamName: mapTeamNameShort(starter.teamName),
+    })),
+  );
+
+  protected readonly topSingleGameScoringStarterRowsV2 = computed<StatListV2Row[]>(() =>
+    this.topSingleGameScoringStarters().map((starter) => ({
+      id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.points.toFixed(2)}`,
+      value: starter.points,
+      primary: `Week ${String(starter.week).padStart(2, '0')}`,
+      meta: [
+        `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
+        mapTeamNameShort(starter.teamName),
+      ],
+      valueFormat: '2',
     })),
   );
 
@@ -654,6 +677,16 @@ export class SeasonAwards {
     })),
   );
 
+  protected readonly topSingleGameLowestScoringTeamRowsV2 = computed<StatListV2Row[]>(() =>
+    this.topSingleGameLowestScoringTeams().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.points.toFixed(2)}`,
+      value: team.points,
+      primary: `Week ${String(team.week).padStart(2, '0')}`,
+      meta: [mapTeamNameShort(team.teamName)],
+      valueFormat: '2',
+    })),
+  );
+
   protected readonly topSingleGameBiggestLosers = computed<TeamGameDiff[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
@@ -703,6 +736,15 @@ export class SeasonAwards {
     })),
   );
 
+  protected readonly topSingleGameBiggestLoserRowsV2 = computed<StatListV2Row[]>(() =>
+    this.topSingleGameBiggestLosers().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
+      value: team.diff.toFixed(2),
+      primary: `Week ${String(team.week).padStart(2, '0')}`,
+      meta: [mapTeamNameShort(team.teamName)],
+    })),
+  );
+
   protected readonly topSingleGameNarrowestVictories = computed<TeamGameDiff[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
@@ -749,6 +791,15 @@ export class SeasonAwards {
       value: team.diff.toFixed(2),
       weekLabel: String(team.week).padStart(2, '0'),
       teamName: mapTeamNameShort(team.teamName),
+    })),
+  );
+
+  protected readonly topSingleGameNarrowestVictoryRowsV2 = computed<StatListV2Row[]>(() =>
+    this.topSingleGameNarrowestVictories().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
+      value: team.diff.toFixed(2),
+      primary: `Week ${String(team.week).padStart(2, '0')}`,
+      meta: [mapTeamNameShort(team.teamName)],
     })),
   );
 
@@ -802,6 +853,18 @@ export class SeasonAwards {
       weekLabel: String(starter.week).padStart(2, '0'),
       playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
       teamName: mapTeamNameShort(starter.teamName),
+    })),
+  );
+
+  protected readonly topSingleWeekCarryStarterRowsV2 = computed<StatListV2Row[]>(() =>
+    this.topSingleWeekCarryStarters().map((starter) => ({
+      id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.carryPct.toFixed(4)}`,
+      value: `${starter.carryPct.toFixed(1)}%`,
+      primary: `Week ${String(starter.week).padStart(2, '0')}`,
+      meta: [
+        `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
+        mapTeamNameShort(starter.teamName),
+      ],
     })),
   );
 }
