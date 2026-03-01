@@ -1,13 +1,15 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { OwnersDataService } from '../../../data/owners-data.service';
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
+import { toOwnerSlug } from '../../../features/owners/owners.utils';
 
 @Component({
   selector: 'app-owner-profile-card',
-  imports: [MatIconModule],
+  imports: [MatIconModule, RouterLink],
   templateUrl: './owner-profile-card.html',
   styleUrl: './owner-profile-card.scss',
 })
@@ -90,4 +92,6 @@ export class OwnerProfileCard {
     const total = this.owner()?.championships ?? 0;
     return Array.from({ length: total }, (_, index) => index);
   });
+
+  protected readonly ownerPath = computed(() => toOwnerSlug(this.ownerId()));
 }

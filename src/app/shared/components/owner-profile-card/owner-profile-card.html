@@ -1,35 +1,41 @@
 @if (owner(); as ownerData) {
   @if (variant() === 'compact') {
-    <article class="owner-profile-card owner-profile-card--compact" aria-label="Owner profile card">
-      <header class="owner-profile-card__compact-header">
-        <h3 class="owner-profile-card__compact-name">{{ ownerData.managerName }}</h3>
-        <p class="owner-profile-card__compact-team">{{ compactTeamName() }}</p>
-      </header>
+    <a
+      class="owner-profile-card__compact-link ds-focusable"
+      [routerLink]="['/owners', ownerPath()]"
+      [attr.aria-label]="'View ' + ownerData.managerName + ' profile'"
+    >
+      <article class="owner-profile-card owner-profile-card--compact" aria-label="Owner profile card">
+        <header class="owner-profile-card__compact-header">
+          <h3 class="owner-profile-card__compact-name">{{ ownerData.managerName }}</h3>
+          <p class="owner-profile-card__compact-team">{{ compactTeamName() }}</p>
+        </header>
 
-      <section
-        class="owner-profile-card__compact-body"
-        [class.owner-profile-card__compact-body--no-championships]="ownerData.championships === 0"
-        aria-label="Championships"
-      >
-        @if (ownerData.championships > 0) {
-          <div
-            class="owner-profile-card__trophies"
-            [attr.aria-label]="ownerData.championships + ' championships'"
-          >
-            @for (trophy of championshipTrophies(); track trophy) {
+        <section
+          class="owner-profile-card__compact-body"
+          [class.owner-profile-card__compact-body--no-championships]="ownerData.championships === 0"
+          aria-label="Championships"
+        >
+          @if (ownerData.championships > 0) {
+            <div
+              class="owner-profile-card__trophies"
+              [attr.aria-label]="ownerData.championships + ' championships'"
+            >
+              @for (trophy of championshipTrophies(); track trophy) {
+                <mat-icon class="owner-profile-card__trophy" aria-hidden="true">emoji_events</mat-icon>
+              }
+            </div>
+          } @else {
+            <div class="owner-profile-card__trophies owner-profile-card__trophies--empty" aria-label="0 championships">
+              <span class="owner-profile-card__zero">0</span>
               <mat-icon class="owner-profile-card__trophy" aria-hidden="true">emoji_events</mat-icon>
-            }
-          </div>
-        } @else {
-          <div class="owner-profile-card__trophies owner-profile-card__trophies--empty" aria-label="0 championships">
-            <span class="owner-profile-card__zero">0</span>
-            <mat-icon class="owner-profile-card__trophy" aria-hidden="true">emoji_events</mat-icon>
-          </div>
-        }
-      </section>
+            </div>
+          }
+        </section>
 
-      <footer class="owner-profile-card__compact-footer">{{ compactFooter() }}</footer>
-    </article>
+        <footer class="owner-profile-card__compact-footer">{{ compactFooter() }}</footer>
+      </article>
+    </a>
   } @else {
     <article
       class="owner-profile-card"
