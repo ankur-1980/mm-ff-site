@@ -6,8 +6,10 @@
 .all-play-matrix__meta,
 .all-play-matrix__empty {
   margin: 0 0 1rem;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
   font-size: 0.875rem;
-  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  line-height: 1.4;
 }
 
 .all-play-matrix__empty {
@@ -18,31 +20,40 @@
   overflow-x: auto;
   overflow-y: visible;
   margin-bottom: 0.5rem;
-  border: 1px solid var(--mat-divider-color, rgba(0, 0, 0, 0.12));
-  border-radius: 4px;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-rest);
 }
 
 .all-play-matrix__table {
   width: max-content;
   min-width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
   font-size: 0.875rem;
 }
 
 .all-play-matrix__cell {
-  padding: 0.5rem 0.6rem;
+  padding: 0.65rem 0.8rem;
   text-align: center;
   white-space: nowrap;
-  border: 1px solid var(--mat-divider-color, rgba(0, 0, 0, 0.12));
+  border-right: 1px solid var(--loss-surface-variant);
+  border-bottom: 1px solid var(--loss-surface-variant);
 
   &--corner {
-    background: var(--mat-app-background-color, #fafafa);
+    background: var(--surface-variant);
     min-width: 0;
   }
 
   &--header {
     font-weight: 600;
-    background: var(--mat-app-background-color, #fafafa);
+    background: var(--surface-variant);
+    color: var(--text-primary);
+    border-bottom-color: var(--loss);
     max-width: 10rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -53,50 +64,71 @@
     text-align: left;
     position: sticky;
     left: 0;
-    background: var(--mat-app-background-color, #fff);
-    z-index: 1;
+    background: var(--surface);
+    color: var(--text-primary);
+    border-right-color: var(--loss);
+    z-index: 2;
     max-width: 10rem;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   &--data {
+    background: var(--surface);
+    color: var(--text-primary);
     font-variant-numeric: tabular-nums;
   }
 }
 
+.all-play-matrix__table thead .all-play-matrix__cell:first-child {
+  border-top-left-radius: calc(var(--radius-md) - 1px);
+}
+
+.all-play-matrix__table thead .all-play-matrix__cell:last-child {
+  border-top-right-radius: calc(var(--radius-md) - 1px);
+  border-right: 0;
+}
+
+.all-play-matrix__table .all-play-matrix__cell:last-child {
+  border-right: 0;
+}
+
+.all-play-matrix__table tbody tr:last-child .all-play-matrix__cell {
+  border-bottom: 0;
+}
+
 tbody tr:hover .all-play-matrix__cell--row-header {
-  background: var(--mat-row-hover-state-layer-color, rgba(0, 0, 0, 0.04));
+  background: var(--loss-light-tint);
 }
 
 tbody tr:hover .all-play-matrix__cell--data {
-  background: var(--mat-row-hover-state-layer-color, rgba(0, 0, 0, 0.04));
+  background: var(--loss-light-tint);
 }
 
 .all-play-matrix__cell--diagonal {
-  opacity: 0.5;
-  background: var(--mat-app-background-color, #f5f5f5);
+  background: var(--loss-light-tint);
+  color: var(--loss);
 }
 
 .all-play-matrix__cell--total-header {
   font-weight: 700;
-  background: var(--mat-app-background-color, #eee);
+  background: color-mix(in srgb, var(--surface-variant) 72%, var(--interactive) 28%);
 }
 
 .all-play-matrix__cell--total {
   font-weight: 600;
-  background: var(--mat-app-background-color, #f5f5f5);
+  background: color-mix(in srgb, var(--surface) 86%, var(--surface-variant) 14%);
 }
 
 .all-play-matrix__total-row .all-play-matrix__cell--row-header,
 .all-play-matrix__total-row .all-play-matrix__cell--data {
   font-weight: 600;
-  background: var(--mat-app-background-color, #f5f5f5);
+  background: color-mix(in srgb, var(--surface) 86%, var(--surface-variant) 14%);
 }
 
 .all-play-matrix__cell--total-corner {
-  background: var(--mat-app-background-color, #eee);
-  opacity: 0.8;
+  background: color-mix(in srgb, var(--surface-variant) 72%, var(--interactive) 28%);
+  color: var(--loss);
 }
 
 .all-play-matrix__team-label {
@@ -104,6 +136,7 @@ tbody tr:hover .all-play-matrix__cell--data {
 }
 
 .all-play-matrix__team-meta {
+  color: var(--text-muted);
   font-style: italic;
   font-weight: 400;
 }
