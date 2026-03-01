@@ -600,6 +600,16 @@ export class SeasonAwards {
     })),
   );
 
+  protected readonly topSingleGameScoringStarterRowsV3 = computed<StatListV3Row[]>(() =>
+    this.topSingleGameScoringStarters().map((starter) => ({
+      id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.points.toFixed(2)}`,
+      value: starter.points,
+      primary: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
+      meta1: `Week ${String(starter.week).padStart(2, '0')}`,
+      meta2: starter.teamName,
+    })),
+  );
+
   protected readonly topSingleGameScoringTeams = computed<TeamGameScore[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
@@ -699,6 +709,15 @@ export class SeasonAwards {
     })),
   );
 
+  protected readonly topSingleGameLowestScoringTeamRowsV3 = computed<StatListV3Row[]>(() =>
+    this.topSingleGameLowestScoringTeams().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.points.toFixed(2)}`,
+      value: team.points,
+      primary: `Week ${String(team.week).padStart(2, '0')}`,
+      meta1: mapTeamNameShort(team.teamName),
+    })),
+  );
+
   protected readonly topSingleGameBiggestLosers = computed<TeamGameDiff[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
@@ -757,6 +776,15 @@ export class SeasonAwards {
     })),
   );
 
+  protected readonly topSingleGameBiggestLoserRowsV3 = computed<StatListV3Row[]>(() =>
+    this.topSingleGameBiggestLosers().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
+      value: team.diff.toFixed(2),
+      primary: `Week ${String(team.week).padStart(2, '0')}`,
+      meta1: mapTeamNameShort(team.teamName),
+    })),
+  );
+
   protected readonly topSingleGameNarrowestVictories = computed<TeamGameDiff[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
@@ -812,6 +840,15 @@ export class SeasonAwards {
       value: team.diff.toFixed(2),
       primary: `Week ${String(team.week).padStart(2, '0')}`,
       meta: [mapTeamNameShort(team.teamName)],
+    })),
+  );
+
+  protected readonly topSingleGameNarrowestVictoryRowsV3 = computed<StatListV3Row[]>(() =>
+    this.topSingleGameNarrowestVictories().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
+      value: team.diff.toFixed(2),
+      primary: `Week ${String(team.week).padStart(2, '0')}`,
+      meta1: mapTeamNameShort(team.teamName),
     })),
   );
 
