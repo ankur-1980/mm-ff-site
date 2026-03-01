@@ -1,11 +1,17 @@
-<app-feature-banner [data]="championData()" />
+<div class="home__block">
+  @if (championHonorData(); as champion) {
+    <app-honor-banner [honor]="champion" />
+  }
 
-<div class="standings__banners">
-  <app-feature-banner [data]="toiletBowlData()" label="Toilet Bowl" />
-  <app-feature-banner [data]="highScoreData()" label="Season High Score" />
+  @if (toiletBowlHonorData(); as toiletBowl) {
+    <app-honor-banner [honor]="toiletBowl" />
+  }
+
+  @if (highScoreHonorData(); as highScore) {
+    <app-honor-banner [honor]="highScore" />
+  }
 </div>
 
-<app-data-table
-  [columns]="tableState().columns"
-  [data]="tableState().data"
-/>
+<div class="home__block">
+  <app-data-table [columns]="tableState().columns" [data]="tableState().data" />
+</div>

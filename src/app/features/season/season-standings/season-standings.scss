@@ -2,13 +2,11 @@
   display: block;
 }
 
-.standings__banners {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.home__block {
+  margin-top: 2rem;
+}
 
-  app-feature-banner {
-    flex: 1 1 18rem;
-  }
+app-honor-banner + app-honor-banner {
+  display: block;
+  margin-top: 1rem;
 }
