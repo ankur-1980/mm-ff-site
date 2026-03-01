@@ -27,7 +27,9 @@
   @if (matchup(); as matchup) {
     <section class="honor-banner__secondary">
       <div class="honor-banner__score-side">
-        <p class="honor-banner__score">{{ matchup.team1.totalPoints | number: '1.2-2' }}</p>
+        <p class="honor-banner__score honor-banner__score--team1">
+          {{ matchup.team1.totalPoints | number: '1.2-2' }}
+        </p>
         @if (matchup.team1.teamName) {
           <p class="honor-banner__score-team">{{ matchup.team1.teamName }}</p>
         }

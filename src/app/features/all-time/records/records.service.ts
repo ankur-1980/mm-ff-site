@@ -14,6 +14,7 @@ import type {
   SeasonHighPointsTimelineEntry,
   StarterSeasonRecordEntry,
   StarterSingleGameRecordEntry,
+  VictoryMarginRecordEntry,
 } from './records.models';
 
 const EPSILON = 0.000001;
@@ -607,7 +608,14 @@ export class AllTimeRecordsService {
     const teamIndex = this.buildTeamOwnerIndex();
     const seasonTotals = new Map<
       string,
-      { ownerName: string; playerName: string; points: number; year: number }
+      {
+        ownerName: string;
+        playerName: string;
+        position: string;
+        nflTeam: string;
+        points: number;
+        year: number;
+      }
     >();
 
     for (const seasonId of this.weeklyMatchupsData.seasonIds()) {
@@ -637,6 +645,8 @@ export class AllTimeRecordsService {
               seasonTotals.set(recordKey, {
                 ownerName,
                 playerName: starter.playerName,
+                position: starter.position,
+                nflTeam: starter.nflTeam,
                 points: starter.points,
                 year: entry.season,
               });
@@ -652,6 +662,64 @@ export class AllTimeRecordsService {
         if (b.year !== a.year) return b.year - a.year;
         if (a.ownerName !== b.ownerName) return a.ownerName.localeCompare(b.ownerName);
         return a.playerName.localeCompare(b.playerName);
+      })
+      .slice(0, limit);
+  }
+
+  getTopVictoryMarginRecords(limit = 10): VictoryMarginRecordEntry[] {
+    const teamIndex = this.buildTeamOwnerIndex();
+    const rows: VictoryMarginRecordEntry[] = [];
+
+    for (const seasonId of this.weeklyMatchupsData.seasonIds()) {
+      const seasonWeeks = this.weeklyMatchupsData.getSeasonWeeks(seasonId);
+      if (!seasonWeeks) continue;
+
+      for (const weekKey of this.weeklyMatchupsData.getWeekKeysForSeason(seasonId)) {
+        const weekEntries = seasonWeeks[weekKey];
+        if (!weekEntries) continue;
+
+        for (const entry of Object.values(weekEntries)) {
+          const team1Score = Number(entry.matchup?.team1Score);
+          const team2Score = Number(entry.matchup?.team2Score);
+          if (!Number.isFinite(team1Score) || !Number.isFinite(team2Score)) continue;
+
+          const margin = team1Score - team2Score;
+          if (margin <= 0) continue;
+
+          const ownerName = this.resolveOwnerByTeamName(
+            seasonId,
+            entry.matchup?.team1Name,
+            `victory margin ${weekKey}`,
+            teamIndex,
+          );
+          if (!ownerName) continue;
+
+          const opponentName =
+            this.resolveOwnerByTeamName(
+              seasonId,
+              entry.matchup?.team2Name,
+              `victory margin opponent ${weekKey}`,
+              teamIndex,
+            ) ?? (entry.matchup?.team2Name || 'Unknown Opponent');
+
+          rows.push({
+            ownerName,
+            opponentName,
+            margin,
+            week: entry.week,
+            year: entry.season,
+          });
+        }
+      }
+    }
+
+    return rows
+      .sort((a, b) => {
+        if (b.margin !== a.margin) return b.margin - a.margin;
+        if (b.year !== a.year) return b.year - a.year;
+        if (b.week !== a.week) return b.week - a.week;
+        if (a.ownerName !== b.ownerName) return a.ownerName.localeCompare(b.ownerName);
+        return a.opponentName.localeCompare(b.opponentName);
       })
       .slice(0, limit);
   }

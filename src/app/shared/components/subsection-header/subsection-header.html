@@ -1,5 +1,13 @@
 @if (isPrimary()) {
-  <h2 class="subsection-header subsection-header--primary">{{ title() }}</h2>
+  <h2 class="subsection-header subsection-header--primary">
+    <span class="subsection-header__line" aria-hidden="true"></span>
+    <span class="subsection-header__title">{{ title() }}</span>
+    <span class="subsection-header__line" aria-hidden="true"></span>
+  </h2>
 } @else {
-  <h3 class="subsection-header subsection-header--secondary">{{ title() }}</h3>
+  <h3 class="subsection-header subsection-header--secondary">
+    <span class="subsection-header__line" aria-hidden="true"></span>
+    <span class="subsection-header__title">{{ title() }}</span>
+    <span class="subsection-header__line" aria-hidden="true"></span>
+  </h3>
 }

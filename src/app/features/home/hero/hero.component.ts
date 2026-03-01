@@ -6,6 +6,7 @@ import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { OwnersDataService } from '../../../data/owners-data.service';
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
+import { CtaButton } from '../../../shared/components/cta-button/cta-button';
 import { IntersectDirective } from '../../../shared/intersect.directive';
 import { StatCardSimple } from '../../../shared/components/stat-card-simple/stat-card-simple';
 import { HeroStat } from '../../../models/hero-stat';
@@ -14,7 +15,7 @@ import { HeroStat } from '../../../models/hero-stat';
   selector: 'app-hero',
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
-  imports: [NgOptimizedImage, MatIconModule, IntersectDirective, StatCardSimple],
+  imports: [NgOptimizedImage, MatIconModule, CtaButton, IntersectDirective, StatCardSimple],
   host: { '[class.hero--hidden]': '!isVisible()' },
 })
 export class HeroComponent {
@@ -95,7 +96,7 @@ export class HeroComponent {
       value: this.wholeNumber.format(this.totalRegularSeasonGames()),
     },
     {
-      label: 'Commissioners Fired',
+      label: "Times Charlie's Been Fired",
       value: '',
       icon: 'all_inclusive',
     },

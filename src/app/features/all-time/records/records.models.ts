@@ -52,7 +52,17 @@ export interface StarterSingleGameRecordEntry {
 export interface StarterSeasonRecordEntry {
   ownerName: string;
   playerName: string;
+  position: string;
+  nflTeam: string;
   points: number;
+  year: number;
+}
+
+export interface VictoryMarginRecordEntry {
+  ownerName: string;
+  opponentName: string;
+  margin: number;
+  week: number;
   year: number;
 }
 

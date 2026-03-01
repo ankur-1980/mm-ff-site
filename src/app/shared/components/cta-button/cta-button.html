@@ -1,0 +1,34 @@
+@if (route(); as targetRoute) {
+  <a
+    class="cta-button ds-focusable"
+    [class.cta-button--stretch]="stretch()"
+    [class.cta-button--tile]="variant() === 'tile'"
+    [routerLink]="targetRoute"
+    [attr.aria-label]="ariaLabel() || label()"
+  >
+    @if (icon()) {
+      <mat-icon class="cta-button__icon" aria-hidden="true">{{ icon() }}</mat-icon>
+    }
+    <span class="cta-button__label">{{ label() }}</span>
+    @if (variant() === 'inline') {
+      <span class="cta-button__chevron" aria-hidden="true">&gt;</span>
+    }
+  </a>
+} @else {
+  <button
+    type="button"
+    class="cta-button ds-focusable"
+    [class.cta-button--stretch]="stretch()"
+    [class.cta-button--tile]="variant() === 'tile'"
+    [attr.aria-label]="ariaLabel() || label()"
+    (click)="pressed.emit()"
+  >
+    @if (icon()) {
+      <mat-icon class="cta-button__icon" aria-hidden="true">{{ icon() }}</mat-icon>
+    }
+    <span class="cta-button__label">{{ label() }}</span>
+    @if (variant() === 'inline') {
+      <span class="cta-button__chevron" aria-hidden="true">&gt;</span>
+    }
+  </button>
+}

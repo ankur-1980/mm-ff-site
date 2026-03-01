@@ -6,11 +6,6 @@
     <p class="home__state home__state--error" role="alert">
       {{ leagueData.loadError() }}
     </p>
-  } @else if (leagueData.loadStatus() === 'loaded' && leagueData.leagueData(); as league) {
-    <p class="home__league-name">{{ league.name }}</p>
-    <p class="home__current-season">Current Season: {{ leagueData.currentSeason()?.id ?? '—' }}</p>
-  } @else {
-    <p class="home__state">League overview coming soon.</p>
   }
 
   <section class="home__champion" aria-label="Current champion">
@@ -37,31 +32,106 @@
   }
 
   <section class="home__block">
-    <h3 class="home__section-heading">Legendary Moments</h3>
+    <app-subsection-header title="Legendary Moments" [isPrimary]="true" />
     <div class="home__legendary-grid">
-      <div class="home__card home__placeholder">Legendary moment 1</div>
-      <div class="home__card home__placeholder">Legendary moment 2</div>
-      <div class="home__card home__placeholder">Legendary moment 3</div>
-    </div>
-  </section>
+      @if (legendaryMostWins(); as mostWins) {
+        <app-stat-card title="Most Wins" [footer]="formatSeasonsPlayed(mostWins.totalSeasons)">
+          <app-stat-value [value]="mostWins.wins" [subscript]="mostWins.ownerName" />
+        </app-stat-card>
+      }
 
-  <section class="home__block">
-    <h3 class="home__section-heading">Owners</h3>
-    <div class="home__owners-grid">
-      @for (owner of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track owner) {
-        <div class="home__owner-pill home__placeholder">Owner {{ owner }}</div>
+      @if (legendaryMostChampionships(); as mostChampionships) {
+        <app-stat-card
+          title="Most Championships"
+          [footer]="formatSeasonsPlayed(mostChampionships.totalSeasons)"
+        >
+          <app-stat-value
+            [value]="mostChampionships.championships"
+            [subscript]="mostChampionships.ownerName"
+          />
+        </app-stat-card>
+      }
+
+      @if (legendaryBiggestBlowout(); as biggestBlowout) {
+        <app-stat-card
+          title="Biggest Blowout"
+          [footer]="
+            'Over ' +
+            biggestBlowout.opponentName +
+            ' · ' +
+            formatWeekYear(biggestBlowout.week, biggestBlowout.year)
+          "
+        >
+          <app-stat-value
+            [value]="formatPoints(biggestBlowout.margin)"
+            [subscript]="biggestBlowout.ownerName"
+          />
+        </app-stat-card>
+      }
+
+      @if (legendaryHighPointsStarterSeason(); as highPointsStarter) {
+        <app-stat-card
+          title="High Points Starter - Season"
+          [footer]="highPointsStarter.ownerName + ' · ' + highPointsStarter.year"
+        >
+          <app-stat-value
+            [value]="formatPoints(highPointsStarter.points)"
+            [subscript]="
+              formatPlayerDetails(
+                highPointsStarter.playerName,
+                highPointsStarter.position,
+                highPointsStarter.nflTeam
+              )
+            "
+          />
+        </app-stat-card>
       }
     </div>
-    <button type="button" class="home__owners-cta">View all owners</button>
+    <div class="home__cta-row">
+      <app-cta-button label="View All Records" route="/all-time/records" />
+    </div>
   </section>
 
   <section class="home__block">
-    <h3 class="home__section-heading">Explore the League</h3>
-    <div class="home__explore-grid">
-      <div class="home__card home__placeholder">Season</div>
-      <div class="home__card home__placeholder">Owners</div>
-      <div class="home__card home__placeholder">Records</div>
-      <div class="home__card home__placeholder">All-Time</div>
+    <app-subsection-header title="Owners" [isPrimary]="true" />
+    <div class="home__owners-grid">
+      @for (owner of ownerCards(); track owner.managerName) {
+        <app-owner-profile-card [ownerId]="owner.managerName" [variant]="'compact'" />
+      }
+    </div>
+  </section>
+
+  <section class="home__block">
+    <app-subsection-header title="Explore the League" [isPrimary]="true" />
+    <div class="home__nav-cta-grid" aria-label="Explore league sections">
+      <app-cta-button
+        label="Seasons"
+        icon="calendar_month"
+        [route]="currentSeasonStandingsRoute()"
+        [variant]="'tile'"
+        [stretch]="true"
+      />
+      <app-cta-button
+        label="Owners"
+        icon="groups"
+        route="/owners"
+        [variant]="'tile'"
+        [stretch]="true"
+      />
+      <app-cta-button
+        label="All-Time"
+        icon="emoji_events"
+        route="/all-time/records"
+        [variant]="'tile'"
+        [stretch]="true"
+      />
+      <app-cta-button
+        label="Analytics"
+        icon="analytics"
+        route="/all-time/analytics"
+        [variant]="'tile'"
+        [stretch]="true"
+      />
     </div>
   </section>
 </section>

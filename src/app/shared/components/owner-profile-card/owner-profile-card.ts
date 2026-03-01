@@ -1,12 +1,15 @@
 import { Component, computed, inject, input } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { OwnersDataService } from '../../../data/owners-data.service';
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
+import { toOwnerSlug } from '../../../features/owners/owners.utils';
 
 @Component({
   selector: 'app-owner-profile-card',
-  imports: [],
+  imports: [MatIconModule, RouterLink],
   templateUrl: './owner-profile-card.html',
   styleUrl: './owner-profile-card.scss',
 })
@@ -16,6 +19,7 @@ export class OwnerProfileCard {
   private readonly standingsData = inject(SeasonStandingsDataService);
 
   readonly ownerId = input.required<string>();
+  readonly variant = input<'default' | 'compact'>('default');
 
   protected readonly owner = computed(() => this.ownersData.getOwner(this.ownerId()));
 
@@ -32,8 +36,8 @@ export class OwnerProfileCard {
     if (!owner || lastSeasonPlayed == null) return '--';
 
     return (
-      this.standingsData.getEntry(String(lastSeasonPlayed), owner.managerName)
-        ?.playerDetails.teamName ??
+      this.standingsData.getEntry(String(lastSeasonPlayed), owner.managerName)?.playerDetails
+        .teamName ??
       owner.teamNames[0] ??
       '--'
     );
@@ -62,6 +66,32 @@ export class OwnerProfileCard {
   });
 
   protected readonly currentSeasonPlayoffRank = computed(
-    () => this.currentSeasonEntry()?.ranks.playoffRank || '--'
+    () => this.currentSeasonEntry()?.ranks.playoffRank || '--',
   );
+
+  protected readonly compactTeamName = computed(
+    () => this.currentSeasonEntry()?.playerDetails.teamName ?? this.mostRecentTeamName(),
+  );
+
+  protected readonly firstSeasonPlayed = computed(() => {
+    const seasons = this.owner()?.activeSeasons ?? [];
+    if (!seasons.length) return null;
+    return Math.min(...seasons);
+  });
+
+  protected readonly compactFooter = computed(() => {
+    const owner = this.owner();
+    if (!owner) return '--';
+
+    const seasonsLabel = `${owner.seasonsPlayed} ${owner.seasonsPlayed === 1 ? 'season' : 'seasons'}`;
+    const firstSeason = this.firstSeasonPlayed();
+    return firstSeason != null ? `${seasonsLabel} · since ${firstSeason}` : seasonsLabel;
+  });
+
+  protected readonly championshipTrophies = computed(() => {
+    const total = this.owner()?.championships ?? 0;
+    return Array.from({ length: total }, (_, index) => index);
+  });
+
+  protected readonly ownerPath = computed(() => toOwnerSlug(this.ownerId()));
 }
