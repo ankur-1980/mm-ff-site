@@ -79,6 +79,17 @@
   font-weight: 600;
 }
 
+.section-header__extra {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+.section-header__extra:empty {
+  display: none;
+}
+
 @media (min-width: 48rem) {
   .section-header {
     padding: 1.25rem 0.75rem 0.9rem;
@@ -99,5 +110,9 @@
 
   .section-header__meta {
     margin-top: 0.75rem;
+  }
+
+  .section-header__extra {
+    margin-top: 0.9rem;
   }
 }

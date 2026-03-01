@@ -1,9 +1,9 @@
 <section class="page-section season-page" aria-labelledby="season-heading">
-  <app-section-header label="End of Season Stats" [heading]="headingLabel()" [meta]="metaItems()" />
+  <app-section-header label="End of Season Stats" [heading]="headingLabel()" [meta]="metaItems()">
+    <app-season-selector sectionHeaderExtra />
+  </app-section-header>
 
   <div class="season-page__toolbar">
-    <app-season-selector />
-
     <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="season-page__tabs">
       @for (tab of tabs; track tab.path) {
         <a
