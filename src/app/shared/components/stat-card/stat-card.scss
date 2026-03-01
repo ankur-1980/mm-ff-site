@@ -9,7 +9,7 @@ mat-card {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--text-muted);
+  border: 1px solid var(--text-muted);
   border-radius: var(--radius-md);
   background: var(--surface);
   box-shadow: var(--shadow-rest);
@@ -31,7 +31,7 @@ mat-divider {
   text-align: center;
   flex-shrink: 0;
   background: var(--surface-variant);
-  color: var(--champion-gold);
+  color: var(--champion);
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -43,10 +43,10 @@ mat-divider {
 }
 
 .stat-card__subtitle {
-  color: var(--champion-gold);
+  color: var(--text-primary);
   font-family: var(--font-ui);
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 400;
   font-style: italic;
 }
 
@@ -72,7 +72,7 @@ mat-divider {
   font-size: 0.8125rem;
   flex-shrink: 0;
   background: var(--surface-variant);
-  color: var(--champion-gold);
+  color: var(--champion);
   font-family: var(--font-ui);
   font-weight: 600;
   border-top: 1px solid var(--border-color);

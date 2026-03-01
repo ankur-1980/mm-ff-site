@@ -9,15 +9,15 @@
 }
 
 .stat-value__context {
-  color: var(--champion);
+  color: var(--text-muted);
   font-family: var(--font-ui);
-  font-size: 0.8125rem;
+  font-size: 0.7rem;
   font-weight: 600;
   font-style: italic;
 }
 
 .stat-value__value {
-  color: var(--text-primary);
+  color: var(--champion);
   font-family: var(--font-display);
   font-size: 1.75rem;
   font-weight: 700;
@@ -26,9 +26,9 @@
 }
 
 .stat-value__subscript {
-  color: var(--champion);
+  color: var(--text-muted);
   font-family: var(--font-ui);
-  font-size: 0.8125rem;
+  font-size: 0.7rem;
   font-weight: 600;
   font-style: italic;
 }
