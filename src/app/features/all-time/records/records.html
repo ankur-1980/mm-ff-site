@@ -1,29 +1,28 @@
-@if (championsTimeline().length || seasonHighPointsTimeline().length) {
-  <div class="records__summary">
-    @if (championsTimeline().length) {
-      <app-stat-card title="Champions">
-        <app-stat-list
-          [items]="championRows()"
-          [showWeek]="false"
-          [truncateText]="false"
-        ></app-stat-list>
-      </app-stat-card>
-    }
-
-    @if (seasonHighPointsTimeline().length) {
-      <app-stat-card title="Season High Points" bodyAlign="start">
-        <app-stat-list
-          [items]="seasonHighPointsRows()"
-          [showWeek]="false"
-          [truncateText]="false"
-        ></app-stat-list>
-      </app-stat-card>
-    }
-  </div>
-}
-
+<app-subsection-header title="Records" [isPrimary]="false"></app-subsection-header>
 <app-data-table
   [columns]="tableState().columns"
   [data]="tableState().data"
   defaultSortDirection="desc"
 />
+
+<app-subsection-header
+  class="records__section-header"
+  title="Champions"
+  [isPrimary]="false"
+></app-subsection-header>
+
+@if (championsTimeline().length || seasonHighPointsTimeline().length) {
+  <div class="records__summary">
+    @if (championsTimeline().length) {
+      <app-stat-card title="Champions">
+        <app-stat-list-v3 class="records__highlight-list" [rows]="championRows()" />
+      </app-stat-card>
+    }
+
+    @if (seasonHighPointsTimeline().length) {
+      <app-stat-card title="Season High Points" bodyAlign="start">
+        <app-stat-list-v3 class="records__highlight-list" [rows]="seasonHighPointsRows()" />
+      </app-stat-card>
+    }
+  </div>
+}
