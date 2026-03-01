@@ -3,6 +3,15 @@
   flex-direction: column;
   flex: 1;
   min-width: 0;
+}
+
+.team {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  background: var(--surface);
   text-align: center;
 }
 
@@ -10,46 +19,122 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  padding: 1rem 1rem 0.75rem;
+  gap: 0.2rem;
+  padding: 0.9rem 1rem 0.8rem;
+  background: var(--surface-variant);
 }
 
 .team__name {
-  font-size: 1.125rem;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .team__owner {
-  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
 }
 
 .team__content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
+  justify-content: center;
+  gap: 0.35rem;
   flex: 1;
-  padding: 0.375rem 1rem;
+  padding: 1rem 0.9rem;
 }
 
 .team__points {
-  font-size: 1.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 
+.team--winner .team__points {
+  color: var(--champion);
+}
+
 .team__projected {
-  font-size: 0.8125rem;
+  color: var(--interactive);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .team__footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.375rem 1rem;
-  font-size: 1.125rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.9rem 0.65rem;
+  background: color-mix(in srgb, var(--surface-variant) 72%, var(--surface));
+}
+
+.team__result {
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
   font-weight: 700;
-  min-height: 2.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.team--winner .team__header,
+.team--loser .team__header {
+  background: color-mix(in srgb, var(--interactive) 10%, var(--surface-variant));
+}
+
+.team--winner .team__footer {
+  background: var(--champion-gold);
+}
+
+.team--winner .team__result {
+  color: var(--surface);
+}
+
+.team--loser .team__footer {
+  background: var(--loss);
+}
+
+.team--winner .team__name,
+.team--winner .team__owner,
+.team--loser .team__name,
+.team--loser .team__owner,
+.team--loser .team__result {
+  color: var(--text-primary);
+}
+
+:host ::ng-deep .team__divider {
+  border-top-color: var(--divider);
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .team__header,
+  .team__content,
+  .team__footer {
+    padding-inline: 1.15rem;
+  }
+
+  .team__name {
+    font-size: 1.25rem;
+  }
+
+  .team__points {
+    font-size: 2.35rem;
+  }
 }

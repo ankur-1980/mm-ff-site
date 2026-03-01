@@ -1,15 +1,32 @@
 :host {
   display: block;
+  width: 100%;
   max-width: 36rem;
 }
 
-mat-card {
+.matchup-card {
   padding: 0;
   overflow: hidden;
+  border: 1px solid var(--interactive);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-rest);
 }
 
 .matchup-card__halves {
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  min-height: 100%;
+}
+
+:host ::ng-deep .matchup-card__divider {
+  border-top-color: var(--divider);
+  opacity: 1;
+}
+
+@media (max-width: 599px) {
+  :host {
+    max-width: none;
+  }
 }

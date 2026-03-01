@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="matchup-card">
   <div class="matchup-card__halves">
     <app-matchup-team
       [teamName]="team1().teamName"
@@ -7,7 +7,7 @@
       [projectedPoints]="team1().projectedPoints"
       [result]="team1().result"
     />
-    <mat-divider vertical />
+    <mat-divider class="matchup-card__divider" vertical />
     <app-matchup-team
       [teamName]="team2().teamName"
       [ownerName]="team2().ownerName"
