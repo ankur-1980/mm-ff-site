@@ -134,6 +134,10 @@
   background: var(--loss);
 }
 
+.matchup-card-v2__team--loser .matchup-card-v2__result {
+  color: var(--champion);
+}
+
 @media (max-width: 599px) {
   :host {
     max-width: none;
