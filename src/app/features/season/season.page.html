@@ -1,9 +1,5 @@
 <section class="page-section season-page" aria-labelledby="season-heading">
-  <app-section-header
-    label="Final standings"
-    [heading]="headingLabel()"
-    [meta]="metaItems()"
-  />
+  <app-section-header label="End of Season Stats" [heading]="headingLabel()" [meta]="metaItems()" />
 
   <div class="season-page__toolbar">
     <app-season-selector />
@@ -16,7 +12,8 @@
           routerLinkActive
           #rla="routerLinkActive"
           [active]="rla.isActive"
-        >{{ tab.label }}</a>
+          >{{ tab.label }}</a
+        >
       }
     </nav>
   </div>
