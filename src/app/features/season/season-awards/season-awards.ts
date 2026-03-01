@@ -13,11 +13,6 @@ import { mapTeamNameShort } from '../../../shared/mappers/team-name-short.mapper
 import { SeasonStandingsService } from '../season-standings/season-standings.service';
 import type { SeasonStandingsRow } from '../season-standings/season-standings.models';
 import { AllPlayMatrixService } from '../season-analytics/services/all-play-matrix.service';
-import { StatList, StatListItem } from '../../../shared/components/stat-card/stat-list/stat-list';
-import {
-  StatListV2Component,
-  type StatListV2Row,
-} from '../../../shared/components/stat-card/stat-list-v2/stat-list-v2.component';
 import {
   StatListV3Component,
   type StatListV3Row,
@@ -87,14 +82,7 @@ interface StarterSingleWeekCarry {
 
 @Component({
   selector: 'app-season-awards',
-  imports: [
-    SubsectionHeader,
-    StatCard,
-    StatValue,
-    StatList,
-    StatListV2Component,
-    StatListV3Component,
-  ],
+  imports: [SubsectionHeader, StatCard, StatValue, StatListV3Component],
   templateUrl: './season-awards.html',
   styleUrl: './season-awards.scss',
 })
@@ -515,25 +503,6 @@ export class SeasonAwards {
       .slice(0, 5);
   });
 
-  protected readonly topScoringStarterRows = computed<StatListItem[]>(() =>
-    this.topScoringStarters().map((starter) => ({
-      id: `${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.totalPoints.toFixed(2)}`,
-      value: starter.totalPoints,
-      playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
-      teamName: mapTeamNameShort(starter.teamName),
-    })),
-  );
-
-  protected readonly topScoringStarterRowsV2 = computed<StatListV2Row[]>(() =>
-    this.topScoringStarters().map((starter) => ({
-      id: `${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.totalPoints.toFixed(2)}`,
-      value: starter.totalPoints,
-      primary: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
-      meta: [mapTeamNameShort(starter.teamName)],
-      valueFormat: '2',
-    })),
-  );
-
   protected readonly topScoringStarterRowsV3 = computed<StatListV3Row[]>(() =>
     this.topScoringStarters().map((starter) => ({
       id: `${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.totalPoints.toFixed(2)}`,
@@ -584,29 +553,6 @@ export class SeasonAwards {
       .slice(0, 5);
   });
 
-  protected readonly topSingleGameScoringStarterRows = computed<StatListItem[]>(() =>
-    this.topSingleGameScoringStarters().map((starter) => ({
-      id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.points.toFixed(2)}`,
-      value: starter.points,
-      weekLabel: String(starter.week).padStart(2, '0'),
-      playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
-      teamName: mapTeamNameShort(starter.teamName),
-    })),
-  );
-
-  protected readonly topSingleGameScoringStarterRowsV2 = computed<StatListV2Row[]>(() =>
-    this.topSingleGameScoringStarters().map((starter) => ({
-      id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.points.toFixed(2)}`,
-      value: starter.points,
-      primary: `Week ${String(starter.week).padStart(2, '0')}`,
-      meta: [
-        `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
-        mapTeamNameShort(starter.teamName),
-      ],
-      valueFormat: '2',
-    })),
-  );
-
   protected readonly topSingleGameScoringStarterRowsV3 = computed<StatListV3Row[]>(() =>
     this.topSingleGameScoringStarters().map((starter) => ({
       id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.points.toFixed(2)}`,
@@ -648,15 +594,6 @@ export class SeasonAwards {
       .slice(0, 5);
   });
 
-  protected readonly topSingleGameScoringTeamRows = computed<StatListItem[]>(() =>
-    this.topSingleGameScoringTeams().map((team) => ({
-      id: `${team.week}|${team.teamName}|${team.points.toFixed(2)}`,
-      value: team.points,
-      weekLabel: String(team.week).padStart(2, '0'),
-      teamName: mapTeamNameShort(team.teamName),
-    })),
-  );
-
   protected readonly topSingleGameScoringTeamRowsV3 = computed<StatListV3Row[]>(() =>
     this.topSingleGameScoringTeams().map((team) => ({
       id: `${team.week}|${team.teamName}|${team.points.toFixed(2)}`,
@@ -696,25 +633,6 @@ export class SeasonAwards {
       })
       .slice(0, 5);
   });
-
-  protected readonly topSingleGameLowestScoringTeamRows = computed<StatListItem[]>(() =>
-    this.topSingleGameLowestScoringTeams().map((team) => ({
-      id: `${team.week}|${team.teamName}|${team.points.toFixed(2)}`,
-      value: team.points,
-      weekLabel: String(team.week).padStart(2, '0'),
-      teamName: mapTeamNameShort(team.teamName),
-    })),
-  );
-
-  protected readonly topSingleGameLowestScoringTeamRowsV2 = computed<StatListV2Row[]>(() =>
-    this.topSingleGameLowestScoringTeams().map((team) => ({
-      id: `${team.week}|${team.teamName}|${team.points.toFixed(2)}`,
-      value: team.points,
-      primary: `Week ${String(team.week).padStart(2, '0')}`,
-      meta: [mapTeamNameShort(team.teamName)],
-      valueFormat: '2',
-    })),
-  );
 
   protected readonly topSingleGameLowestScoringTeamRowsV3 = computed<StatListV3Row[]>(() =>
     this.topSingleGameLowestScoringTeams().map((team) => ({
@@ -765,25 +683,6 @@ export class SeasonAwards {
       .slice(0, 5);
   });
 
-  protected readonly topSingleGameBiggestLoserRows = computed<StatListItem[]>(() =>
-    this.topSingleGameBiggestLosers().map((team) => ({
-      id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
-      value: team.diff.toFixed(2),
-      weekLabel: String(team.week).padStart(2, '0'),
-      // teamName: mapTeamNameShort(team.teamName),
-      teamName: team.teamName,
-    })),
-  );
-
-  protected readonly topSingleGameBiggestLoserRowsV2 = computed<StatListV2Row[]>(() =>
-    this.topSingleGameBiggestLosers().map((team) => ({
-      id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
-      value: team.diff.toFixed(2),
-      primary: `Week ${String(team.week).padStart(2, '0')}`,
-      meta: [mapTeamNameShort(team.teamName)],
-    })),
-  );
-
   protected readonly topSingleGameBiggestLoserRowsV3 = computed<StatListV3Row[]>(() =>
     this.topSingleGameBiggestLosers().map((team) => ({
       id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
@@ -832,24 +731,6 @@ export class SeasonAwards {
       })
       .slice(0, 5);
   });
-
-  protected readonly topSingleGameNarrowestVictoryRows = computed<StatListItem[]>(() =>
-    this.topSingleGameNarrowestVictories().map((team) => ({
-      id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
-      value: team.diff.toFixed(2),
-      weekLabel: String(team.week).padStart(2, '0'),
-      teamName: mapTeamNameShort(team.teamName),
-    })),
-  );
-
-  protected readonly topSingleGameNarrowestVictoryRowsV2 = computed<StatListV2Row[]>(() =>
-    this.topSingleGameNarrowestVictories().map((team) => ({
-      id: `${team.week}|${team.teamName}|${team.opponentTeamName}|${team.diff.toFixed(2)}`,
-      value: team.diff.toFixed(2),
-      primary: `Week ${String(team.week).padStart(2, '0')}`,
-      meta: [mapTeamNameShort(team.teamName)],
-    })),
-  );
 
   protected readonly topSingleGameNarrowestVictoryRowsV3 = computed<StatListV3Row[]>(() =>
     this.topSingleGameNarrowestVictories().map((team) => ({
@@ -902,28 +783,6 @@ export class SeasonAwards {
       })
       .slice(0, 5);
   });
-
-  protected readonly topSingleWeekCarryStarterRows = computed<StatListItem[]>(() =>
-    this.topSingleWeekCarryStarters().map((starter) => ({
-      id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.carryPct.toFixed(4)}`,
-      value: `${starter.carryPct.toFixed(1)}%`,
-      weekLabel: String(starter.week).padStart(2, '0'),
-      playerDetails: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
-      teamName: mapTeamNameShort(starter.teamName),
-    })),
-  );
-
-  protected readonly topSingleWeekCarryStarterRowsV2 = computed<StatListV2Row[]>(() =>
-    this.topSingleWeekCarryStarters().map((starter) => ({
-      id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.carryPct.toFixed(4)}`,
-      value: `${starter.carryPct.toFixed(1)}%`,
-      primary: `Week ${String(starter.week).padStart(2, '0')}`,
-      meta: [
-        `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
-        mapTeamNameShort(starter.teamName),
-      ],
-    })),
-  );
 
   protected readonly topSingleWeekCarryStarterRowsV3 = computed<StatListV3Row[]>(() =>
     this.topSingleWeekCarryStarters().map((starter) => ({
