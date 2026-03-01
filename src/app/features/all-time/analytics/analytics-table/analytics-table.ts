@@ -2,18 +2,25 @@ import { Component, computed, inject } from '@angular/core';
 
 import { DataTableComponent } from '../../../../shared/table';
 import type { DataTableColumnDef, DataTableRow } from '../../../../shared/table';
-import { AllTimeAllPlayMatrixService } from '../../all-play/all-play-matrix.service';
 import { SubsectionHeader } from '../../../../shared/components/subsection-header/subsection-header';
+import { AllTimeRecordsService } from '../../records/records.service';
 
 interface AllTimeAnalyticsTableRow extends DataTableRow {
   ownerName: string;
+  totalSeasons: number;
+  wins: number;
   allPlayWins: number;
-  allPlayLosses: number;
+  winPct: number;
   allPlayWinPct: number;
+  avgPointsPerSeason: number;
+  ppgAvg: number;
+  pointsDiff: number;
 }
 
 const ALL_TIME_ANALYTICS_COLUMNS: DataTableColumnDef[] = [
   { key: 'ownerName', header: 'OwnerName', widthCh: 24 },
+  { key: 'totalSeasons', header: 'Seasons', widthCh: 8, format: 'integer' },
+  { key: 'wins', header: 'Wins', widthCh: 12, format: 'integer' },
   {
     key: 'allPlayWins',
     header: 'All Play Wins',
@@ -21,8 +28,11 @@ const ALL_TIME_ANALYTICS_COLUMNS: DataTableColumnDef[] = [
     defaultSort: true,
     format: 'integer',
   },
-  { key: 'allPlayLosses', header: 'All Play Loss', widthCh: 12, format: 'integer' },
+  { key: 'winPct', header: 'Win%', widthCh: 12, format: 'percent2' },
   { key: 'allPlayWinPct', header: 'All Play Win%', widthCh: 12, format: 'percent2' },
+  { key: 'avgPointsPerSeason', header: 'Avg Pts/Season', widthCh: 13, format: 'decimal2' },
+  { key: 'ppgAvg', header: 'Avg PPG', widthCh: 10, format: 'decimal2' },
+  { key: 'pointsDiff', header: 'Points Diff', widthCh: 12, format: 'signedDecimal2' },
 ];
 
 @Component({
@@ -32,30 +42,24 @@ const ALL_TIME_ANALYTICS_COLUMNS: DataTableColumnDef[] = [
   styleUrl: './analytics-table.scss',
 })
 export class AnalyticsTable {
-  private readonly allPlayMatrix = inject(AllTimeAllPlayMatrixService);
-
-  private ownerLabel(value: string): string {
-    const match = value.match(/^(.*)\s\((\d+)\)$/);
-    return match ? match[1] : value;
-  }
+  private readonly allTimeRecords = inject(AllTimeRecordsService);
 
   protected readonly tableState = computed(() => {
-    const matrix = this.allPlayMatrix.buildMatrix();
-    if (!matrix)
+    const records = this.allTimeRecords.toTableState().data;
+    if (!records.length)
       return { columns: ALL_TIME_ANALYTICS_COLUMNS, data: [] as AllTimeAnalyticsTableRow[] };
 
-    const data: AllTimeAnalyticsTableRow[] = matrix.teamNames.map((ownerDisplay) => {
-      const total = matrix.getTotalRecord(ownerDisplay);
-      const totalGames = total.wins + total.losses + total.ties;
-      const winPct = totalGames > 0 ? ((total.wins + 0.5 * total.ties) / totalGames) * 100 : 0;
-
-      return {
-        ownerName: this.ownerLabel(ownerDisplay),
-        allPlayWins: total.wins,
-        allPlayLosses: total.losses,
-        allPlayWinPct: winPct,
-      };
-    });
+    const data: AllTimeAnalyticsTableRow[] = records.map((row) => ({
+      ownerName: row.ownerName,
+      totalSeasons: row.totalSeasons,
+      wins: row.wins,
+      allPlayWins: row.allPlayWins,
+      winPct: row.winPct,
+      allPlayWinPct: row.allPlayWinPct,
+      avgPointsPerSeason: row.avgPointsPerSeason,
+      ppgAvg: row.ppgAvg,
+      pointsDiff: row.pointsDiff,
+    }));
 
     return { columns: ALL_TIME_ANALYTICS_COLUMNS, data };
   });
