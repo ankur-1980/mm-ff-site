@@ -1,4 +1,4 @@
-<div class="home__block">
+<div class="season-standings__honors">
   @if (championHonorData(); as champion) {
     <app-honor-banner [honor]="champion" />
   }
@@ -12,11 +12,11 @@
       [honor]="highScore"
       [footerText]="highScoreFooterText()"
       title="Season High Score"
-      iconValue="score"
+      iconValue="crown"
     />
   }
 </div>
 
-<div class="home__block">
+<div class="season-standings__table">
   <app-data-table [columns]="tableState().columns" [data]="tableState().data" />
 </div>

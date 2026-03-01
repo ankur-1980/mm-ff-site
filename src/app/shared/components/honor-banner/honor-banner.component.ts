@@ -33,6 +33,7 @@ export class HonorBannerComponent {
   private readonly sanitizer = inject(DomSanitizer);
   private readonly ownersData = inject(OwnersDataService);
   private readonly seasonStandingsData = inject(SeasonStandingsDataService);
+  private readonly svgIconNames = new Set(['toilet', 'crown']);
 
   readonly honor = input.required<HonorBannerData>();
   readonly title = input<string>('');
@@ -80,11 +81,14 @@ export class HonorBannerComponent {
       return baseConfig;
     }
 
+    const resolvedIconValue = this.iconValue() || baseConfig.iconValue;
+
     return {
       ...baseConfig,
       headerTitle: this.title() || baseConfig.headerTitle,
       labelText: this.label() ?? baseConfig.labelText,
-      iconValue: this.iconValue() || baseConfig.iconValue,
+      iconKind: this.svgIconNames.has(resolvedIconValue) ? 'image' : baseConfig.iconKind,
+      iconValue: resolvedIconValue,
       showMatchup: this.showMatchup(),
     };
   });
@@ -117,6 +121,10 @@ export class HonorBannerComponent {
     this.matIconRegistry.addSvgIcon(
       'toilet',
       this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/toilet.svg'),
+    );
+    this.matIconRegistry.addSvgIcon(
+      'crown',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/crown.svg'),
     );
   }
 
