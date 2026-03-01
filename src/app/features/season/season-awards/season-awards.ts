@@ -14,6 +14,10 @@ import { SeasonStandingsService } from '../season-standings/season-standings.ser
 import type { SeasonStandingsRow } from '../season-standings/season-standings.models';
 import { AllPlayMatrixService } from '../season-analytics/services/all-play-matrix.service';
 import { StatList, StatListItem } from '../../../shared/components/stat-card/stat-list/stat-list';
+import {
+  StatListV2Component,
+  type StatListV2Row,
+} from '../../../shared/components/stat-card/stat-list-v2/stat-list-v2.component';
 
 const EPSILON = 0.000001;
 
@@ -79,7 +83,7 @@ interface StarterSingleWeekCarry {
 
 @Component({
   selector: 'app-season-awards',
-  imports: [SubsectionHeader, StatCard, StatValue, StatList],
+  imports: [SubsectionHeader, StatCard, StatValue, StatList, StatListV2Component],
   templateUrl: './season-awards.html',
   styleUrl: './season-awards.scss',
 })
@@ -597,6 +601,16 @@ export class SeasonAwards {
       value: team.points,
       weekLabel: String(team.week).padStart(2, '0'),
       teamName: mapTeamNameShort(team.teamName),
+    })),
+  );
+
+  protected readonly topSingleGameScoringTeamRowsV2 = computed<StatListV2Row[]>(() =>
+    this.topSingleGameScoringTeams().map((team) => ({
+      id: `${team.week}|${team.teamName}|${team.points.toFixed(2)}`,
+      value: team.points,
+      primary: `Week ${String(team.week).padStart(2, '0')}`,
+      meta: [mapTeamNameShort(team.teamName)],
+      valueFormat: '2',
     })),
   );
 

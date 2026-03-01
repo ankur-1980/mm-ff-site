@@ -2,7 +2,13 @@
   @for (row of normalizedRows(); track trackRow($index, row)) {
     <div class="stat-list-v2__row">
       <div class="stat-list-v2__left-group">
-        <span class="stat-list-v2__value">{{ row.formattedValue }}</span>
+        <span class="stat-list-v2__value">
+          @if (typeof row.value === 'number') {
+            {{ row.value | number: resolveDigitsInfo(row) }}
+          } @else {
+            {{ row.value }}
+          }
+        </span>
         <span class="stat-list-v2__primary">{{ row.primary }}</span>
       </div>
 

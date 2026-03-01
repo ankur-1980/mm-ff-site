@@ -1,5 +1,5 @@
 import { DecimalPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 export type StatListV2ValueFormat = 'auto' | '0' | '2';
 
@@ -26,8 +26,6 @@ export type StatListV2Row = {
   },
 })
 export class StatListV2Component {
-  private readonly decimalPipe = inject(DecimalPipe);
-
   readonly rows = input.required<StatListV2Row[]>();
   readonly width = input<'sm' | 'lg'>('sm');
   readonly density = input<'sm' | 'md'>('md');
@@ -37,22 +35,11 @@ export class StatListV2Component {
     this.rows().map((row) => ({
       ...row,
       meta: row.meta ?? [],
-      formattedValue: this.formatValue(row),
     })),
   );
 
   // How to add new row shapes:
   // callers create `primary` + `meta[]` in the desired order; the template stays unchanged.
-  protected formatValue(row: StatListV2Row): string {
-    if (typeof row.value === 'string') {
-      return row.value;
-    }
-
-    const format = row.valueFormat ?? this.defaultValueFormat();
-    const digits = this.resolveDigitsInfo(format, row.value);
-    return this.decimalPipe.transform(row.value, digits) ?? String(row.value);
-  }
-
   protected trackRow(index: number, row: StatListV2Row): string | number {
     return row.id ?? index;
   }
@@ -61,7 +48,9 @@ export class StatListV2Component {
     return index;
   }
 
-  private resolveDigitsInfo(format: StatListV2ValueFormat, value: number): string {
+  protected resolveDigitsInfo(row: StatListV2Row): string {
+    const format = row.valueFormat ?? this.defaultValueFormat();
+
     if (format === '2') {
       return '1.2-2';
     }
@@ -70,6 +59,6 @@ export class StatListV2Component {
       return '1.0-0';
     }
 
-    return Number.isInteger(value) ? '1.0-0' : '1.2-2';
+    return typeof row.value === 'number' && Number.isInteger(row.value) ? '1.0-0' : '1.2-2';
   }
 }

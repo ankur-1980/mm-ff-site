@@ -106,6 +106,16 @@
     @if (bestRecordAward()) {
       @if (topSingleGameScoringTeams().length) {
         <app-stat-card
+          title="Highest Scoring Team (SINGLE Game)"
+          subtitle="Best one-week team scores"
+          bodyAlign="start"
+        >
+          <app-stat-list-v2 [rows]="topSingleGameScoringTeamRowsV2()" />
+        </app-stat-card>
+      }
+
+      @if (topSingleGameScoringTeams().length) {
+        <app-stat-card
           title="Highest Scoring Teams (Single Game)"
           subtitle="Best one-week team scores"
         >
