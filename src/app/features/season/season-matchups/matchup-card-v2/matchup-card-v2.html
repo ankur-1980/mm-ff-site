@@ -1,0 +1,61 @@
+<mat-card class="matchup-card-v2">
+  <div class="matchup-card-v2__layout">
+    <section
+      class="matchup-card-v2__team"
+      [class.matchup-card-v2__team--winner]="team1().result === 'winner'"
+      [class.matchup-card-v2__team--loser]="team1().result === 'loser'"
+      aria-label="First team matchup result"
+    >
+      <header class="matchup-card-v2__band matchup-card-v2__band--header">
+        <p class="matchup-card-v2__team-name">{{ team1().teamName }}</p>
+        <p class="matchup-card-v2__owner-name">{{ team1().ownerName }}</p>
+      </header>
+
+      <div class="matchup-card-v2__score-block">
+        <p class="matchup-card-v2__score">{{ team1().totalPoints | number: '1.2-2' }}</p>
+        @if (team1().projectedPoints != null) {
+          <p class="matchup-card-v2__projection">
+            {{ team1().projectedPoints | number: '1.2-2' }} proj
+          </p>
+        }
+      </div>
+
+      <footer class="matchup-card-v2__band matchup-card-v2__band--footer">
+        @if (team1().result === 'winner') {
+          <p class="matchup-card-v2__result">Winner</p>
+        } @else if (team1().result === 'loser') {
+          <p class="matchup-card-v2__result">Loser</p>
+        }
+      </footer>
+    </section>
+
+    <section
+      class="matchup-card-v2__team"
+      [class.matchup-card-v2__team--winner]="team2().result === 'winner'"
+      [class.matchup-card-v2__team--loser]="team2().result === 'loser'"
+      aria-label="Second team matchup result"
+    >
+      <header class="matchup-card-v2__band matchup-card-v2__band--header">
+        <p class="matchup-card-v2__team-name">{{ team2().teamName }}</p>
+        <p class="matchup-card-v2__owner-name">{{ team2().ownerName }}</p>
+      </header>
+
+      <div class="matchup-card-v2__score-block">
+        <p class="matchup-card-v2__score">{{ team2().totalPoints | number: '1.2-2' }}</p>
+        @if (team2().projectedPoints != null) {
+          <p class="matchup-card-v2__projection">
+            {{ team2().projectedPoints | number: '1.2-2' }} proj
+          </p>
+        }
+      </div>
+
+      <footer class="matchup-card-v2__band matchup-card-v2__band--footer">
+        @if (team2().result === 'winner') {
+          <p class="matchup-card-v2__result">Winner</p>
+        } @else if (team2().result === 'loser') {
+          <p class="matchup-card-v2__result">Loser</p>
+        }
+      </footer>
+    </section>
+  </div>
+</mat-card>

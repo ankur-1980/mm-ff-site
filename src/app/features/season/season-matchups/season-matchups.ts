@@ -10,7 +10,7 @@ import { LeagueMetaDataService } from '../../../data/league-metadata.service';
 import { SubsectionHeader } from '../../../shared/components/subsection-header/subsection-header';
 import { AllPlayRankings } from './all-play-rankings/all-play-rankings';
 import { MatchupAwards } from './matchup-awards/matchup-awards';
-import { MatchupCard } from './matchup-card/matchup-card';
+import { MatchupCardV2 } from './matchup-card-v2/matchup-card-v2';
 import { SeasonMatchupsService } from './season-matchups.service';
 import { WeeklyStatsService } from './weekly-stats.service';
 
@@ -22,7 +22,7 @@ export interface WeekItem {
 
 @Component({
   selector: 'app-season-matchups',
-  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTabsModule, MatchupCard, MatchupAwards, AllPlayRankings, SubsectionHeader],
+  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatTabsModule, MatchupCardV2, MatchupAwards, AllPlayRankings, SubsectionHeader],
   templateUrl: './season-matchups.html',
   styleUrl: './season-matchups.scss',
 })
