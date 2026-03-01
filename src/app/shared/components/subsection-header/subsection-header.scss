@@ -23,12 +23,16 @@
 }
 
 .subsection-header--primary {
-  color: var(--champion);
+  color: var(--text-primary);
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+.subsection-header--primary .subsection-header__line {
+  background: color-mix(in srgb, var(--surface-variant) 92%, transparent);
 }
 
 .subsection-header--secondary {
@@ -37,6 +41,10 @@
   font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: 0.04em;
+}
+
+.subsection-header--secondary .subsection-header__line {
+  background: color-mix(in srgb, var(--interactive) 82%, transparent);
 }
 
 @media (min-width: 48rem) {

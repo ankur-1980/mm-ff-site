@@ -32,7 +32,7 @@
   }
 
   <section class="home__block">
-    <h3 class="home__section-heading">Legendary Moments</h3>
+    <app-subsection-header title="Legendary Moments" [isPrimary]="true" />
     <div class="home__legendary-grid">
       @if (legendaryMostWins(); as mostWins) {
         <app-stat-card

@@ -8,13 +8,14 @@ import { WeeklyMatchupsDataService } from '../../data/weekly-matchups-data.servi
 import { HonorBannerComponent } from '../../shared/components/honor-banner/honor-banner.component';
 import { StatCard } from '../../shared/components/stat-card/stat-card';
 import { StatValue } from '../../shared/components/stat-card/stat-value/stat-value';
+import { SubsectionHeader } from '../../shared/components/subsection-header/subsection-header';
 import { SeasonBannerService } from '../season/season-standings/season-banner.service';
 import { AllTimeRecordsService } from '../all-time/records/records.service';
 import { HeroComponent } from './hero/hero.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [HeroComponent, HonorBannerComponent, StatCard, StatValue],
+  imports: [HeroComponent, HonorBannerComponent, StatCard, StatValue, SubsectionHeader],
   templateUrl: './home.page.html',
   styleUrl: './home.page.scss',
 })
