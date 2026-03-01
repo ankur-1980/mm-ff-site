@@ -14,10 +14,15 @@ export type StatListV3Row = {
   templateUrl: './stat-list-v3.component.html',
   styleUrl: './stat-list-v3.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'stat-list-v3-host',
+    '[class.stat-list-v3-host--stacked-meta]': 'layout() === "stackedMeta"',
+  },
 })
 export class StatListV3Component {
   // Phase 1 builds only [VALUE PRIMARY][META-1]; future phases add configs and additional metas.
   readonly rows = input.required<StatListV3Row[]>();
+  readonly layout = input<'base' | 'stackedMeta'>('base');
 
   protected trackRow(index: number, row: StatListV3Row): string | number {
     return row.id ?? index;

@@ -102,6 +102,16 @@
           <app-stat-list-v3 [rows]="topSingleGameScoringTeamRowsV3()" />
         </app-stat-card>
       }
+
+      @if (topScoringStarters().length) {
+        <app-stat-card
+          title="Highest Scoring Starter"
+          subtitle="Points Player Team"
+          bodyAlign="start"
+        >
+          <app-stat-list-v3 [rows]="topScoringStarterRowsV3()" layout="stackedMeta" />
+        </app-stat-card>
+      }
     }
   </div>
 </section>
@@ -143,17 +153,7 @@
           />
         </app-stat-card>
       } -->
-
-      @if (topScoringStarters().length) {
-        <app-stat-card
-          title="Highest Scoring Starter"
-          subtitle="Points Player Team"
-          bodyAlign="start"
-        >
-          <app-stat-list-v2 [rows]="topScoringStarterRowsV2()" />
-        </app-stat-card>
-      }
-
+      <!--
       @if (topSingleGameScoringStarters().length) {
         <app-stat-card
           title="Highest Scoring Starter (SINGLE Game)"
@@ -162,7 +162,7 @@
         >
           <app-stat-list-v2 [rows]="topSingleGameScoringStarterRowsV2()" />
         </app-stat-card>
-      }
+      } -->
 
       @if (topSingleWeekCarryStarters().length) {
         <app-stat-card title="Single Week Carry" subtitle="Pct Week Player Team" bodyAlign="start">

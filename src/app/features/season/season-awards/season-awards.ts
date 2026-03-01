@@ -527,6 +527,15 @@ export class SeasonAwards {
     })),
   );
 
+  protected readonly topScoringStarterRowsV3 = computed<StatListV3Row[]>(() =>
+    this.topScoringStarters().map((starter) => ({
+      id: `${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.totalPoints.toFixed(2)}`,
+      value: starter.totalPoints,
+      primary: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
+      meta1: mapTeamNameShort(starter.teamName),
+    })),
+  );
+
   protected readonly topSingleGameScoringStarters = computed<StarterGameScore[]>(() => {
     const y = this.year();
     const meta = this.seasonMeta();
