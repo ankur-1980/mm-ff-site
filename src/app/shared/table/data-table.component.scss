@@ -65,10 +65,6 @@ tr[mat-row]:hover td {
   background: var(--hover-tint);
 }
 
-tr[mat-row]:hover td.data-table__cell--accent {
-  background: var(--interactive);
-}
-
 .data-table__header--right,
 .data-table__cell--right {
   text-align: right;
