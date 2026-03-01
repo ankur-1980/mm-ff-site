@@ -13,6 +13,9 @@
       </div>
 
       <span class="stat-list-v3__meta1">{{ row.meta1 }}</span>
+      @if (layout() === 'splitMeta' && row.meta2) {
+        <span class="stat-list-v3__meta2">{{ row.meta2 }}</span>
+      }
     </div>
   }
 </div>

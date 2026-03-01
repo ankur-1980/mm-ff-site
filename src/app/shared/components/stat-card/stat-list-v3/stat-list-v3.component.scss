@@ -5,20 +5,20 @@
   --stat-list-v3-inline-gap: 0.65rem;
   --stat-list-v3-column-gap: 0.75rem;
   --stat-list-v3-stacked-row-gap: 0.1rem;
+  --stat-list-v3-split-row-gap: 0.1rem;
   --stat-list-v3-row-gap: 0.4rem;
   --stat-list-v3-padding-block-start: 0.5rem;
   --stat-list-v3-padding-inline: 1rem;
   --stat-list-v3-padding-block-end: 0.75rem;
   --stat-list-v3-value-width: 4.5rem;
+  --stat-list-v3-meta2-width: 8.5rem;
 }
 
 .stat-list-v3 {
   display: grid;
   width: 100%;
   margin-inline: auto;
-  padding:
-    var(--stat-list-v3-padding-block-start)
-    var(--stat-list-v3-padding-inline)
+  padding: var(--stat-list-v3-padding-block-start) var(--stat-list-v3-padding-inline)
     var(--stat-list-v3-padding-block-end);
   gap: var(--stat-list-v3-row-gap);
 }
@@ -50,7 +50,8 @@
 }
 
 .stat-list-v3__primary,
-.stat-list-v3__meta1 {
+.stat-list-v3__meta1,
+.stat-list-v3__meta2 {
   color: var(--text-primary);
   font-family: var(--font-ui);
   font-size: 0.8rem;
@@ -65,6 +66,11 @@
 }
 
 .stat-list-v3__meta1 {
+  font-style: italic;
+  text-align: left;
+}
+
+.stat-list-v3__meta2 {
   text-align: left;
 }
 
@@ -91,4 +97,38 @@
 
 :host(.stat-list-v3-host--stacked-meta) .stat-list-v3__meta1 {
   grid-area: meta1;
+}
+
+:host(.stat-list-v3-host--split-meta) .stat-list-v3__row {
+  grid-template-columns: var(--stat-list-v3-value-width) minmax(0, 1fr) var(
+      --stat-list-v3-meta2-width
+    );
+  column-gap: var(--stat-list-v3-inline-gap);
+  row-gap: var(--stat-list-v3-split-row-gap);
+  grid-template-areas:
+    'value primary primary'
+    'meta1 meta2 meta2';
+}
+
+:host(.stat-list-v3-host--split-meta) .stat-list-v3__left {
+  display: contents;
+}
+
+:host(.stat-list-v3-host--split-meta) .stat-list-v3__value {
+  grid-area: value;
+}
+
+:host(.stat-list-v3-host--split-meta) .stat-list-v3__primary {
+  grid-area: primary;
+}
+
+:host(.stat-list-v3-host--split-meta) .stat-list-v3__meta1 {
+  grid-area: meta1;
+  font-style: normal;
+  text-align: right;
+}
+
+:host(.stat-list-v3-host--split-meta) .stat-list-v3__meta2 {
+  grid-area: meta2;
+  font-style: italic;
 }

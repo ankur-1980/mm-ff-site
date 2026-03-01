@@ -112,6 +112,12 @@
           <app-stat-list-v3 [rows]="topScoringStarterRowsV3()" layout="stackedMeta" />
         </app-stat-card>
       }
+
+      @if (topSingleWeekCarryStarters().length) {
+        <app-stat-card title="Single Week Carry" subtitle="Pct Week Player Team" bodyAlign="start">
+          <app-stat-list-v3 [rows]="topSingleWeekCarryStarterRowsV3()" layout="splitMeta" />
+        </app-stat-card>
+      }
     }
   </div>
 </section>
@@ -164,11 +170,6 @@
         </app-stat-card>
       } -->
 
-      @if (topSingleWeekCarryStarters().length) {
-        <app-stat-card title="Single Week Carry" subtitle="Pct Week Player Team" bodyAlign="start">
-          <app-stat-list-v2 [rows]="topSingleWeekCarryStarterRowsV2()" />
-        </app-stat-card>
-      }
     }
   </div>
 </section>

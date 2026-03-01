@@ -879,4 +879,14 @@ export class SeasonAwards {
       ],
     })),
   );
+
+  protected readonly topSingleWeekCarryStarterRowsV3 = computed<StatListV3Row[]>(() =>
+    this.topSingleWeekCarryStarters().map((starter) => ({
+      id: `${starter.week}|${starter.playerName}|${starter.position}|${starter.nflTeam}|${starter.teamName}|${starter.carryPct.toFixed(4)}`,
+      value: `${starter.carryPct.toFixed(1)}%`,
+      primary: `${starter.playerName} (${starter.position} - ${starter.nflTeam})`,
+      meta1: `Week ${String(starter.week).padStart(2, '0')}`,
+      meta2: starter.teamName,
+    })),
+  );
 }

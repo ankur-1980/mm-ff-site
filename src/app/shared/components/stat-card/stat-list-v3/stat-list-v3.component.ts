@@ -6,6 +6,7 @@ export type StatListV3Row = {
   value: number | string;
   primary: string;
   meta1: string;
+  meta2?: string;
 };
 
 @Component({
@@ -17,12 +18,13 @@ export type StatListV3Row = {
   host: {
     'class': 'stat-list-v3-host',
     '[class.stat-list-v3-host--stacked-meta]': 'layout() === "stackedMeta"',
+    '[class.stat-list-v3-host--split-meta]': 'layout() === "splitMeta"',
   },
 })
 export class StatListV3Component {
-  // Phase 1 builds only [VALUE PRIMARY][META-1]; future phases add configs and additional metas.
+  // Base rows use [VALUE PRIMARY][META-1]; layout variants can remap placement and optionally render META-2.
   readonly rows = input.required<StatListV3Row[]>();
-  readonly layout = input<'base' | 'stackedMeta'>('base');
+  readonly layout = input<'base' | 'stackedMeta' | 'splitMeta'>('base');
 
   protected trackRow(index: number, row: StatListV3Row): string | number {
     return row.id ?? index;
