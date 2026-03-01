@@ -1,15 +1,15 @@
 <section class="head-to-head" aria-label="All-time head-to-head">
-  <h2 class="head-to-head__heading">Head-To-Head</h2>
-  <p class="head-to-head__note">
-    Regular season only. Includes only seasons with usable weekly matchup data.
-  </p>
-
+  <app-subsection-header title="Head-To-Head Matrix" [isPrimary]="false"></app-subsection-header>
   @let data = matrix();
   @if (data) {
     <section class="head-to-head-matrix" aria-label="Head-to-head matrix">
+      <p class="head-to-head-matrix__meta">
+        Based on {{ data.weeksCount }}-ish regular season weeks. Includes only seasons with usable
+        weekly matchup data.
+      </p>
       <p class="head-to-head-matrix__intro">
-        Actual regular-season matchups only. Row = owner; column = opponent. Cell = W-L-T from
-        the row owner's perspective.
+        Actual regular-season matchups only. Row = owner; column = opponent. Cell = W-L-T from the
+        row owner's perspective.
       </p>
 
       <div class="head-to-head-matrix__scroll">
@@ -18,7 +18,10 @@
             <tr>
               <th class="head-to-head-matrix__cell head-to-head-matrix__cell--corner"></th>
               @for (owner of data.teamNames; track owner) {
-                <th class="head-to-head-matrix__cell head-to-head-matrix__cell--header" [title]="owner">
+                <th
+                  class="head-to-head-matrix__cell head-to-head-matrix__cell--header"
+                  [title]="owner"
+                >
                   {{ owner }}
                 </th>
               }
@@ -67,12 +70,15 @@
           </tbody>
         </table>
       </div>
-
-      <p class="head-to-head-matrix__meta">Based on {{ data.weeksCount }} regular-season weeks.</p>
     </section>
 
-    <h3 class="head-to-head__table-heading">Head-To-Head Summary</h3>
+    <app-subsection-header
+      class="head-to-head__summary-header"
+      title="Head-To-Head Summary"
+      [isPrimary]="false"
+    ></app-subsection-header>
     <app-data-table
+      class="head-to-head__summary-table"
       [columns]="summaryTableState().columns"
       [data]="summaryTableState().data"
       defaultSortDirection="desc"

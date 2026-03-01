@@ -2,50 +2,63 @@
   display: block;
 }
 
-.head-to-head__heading {
-  margin: 0 0 0.5rem;
-  font-size: 1.125rem;
-  font-weight: 600;
-}
-
 .head-to-head__note,
 .head-to-head__empty,
 .head-to-head-matrix__intro,
 .head-to-head-matrix__meta {
   margin: 0 0 1rem;
   font-size: 0.875rem;
-  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  line-height: 1.4;
+}
+
+.head-to-head__note {
+  margin-top: 0.75rem;
+}
+
+.head-to-head__empty {
+  font-style: italic;
 }
 
 .head-to-head-matrix__scroll {
   overflow-x: auto;
   overflow-y: visible;
-  margin-bottom: 0.5rem;
-  border: 1px solid var(--mat-divider-color, rgba(0, 0, 0, 0.12));
-  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-rest);
 }
 
 .head-to-head-matrix__table {
   width: max-content;
   min-width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
   font-size: 0.875rem;
 }
 
 .head-to-head-matrix__cell {
-  padding: 0.5rem 0.6rem;
+  padding: 0.65rem 0.8rem;
   text-align: center;
   white-space: nowrap;
-  border: 1px solid var(--mat-divider-color, rgba(0, 0, 0, 0.12));
+  border-right: 1px solid var(--loss-surface-variant);
+  border-bottom: 1px solid var(--loss-surface-variant);
 
   &--corner {
-    background: var(--mat-app-background-color, #fafafa);
+    background: var(--surface-variant);
     min-width: 0;
   }
 
   &--header {
     font-weight: 600;
-    background: var(--mat-app-background-color, #fafafa);
+    background: var(--surface-variant);
+    color: var(--text-primary);
+    border-bottom-color: var(--loss);
     max-width: 10rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -56,43 +69,67 @@
     text-align: left;
     position: sticky;
     left: 0;
-    background: var(--mat-app-background-color, #fff);
-    z-index: 1;
+    background: var(--surface);
+    color: var(--text-primary);
+    border-right-color: var(--loss);
+    z-index: 2;
     max-width: 10rem;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   &--data {
+    background: var(--surface);
+    color: var(--text-primary);
     font-variant-numeric: tabular-nums;
   }
 }
 
+.head-to-head-matrix__table thead .head-to-head-matrix__cell:first-child {
+  border-top-left-radius: calc(var(--radius-md) - 1px);
+}
+
+.head-to-head-matrix__table thead .head-to-head-matrix__cell:last-child {
+  border-top-right-radius: calc(var(--radius-md) - 1px);
+  border-right: 0;
+}
+
+.head-to-head-matrix__table .head-to-head-matrix__cell:last-child {
+  border-right: 0;
+}
+
+.head-to-head-matrix__table tbody tr:last-child .head-to-head-matrix__cell {
+  border-bottom: 0;
+}
+
 tbody tr:hover .head-to-head-matrix__cell--row-header {
-  background: var(--mat-row-hover-state-layer-color, rgba(0, 0, 0, 0.04));
+  background: var(--loss-light-tint);
 }
 
 tbody tr:hover .head-to-head-matrix__cell--data {
-  background: var(--mat-row-hover-state-layer-color, rgba(0, 0, 0, 0.04));
+  background: var(--loss-light-tint);
 }
 
 .head-to-head-matrix__cell--diagonal {
-  opacity: 0.5;
-  background: var(--mat-app-background-color, #f5f5f5);
+  background: var(--loss-light-tint);
+  color: var(--loss);
 }
 
 .head-to-head-matrix__cell--total-header {
   font-weight: 700;
-  background: var(--mat-app-background-color, #eee);
+  background: color-mix(in srgb, var(--surface-variant) 72%, var(--interactive) 28%);
 }
 
 .head-to-head-matrix__cell--total {
   font-weight: 600;
-  background: var(--mat-app-background-color, #f5f5f5);
+  background: color-mix(in srgb, var(--surface) 86%, var(--surface-variant) 14%);
 }
 
-.head-to-head__table-heading {
-  margin: 1rem 0 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
+.head-to-head__summary-header {
+  display: block;
+  margin: 1rem 0 0.75rem;
+}
+
+.head-to-head__summary-table {
+  margin-inline: auto;
 }
