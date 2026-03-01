@@ -2,7 +2,7 @@
 export const SEASON_ANALYTICS_CHART_THEME = {
   chartBackground: '#c7d3e3',
   axisText: '#003049',
-  grid: 'rgba(255, 255, 255, 0.06)',
+  grid: 'rgba(47, 64, 92, 0.18)',
   primary: '#669bbc',
   primaryFill: '#669bbc2e',
   loss: '#780000',

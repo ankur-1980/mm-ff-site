@@ -73,10 +73,13 @@ export class AnalyticsTeamHighLowPoints {
           label: 'Season Low',
           data: result.points.map((point) => point.minPoints),
           showLine: false,
+          borderColor: SEASON_ANALYTICS_CHART_THEME.loss,
+          backgroundColor: SEASON_ANALYTICS_CHART_THEME.lossFill,
           pointRadius: 6,
           pointHoverRadius: 8,
           pointBackgroundColor: SEASON_ANALYTICS_CHART_THEME.lossFill,
           pointBorderColor: SEASON_ANALYTICS_CHART_THEME.loss,
+          pointStyle: 'circle',
           order: 2,
         },
         {
@@ -84,10 +87,13 @@ export class AnalyticsTeamHighLowPoints {
           label: 'Season High',
           data: result.points.map((point) => point.maxPoints),
           showLine: false,
+          borderColor: SEASON_ANALYTICS_CHART_THEME.primary,
+          backgroundColor: SEASON_ANALYTICS_CHART_THEME.primaryFill,
           pointRadius: 6,
           pointHoverRadius: 8,
           pointBackgroundColor: SEASON_ANALYTICS_CHART_THEME.primaryFill,
           pointBorderColor: SEASON_ANALYTICS_CHART_THEME.primary,
+          pointStyle: 'circle',
           order: 3,
         },
       ],
@@ -103,7 +109,10 @@ export class AnalyticsTeamHighLowPoints {
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          labels: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          labels: {
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+            usePointStyle: true,
+          },
         },
         tooltip: {
           callbacks: {
@@ -128,6 +137,7 @@ export class AnalyticsTeamHighLowPoints {
       scales: {
         x: {
           type: 'category',
+          offset: true,
           title: {
             display: true,
             text: 'Team',

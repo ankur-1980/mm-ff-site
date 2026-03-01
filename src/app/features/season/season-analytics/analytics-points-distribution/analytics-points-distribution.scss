@@ -16,6 +16,8 @@
   grid-template-rows: auto 1fr;
   gap: 0.25rem 1rem;
   min-height: 320px;
+  margin-inline: auto;
+  width: min(100%, 900px);
   padding: 0.75rem;
   border-radius: var(--radius-md);
   background: var(--text-card);
