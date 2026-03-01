@@ -96,7 +96,13 @@
 
 <section class="season-awards__section">
   <div class="season-awards__grid">
-    @if (bestRecordAward()) {}
+    @if (bestRecordAward()) {
+      @if (topSingleGameScoringTeams().length) {
+        <app-stat-card title="Highest Scoring Team (SINGLE Game)" bodyAlign="start">
+          <app-stat-list-v3 [rows]="topSingleGameScoringTeamRowsV3()" />
+        </app-stat-card>
+      }
+    }
   </div>
 </section>
 
@@ -104,17 +110,7 @@
   <app-subsection-header title="Top 5s" />
   <div class="season-awards__grid">
     @if (bestRecordAward()) {
-      @if (topSingleGameScoringTeams().length) {
-        <app-stat-card title="Highest Scoring Team (SINGLE Game)" bodyAlign="start">
-          <app-stat-list-v2
-            [rows]="topSingleGameScoringTeamRowsV2()"
-            density="sm"
-            mobileLayout="inline"
-          />
-        </app-stat-card>
-      }
-
-      @if (topSingleGameLowestScoringTeams().length) {
+      <!-- @if (topSingleGameLowestScoringTeams().length) {
         <app-stat-card title="Lowest Scoring Team (SINGLE Game)" bodyAlign="start">
           <app-stat-list-v2
             [rows]="topSingleGameLowestScoringTeamRowsV2()"
@@ -122,9 +118,9 @@
             mobileLayout="inline"
           />
         </app-stat-card>
-      }
+      } -->
 
-      @if (topSingleGameBiggestLosers().length) {
+      <!-- @if (topSingleGameBiggestLosers().length) {
         <app-stat-card title="Biggest Loser (SINGLE Game)" bodyAlign="start">
           <app-stat-list-v2
             [rows]="topSingleGameBiggestLoserRowsV2()"
@@ -132,9 +128,9 @@
             mobileLayout="inline"
           />
         </app-stat-card>
-      }
+      } -->
 
-      @if (topSingleGameNarrowestVictories().length) {
+      <!-- @if (topSingleGameNarrowestVictories().length) {
         <app-stat-card
           title="Narrowest Victory (SINGLE Game)"
           subtitle="Diff Week TeamName"
@@ -146,7 +142,7 @@
             mobileLayout="inline"
           />
         </app-stat-card>
-      }
+      } -->
 
       @if (topScoringStarters().length) {
         <app-stat-card

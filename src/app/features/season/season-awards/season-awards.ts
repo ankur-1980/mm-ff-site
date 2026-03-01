@@ -18,6 +18,10 @@ import {
   StatListV2Component,
   type StatListV2Row,
 } from '../../../shared/components/stat-card/stat-list-v2/stat-list-v2.component';
+import {
+  StatListV3Component,
+  type StatListV3Row,
+} from '../../../shared/components/stat-card/stat-list-v3/stat-list-v3.component';
 
 const EPSILON = 0.000001;
 
@@ -83,7 +87,7 @@ interface StarterSingleWeekCarry {
 
 @Component({
   selector: 'app-season-awards',
-  imports: [SubsectionHeader, StatCard, StatValue, StatList, StatListV2Component],
+  imports: [SubsectionHeader, StatCard, StatValue, StatList, StatListV2Component, StatListV3Component],
   templateUrl: './season-awards.html',
   styleUrl: './season-awards.scss',
 })
@@ -627,13 +631,12 @@ export class SeasonAwards {
     })),
   );
 
-  protected readonly topSingleGameScoringTeamRowsV2 = computed<StatListV2Row[]>(() =>
+  protected readonly topSingleGameScoringTeamRowsV3 = computed<StatListV3Row[]>(() =>
     this.topSingleGameScoringTeams().map((team) => ({
       id: `${team.week}|${team.teamName}|${team.points.toFixed(2)}`,
       value: team.points,
       primary: `Week ${String(team.week).padStart(2, '0')}`,
-      meta: [mapTeamNameShort(team.teamName)],
-      valueFormat: '2',
+      meta1: mapTeamNameShort(team.teamName),
     })),
   );
 

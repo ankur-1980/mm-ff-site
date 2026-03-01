@@ -1,0 +1,18 @@
+<div class="stat-list-v3">
+  @for (row of rows(); track trackRow($index, row)) {
+    <div class="stat-list-v3__row">
+      <div class="stat-list-v3__left">
+        <span class="stat-list-v3__value">
+          @if (typeof row.value === 'number') {
+            {{ row.value | number: resolveDigitsInfo(row.value) }}
+          } @else {
+            {{ row.value }}
+          }
+        </span>
+        <span class="stat-list-v3__primary">{{ row.primary }}</span>
+      </div>
+
+      <span class="stat-list-v3__meta1">{{ row.meta1 }}</span>
+    </div>
+  }
+</div>
