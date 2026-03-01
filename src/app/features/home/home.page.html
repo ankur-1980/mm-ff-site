@@ -34,9 +34,50 @@
   <section class="home__block">
     <h3 class="home__section-heading">Legendary Moments</h3>
     <div class="home__legendary-grid">
-      <div class="home__card home__placeholder">Legendary moment 1</div>
-      <div class="home__card home__placeholder">Legendary moment 2</div>
-      <div class="home__card home__placeholder">Legendary moment 3</div>
+      @if (legendaryMostWins(); as mostWins) {
+        <app-stat-card
+          title="Most Wins"
+          [footer]="formatSeasonsPlayed(mostWins.totalSeasons)"
+        >
+          <app-stat-value [value]="mostWins.wins" [subscript]="mostWins.ownerName" />
+        </app-stat-card>
+      }
+
+      @if (legendaryMostChampionships(); as mostChampionships) {
+        <app-stat-card
+          title="Most Championships"
+          [footer]="formatSeasonsPlayed(mostChampionships.totalSeasons)"
+        >
+          <app-stat-value
+            [value]="mostChampionships.championships"
+            [subscript]="mostChampionships.ownerName"
+          />
+        </app-stat-card>
+      }
+
+      @if (legendaryBiggestBlowout(); as biggestBlowout) {
+        <app-stat-card
+          title="Biggest Blowout"
+          [footer]="'Over ' + biggestBlowout.opponentName + ' · ' + formatWeekYear(biggestBlowout.week, biggestBlowout.year)"
+        >
+          <app-stat-value
+            [value]="formatPoints(biggestBlowout.margin)"
+            [subscript]="biggestBlowout.ownerName"
+          />
+        </app-stat-card>
+      }
+
+      @if (legendaryHighPointsStarterSeason(); as highPointsStarter) {
+        <app-stat-card
+          title="High Points Starter - Season"
+          [footer]="highPointsStarter.ownerName + ' · ' + highPointsStarter.year"
+        >
+          <app-stat-value
+            [value]="formatPoints(highPointsStarter.points)"
+            [subscript]="formatPlayerDetails(highPointsStarter.playerName, highPointsStarter.position, highPointsStarter.nflTeam)"
+          />
+        </app-stat-card>
+      }
     </div>
   </section>
 
