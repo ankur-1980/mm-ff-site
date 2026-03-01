@@ -1,6 +1,10 @@
-<h3 class="all-time-analytics-view__heading">All-Play Matrix</h3>
+<app-subsection-header title="All-Time All-Play Matrix" [isPrimary]="true"></app-subsection-header>
 <p class="all-time-analytics-view__note">
   Regular season matchups only. Seasons 2006-2011 are excluded because weekly matchup data is
   unavailable.
 </p>
-<app-all-play-matrix [matrix]="matrix()" [showWinPct]="true" />
+<app-all-play-matrix
+  class="all-time-analytics-view__matrix"
+  [matrix]="matrix()"
+  [showWinPct]="true"
+/>

@@ -1,10 +1,11 @@
-<h3 class="all-time-analytics-view__heading">Consistency Index</h3>
+<app-subsection-header title="Consistency Index" [isPrimary]="false"></app-subsection-header>
 <p class="all-time-analytics-view__intro">
   Career consistency metrics by owner. Higher values indicate more weekly volatility (boom/bust),
   while lower values indicate more stable contenders.
 </p>
 @if (tableState().data.length) {
   <app-data-table
+    class="all-time-analytics-view__table"
     [columns]="tableState().columns"
     [data]="tableState().data"
     defaultSortDirection="desc"

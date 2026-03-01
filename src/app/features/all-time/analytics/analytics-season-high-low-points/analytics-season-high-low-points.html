@@ -1,4 +1,4 @@
-<h3 class="all-time-analytics-view__heading">Season High/Low Points</h3>
+<app-subsection-header title="Season High/Low Points" [isPrimary]="false"></app-subsection-header>
 <div class="all-time-analytics-view">
   @if (result()) {
     <div class="all-time-analytics-view__chart-wrap">
@@ -14,8 +14,6 @@
       Vertical dumbbell chart by season showing regular-season single-game highs and lows.
     </p>
   } @else {
-    <p class="all-time-analytics-view__empty">
-      No regular-season high/low points data available.
-    </p>
+    <p class="all-time-analytics-view__empty">No regular-season high/low points data available.</p>
   }
 </div>
