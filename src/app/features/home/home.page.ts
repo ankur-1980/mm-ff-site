@@ -6,6 +6,7 @@ import { OwnersDataService } from '../../data/owners-data.service';
 import { ToiletBowlDataService } from '../../data/toilet-bowl-data.service';
 import { WeeklyMatchupsDataService } from '../../data/weekly-matchups-data.service';
 import { HonorBannerComponent } from '../../shared/components/honor-banner/honor-banner.component';
+import { CtaButton } from '../../shared/components/cta-button/cta-button';
 import { OwnerProfileCard } from '../../shared/components/owner-profile-card/owner-profile-card';
 import { StatCard } from '../../shared/components/stat-card/stat-card';
 import { StatValue } from '../../shared/components/stat-card/stat-value/stat-value';
@@ -16,7 +17,15 @@ import { HeroComponent } from './hero/hero.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [HeroComponent, HonorBannerComponent, OwnerProfileCard, StatCard, StatValue, SubsectionHeader],
+  imports: [
+    HeroComponent,
+    HonorBannerComponent,
+    CtaButton,
+    OwnerProfileCard,
+    StatCard,
+    StatValue,
+    SubsectionHeader,
+  ],
   templateUrl: './home.page.html',
   styleUrl: './home.page.scss',
 })

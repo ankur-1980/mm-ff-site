@@ -1,0 +1,22 @@
+@if (route(); as targetRoute) {
+  <a
+    class="cta-button ds-focusable"
+    [class.cta-button--stretch]="stretch()"
+    [routerLink]="targetRoute"
+    [attr.aria-label]="ariaLabel() || label()"
+  >
+    <span class="cta-button__label">{{ label() }}</span>
+    <span class="cta-button__chevron" aria-hidden="true">&gt;</span>
+  </a>
+} @else {
+  <button
+    type="button"
+    class="cta-button ds-focusable"
+    [class.cta-button--stretch]="stretch()"
+    [attr.aria-label]="ariaLabel() || label()"
+    (click)="pressed.emit()"
+  >
+    <span class="cta-button__label">{{ label() }}</span>
+    <span class="cta-button__chevron" aria-hidden="true">&gt;</span>
+  </button>
+}

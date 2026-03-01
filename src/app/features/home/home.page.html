@@ -79,6 +79,9 @@
         </app-stat-card>
       }
     </div>
+    <div class="home__cta-row">
+      <app-cta-button label="View All Records" route="/all-time/records" />
+    </div>
   </section>
 
   <section class="home__block">
@@ -87,6 +90,9 @@
       @for (owner of ownerCards(); track owner.managerName) {
         <app-owner-profile-card [ownerId]="owner.managerName" [variant]="'compact'" />
       }
+    </div>
+    <div class="home__cta-row">
+      <app-cta-button label="View All Owners" route="/owners" />
     </div>
   </section>
 

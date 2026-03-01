@@ -43,14 +43,13 @@
         }
       </div>
 
-      <button
-        type="button"
-        class="hero__cta ds-focusable"
-        aria-label="Explore the league"
-        (click)="scrollToContent()"
-      >
-        Explore the League
-      </button>
+      <app-cta-button
+        class="hero__cta"
+        label="Explore the League"
+        ariaLabel="Explore the league"
+        [stretch]="true"
+        (pressed)="scrollToContent()"
+      />
     </div>
   </div>
 </section>
