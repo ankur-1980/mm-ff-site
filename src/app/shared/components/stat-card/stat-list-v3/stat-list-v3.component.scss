@@ -143,12 +143,25 @@
     --stat-list-v3-text-size: 0.9rem;
   }
 
-  :host(.stat-list-v3-host--stacked-meta) .stat-list-v3__row,
-  :host(.stat-list-v3-host--split-meta) .stat-list-v3__row {
-    column-gap: 5rem;
-  }
-
   .stat-list-v3__row {
     grid-template-columns: 1fr minmax(0, 1fr);
+  }
+
+  :host(.stat-list-v3-host--stacked-meta) .stat-list-v3__row {
+    grid-template-columns: var(--stat-list-v3-value-width) minmax(0, 1fr) minmax(0, auto);
+    column-gap: 1.25rem;
+    row-gap: 0;
+    grid-template-areas: 'value primary meta1';
+  }
+
+  :host(.stat-list-v3-host--split-meta) .stat-list-v3__row {
+    grid-template-columns:
+      var(--stat-list-v3-value-width)
+      minmax(0, 1fr)
+      minmax(0, auto)
+      minmax(0, auto);
+    column-gap: 1.25rem;
+    row-gap: 0;
+    grid-template-areas: 'value primary meta1 meta2';
   }
 }

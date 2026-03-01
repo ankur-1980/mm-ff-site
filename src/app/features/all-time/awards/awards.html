@@ -44,7 +44,11 @@
         subtitle="Points - Owner - Player (Week/Year)"
         bodyAlign="start"
       >
-        <app-stat-list-v3 [rows]="starterSingleGameRows()" layout="splitMeta"></app-stat-list-v3>
+        <app-stat-list-v3
+          class="all-time-awards__starter-list"
+          [rows]="starterSingleGameRows()"
+          layout="splitMeta"
+        ></app-stat-list-v3>
       </app-stat-card>
     }
 
@@ -54,7 +58,11 @@
         subtitle="Points - Owner - Player (Year)"
         bodyAlign="start"
       >
-        <app-stat-list-v3 [rows]="starterSeasonRows()" layout="splitMeta"></app-stat-list-v3>
+        <app-stat-list-v3
+          class="all-time-awards__starter-list"
+          [rows]="starterSeasonRows()"
+          layout="splitMeta"
+        ></app-stat-list-v3>
       </app-stat-card>
     }
 
