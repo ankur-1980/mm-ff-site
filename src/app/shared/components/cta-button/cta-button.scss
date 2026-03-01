@@ -9,7 +9,7 @@
   gap: 0.65rem;
   min-height: 3rem;
   padding: 0.75rem 1.35rem;
-  border: 1px solid color-mix(in srgb, var(--champion-gold) 48%, var(--border-color));
+  border: 1px solid color-mix(in srgb, var(--champion) 48%, var(--border-color));
   border-radius: var(--radius-md);
   background: linear-gradient(
     180deg,
@@ -19,7 +19,7 @@
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 8px 18px rgba(4, 10, 20, 0.28);
-  color: var(--champion-gold);
+  color: var(--champion);
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
@@ -35,13 +35,22 @@
     box-shadow var(--motion-duration-fast) var(--motion-ease);
 }
 
+.cta-button--tile {
+  flex-direction: column;
+  gap: 0.45rem;
+  min-height: 5.75rem;
+  padding: 0.9rem 0.8rem 0.8rem;
+  border-radius: calc(var(--radius-md) + 0.2rem);
+  text-align: center;
+}
+
 .cta-button--stretch {
   display: flex;
   width: 100%;
 }
 
 .cta-button:hover {
-  border-color: var(--champion-gold);
+  border-color: var(--champion);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
     0 10px 20px rgba(4, 10, 20, 0.32);
@@ -50,6 +59,24 @@
 
 .cta-button__label {
   display: inline-block;
+}
+
+.cta-button__icon {
+  width: 1.7rem;
+  height: 1.7rem;
+  font-size: 1.7rem;
+  color: inherit;
+}
+
+.cta-button--tile .cta-button__label {
+  font-size: 0.92rem;
+  line-height: 1.1;
+}
+
+.cta-button--tile .cta-button__icon {
+  width: 2rem;
+  height: 2rem;
+  font-size: 2rem;
 }
 
 .cta-button__chevron {
@@ -62,5 +89,22 @@
     min-height: 3.25rem;
     padding-inline: 1.6rem;
     font-size: 1.05rem;
+  }
+
+  .cta-button--tile {
+    min-height: auto;
+    width: 150px;
+    height: 150px;
+    padding: 1rem;
+  }
+
+  .cta-button--tile .cta-button__label {
+    font-size: 1rem;
+  }
+
+  .cta-button--tile .cta-button__icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 2.6rem;
   }
 }

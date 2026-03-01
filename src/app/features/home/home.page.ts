@@ -85,6 +85,12 @@ export class HomePage {
       .slice(0, 4),
   );
 
+  protected readonly currentSeasonStandingsRoute = computed<readonly string[] | string>(() => {
+    const currentSeasonId = this.leagueData.currentSeason()?.id;
+    if (currentSeasonId == null) return '/season';
+    return ['/season', String(currentSeasonId), 'standings'];
+  });
+
   protected formatSeasonsPlayed(count: number | null | undefined): string {
     if (!count) return 'Seasons played unavailable';
     return `${count} ${count === 1 ? 'season' : 'seasons'} played`;

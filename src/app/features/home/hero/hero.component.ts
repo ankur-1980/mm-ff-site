@@ -96,7 +96,7 @@ export class HeroComponent {
       value: this.wholeNumber.format(this.totalRegularSeasonGames()),
     },
     {
-      label: 'Commissioners Fired',
+      label: "Times Charlie's Been Fired",
       value: '',
       icon: 'all_inclusive',
     },
