@@ -1,14 +1,23 @@
 <section class="all-time-all-play">
-  <h2 class="all-time-all-play__heading">All-Time All-Play</h2>
+  <app-subsection-header
+    title="All-Time All-Play Matrix"
+    [isPrimary]="false"
+  ></app-subsection-header>
   <p class="all-time-all-play__note">
-    Regular season matchups only. Seasons 2006-2011 are excluded because weekly matchup data is unavailable.
+    Regular season matchups only. Seasons 2006-2011 are excluded because weekly matchup data is
+    unavailable.
   </p>
 
   <app-all-play-matrix [matrix]="matrix()" [showWinPct]="true" />
 
-  <h3 class="all-time-all-play__table-heading">All-Play Records</h3>
+  <app-subsection-header
+    class="all-time-all-play__section-header"
+    title="All-Play Records"
+    [isPrimary]="false"
+  ></app-subsection-header>
   @if (tableState().data.length) {
     <app-data-table
+      class="all-time-all-play__records-table"
       [columns]="tableState().columns"
       [data]="tableState().data"
       defaultSortDirection="desc"
@@ -18,6 +27,10 @@
   }
 
   <section class="all-time-all-play__dumbbell">
+    <app-subsection-header
+      title="All-Play vs Actual Win %"
+      [isPrimary]="false"
+    ></app-subsection-header>
     <app-all-time-analytics-all-play-career-record />
   </section>
 </section>
