@@ -70,6 +70,7 @@
 
 @media (min-width: 48rem) {
   .home__legendary-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
   }
 }
@@ -88,7 +89,7 @@
 
 @media (min-width: 48rem) {
   .home__owners-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
   }
 }

@@ -22,7 +22,7 @@
 }
 
 .owner-profile-card__zero {
-  color: var(--champion);
+  color: var(--text-primary);
   font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 700;
@@ -158,6 +158,48 @@
   min-height: 4rem;
   padding: 0.5rem 0.75rem;
   background: var(--surface);
+}
+
+.owner-profile-card__compact-body--no-championships {
+  background: var(--loss);
+}
+
+@media (min-width: 48rem) {
+  .owner-profile-card__compact-header,
+  .owner-profile-card__compact-footer {
+    padding: 0.9rem 1rem;
+  }
+
+  .owner-profile-card__compact-name {
+    font-size: 1.75rem;
+  }
+
+  .owner-profile-card__compact-team {
+    font-size: 0.8125rem;
+  }
+
+  .owner-profile-card__compact-footer {
+    font-size: 1rem;
+  }
+
+  .owner-profile-card__compact-body {
+    min-height: 4.75rem;
+    padding: 0.75rem 0.875rem;
+  }
+
+  .owner-profile-card__trophies {
+    gap: 1rem;
+  }
+
+  .owner-profile-card__trophy {
+    width: 3rem;
+    height: 3rem;
+    font-size: 3rem;
+  }
+
+  .owner-profile-card__zero {
+    font-size: 3rem;
+  }
 }
 
 @media (max-width: 640px) {

@@ -72,10 +72,8 @@ export class HomePage {
     this.ownersData
       .allOwners()
       .slice()
-      .sort((a, b) => {
-        if (b.championships !== a.championships) return b.championships - a.championships;
-        return a.managerName.localeCompare(b.managerName);
-      }),
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 4),
   );
 
   protected formatSeasonsPlayed(count: number | null | undefined): string {

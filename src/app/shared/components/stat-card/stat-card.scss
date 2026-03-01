@@ -24,7 +24,9 @@ mat-divider {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0.2rem;
+  min-height: 4.25rem;
   padding: 0.875rem 1rem 0.75rem;
   text-align: center;
   flex-shrink: 0;
@@ -46,10 +48,10 @@ mat-divider {
   font-size: 0.8125rem;
   font-weight: 600;
   font-style: italic;
+}
 
-  &:empty::before {
-    content: '\00a0';
-  }
+.stat-card__subtitle:empty {
+  display: none;
 }
 
 .stat-card__body {
@@ -74,4 +76,24 @@ mat-divider {
   font-family: var(--font-ui);
   font-weight: 600;
   border-top: 1px solid var(--border-color);
+}
+
+@media (min-width: 48rem) {
+  .stat-card__header {
+    min-height: 4.9rem;
+    padding: 1rem 1.125rem 0.875rem;
+  }
+
+  .stat-card__title {
+    font-size: 1.2rem;
+  }
+
+  .stat-card__subtitle,
+  .stat-card__footer {
+    font-size: 0.875rem;
+  }
+
+  .stat-card__footer {
+    padding: 0.65rem 1.125rem;
+  }
 }

@@ -32,3 +32,19 @@
   font-weight: 600;
   font-style: italic;
 }
+
+@media (min-width: 48rem) {
+  :host {
+    gap: 0.35rem;
+    padding: 0.95rem 1.125rem;
+  }
+
+  .stat-value__context,
+  .stat-value__subscript {
+    font-size: 0.9rem;
+  }
+
+  .stat-value__value {
+    font-size: 2.1rem;
+  }
+}

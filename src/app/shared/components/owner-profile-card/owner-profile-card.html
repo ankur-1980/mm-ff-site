@@ -6,7 +6,11 @@
         <p class="owner-profile-card__compact-team">{{ compactTeamName() }}</p>
       </header>
 
-      <section class="owner-profile-card__compact-body" aria-label="Championships">
+      <section
+        class="owner-profile-card__compact-body"
+        [class.owner-profile-card__compact-body--no-championships]="ownerData.championships === 0"
+        aria-label="Championships"
+      >
         @if (ownerData.championships > 0) {
           <div
             class="owner-profile-card__trophies"

@@ -34,8 +34,8 @@ export class OwnerProfileCard {
     if (!owner || lastSeasonPlayed == null) return '--';
 
     return (
-      this.standingsData.getEntry(String(lastSeasonPlayed), owner.managerName)
-        ?.playerDetails.teamName ??
+      this.standingsData.getEntry(String(lastSeasonPlayed), owner.managerName)?.playerDetails
+        .teamName ??
       owner.teamNames[0] ??
       '--'
     );
@@ -64,11 +64,11 @@ export class OwnerProfileCard {
   });
 
   protected readonly currentSeasonPlayoffRank = computed(
-    () => this.currentSeasonEntry()?.ranks.playoffRank || '--'
+    () => this.currentSeasonEntry()?.ranks.playoffRank || '--',
   );
 
   protected readonly compactTeamName = computed(
-    () => this.currentSeasonEntry()?.playerDetails.teamName ?? this.mostRecentTeamName()
+    () => this.currentSeasonEntry()?.playerDetails.teamName ?? this.mostRecentTeamName(),
   );
 
   protected readonly firstSeasonPlayed = computed(() => {
@@ -83,7 +83,7 @@ export class OwnerProfileCard {
 
     const seasonsLabel = `${owner.seasonsPlayed} ${owner.seasonsPlayed === 1 ? 'season' : 'seasons'}`;
     const firstSeason = this.firstSeasonPlayed();
-    return firstSeason != null ? `${seasonsLabel} · ${firstSeason}` : seasonsLabel;
+    return firstSeason != null ? `${seasonsLabel} · since ${firstSeason}` : seasonsLabel;
   });
 
   protected readonly championshipTrophies = computed(() => {
