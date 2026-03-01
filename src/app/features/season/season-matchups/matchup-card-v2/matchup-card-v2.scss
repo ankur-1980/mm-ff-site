@@ -127,15 +127,11 @@
 }
 
 .matchup-card-v2__team--winner .matchup-card-v2__band--footer {
-  background: var(--champion-gold);
+  background: var(--champion);
 }
 
 .matchup-card-v2__team--loser .matchup-card-v2__band--footer {
   background: var(--loss);
-}
-
-.matchup-card-v2__team--loser .matchup-card-v2__result {
-  color: var(--champion-gold);
 }
 
 @media (max-width: 599px) {
