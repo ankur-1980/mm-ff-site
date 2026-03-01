@@ -5,6 +5,7 @@ import type { ChartConfiguration, Plugin } from 'chart.js';
 import { map } from 'rxjs/operators';
 import { BaseChartDirective } from 'ng2-charts';
 
+import { SEASON_ANALYTICS_CHART_THEME } from '../chart-theme';
 import { TeamHighLowPointsService } from '../services/team-high-low-points.service';
 
 const teamHighLowConnectorPlugin: Plugin<'line'> = {
@@ -16,7 +17,7 @@ const teamHighLowConnectorPlugin: Plugin<'line'> = {
 
     const ctx = chart.ctx;
     ctx.save();
-    ctx.strokeStyle = 'rgba(148, 163, 184, 0.9)';
+    ctx.strokeStyle = SEASON_ANALYTICS_CHART_THEME.connector;
     ctx.lineWidth = 2;
 
     const count = Math.min(lowMeta.data.length, highMeta.data.length);
@@ -74,8 +75,8 @@ export class AnalyticsTeamHighLowPoints {
           showLine: false,
           pointRadius: 6,
           pointHoverRadius: 8,
-          pointBackgroundColor: 'rgba(239, 68, 68, 0.9)',
-          pointBorderColor: 'rgba(239, 68, 68, 1)',
+          pointBackgroundColor: SEASON_ANALYTICS_CHART_THEME.lossFill,
+          pointBorderColor: SEASON_ANALYTICS_CHART_THEME.loss,
           order: 2,
         },
         {
@@ -85,8 +86,8 @@ export class AnalyticsTeamHighLowPoints {
           showLine: false,
           pointRadius: 6,
           pointHoverRadius: 8,
-          pointBackgroundColor: 'rgba(37, 99, 235, 0.9)',
-          pointBorderColor: 'rgba(37, 99, 235, 1)',
+          pointBackgroundColor: SEASON_ANALYTICS_CHART_THEME.primaryFill,
+          pointBorderColor: SEASON_ANALYTICS_CHART_THEME.primary,
           order: 3,
         },
       ],
@@ -101,6 +102,9 @@ export class AnalyticsTeamHighLowPoints {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
+        legend: {
+          labels: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+        },
         tooltip: {
           callbacks: {
             title: (items) => {
@@ -124,19 +128,29 @@ export class AnalyticsTeamHighLowPoints {
       scales: {
         x: {
           type: 'category',
-          title: { display: true, text: 'Team' },
+          title: {
+            display: true,
+            text: 'Team',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
           ticks: {
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
             maxRotation: 45,
             minRotation: 45,
           },
-          grid: { color: 'rgba(0,0,0,0.06)' },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
         y: {
           type: 'linear',
           min: result.axisMin,
           max: result.axisMax,
-          title: { display: true, text: 'Points' },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          title: {
+            display: true,
+            text: 'Points',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
+          ticks: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
       },
     };

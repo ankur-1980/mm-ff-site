@@ -1,5 +1,7 @@
 import type { Chart, Plugin } from 'chart.js';
 
+import { SEASON_ANALYTICS_CHART_THEME } from '../chart-theme';
+
 export interface PfPaScatterPluginOptions {
   avgPF: number;
   avgPA: number;
@@ -28,7 +30,7 @@ export const pfPaScatterLinesPlugin: Plugin<'scatter'> = {
     ctx.save();
     ctx.setLineDash([4, 4]);
     ctx.lineWidth = 1;
-    ctx.strokeStyle = 'rgba(0,0,0,0.35)';
+    ctx.strokeStyle = SEASON_ANALYTICS_CHART_THEME.referenceLine;
 
     const { avgPF, avgPA, axisMin, axisMax } = opts;
 
@@ -46,7 +48,7 @@ export const pfPaScatterLinesPlugin: Plugin<'scatter'> = {
 
     // Diagonal: PF = PA (.500 line)
     ctx.setLineDash([2, 2]);
-    ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+    ctx.strokeStyle = SEASON_ANALYTICS_CHART_THEME.referenceLineStrong;
     ctx.beginPath();
     ctx.moveTo(toX(axisMin), toY(axisMin));
     ctx.lineTo(toX(axisMax), toY(axisMax));
@@ -74,7 +76,7 @@ export const pfPaScatterLabelsPlugin: Plugin<'scatter'> = {
     ctx.font = '11px sans-serif';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
-    ctx.fillStyle = '#333';
+    ctx.fillStyle = SEASON_ANALYTICS_CHART_THEME.pointLabel;
 
     meta.data.forEach((point, i) => {
       const raw = teamDataset.data[i] as { x: number; y: number; abbrev?: string };

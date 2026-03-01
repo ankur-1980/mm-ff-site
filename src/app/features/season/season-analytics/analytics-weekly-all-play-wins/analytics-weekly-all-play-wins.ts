@@ -4,22 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import type { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { SEASON_ANALYTICS_CHART_THEME } from '../chart-theme';
 import { WeeklyAllPlayWinsService } from '../services/weekly-all-play-wins.service';
-
-const TEAM_COLORS = [
-  '#1976d2',
-  '#d32f2f',
-  '#388e3c',
-  '#f57c00',
-  '#7b1fa2',
-  '#0097a7',
-  '#c2185b',
-  '#5d4037',
-  '#455a64',
-  '#689f38',
-  '#ff8f00',
-  '#00796b',
-];
 
 @Component({
   selector: 'app-analytics-weekly-all-play-wins',
@@ -52,12 +38,15 @@ export class AnalyticsWeeklyAllPlayWins {
     const sortedTeamNames = [...result.teamNames].sort((a, b) => a.localeCompare(b));
     const datasets = sortedTeamNames.map((name, i) => {
       const cumulative = result.cumulativeByTeam.get(name) ?? [];
-      const color = TEAM_COLORS[i % TEAM_COLORS.length];
+      const color =
+        SEASON_ANALYTICS_CHART_THEME.teamSeries[
+          i % SEASON_ANALYTICS_CHART_THEME.teamSeries.length
+        ];
       return {
         label: name,
         data: cumulative,
         borderColor: color,
-        backgroundColor: color + '20',
+        backgroundColor: `${color}26`,
         fill: false,
         spanGaps: false,
         tension: 0.2,
@@ -73,26 +62,40 @@ export class AnalyticsWeeklyAllPlayWins {
   });
 
   protected readonly chartOptions = computed<ChartConfiguration<'line'>['options']>(() => {
-    const result = this.result();
     return {
       responsive: true,
       maintainAspectRatio: false,
       interaction: { intersect: false, mode: 'index' },
       plugins: {
-        legend: { display: true, position: 'bottom' },
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+        },
       },
       scales: {
         x: {
-          title: { display: true, text: 'Week' },
+          title: {
+            display: true,
+            text: 'Week',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
+          ticks: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
         y: {
           beginAtZero: true,
-          title: { display: true, text: 'Cumulative All-Play Wins' },
+          title: {
+            display: true,
+            text: 'Cumulative All-Play Wins',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
           ticks: {
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
             stepSize: 1,
             callback: (value) => (Number.isInteger(Number(value)) ? value : ''),
           },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
       },
     };

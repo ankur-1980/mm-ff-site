@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import type { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
+import { SEASON_ANALYTICS_CHART_THEME } from '../chart-theme';
 import { MarginOfVictoryDistributionService } from '../services/margin-of-victory-distribution.service';
 
 @Component({
@@ -41,8 +42,8 @@ export class AnalyticsMarginOfVictoryDistribution {
         {
           label: 'Frequency',
           data: result.bins.map((b) => b.count),
-          backgroundColor: 'rgba(33, 150, 243, 0.7)',
-          borderColor: 'rgba(33, 150, 243, 1)',
+          backgroundColor: SEASON_ANALYTICS_CHART_THEME.primaryFill,
+          borderColor: SEASON_ANALYTICS_CHART_THEME.primary,
           borderWidth: 1,
         },
       ],
@@ -62,14 +63,26 @@ export class AnalyticsMarginOfVictoryDistribution {
     },
     scales: {
       x: {
-        title: { display: true, text: 'Margin' },
+        title: {
+          display: true,
+          text: 'Margin',
+          color: SEASON_ANALYTICS_CHART_THEME.axisText,
+        },
+        ticks: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
         grid: { display: false },
       },
       y: {
-        title: { display: true, text: 'Frequency' },
+        title: {
+          display: true,
+          text: 'Frequency',
+          color: SEASON_ANALYTICS_CHART_THEME.axisText,
+        },
         beginAtZero: true,
-        ticks: { stepSize: 1 },
-        grid: { color: 'rgba(0,0,0,0.08)' },
+        ticks: {
+          color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          stepSize: 1,
+        },
+        grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
       },
     },
   }));

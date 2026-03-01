@@ -3,17 +3,21 @@
 }
 
 .pf-pa-scatter__chart-wrap {
+  box-sizing: border-box;
   height: 480px;
   width: 100%;
   max-width: 720px;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  background: var(--text-card);
 }
 
 .pf-pa-scatter__legend {
   margin-top: 0.75rem;
   font-size: 0.875rem;
-  color: var(--mat-sys-outline, #666);
+  color: var(--text-muted);
 }
 
 .pf-pa-scatter__empty {
-  color: var(--mat-sys-outline, #666);
+  color: var(--text-muted);
 }

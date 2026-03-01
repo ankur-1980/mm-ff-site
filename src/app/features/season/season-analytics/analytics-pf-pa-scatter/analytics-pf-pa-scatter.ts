@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import type { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
+import { SEASON_ANALYTICS_CHART_THEME } from '../chart-theme';
 import { PfPaScatterService } from '../services/pf-pa-scatter.service';
 import { pfPaScatterLinesPlugin, pfPaScatterLabelsPlugin } from './pf-pa-scatter-chart.plugin';
 
@@ -53,8 +54,8 @@ export class AnalyticsPfPaScatter {
           type: 'scatter',
           label: 'Teams',
           data: teamData,
-          backgroundColor: 'rgba(33, 150, 243, 0.7)',
-          borderColor: 'rgba(33, 150, 243, 1)',
+          backgroundColor: SEASON_ANALYTICS_CHART_THEME.primaryFill,
+          borderColor: SEASON_ANALYTICS_CHART_THEME.primary,
           pointRadius: 8,
           pointHoverRadius: 10,
           order: 1,
@@ -74,6 +75,9 @@ export class AnalyticsPfPaScatter {
       layout: { padding: { right: 80 } },
       plugins: {
         pfPaScatter: { avgPF, avgPA, axisMin, axisMax },
+        legend: {
+          labels: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+        },
         tooltip: {
           callbacks: {
             title: (items) => {
@@ -105,15 +109,25 @@ export class AnalyticsPfPaScatter {
           type: 'linear',
           min: axisMin,
           max: axisMax,
-          title: { display: true, text: 'Points For (PF)' },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          title: {
+            display: true,
+            text: 'Points For (PF)',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
+          ticks: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
         y: {
           type: 'linear',
           min: axisMin,
           max: axisMax,
-          title: { display: true, text: 'Points Against (PA)' },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          title: {
+            display: true,
+            text: 'Points Against (PA)',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
+          ticks: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
       },
     };

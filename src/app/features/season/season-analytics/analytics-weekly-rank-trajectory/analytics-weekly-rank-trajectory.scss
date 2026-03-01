@@ -7,17 +7,21 @@
 .analytics-weekly-rank-trajectory__intro {
   margin: 0 0 1rem;
   font-size: 0.875rem;
-  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  color: var(--text-muted);
 }
 
 .analytics-weekly-rank-trajectory__chart-wrap {
+  box-sizing: border-box;
   height: 640px;
   position: relative;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  background: var(--text-card);
 }
 
 .analytics-weekly-rank-trajectory__empty {
   margin: 0;
   font-size: 0.875rem;
-  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  color: var(--text-muted);
   font-style: italic;
 }
