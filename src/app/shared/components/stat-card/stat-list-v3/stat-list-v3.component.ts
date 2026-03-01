@@ -5,7 +5,7 @@ export type StatListV3Row = {
   id?: string | number;
   value: number | string;
   primary: string;
-  meta1: string;
+  meta1?: string;
   meta2?: string;
 };
 

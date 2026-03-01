@@ -31,6 +31,10 @@
   align-items: start;
 }
 
+.stat-list-v3__row--single-column {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .stat-list-v3__left {
   display: grid;
   grid-template-columns: var(--stat-list-v3-value-width) minmax(0, 1fr);

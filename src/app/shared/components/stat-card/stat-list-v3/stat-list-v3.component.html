@@ -1,6 +1,9 @@
 <div class="stat-list-v3">
   @for (row of rows(); track trackRow($index, row)) {
-    <div class="stat-list-v3__row">
+    <div
+      class="stat-list-v3__row"
+      [class.stat-list-v3__row--single-column]="layout() === 'base' && !row.meta1"
+    >
       <div class="stat-list-v3__left">
         <span class="stat-list-v3__value">
           @if (typeof row.value === 'number') {
@@ -12,7 +15,9 @@
         <span class="stat-list-v3__primary">{{ row.primary }}</span>
       </div>
 
-      <span class="stat-list-v3__meta1">{{ row.meta1 }}</span>
+      @if (row.meta1) {
+        <span class="stat-list-v3__meta1">{{ row.meta1 }}</span>
+      }
       @if (layout() === 'splitMeta' && row.meta2) {
         <span class="stat-list-v3__meta2">{{ row.meta2 }}</span>
       }
