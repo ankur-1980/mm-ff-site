@@ -5,7 +5,10 @@
       [routerLink]="['/owners', ownerPath()]"
       [attr.aria-label]="'View ' + ownerData.managerName + ' profile'"
     >
-      <article class="owner-profile-card owner-profile-card--compact" aria-label="Owner profile card">
+      <article
+        class="owner-profile-card owner-profile-card--compact"
+        aria-label="Owner profile card"
+      >
         <header class="owner-profile-card__compact-header">
           <h3 class="owner-profile-card__compact-name">{{ ownerData.managerName }}</h3>
           <p class="owner-profile-card__compact-team">{{ compactTeamName() }}</p>
@@ -22,13 +25,20 @@
               [attr.aria-label]="ownerData.championships + ' championships'"
             >
               @for (trophy of championshipTrophies(); track trophy) {
-                <mat-icon class="owner-profile-card__trophy" aria-hidden="true">emoji_events</mat-icon>
+                <mat-icon class="owner-profile-card__trophy" aria-hidden="true"
+                  >emoji_events</mat-icon
+                >
               }
             </div>
           } @else {
-            <div class="owner-profile-card__trophies owner-profile-card__trophies--empty" aria-label="0 championships">
+            <div
+              class="owner-profile-card__trophies owner-profile-card__trophies--empty"
+              aria-label="0 championships"
+            >
               <span class="owner-profile-card__zero">0</span>
-              <mat-icon class="owner-profile-card__trophy" aria-hidden="true">emoji_events</mat-icon>
+              <mat-icon class="owner-profile-card__trophy" aria-hidden="true"
+                >emoji_events</mat-icon
+              >
             </div>
           }
         </section>
@@ -49,9 +59,32 @@
 
       <div class="owner-profile-card__divider" aria-hidden="true"></div>
 
-      <section class="owner-profile-card__block" aria-label="Championships">
-        <p class="owner-profile-card__label">Number of Championships</p>
-        <p class="owner-profile-card__value">{{ ownerData.championships }}</p>
+      <section
+        class="owner-profile-card__block owner-profile-card__block--championships"
+        [class.owner-profile-card__block--no-championships]="ownerData.championships === 0"
+        aria-label="Championships"
+      >
+        <p class="owner-profile-card__label">Championships</p>
+        @if (ownerData.championships > 0) {
+          <div
+            class="owner-profile-card__trophies"
+            [attr.aria-label]="ownerData.championships + ' championships'"
+          >
+            @for (trophy of championshipTrophies(); track trophy) {
+              <mat-icon class="owner-profile-card__trophy" aria-hidden="true"
+                >emoji_events</mat-icon
+              >
+            }
+          </div>
+        } @else {
+          <div
+            class="owner-profile-card__trophies owner-profile-card__trophies--empty"
+            aria-label="0 championships"
+          >
+            <span class="owner-profile-card__zero">0</span>
+            <mat-icon class="owner-profile-card__trophy" aria-hidden="true">emoji_events</mat-icon>
+          </div>
+        }
       </section>
 
       <div class="owner-profile-card__divider" aria-hidden="true"></div>
@@ -63,7 +96,7 @@
         </div>
         <div class="owner-profile-card__split-divider" aria-hidden="true"></div>
         <div class="owner-profile-card__split-item">
-          <p class="owner-profile-card__label">Regular Season Wins (All-Time)</p>
+          <p class="owner-profile-card__label">Regular Season Wins</p>
           <p class="owner-profile-card__value">{{ ownerData.wins }}</p>
         </div>
       </section>

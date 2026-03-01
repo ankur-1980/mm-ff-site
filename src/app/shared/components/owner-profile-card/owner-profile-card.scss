@@ -48,7 +48,6 @@
   flex-direction: column;
   height: 100%;
   background: var(--surface);
-  border: var(--border-width) solid var(--border-color);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-rest);
   color: var(--text-primary);
@@ -60,7 +59,7 @@
 }
 
 .owner-profile-card--active {
-  border-color: var(--interactive);
+  border-color: var(--champion-gold);
   outline: var(--focus-ring);
   outline-offset: 2px;
 }
@@ -71,11 +70,19 @@
 }
 
 .owner-profile-card__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  height: 5.75rem;
+  flex-shrink: 0;
   background: var(--surface-variant);
+  text-align: center;
 }
 
 .owner-profile-card__name {
-  color: var(--text-primary);
+  color: var(--champion);
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
@@ -84,7 +91,7 @@
 }
 
 .owner-profile-card__team-name {
-  color: var(--text-muted);
+  color: var(--champion-gold);
   font-family: var(--font-ui);
   font-size: 0.8rem;
   font-style: italic;
@@ -100,8 +107,21 @@
 .owner-profile-card__block--split {
   align-items: stretch;
   display: grid;
-  gap: 0;
+  gap: 1rem;
   grid-template-columns: 1fr auto 1fr;
+}
+
+.owner-profile-card__block--championships {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.owner-profile-card__block--no-championships {
+  background: var(--loss);
 }
 
 .owner-profile-card__split-item {
@@ -161,7 +181,11 @@
 .owner-profile-card__compact-header {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 0.18rem;
+  height: 5.75rem;
+  flex-shrink: 0;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -171,7 +195,7 @@
 
 .owner-profile-card__compact-name {
   margin: 0;
-  color: var(--champion-gold);
+  color: var(--champion);
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 700;
@@ -180,7 +204,7 @@
 
 .owner-profile-card__compact-team {
   margin: 0;
-  color: var(--champion);
+  color: var(--champion-gold);
   font-family: var(--font-ui);
   font-size: 0.5rem;
   font-weight: 600;
@@ -204,6 +228,11 @@
   .owner-profile-card__header,
   .owner-profile-card__block {
     padding: 1.1rem 1.25rem;
+  }
+
+  .owner-profile-card__header,
+  .owner-profile-card__compact-header {
+    height: 6.4rem;
   }
 
   .owner-profile-card__name {
