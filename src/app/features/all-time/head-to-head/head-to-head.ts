@@ -4,6 +4,7 @@ import { DataTableComponent } from '../../../shared/table';
 import type { DataTableColumnDef, DataTableRow } from '../../../shared/table';
 import type { AllPlayPairRecord } from '../../season/season-analytics/models/all-play-matrix.models';
 import { HeadToHeadMatrixService } from './head-to-head-matrix.service';
+import { SubsectionHeader } from '../../../shared/components/subsection-header/subsection-header';
 
 interface HeadToHeadSummaryRow extends DataTableRow {
   ownerName: string;
@@ -25,7 +26,7 @@ const SUMMARY_COLUMNS: DataTableColumnDef[] = [
 
 @Component({
   selector: 'app-head-to-head',
-  imports: [DataTableComponent],
+  imports: [DataTableComponent, SubsectionHeader],
   templateUrl: './head-to-head.html',
   styleUrl: './head-to-head.scss',
 })

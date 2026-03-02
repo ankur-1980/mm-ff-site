@@ -2,7 +2,9 @@ import { Component, computed, inject } from '@angular/core';
 import type { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
+import { SEASON_ANALYTICS_CHART_THEME } from '../../../season/season-analytics/chart-theme';
 import { WinPctOverTimeService } from './win-pct-over-time.service';
+import { SubsectionHeader } from '../../../../shared/components/subsection-header/subsection-header';
 
 function ownerColor(index: number): { stroke: string; fill: string } {
   const hue = (index * 137.508) % 360;
@@ -16,7 +18,7 @@ function ownerColor(index: number): { stroke: string; fill: string } {
 
 @Component({
   selector: 'app-all-time-analytics-win-pct-over-time',
-  imports: [BaseChartDirective],
+  imports: [BaseChartDirective, SubsectionHeader],
   templateUrl: './analytics-win-pct-over-time.html',
   styleUrl: './analytics-win-pct-over-time.scss',
 })
@@ -63,7 +65,12 @@ export class AnalyticsWinPctOverTime {
         legend: {
           display: true,
           position: 'bottom',
-          labels: { boxWidth: 14, boxHeight: 4, usePointStyle: false },
+          labels: {
+            boxWidth: 14,
+            boxHeight: 4,
+            usePointStyle: false,
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
         },
         tooltip: {
           callbacks: {
@@ -83,18 +90,27 @@ export class AnalyticsWinPctOverTime {
       },
       scales: {
         x: {
-          title: { display: true, text: 'Season' },
-          ticks: { autoSkip: true, maxTicksLimit: 12 },
-          grid: { color: 'rgba(0,0,0,0.06)' },
+          title: { display: true, text: 'Season', color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          ticks: {
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+            autoSkip: true,
+            maxTicksLimit: 12,
+          },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
         y: {
-          title: { display: true, text: 'Season Win %' },
+          title: {
+            display: true,
+            text: 'Season Win %',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
           min: 0,
           max: 100,
           ticks: {
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
             callback: (value) => `${value}%`,
           },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
       },
     };

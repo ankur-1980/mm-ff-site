@@ -1,16 +1,22 @@
 import { Component, computed, inject, input, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 import { OwnersDataService } from '../../../data/owners-data.service';
 import { SeasonStandingsDataService } from '../../../data/season-standings-data.service';
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
 import { ToiletBowlDataService } from '../../../data/toilet-bowl-data.service';
 import { LeagueMetaDataService } from '../../../data/league-metadata.service';
+import { CtaButton } from '../../../shared/components/cta-button/cta-button';
+import { SectionHeader } from '../../../shared/components/section-header/section-header';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
+import {
+  StatListV3Component,
+  type StatListV3Row,
+} from '../../../shared/components/stat-card/stat-list-v3/stat-list-v3.component';
 import { StatValue } from '../../../shared/components/stat-card/stat-value/stat-value';
 import { HeadToHeadMatrixService } from '../../all-time/head-to-head/head-to-head-matrix.service';
 import { AllTimeAllPlayMatrixService } from '../../all-time/all-play/all-play-matrix.service';
 import type { AllPlayPairRecord } from '../../season/season-analytics/models/all-play-matrix.models';
+import { SubsectionHeader } from '../../../shared/components/subsection-header/subsection-header';
 
 interface NameHistoryItem {
   name: string;
@@ -55,7 +61,7 @@ interface OwnerWeeklySummary {
 
 @Component({
   selector: 'app-owner-profile-page',
-  imports: [RouterLink, StatCard, StatValue],
+  imports: [CtaButton, SectionHeader, StatCard, StatListV3Component, StatValue, SubsectionHeader],
   templateUrl: './owner-profile-page.html',
   styleUrl: './owner-profile-page.scss',
 })
@@ -361,6 +367,24 @@ export class OwnerProfilePage implements OnInit {
       })
       .sort((a, b) => a.ownerName.localeCompare(b.ownerName));
   });
+
+  protected readonly headToHeadRecordRows = computed<StatListV3Row[]>(() =>
+    this.headToHeadRecords().map((item) => ({
+      id: item.ownerName,
+      value: item.ownerName,
+      primary: item.record,
+      meta1: item.winPct,
+    })),
+  );
+
+  protected readonly allPlayRecordRows = computed<StatListV3Row[]>(() =>
+    this.allPlayRecords().map((item) => ({
+      id: item.ownerName,
+      value: item.ownerName,
+      primary: item.record,
+      meta1: item.winPct,
+    })),
+  );
 
   protected formatSeasonFooter(year: number | null): string {
     return year == null ? '--' : String(year);

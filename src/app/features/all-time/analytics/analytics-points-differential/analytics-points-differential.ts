@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import type { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
+import { SEASON_ANALYTICS_CHART_THEME } from '../../../season/season-analytics/chart-theme';
 import {
   pfPaScatterLabelsPlugin,
   pfPaScatterLinesPlugin,
@@ -39,8 +40,8 @@ export class AnalyticsPointsDifferential {
             actualWins: point.actualWins,
             luck: point.luck,
           })),
-          backgroundColor: 'rgba(33, 150, 243, 0.7)',
-          borderColor: 'rgba(33, 150, 243, 1)',
+          backgroundColor: SEASON_ANALYTICS_CHART_THEME.primaryFill,
+          borderColor: SEASON_ANALYTICS_CHART_THEME.primary,
           pointRadius: 8,
           pointHoverRadius: 10,
           order: 1,
@@ -60,6 +61,9 @@ export class AnalyticsPointsDifferential {
       layout: { padding: { right: 80 } },
       plugins: {
         pfPaScatter: { avgPF, avgPA, axisMin, axisMax },
+        legend: {
+          labels: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+        },
         tooltip: {
           callbacks: {
             title: (items) => {
@@ -93,15 +97,17 @@ export class AnalyticsPointsDifferential {
           type: 'linear',
           min: axisMin,
           max: axisMax,
-          title: { display: true, text: 'Total PF' },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          title: { display: true, text: 'Total PF', color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          ticks: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
         y: {
           type: 'linear',
           min: axisMin,
           max: axisMax,
-          title: { display: true, text: 'Total PA' },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          title: { display: true, text: 'Total PA', color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          ticks: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
       },
     };

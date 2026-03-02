@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import type { ChartConfiguration, Plugin } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
+import { SEASON_ANALYTICS_CHART_THEME } from '../../../season/season-analytics/chart-theme';
 import { AllPlayCareerRecordService } from './all-play-career-record.service';
 
 const dumbbellConnectorPlugin: Plugin<'scatter'> = {
@@ -13,7 +14,7 @@ const dumbbellConnectorPlugin: Plugin<'scatter'> = {
 
     const ctx = chart.ctx;
     ctx.save();
-    ctx.strokeStyle = 'rgba(148, 163, 184, 0.9)';
+    ctx.strokeStyle = SEASON_ANALYTICS_CHART_THEME.connector;
     ctx.lineWidth = 2;
 
     const count = Math.min(actualMeta.data.length, allPlayMeta.data.length);
@@ -76,9 +77,12 @@ export class AnalyticsAllPlayCareerRecord {
           parsing: false,
           pointRadius: 6,
           pointHoverRadius: 8,
-          pointBackgroundColor: 'rgba(255, 152, 0, 0.9)',
-          pointBorderColor: 'rgba(255, 152, 0, 1)',
-          backgroundColor: 'rgba(33, 150, 243, 0.7)',
+          backgroundColor: SEASON_ANALYTICS_CHART_THEME.champion,
+          borderColor: SEASON_ANALYTICS_CHART_THEME.champion,
+          pointBackgroundColor: SEASON_ANALYTICS_CHART_THEME.champion,
+          pointBorderColor: SEASON_ANALYTICS_CHART_THEME.champion,
+          pointBorderWidth: 2,
+          pointStyle: 'circle',
           borderWidth: 0,
           order: 2,
         },
@@ -89,9 +93,12 @@ export class AnalyticsAllPlayCareerRecord {
           parsing: false,
           pointRadius: 6,
           pointHoverRadius: 8,
-          pointBackgroundColor: 'rgba(33, 150, 243, 0.9)',
-          pointBorderColor: 'rgba(33, 150, 243, 1)',
-          backgroundColor: 'rgba(255, 152, 0, 0.7)',
+          backgroundColor: SEASON_ANALYTICS_CHART_THEME.primary,
+          borderColor: SEASON_ANALYTICS_CHART_THEME.primary,
+          pointBackgroundColor: SEASON_ANALYTICS_CHART_THEME.primary,
+          pointBorderColor: SEASON_ANALYTICS_CHART_THEME.primary,
+          pointBorderWidth: 2,
+          pointStyle: 'circle',
           borderWidth: 0,
           order: 3,
         },
@@ -115,6 +122,12 @@ export class AnalyticsAllPlayCareerRecord {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
+        legend: {
+          labels: {
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+            usePointStyle: true,
+          },
+        },
         tooltip: {
           callbacks: {
             title: (items) => {
@@ -138,25 +151,35 @@ export class AnalyticsAllPlayCareerRecord {
       scales: {
         x: {
           type: 'linear',
-          title: { display: true, text: 'Win %' },
+          title: {
+            display: true,
+            text: 'Win %',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
           min: xAxisMin,
           max: yAxisMax,
           ticks: {
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
             callback: (value) => `${value}%`,
           },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
         y: {
           type: 'linear',
-          title: { display: true, text: 'Owner' },
+          title: {
+            display: true,
+            text: 'Owner',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
           min: 0,
           max: Math.max(0, ownerLabels.length - 1),
           offset: true,
           ticks: {
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
             stepSize: 1,
             callback: (value) => ownerLabels[Number(value)] ?? '',
           },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
       },
     };

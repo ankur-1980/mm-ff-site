@@ -5,6 +5,8 @@ export const SEASON_ANALYTICS_CHART_THEME = {
   grid: 'rgba(47, 64, 92, 0.18)',
   primary: '#669bbc',
   primaryFill: '#669bbc2e',
+  champion: '#e2c98a',
+  championFill: '#e2c98a33',
   loss: '#780000',
   lossFill: '#7800002e',
   connector: '#2a0f12',

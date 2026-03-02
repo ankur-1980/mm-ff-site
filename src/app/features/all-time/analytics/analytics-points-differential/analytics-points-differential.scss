@@ -9,19 +9,24 @@
 }
 
 .all-time-analytics-view__chart-wrap {
+  box-sizing: border-box;
   height: 720px;
   width: 100%;
-  // max-width: 860px;
+  max-width: 900px;
+  margin-inline: auto;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  background: var(--text-card);
 }
 
 .all-time-analytics-view__legend {
   margin-top: 0.75rem;
   font-size: 0.875rem;
-  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  color: var(--text-muted);
 }
 
 .all-time-analytics-view__empty {
   margin: 0;
-  color: var(--mat-secondary-text-color, rgba(0, 0, 0, 0.7));
+  color: var(--text-muted);
   font-size: 0.875rem;
 }

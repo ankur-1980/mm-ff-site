@@ -7,7 +7,10 @@ import { SeasonStandingsDataService } from '../../../data/season-standings-data.
 import { WeeklyMatchupsDataService } from '../../../data/weekly-matchups-data.service';
 import { StatCard } from '../../../shared/components/stat-card/stat-card';
 import { AllTimeRecordsService } from '../records/records.service';
-import { StatList, StatListItem } from '../../../shared/components/stat-card/stat-list/stat-list';
+import {
+  StatListV3Component,
+  type StatListV3Row,
+} from '../../../shared/components/stat-card/stat-list-v3/stat-list-v3.component';
 
 interface SeasonTeamPointsRow {
   points: number;
@@ -69,7 +72,7 @@ const EPSILON = 0.000001;
 
 @Component({
   selector: 'app-awards',
-  imports: [StatCard, StatList],
+  imports: [StatCard, StatListV3Component],
   templateUrl: './awards.html',
   styleUrl: './awards.scss',
 })
@@ -190,21 +193,21 @@ export class Awards {
       .slice(0, 10),
   );
 
-  protected readonly topSeasonHighPointsRows = computed<StatListItem[]>(() =>
+  protected readonly topSeasonHighPointsRows = computed<StatListV3Row[]>(() =>
     this.topSeasonHighPoints().map((row) => ({
       id: `season-high|${row.year}|${row.ownerName}|${row.points.toFixed(2)}`,
       value: row.points,
-      playerDetails: row.year,
-      teamName: row.ownerName,
+      primary: row.ownerName,
+      meta1: row.year,
     })),
   );
 
-  protected readonly topSeasonLowPointsRows = computed<StatListItem[]>(() =>
+  protected readonly topSeasonLowPointsRows = computed<StatListV3Row[]>(() =>
     this.topSeasonLowPoints().map((row) => ({
       id: `season-low|${row.year}|${row.ownerName}|${row.points.toFixed(2)}`,
       value: row.points,
-      playerDetails: row.year,
-      teamName: row.ownerName,
+      primary: row.ownerName,
+      meta1: row.year,
     })),
   );
 
@@ -266,21 +269,23 @@ export class Awards {
       .slice(0, 10),
   );
 
-  protected readonly topSingleGameHighPointsRows = computed<StatListItem[]>(() =>
+  protected readonly topSingleGameHighPointsRows = computed<StatListV3Row[]>(() =>
     this.topSingleGameHighPoints().map((row) => ({
       id: `game-high|${row.year}|${row.week}|${row.ownerName}|${row.points.toFixed(2)}`,
       value: row.points,
-      playerDetails: `${row.year} ${row.ownerName}`,
-      teamName: `Week ${String(row.week).padStart(2, '0')}`,
+      primary: row.ownerName,
+      meta1: `Week ${String(row.week).padStart(2, '0')}`,
+      meta2: row.year,
     })),
   );
 
-  protected readonly topSingleGameLowPointsRows = computed<StatListItem[]>(() =>
+  protected readonly topSingleGameLowPointsRows = computed<StatListV3Row[]>(() =>
     this.topSingleGameLowPoints().map((row) => ({
       id: `game-low|${row.year}|${row.week}|${row.ownerName}|${row.points.toFixed(2)}`,
       value: row.points,
-      playerDetails: `${row.year} ${row.ownerName}`,
-      teamName: `Week ${String(row.week).padStart(2, '0')}`,
+      primary: row.ownerName,
+      meta1: `Week ${String(row.week).padStart(2, '0')}`,
+      meta2: row.year,
     })),
   );
 
@@ -335,12 +340,13 @@ export class Awards {
       .slice(0, 10),
   );
 
-  protected readonly topSingleGameMarginsRows = computed<StatListItem[]>(() =>
+  protected readonly topSingleGameMarginsRows = computed<StatListV3Row[]>(() =>
     this.topSingleGameMargins().map((row) => ({
       id: `margin-high|${row.year}|${row.week}|${row.ownerName}|${row.margin.toFixed(2)}`,
       value: row.margin,
-      playerDetails: `${row.year} ${row.ownerName}`,
-      teamName: `Week ${String(row.week).padStart(2, '0')}`,
+      primary: row.ownerName,
+      meta1: `Week ${String(row.week).padStart(2, '0')}`,
+      meta2: row.year,
     })),
   );
 
@@ -355,12 +361,13 @@ export class Awards {
       .slice(0, 10),
   );
 
-  protected readonly topSingleGameNarrowestVictoriesRows = computed<StatListItem[]>(() =>
+  protected readonly topSingleGameNarrowestVictoriesRows = computed<StatListV3Row[]>(() =>
     this.topSingleGameNarrowestVictories().map((row) => ({
       id: `margin-low|${row.year}|${row.week}|${row.ownerName}|${row.margin.toFixed(2)}`,
       value: row.margin,
-      playerDetails: `${row.year} ${row.ownerName}`,
-      teamName: `Week ${String(row.week).padStart(2, '0')}`,
+      primary: row.ownerName,
+      meta1: `Week ${String(row.week).padStart(2, '0')}`,
+      meta2: row.year,
     })),
   );
 
@@ -393,12 +400,12 @@ export class Awards {
       }),
   );
 
-  protected readonly fewestSeasonWinsMaxThreeRows = computed<StatListItem[]>(() =>
+  protected readonly fewestSeasonWinsMaxThreeRows = computed<StatListV3Row[]>(() =>
     this.fewestSeasonWinsMaxThree().map((row) => ({
       id: `fewest-wins|${row.year}|${row.ownerName}|${row.wins}`,
       value: row.wins,
-      playerDetails: row.year,
-      teamName: row.ownerName,
+      primary: row.ownerName,
+      meta1: row.year,
     })),
   );
 
@@ -412,29 +419,14 @@ export class Awards {
       }),
   );
 
-  protected readonly mostSeasonWinsMaxTwelveRows = computed<StatListItem[]>(() => {
-    const rows: StatListItem[] = this.mostSeasonWinsMaxTwelve().map((row) => ({
+  protected readonly mostSeasonWinsMaxTwelveRows = computed<StatListV3Row[]>(() =>
+    this.mostSeasonWinsMaxTwelve().map((row) => ({
       id: `most-wins|${row.year}|${row.ownerName}|${row.wins}`,
       value: row.wins,
-      playerDetails: row.year,
-      teamName: row.ownerName,
-    }));
-
-    const elevenWinCount = this.seasonWinsRows().filter((row) => row.wins === 11).length;
-    const tenWinCount = this.seasonWinsRows().filter((row) => row.wins === 10).length;
-    rows.push({
-      id: 'most-wins-count|11',
-      value: 11,
-      teamName: `${elevenWinCount} teams`,
-    });
-    rows.push({
-      id: 'most-wins-count|10',
-      value: 10,
-      teamName: `${tenWinCount} teams`,
-    });
-
-    return rows;
-  });
+      primary: row.ownerName,
+      meta1: row.year,
+    })),
+  );
 
   private readonly averageWinsPerSeasonRows = computed<AverageWinsPerSeasonRow[]>(() =>
     this.allTimeRecordRows()
@@ -446,39 +438,22 @@ export class Awards {
       .filter((row) => row.seasonsPlayed > 0),
   );
 
-  protected readonly bestAverageWinsPerSeasonRows = computed<StatListItem[]>(() =>
+  protected readonly averageWinsPerSeasonListRows = computed<StatListV3Row[]>(() =>
     this.averageWinsPerSeasonRows()
-      .filter((row) => row.avgWins >= 7)
       .sort((a, b) => {
         if (b.avgWins !== a.avgWins) return b.avgWins - a.avgWins;
         if (b.seasonsPlayed !== a.seasonsPlayed) return b.seasonsPlayed - a.seasonsPlayed;
         return a.ownerName.localeCompare(b.ownerName);
       })
       .map((row) => ({
-        id: `best-avg-wins|${row.ownerName}|${row.seasonsPlayed}|${row.avgWins.toFixed(4)}`,
+        id: `avg-wins|${row.ownerName}|${row.seasonsPlayed}|${row.avgWins.toFixed(4)}`,
         value: row.avgWins,
-        playerDetails: row.ownerName,
-        teamName: `${row.seasonsPlayed}`,
+        primary: row.ownerName,
+        meta1: `${row.seasonsPlayed}`,
       })),
   );
 
-  protected readonly worstAverageWinsPerSeasonRows = computed<StatListItem[]>(() =>
-    this.averageWinsPerSeasonRows()
-      .filter((row) => row.avgWins < 7)
-      .sort((a, b) => {
-        if (a.avgWins !== b.avgWins) return a.avgWins - b.avgWins;
-        if (b.seasonsPlayed !== a.seasonsPlayed) return b.seasonsPlayed - a.seasonsPlayed;
-        return a.ownerName.localeCompare(b.ownerName);
-      })
-      .map((row) => ({
-        id: `worst-avg-wins|${row.ownerName}|${row.seasonsPlayed}|${row.avgWins.toFixed(4)}`,
-        value: row.avgWins,
-        playerDetails: row.ownerName,
-        teamName: `${row.seasonsPlayed}`,
-      })),
-  );
-
-  protected readonly topAveragePointsPerSeasonRows = computed<StatListItem[]>(() =>
+  protected readonly topAveragePointsPerSeasonRows = computed<StatListV3Row[]>(() =>
     this.allTimeRecordRows()
       .map(
         (row): AveragePointsPerSeasonRow => ({
@@ -499,12 +474,12 @@ export class Awards {
       .map((row) => ({
         id: `avg-points|${row.ownerName}|${row.seasonsPlayed}|${row.avgPointsPerSeason.toFixed(4)}`,
         value: row.avgPointsPerSeason,
-        playerDetails: row.ownerName,
-        teamName: `${row.seasonsPlayed}`,
+        primary: row.ownerName,
+        meta1: `${row.seasonsPlayed} seasons`,
       })),
   );
 
-  protected readonly mostChampionshipsRows = computed<StatListItem[]>(() =>
+  protected readonly mostChampionshipsRows = computed<StatListV3Row[]>(() =>
     this.allTimeRecordRows()
       .map(
         (row): ChampionshipRow => ({
@@ -520,30 +495,31 @@ export class Awards {
       .map((row) => ({
         id: `championships|${row.ownerName}|${row.championships}`,
         value: row.championships,
-        playerDetails: row.ownerName,
-        teamName: '',
+        primary: row.ownerName,
       })),
   );
 
-  protected readonly starterSingleGameRows = computed<StatListItem[]>(() =>
+  protected readonly starterSingleGameRows = computed<StatListV3Row[]>(() =>
     this.allTimeRecords.getTopStarterSingleGameRecords().map((row) => ({
       id: `starter-game|${row.year}|${row.week}|${row.ownerName}|${row.playerName}|${row.points.toFixed(2)}`,
       value: row.points,
-      playerDetails: row.ownerName,
-      teamName: `${row.playerName} (W${row.week}/${row.year})`,
+      primary: row.playerName,
+      meta1: `${row.year}/Week ${String(row.week).padStart(2, '0')}`,
+      meta2: row.ownerName,
     })),
   );
 
-  protected readonly starterSeasonRows = computed<StatListItem[]>(() =>
+  protected readonly starterSeasonRows = computed<StatListV3Row[]>(() =>
     this.allTimeRecords.getTopStarterSeasonRecords().map((row) => ({
       id: `starter-season|${row.year}|${row.ownerName}|${row.playerName}|${row.points.toFixed(2)}`,
       value: row.points,
-      playerDetails: row.ownerName,
-      teamName: `${row.playerName} (${row.year})`,
+      primary: row.playerName,
+      meta1: `${row.year}`,
+      meta2: row.ownerName,
     })),
   );
 
-  protected readonly highPointsAndChampionshipRows = computed<StatListItem[]>(() => {
+  protected readonly highPointsAndChampionshipRows = computed<StatListV3Row[]>(() => {
     const rows: HighPointsChampionshipRow[] = [];
 
     for (const seasonId of this.seasonStandingsData.seasonIds()) {
@@ -578,12 +554,11 @@ export class Awards {
       .map((row) => ({
         id: `high-and-champ|${row.year}|${row.ownerName}`,
         value: row.year,
-        playerDetails: row.ownerName,
-        teamName: '',
+        primary: row.ownerName,
       }));
   });
 
-  protected readonly mostRunnerUpFinishesRows = computed<StatListItem[]>(() => {
+  protected readonly mostRunnerUpFinishesRows = computed<StatListV3Row[]>(() => {
     const countsByOwner = new Map<string, number>();
 
     for (const seasonId of this.seasonStandingsData.seasonIds()) {
@@ -614,8 +589,7 @@ export class Awards {
       .map((row) => ({
         id: `runner-up|${row.ownerName}|${row.count}`,
         value: row.count,
-        playerDetails: row.ownerName,
-        teamName: '',
+        primary: row.ownerName,
       }));
   });
 }

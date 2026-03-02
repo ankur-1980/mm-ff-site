@@ -1,23 +1,23 @@
 @if (owner(); as ownerData) {
   <section class="owner-profile-page">
-    <a class="owner-profile-page__back-link" [routerLink]="['/owners']"> Back to Owners </a>
+    <app-cta-button label="Back to Owners" [route]="['/owners']" />
 
-    <header class="owner-profile-page__header">
-      <div class="owner-profile-page__identity">
-        <h1 class="owner-profile-page__name">{{ ownerData.realName }}</h1>
-        <p class="owner-profile-page__team">{{ mostRecentTeamName() }}</p>
-        <p class="owner-profile-page__record">All-Time Record: {{ allTimeRecord() }}</p>
-      </div>
+    <app-section-header
+      [heading]="ownerData.realName"
+      [meta]="[mostRecentTeamName()]"
+      [secondaryMeta]="['All-Time Record: ' + allTimeRecord()]"
+    >
       <span
+        sectionHeaderExtra
         class="owner-profile-page__active-tag"
         [class.owner-profile-page__active-tag--inactive]="!isActiveOwner()"
       >
         {{ isActiveOwner() ? 'Active' : 'Inactive' }}
       </span>
-    </header>
+    </app-section-header>
 
     <section class="owner-profile-page__section owner-profile-page__section--summary">
-      <div class="owner-profile-page__box">
+      <div class="owner-profile-page__box owner-profile-page__box--history">
         <h2 class="owner-profile-page__box-title">Name History (Last Used)</h2>
         <ul class="owner-profile-page__name-history">
           @for (item of nameHistory(); track item.name) {
@@ -28,7 +28,7 @@
         </ul>
       </div>
 
-      <div class="owner-profile-page__box">
+      <div class="owner-profile-page__box owner-profile-page__box--active-seasons">
         <h2 class="owner-profile-page__box-title">
           Active Seasons ({{ ownerData.activeSeasons.length }})
         </h2>
@@ -47,7 +47,7 @@
     </section>
 
     <section class="owner-profile-page__section">
-      <h2 class="owner-profile-page__section-title">Awards</h2>
+      <app-subsection-header title="Awards" [isPrimary]="true" />
 
       <div class="owner-profile-page__awards-grid">
         <app-stat-card
@@ -83,9 +83,7 @@
           [subtitle]="starterAwards().bestSeason?.playerName ?? ''"
           [footer]="formatSeasonFooter(starterAwards().bestSeason?.year ?? null)"
         >
-          <app-stat-value
-            [value]="formatPointsToTwoDecimals(starterAwards().bestSeason?.points)"
-          />
+          <app-stat-value [value]="formatPointsToTwoDecimals(starterAwards().bestSeason?.points)" />
         </app-stat-card>
 
         <app-stat-card
@@ -93,38 +91,21 @@
           [subtitle]="starterAwards().bestGame?.playerName ?? ''"
           [footer]="formatStarterGameFooter(starterAwards().bestGame)"
         >
-          <app-stat-value
-            [value]="formatPointsToTwoDecimals(starterAwards().bestGame?.points)"
-          />
+          <app-stat-value [value]="formatPointsToTwoDecimals(starterAwards().bestGame?.points)" />
         </app-stat-card>
       </div>
     </section>
 
-    <section class="owner-profile-page__section">
-      <div class="owner-profile-page__box">
-        <h2 class="owner-profile-page__box-title">Head-to-Head Records</h2>
-        <div class="owner-profile-page__record-list">
-          @for (item of headToHeadRecords(); track item.ownerName) {
-            <div class="owner-profile-page__record-row">
-              <span class="owner-profile-page__record-owner">{{ item.ownerName }}</span>
-              <span class="owner-profile-page__record-value">{{ item.record }}</span>
-              <span class="owner-profile-page__record-pct">{{ item.winPct }}</span>
-            </div>
-          }
-        </div>
-      </div>
+    <section class="owner-profile-page__section owner-profile-page__section--records">
+      <app-subsection-header title="Records" [isPrimary]="true" />
+      <div class="owner-profile-page__records-grid">
+        <app-stat-card title="Head-to-Head Records">
+          <app-stat-list-v3 [rows]="headToHeadRecordRows()" />
+        </app-stat-card>
 
-      <div class="owner-profile-page__box">
-        <h2 class="owner-profile-page__box-title">All-Time All-Play Records</h2>
-        <div class="owner-profile-page__record-list">
-          @for (item of allPlayRecords(); track item.ownerName) {
-            <div class="owner-profile-page__record-row">
-              <span class="owner-profile-page__record-owner">{{ item.ownerName }}</span>
-              <span class="owner-profile-page__record-value">{{ item.record }}</span>
-              <span class="owner-profile-page__record-pct">{{ item.winPct }}</span>
-            </div>
-          }
-        </div>
+        <app-stat-card title="All Play Records" subtitle="Opponents with 3+ matchups">
+          <app-stat-list-v3 [rows]="allPlayRecordRows()" />
+        </app-stat-card>
       </div>
     </section>
   </section>

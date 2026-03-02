@@ -2,7 +2,9 @@ import { Component, computed, inject } from '@angular/core';
 import type { ChartConfiguration, Plugin } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
+import { SEASON_ANALYTICS_CHART_THEME } from '../../../season/season-analytics/chart-theme';
 import { ExpectedWinsVsActualWinsService } from './expected-wins-vs-actual-wins.service';
+import { SubsectionHeader } from '../../../../shared/components/subsection-header/subsection-header';
 
 const parityLinePlugin: Plugin<'scatter'> = {
   id: 'expectedActualParityLine',
@@ -17,7 +19,7 @@ const parityLinePlugin: Plugin<'scatter'> = {
 
     const ctx = chart.ctx;
     ctx.save();
-    ctx.strokeStyle = 'rgba(255, 87, 34, 0.8)';
+    ctx.strokeStyle = SEASON_ANALYTICS_CHART_THEME.referenceLineStrong;
     ctx.lineWidth = 2;
     ctx.setLineDash([6, 4]);
     ctx.beginPath();
@@ -30,7 +32,7 @@ const parityLinePlugin: Plugin<'scatter'> = {
 
 @Component({
   selector: 'app-all-time-analytics-expected-wins-vs-actual-wins',
-  imports: [BaseChartDirective],
+  imports: [BaseChartDirective, SubsectionHeader],
   templateUrl: './analytics-expected-wins-vs-actual-wins.html',
   styleUrl: './analytics-expected-wins-vs-actual-wins.scss',
 })
@@ -54,8 +56,8 @@ export class AnalyticsExpectedWinsVsActualWins {
             ownerName: point.ownerName,
             careerLuck: point.careerLuck,
           })),
-          backgroundColor: 'rgba(33, 150, 243, 0.7)',
-          borderColor: 'rgba(33, 150, 243, 1)',
+          backgroundColor: SEASON_ANALYTICS_CHART_THEME.primaryFill,
+          borderColor: SEASON_ANALYTICS_CHART_THEME.primary,
           pointRadius: 7,
           pointHoverRadius: 9,
         },
@@ -71,6 +73,9 @@ export class AnalyticsExpectedWinsVsActualWins {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
+        legend: {
+          labels: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+        },
         tooltip: {
           callbacks: {
             title: (items) => {
@@ -97,15 +102,25 @@ export class AnalyticsExpectedWinsVsActualWins {
           type: 'linear',
           min: result.axisMin,
           max: result.axisMax,
-          title: { display: true, text: 'Expected Wins' },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          title: {
+            display: true,
+            text: 'Expected Wins',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
+          ticks: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
         y: {
           type: 'linear',
           min: result.axisMin,
           max: result.axisMax,
-          title: { display: true, text: 'Actual Wins' },
-          grid: { color: 'rgba(0,0,0,0.08)' },
+          title: {
+            display: true,
+            text: 'Actual Wins',
+            color: SEASON_ANALYTICS_CHART_THEME.axisText,
+          },
+          ticks: { color: SEASON_ANALYTICS_CHART_THEME.axisText },
+          grid: { color: SEASON_ANALYTICS_CHART_THEME.grid },
         },
       },
     };

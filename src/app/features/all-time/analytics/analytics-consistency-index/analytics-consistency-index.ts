@@ -3,6 +3,7 @@ import { Component, computed, inject } from '@angular/core';
 import { DataTableComponent } from '../../../../shared/table';
 import type { DataTableColumnDef, DataTableRow } from '../../../../shared/table';
 import { ConsistencyIndexService } from './consistency-index.service';
+import { SubsectionHeader } from '../../../../shared/components/subsection-header/subsection-header';
 
 interface ConsistencyIndexRow extends DataTableRow {
   ownerName: string;
@@ -26,7 +27,7 @@ const COLUMNS: DataTableColumnDef[] = [
 
 @Component({
   selector: 'app-all-time-analytics-consistency-index',
-  imports: [DataTableComponent],
+  imports: [DataTableComponent, SubsectionHeader],
   templateUrl: './analytics-consistency-index.html',
   styleUrl: './analytics-consistency-index.scss',
 })
